@@ -9,6 +9,7 @@
 #import "ZHLZLoginVC.h"
 #import "ZHLZLoginVM.h"
 #import "ZHLZLoginModel.h"
+#import "ZHLZLocalDataStorageConst.h"
 
 @interface ZHLZLoginVC ()
 
@@ -22,10 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.rememberPwdButton.selected = [[[NSUserDefaults standardUserDefaults] objectForKey:LoginRememberPwdConst] boolValue];
 }
 
 - (IBAction)rememberPwdAction:(UIButton *)sender {
-    
+    sender.selected = !sender.isSelected;
 }
 
 - (IBAction)loginAction {
@@ -41,7 +44,7 @@
         return;
     }
     self.task = [[ZHLZLoginVM sharedInstance] loginWithModel:loginModel withCompletionBlock:^{
-        
+        [[NSUserDefaults standardUserDefaults] setBool:self.rememberPwdButton.isSelected forKey:LoginRememberPwdConst];
     }];
 }
 

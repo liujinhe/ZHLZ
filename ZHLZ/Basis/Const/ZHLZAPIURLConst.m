@@ -12,7 +12,7 @@
 
 #pragma mark - API Base URL
 
-NSString * const BaseAPIURLConst = @"http://kb3tbd.natappfree.cc";
+NSString * const BaseAPIURLConst = @"http://2gfffu.natappfree.cc";
 
 #pragma mark - API URL for Other
 
