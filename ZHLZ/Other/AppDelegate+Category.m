@@ -22,9 +22,14 @@
     
     self.window.rootViewController = [ZHLZTabBarController new];
     
+    [[UITextField appearance] setTintColor:kThemeColor];
+    
     [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     
 #ifdef DEBUG
+    [IQKeyboardManager sharedManager].enableDebugging = YES;
+    
     [FPSDisplay sharedInstance];
 #endif
 }

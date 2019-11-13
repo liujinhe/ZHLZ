@@ -27,7 +27,7 @@
     
     [self initUI];
     
-    //[self loginAction];
+    [self loginAction];
 }
 
 - (void)initUI {

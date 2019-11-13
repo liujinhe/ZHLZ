@@ -25,6 +25,12 @@
     [super viewDidLoad];
     
     self.rememberPwdButton.selected = [[[NSUserDefaults standardUserDefaults] objectForKey:LoginRememberPwdConst] boolValue];
+    
+    CGFloat space = 10.f;
+    [self.userNameTextField setValue:@(space) forKey:@"paddingLeft"];
+    [self.userNameTextField setValue:@(space) forKey:@"paddingRight"];
+    [self.pwdTextField setValue:@(space) forKey:@"paddingLeft"];
+    [self.pwdTextField setValue:@(space) forKey:@"paddingRight"];
 }
 
 - (IBAction)rememberPwdAction:(UIButton *)sender {
