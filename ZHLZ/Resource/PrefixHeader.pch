@@ -1,0 +1,28 @@
+//
+//  PrefixHeader.pch
+//  ZHLZ
+//
+//  Created by liujinhe on 2019/11/12.
+//  Copyright © 2019 liujinhe. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "ZHLZBaseModel.h"
+#import "ZHLZBaseVM.h"
+#import "ZHLZBaseVC.h"
+
+#import <YYKit/YYKitMacro.h>
+#import <YYKit/UIImage+YYAdd.h>
+#import <YYKit/UIView+YYAdd.h>
+#import <YYKit/NSString+YYAdd.h>
+#import <YYKit/YYLabel.h>
+
+#import <AFNetworking/AFNetworking.h>
+
+#import "ZHLZColorMacro.h"
+
+#import "GRToast.h"
+
+#endif /* PrefixHeader_pch */
