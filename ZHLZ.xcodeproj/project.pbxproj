@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184A0611237C14F400AC2C20 /* ZHLZAddressBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A060F237C14F400AC2C20 /* ZHLZAddressBookCell.m */; };
+		184A0612237C14F400AC2C20 /* ZHLZAddressBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0610237C14F400AC2C20 /* ZHLZAddressBookCell.xib */; };
+		184A0616237C18F400AC2C20 /* ZHLZBookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0614237C18F400AC2C20 /* ZHLZBookListVC.m */; };
+		184A0617237C18F400AC2C20 /* ZHLZBookListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0615237C18F400AC2C20 /* ZHLZBookListVC.xib */; };
+		184A061B237C191A00AC2C20 /* ZHLZBookListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0619237C191A00AC2C20 /* ZHLZBookListCell.m */; };
+		184A061C237C191A00AC2C20 /* ZHLZBookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A061A237C191A00AC2C20 /* ZHLZBookListCell.xib */; };
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A53DB7D4237ADCA00030EEFB /* GRChainRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A53DB7B7237ADC9F0030EEFB /* GRChainRequestAgent.m */; };
@@ -77,6 +83,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184A060E237C14F400AC2C20 /* ZHLZAddressBookCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZAddressBookCell.h; sourceTree = "<group>"; };
+		184A060F237C14F400AC2C20 /* ZHLZAddressBookCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZAddressBookCell.m; sourceTree = "<group>"; };
+		184A0610237C14F400AC2C20 /* ZHLZAddressBookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZAddressBookCell.xib; sourceTree = "<group>"; };
+		184A0613237C18F400AC2C20 /* ZHLZBookListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZBookListVC.h; sourceTree = "<group>"; };
+		184A0614237C18F400AC2C20 /* ZHLZBookListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZBookListVC.m; sourceTree = "<group>"; };
+		184A0615237C18F400AC2C20 /* ZHLZBookListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZBookListVC.xib; sourceTree = "<group>"; };
+		184A0618237C191A00AC2C20 /* ZHLZBookListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZBookListCell.h; sourceTree = "<group>"; };
+		184A0619237C191A00AC2C20 /* ZHLZBookListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZBookListCell.m; sourceTree = "<group>"; };
+		184A061A237C191A00AC2C20 /* ZHLZBookListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZBookListCell.xib; sourceTree = "<group>"; };
 		42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +227,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184A060D237C14C800AC2C20 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				184A060E237C14F400AC2C20 /* ZHLZAddressBookCell.h */,
+				184A060F237C14F400AC2C20 /* ZHLZAddressBookCell.m */,
+				184A0610237C14F400AC2C20 /* ZHLZAddressBookCell.xib */,
+				184A0618237C191A00AC2C20 /* ZHLZBookListCell.h */,
+				184A0619237C191A00AC2C20 /* ZHLZBookListCell.m */,
+				184A061A237C191A00AC2C20 /* ZHLZBookListCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A53DB7E2237ADDBF0030EEFB /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,9 +516,13 @@
 		A5FE3816237A394200576FDF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				184A060D237C14C800AC2C20 /* Cell */,
 				A5FE3811237A393C00576FDF /* ZHLZAddressBookVC.h */,
 				A5FE3812237A393C00576FDF /* ZHLZAddressBookVC.m */,
 				A5FE3813237A393C00576FDF /* ZHLZAddressBookVC.xib */,
+				184A0613237C18F400AC2C20 /* ZHLZBookListVC.h */,
+				184A0614237C18F400AC2C20 /* ZHLZBookListVC.m */,
+				184A0615237C18F400AC2C20 /* ZHLZBookListVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -695,7 +727,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5941010237905D100D7A1D4 /* LaunchScreen.storyboard in Resources */,
+				184A0612237C14F400AC2C20 /* ZHLZAddressBookCell.xib in Resources */,
 				A5FE3823237A39AE00576FDF /* ZHLZHomeVC.xib in Resources */,
+				184A061C237C191A00AC2C20 /* ZHLZBookListCell.xib in Resources */,
+				184A0617237C18F400AC2C20 /* ZHLZBookListVC.xib in Resources */,
 				A53DB7FD237AE8920030EEFB /* ZHLZLoginVC.xib in Resources */,
 				A5FE3815237A393C00576FDF /* ZHLZAddressBookVC.xib in Resources */,
 				A594100D237905D100D7A1D4 /* Assets.xcassets in Resources */,
@@ -827,6 +862,7 @@
 				A53DB7DA237ADCA00030EEFB /* GRRequest.m in Sources */,
 				A53DB807237AEB1A0030EEFB /* ZHLZAPIURLConst.m in Sources */,
 				A53DB817237AF47B0030EEFB /* ZHLZUserModel.m in Sources */,
+				184A0611237C14F400AC2C20 /* ZHLZAddressBookCell.m in Sources */,
 				A5FE3822237A39AE00576FDF /* ZHLZHomeVC.m in Sources */,
 				A5FE3831237A3A0900576FDF /* ZHLZAddressBookVM.m in Sources */,
 				A53DB7D9237ADCA00030EEFB /* GRNetworkConfig.m in Sources */,
@@ -834,6 +870,7 @@
 				A5FE3809237A382000576FDF /* ZHLZBaseVC.m in Sources */,
 				A5FE3834237A3D6C00576FDF /* AppDelegate+Category.m in Sources */,
 				A53DB7D4237ADCA00030EEFB /* GRChainRequestAgent.m in Sources */,
+				184A0616237C18F400AC2C20 /* ZHLZBookListVC.m in Sources */,
 				A5B406A2237A343D003E9FC9 /* ZHLZTabBarController.m in Sources */,
 				A53DB800237AE8A70030EEFB /* ZHLZLoginVM.m in Sources */,
 				A5941013237905D100D7A1D4 /* main.m in Sources */,
@@ -848,6 +885,7 @@
 				A53DB7DD237ADCA00030EEFB /* GRNetworkUtils.m in Sources */,
 				A53DB7DB237ADCA00030EEFB /* GRBatchRequestAgent.m in Sources */,
 				A53DB7EF237ADDBF0030EEFB /* GRBatchRequest+RequestAccessory.m in Sources */,
+				184A061B237C191A00AC2C20 /* ZHLZBookListCell.m in Sources */,
 				A53DB7EE237ADDBF0030EEFB /* GRChainRequest+RequestAccessory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
