@@ -8,6 +8,7 @@
 
 #import "ZHLZAddressBookVC.h"
 #import "ZHLZAddressBookCell.h"
+#import "ZHLZBookListVC.h"
 
 @interface ZHLZAddressBookVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -57,6 +58,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZHLZBookListVC *bookListVC = [ZHLZBookListVC new];
+    [self.navigationController pushViewController:bookListVC animated:YES];
 }
 
 
