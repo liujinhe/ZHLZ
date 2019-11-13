@@ -21,6 +21,20 @@
 		184A062C237C23FB00AC2C20 /* ZHLZHelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A062A237C23FB00AC2C20 /* ZHLZHelpVC.xib */; };
 		184A0630237C241400AC2C20 /* ZHLZAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A062E237C241400AC2C20 /* ZHLZAboutVC.m */; };
 		184A0631237C241400AC2C20 /* ZHLZAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A062F237C241400AC2C20 /* ZHLZAboutVC.xib */; };
+		184A0635237C26D100AC2C20 /* ZHLZRoadWorkVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0633237C26D100AC2C20 /* ZHLZRoadWorkVC.m */; };
+		184A0636237C26D100AC2C20 /* ZHLZRoadWorkVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0634237C26D100AC2C20 /* ZHLZRoadWorkVC.xib */; };
+		184A063A237C271E00AC2C20 /* ZHLZExamineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0638237C271E00AC2C20 /* ZHLZExamineVC.m */; };
+		184A063B237C271E00AC2C20 /* ZHLZExamineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0639237C271E00AC2C20 /* ZHLZExamineVC.xib */; };
+		184A063F237C275300AC2C20 /* ZHLZConstructionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A063D237C275300AC2C20 /* ZHLZConstructionVC.m */; };
+		184A0640237C275300AC2C20 /* ZHLZConstructionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A063E237C275300AC2C20 /* ZHLZConstructionVC.xib */; };
+		184A0644237C27AF00AC2C20 /* ZHLZCityManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0642237C27AF00AC2C20 /* ZHLZCityManagementVC.m */; };
+		184A0645237C27AF00AC2C20 /* ZHLZCityManagementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0643237C27AF00AC2C20 /* ZHLZCityManagementVC.xib */; };
+		184A0649237C281B00AC2C20 /* ZHLZAreaManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0647237C281B00AC2C20 /* ZHLZAreaManagementVC.m */; };
+		184A064A237C281B00AC2C20 /* ZHLZAreaManagementVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0648237C281B00AC2C20 /* ZHLZAreaManagementVC.xib */; };
+		184A064E237C285400AC2C20 /* ZHLZSpecialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A064C237C285400AC2C20 /* ZHLZSpecialVC.m */; };
+		184A064F237C285400AC2C20 /* ZHLZSpecialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A064D237C285400AC2C20 /* ZHLZSpecialVC.xib */; };
+		184A0653237C289F00AC2C20 /* ZHLZMonadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0651237C289F00AC2C20 /* ZHLZMonadVC.m */; };
+		184A0654237C289F00AC2C20 /* ZHLZMonadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0652237C289F00AC2C20 /* ZHLZMonadVC.xib */; };
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A53DB7D4237ADCA00030EEFB /* GRChainRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A53DB7B7237ADC9F0030EEFB /* GRChainRequestAgent.m */; };
@@ -112,6 +126,27 @@
 		184A062D237C241400AC2C20 /* ZHLZAboutVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZAboutVC.h; sourceTree = "<group>"; };
 		184A062E237C241400AC2C20 /* ZHLZAboutVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZAboutVC.m; sourceTree = "<group>"; };
 		184A062F237C241400AC2C20 /* ZHLZAboutVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZAboutVC.xib; sourceTree = "<group>"; };
+		184A0632237C26D100AC2C20 /* ZHLZRoadWorkVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZRoadWorkVC.h; sourceTree = "<group>"; };
+		184A0633237C26D100AC2C20 /* ZHLZRoadWorkVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZRoadWorkVC.m; sourceTree = "<group>"; };
+		184A0634237C26D100AC2C20 /* ZHLZRoadWorkVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZRoadWorkVC.xib; sourceTree = "<group>"; };
+		184A0637237C271E00AC2C20 /* ZHLZExamineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZExamineVC.h; sourceTree = "<group>"; };
+		184A0638237C271E00AC2C20 /* ZHLZExamineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZExamineVC.m; sourceTree = "<group>"; };
+		184A0639237C271E00AC2C20 /* ZHLZExamineVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZExamineVC.xib; sourceTree = "<group>"; };
+		184A063C237C275300AC2C20 /* ZHLZConstructionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZConstructionVC.h; sourceTree = "<group>"; };
+		184A063D237C275300AC2C20 /* ZHLZConstructionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZConstructionVC.m; sourceTree = "<group>"; };
+		184A063E237C275300AC2C20 /* ZHLZConstructionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZConstructionVC.xib; sourceTree = "<group>"; };
+		184A0641237C27AF00AC2C20 /* ZHLZCityManagementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZCityManagementVC.h; sourceTree = "<group>"; };
+		184A0642237C27AF00AC2C20 /* ZHLZCityManagementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZCityManagementVC.m; sourceTree = "<group>"; };
+		184A0643237C27AF00AC2C20 /* ZHLZCityManagementVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZCityManagementVC.xib; sourceTree = "<group>"; };
+		184A0646237C281B00AC2C20 /* ZHLZAreaManagementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZAreaManagementVC.h; sourceTree = "<group>"; };
+		184A0647237C281B00AC2C20 /* ZHLZAreaManagementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZAreaManagementVC.m; sourceTree = "<group>"; };
+		184A0648237C281B00AC2C20 /* ZHLZAreaManagementVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZAreaManagementVC.xib; sourceTree = "<group>"; };
+		184A064B237C285400AC2C20 /* ZHLZSpecialVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZSpecialVC.h; sourceTree = "<group>"; };
+		184A064C237C285400AC2C20 /* ZHLZSpecialVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZSpecialVC.m; sourceTree = "<group>"; };
+		184A064D237C285400AC2C20 /* ZHLZSpecialVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZSpecialVC.xib; sourceTree = "<group>"; };
+		184A0650237C289F00AC2C20 /* ZHLZMonadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZMonadVC.h; sourceTree = "<group>"; };
+		184A0651237C289F00AC2C20 /* ZHLZMonadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZMonadVC.m; sourceTree = "<group>"; };
+		184A0652237C289F00AC2C20 /* ZHLZMonadVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZMonadVC.xib; sourceTree = "<group>"; };
 		42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +588,27 @@
 				184A0613237C18F400AC2C20 /* ZHLZBookListVC.h */,
 				184A0614237C18F400AC2C20 /* ZHLZBookListVC.m */,
 				184A0615237C18F400AC2C20 /* ZHLZBookListVC.xib */,
+				184A0632237C26D100AC2C20 /* ZHLZRoadWorkVC.h */,
+				184A0633237C26D100AC2C20 /* ZHLZRoadWorkVC.m */,
+				184A0634237C26D100AC2C20 /* ZHLZRoadWorkVC.xib */,
+				184A0637237C271E00AC2C20 /* ZHLZExamineVC.h */,
+				184A0638237C271E00AC2C20 /* ZHLZExamineVC.m */,
+				184A0639237C271E00AC2C20 /* ZHLZExamineVC.xib */,
+				184A063C237C275300AC2C20 /* ZHLZConstructionVC.h */,
+				184A063D237C275300AC2C20 /* ZHLZConstructionVC.m */,
+				184A063E237C275300AC2C20 /* ZHLZConstructionVC.xib */,
+				184A0641237C27AF00AC2C20 /* ZHLZCityManagementVC.h */,
+				184A0642237C27AF00AC2C20 /* ZHLZCityManagementVC.m */,
+				184A0643237C27AF00AC2C20 /* ZHLZCityManagementVC.xib */,
+				184A0646237C281B00AC2C20 /* ZHLZAreaManagementVC.h */,
+				184A0647237C281B00AC2C20 /* ZHLZAreaManagementVC.m */,
+				184A0648237C281B00AC2C20 /* ZHLZAreaManagementVC.xib */,
+				184A064B237C285400AC2C20 /* ZHLZSpecialVC.h */,
+				184A064C237C285400AC2C20 /* ZHLZSpecialVC.m */,
+				184A064D237C285400AC2C20 /* ZHLZSpecialVC.xib */,
+				184A0650237C289F00AC2C20 /* ZHLZMonadVC.h */,
+				184A0651237C289F00AC2C20 /* ZHLZMonadVC.m */,
+				184A0652237C289F00AC2C20 /* ZHLZMonadVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -766,17 +822,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184A0654237C289F00AC2C20 /* ZHLZMonadVC.xib in Resources */,
 				A5941010237905D100D7A1D4 /* LaunchScreen.storyboard in Resources */,
+				184A064F237C285400AC2C20 /* ZHLZSpecialVC.xib in Resources */,
 				184A0612237C14F400AC2C20 /* ZHLZAddressBookCell.xib in Resources */,
 				184A0627237C238400AC2C20 /* ZHLZChangePasswordVC.xib in Resources */,
+				184A0640237C275300AC2C20 /* ZHLZConstructionVC.xib in Resources */,
 				A5FE3823237A39AE00576FDF /* ZHLZHomeVC.xib in Resources */,
 				184A0631237C241400AC2C20 /* ZHLZAboutVC.xib in Resources */,
 				184A061C237C191A00AC2C20 /* ZHLZBookListCell.xib in Resources */,
 				184A062C237C23FB00AC2C20 /* ZHLZHelpVC.xib in Resources */,
+				184A063B237C271E00AC2C20 /* ZHLZExamineVC.xib in Resources */,
 				184A0617237C18F400AC2C20 /* ZHLZBookListVC.xib in Resources */,
+				184A064A237C281B00AC2C20 /* ZHLZAreaManagementVC.xib in Resources */,
+				184A0645237C27AF00AC2C20 /* ZHLZCityManagementVC.xib in Resources */,
 				A53DB7FD237AE8920030EEFB /* ZHLZLoginVC.xib in Resources */,
 				184A0622237C216700AC2C20 /* ZHLZMineCell.xib in Resources */,
 				A5FE3815237A393C00576FDF /* ZHLZAddressBookVC.xib in Resources */,
+				184A0636237C26D100AC2C20 /* ZHLZRoadWorkVC.xib in Resources */,
 				A594100D237905D100D7A1D4 /* Assets.xcassets in Resources */,
 				A5FE3828237A39C200576FDF /* ZHLZMineVC.xib in Resources */,
 			);
@@ -890,6 +953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5FE3837237A3E5700576FDF /* FPSDisplay.m in Sources */,
+				184A0635237C26D100AC2C20 /* ZHLZRoadWorkVC.m in Sources */,
 				A5FE382B237A39E900576FDF /* ZHLZMineVM.m in Sources */,
 				A53DB818237AF47B0030EEFB /* ZHLZStoreUtility.m in Sources */,
 				A53DB7FC237AE8920030EEFB /* ZHLZLoginVC.m in Sources */,
@@ -914,6 +978,7 @@
 				A5FE3809237A382000576FDF /* ZHLZBaseVC.m in Sources */,
 				184A0621237C216700AC2C20 /* ZHLZMineCell.m in Sources */,
 				A5FE3834237A3D6C00576FDF /* AppDelegate+Category.m in Sources */,
+				184A0644237C27AF00AC2C20 /* ZHLZCityManagementVC.m in Sources */,
 				A53DB7D4237ADCA00030EEFB /* GRChainRequestAgent.m in Sources */,
 				184A0616237C18F400AC2C20 /* ZHLZBookListVC.m in Sources */,
 				184A0626237C238400AC2C20 /* ZHLZChangePasswordVC.m in Sources */,
@@ -922,6 +987,9 @@
 				184A062B237C23FB00AC2C20 /* ZHLZHelpVC.m in Sources */,
 				A5941013237905D100D7A1D4 /* main.m in Sources */,
 				A53DB7F0237ADDBF0030EEFB /* GRBaseRequest+Setter.m in Sources */,
+				184A0653237C289F00AC2C20 /* ZHLZMonadVC.m in Sources */,
+				184A063A237C271E00AC2C20 /* ZHLZExamineVC.m in Sources */,
+				184A064E237C285400AC2C20 /* ZHLZSpecialVC.m in Sources */,
 				A5FE380F237A384A00576FDF /* ZHLZBaseModel.m in Sources */,
 				A55432BE237BA0BC00A0B1BE /* ZHLZLocalDataStorageConst.m in Sources */,
 				A5FE3827237A39C200576FDF /* ZHLZMineVC.m in Sources */,
@@ -932,9 +1000,11 @@
 				A53DB7DD237ADCA00030EEFB /* GRNetworkUtils.m in Sources */,
 				A53DB7DB237ADCA00030EEFB /* GRBatchRequestAgent.m in Sources */,
 				A53DB7EF237ADDBF0030EEFB /* GRBatchRequest+RequestAccessory.m in Sources */,
+				184A0649237C281B00AC2C20 /* ZHLZAreaManagementVC.m in Sources */,
 				184A061B237C191A00AC2C20 /* ZHLZBookListCell.m in Sources */,
 				184A0630237C241400AC2C20 /* ZHLZAboutVC.m in Sources */,
 				A53DB7EE237ADDBF0030EEFB /* GRChainRequest+RequestAccessory.m in Sources */,
+				184A063F237C275300AC2C20 /* ZHLZConstructionVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

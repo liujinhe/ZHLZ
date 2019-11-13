@@ -11,6 +11,7 @@
 
 
 @interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
 
 @end
@@ -25,6 +26,8 @@
 #pragma mark --初始化视图
 
 - (void)initBookListView{
+    
+    self.navigationController.navigationBar.hidden = NO;
     
     self.bookListTableView.dataSource = self;
     self.bookListTableView.delegate = self;
