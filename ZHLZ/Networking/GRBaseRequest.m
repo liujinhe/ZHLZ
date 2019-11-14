@@ -10,7 +10,7 @@
 #import "GRNetworkAgent.h"
 #import "GRBaseRequest+RequestAccessory.h"
 
-NSString * const GRRequestValidationErrorDomain = @"com.rongjinsuo.request.validation";
+NSString * const GRRequestValidationErrorDomain = @"com.zhlz.request.validation";
 
 @interface GRBaseRequest ()
 
