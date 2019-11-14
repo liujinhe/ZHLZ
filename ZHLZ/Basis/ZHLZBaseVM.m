@@ -33,10 +33,6 @@
     return _requestParam;
 }
 
-//- (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
-//    return @{@"Content-Type": @"application/json"};
-//}
-
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl {
     return [self initWithRequestUrl:requestUrl withRequestMethod:GRRequestMethodPOST withRequestArgument:nil];
 }

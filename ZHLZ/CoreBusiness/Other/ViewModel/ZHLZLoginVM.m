@@ -10,6 +10,7 @@
 #import "ZHLZLoginModel.h"
 
 #import "ZHLZUserManager.h"
+#import "ZHLZUserModel.h"
 
 @implementation ZHLZLoginVM
 

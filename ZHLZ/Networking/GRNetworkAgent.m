@@ -64,7 +64,7 @@
     if (!_jsonResponseSerializer) {
         _jsonResponseSerializer = [AFJSONResponseSerializer serializer];
         _jsonResponseSerializer.acceptableStatusCodes = _allStatusCodes;
-        
+        _jsonResponseSerializer.acceptableContentTypes = [_jsonResponseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     }
     return _jsonResponseSerializer;
 }

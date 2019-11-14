@@ -33,7 +33,6 @@ static ZHLZUserManager *_userManager = nil;
 - (BOOL)saveUserWithJson:(id)userJson {
     ZHLZUserModel *currentUser = [self getCurrentUserModel];
     if (currentUser) {
-        
         NSDictionary *userJsonDic = (NSDictionary *)userJson;
         NSDictionary *currentUserDic = (NSDictionary *)[currentUser modelToJSONObject];
         for (NSString *key in userJsonDic) {
