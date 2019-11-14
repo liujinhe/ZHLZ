@@ -22,7 +22,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVC = @"ZHLZHomeMunicipalFacili
 
 @interface ZHLZHomeVC () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 
@@ -32,6 +32,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVC = @"ZHLZHomeMunicipalFacili
     [super viewDidLoad];
     
     self.navTitle = @"智慧路政";
+    
+    UICollectionViewLayout *layout = [[UICollectionViewLayout alloc] init];
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -47,6 +51,8 @@ static NSString * const ZHLZHomeMunicipalFacilityCVC = @"ZHLZHomeMunicipalFacili
           forCellWithReuseIdentifier:ZHLZHomeRoadConstructionCVC];
     [self.collectionView registerNib:[UINib nibWithNibName:ZHLZHomeMunicipalFacilityCVC bundle:nil]
           forCellWithReuseIdentifier:ZHLZHomeMunicipalFacilityCVC];
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -69,11 +75,11 @@ static NSString * const ZHLZHomeMunicipalFacilityCVC = @"ZHLZHomeMunicipalFacili
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    return [UICollectionReusableView new];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    return [UICollectionViewCell new];
 }
 
 #pragma mark - UICollectionViewDelegate
