@@ -8,9 +8,12 @@
 
 #import "ZHLZBookListCell.h"
 @interface ZHLZBookListCell ()
+
 @property (weak, nonatomic) IBOutlet UILabel *addressNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *contentNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *addressListBgView;
+
 @end
 
 @implementation ZHLZBookListCell
@@ -19,7 +22,7 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    self.addressListBgView.layer.cornerRadius = 10.0f;
     self.addressNameLabel.text = @"深圳市福田区北环大道2001段";
     self.contentNameLabel.text = @"李锦辉  13691781589";
 }

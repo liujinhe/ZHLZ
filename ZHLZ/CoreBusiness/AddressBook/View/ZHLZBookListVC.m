@@ -7,9 +7,19 @@
 //
 
 #import "ZHLZBookListVC.h"
-#import "ZHLZBookListCell.h"
-#import "ZHLZAreaManagementVC.h"
 #import <YYKit/UIControl+YYAdd.h>
+#import "ZHLZBookListCell.h"
+
+#import "ZHLZRoadWorkVC.h"//施工单位
+#import "ZHLZExamineVC.h"//审批部门
+#import "ZHLZConstructionVC.h"//建设单位
+
+#import "ZHLZAreaManagementVC.h"//区管管理单位
+#import "ZHLZCityManagementVC.h"//市管管理单位
+#import "ZHLZSpecialVC.h"//特殊业主单位
+
+#import "ZHLZMonadVC.h"//责任单位
+
 
 @interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -28,6 +38,8 @@
 
 - (void)initBookListView{
     
+    self.title = self.titleNameString;
+    
     UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [areaManagementButton setTitle:@"添加" forState:UIControlStateNormal];
     [areaManagementButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -35,8 +47,7 @@
     @weakify(self);
     [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
         @strongify(self);
-        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
-        [self.navigationController pushViewController:areaManagementVC animated:YES];
+        [self clickAddAction];
     }];
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
     
@@ -49,6 +60,40 @@
     self.bookListTableView.showsVerticalScrollIndicator = NO;
     
     [self.bookListTableView registerNib:[UINib nibWithNibName:@"ZHLZBookListCell" bundle:nil] forCellReuseIdentifier:@"ZHLZBookListCell"];
+    
+}
+
+- (void)clickAddAction{
+    
+    if (self.selectIndex == 0) {
+        ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
+        [self.navigationController pushViewController:roadWorkVC animated:YES];
+        
+    } else if(self.selectIndex == 1){
+        ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
+        [self.navigationController pushViewController:examineVC animated:YES];
+        
+    } else if(self.selectIndex == 2){
+        ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
+        [self.navigationController pushViewController:constructionVC animated:YES];
+        
+    } else if(self.selectIndex == 3){
+        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
+        [self.navigationController pushViewController:areaManagementVC animated:YES];
+        
+    } else if(self.selectIndex == 4){
+        ZHLZCityManagementVC *cityManagementVC = [ZHLZCityManagementVC new];
+        [self.navigationController pushViewController:cityManagementVC animated:YES];
+        
+    } else if(self.selectIndex == 5){
+        ZHLZSpecialVC *specialVC = [ZHLZSpecialVC new];
+        [self.navigationController pushViewController:specialVC animated:YES];
+        
+    } else if(self.selectIndex == 6){
+        ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
+        [self.navigationController pushViewController:monadVC animated:YES];
+        
+    }
     
 }
 
@@ -74,5 +119,8 @@
     return 80;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self clickAddAction];
+}
 
 @end

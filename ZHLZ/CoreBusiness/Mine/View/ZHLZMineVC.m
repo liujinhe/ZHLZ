@@ -10,6 +10,8 @@
 #import "ZHLZChangePasswordVC.h"
 #import "ZHLZHelpVC.h"
 #import "ZHLZAboutVC.h"
+#import "ZHLZUserManager.h"
+#import "ZHLZLoginVC.h"
 
 #import "ZHLZMineCell.h"
 
@@ -38,6 +40,8 @@
     
     self.itemArray = @[@"修改密码",@"关于我们",@"帮助中心"];
     self.loginOut = @[@"退出登录"];
+    
+    self.navigationController.navigationBar.hidden = YES;
     
     self.mineTableView.dataSource = self;
     self.mineTableView.delegate = self;
@@ -89,20 +93,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 0) {
             ZHLZChangePasswordVC *changePasswordVC = [ZHLZChangePasswordVC new];
             [self.navigationController pushViewController:changePasswordVC animated:YES];
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 1) {
             ZHLZAboutVC *aboutVC = [ZHLZAboutVC new];
             [self.navigationController pushViewController:aboutVC animated:YES];
-        } else if (indexPath.row == 3) {
+        } else if (indexPath.row == 2) {
             ZHLZHelpVC *helpVC = [ZHLZHelpVC new];
             [self.navigationController pushViewController:helpVC animated:YES];
         }
     } else {
-//        @weakify(self);
+        @weakify(self);
         [self popActionWithTip:@"是否退出登录？" withBlock:^{
-//            @strongify(self);
+            @strongify(self);
+            [[ZHLZUserManager sharedInstance] logoutWithBlock:^{
+                @strongify(self);
+                [GRToast makeText:@"退出成功"];
+                ZHLZLoginVC *loginVC = [ZHLZLoginVC new];
+                loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                [self.navigationController presentViewController:loginVC animated:NO completion:nil];
+            }];
         }];
     }
 }

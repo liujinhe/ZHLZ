@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZBookListVC : ZHLZBaseVC
 
+@property (nonatomic , strong) NSString *titleNameString;
+
+
+@property (nonatomic , assign) NSInteger selectIndex;
+
 @end
 
 NS_ASSUME_NONNULL_END

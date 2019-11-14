@@ -71,6 +71,7 @@
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="addressListBgView" destination="Oqm-Vq-Orf" id="Eok-mQ-aQC"/>
                 <outlet property="addressNameLabel" destination="hJG-eN-f1f" id="rhi-Hr-oTF"/>
                 <outlet property="contentNameLabel" destination="q53-Xb-apR" id="vSK-Hj-pFv"/>
             </connections>
