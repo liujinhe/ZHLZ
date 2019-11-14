@@ -18,8 +18,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+
+- (void)setAddressBookString:(NSString *)addressBookString{
+    if ([addressBookString isNotBlank]) {
+        self.addressBookNameLabel.text = addressBookString;
+    }
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

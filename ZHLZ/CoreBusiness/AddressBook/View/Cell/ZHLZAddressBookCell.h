@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZAddressBookCell : UITableViewCell
 
+@property (nonatomic , strong) NSString *addressBookString;
+
 @end
 
 NS_ASSUME_NONNULL_END

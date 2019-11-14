@@ -21,18 +21,11 @@
                         <rect key="frame" x="10" y="0.0" width="355" height="70"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智慧路政智慧路政智慧路政" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-eN-f1f">
-                                <rect key="frame" x="10" y="5" width="285" height="35"/>
+                                <rect key="frame" x="10" y="5" width="300" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.199973762" green="0.2000150383" blue="0.19997116919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KN3-A8-Hda">
-                                <rect key="frame" x="305" y="20" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ceq-dB-TlP"/>
-                                    <constraint firstAttribute="width" constant="30" id="Uhe-4S-YrA"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智慧路政  智慧路政" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q53-Xb-apR">
                                 <rect key="frame" x="10" y="48" width="335" height="12"/>
                                 <constraints>
@@ -42,18 +35,29 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAy-ZD-XAv">
+                                <rect key="frame" x="320" y="22.5" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="4qf-GE-rSM"/>
+                                    <constraint firstAttribute="width" constant="25" id="eP7-7O-uDa"/>
+                                </constraints>
+                                <state key="normal" image="icon_call"/>
+                                <connections>
+                                    <action selector="callPhoneAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="di8-OI-MIw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hJG-eN-f1f" firstAttribute="leading" secondItem="Oqm-Vq-Orf" secondAttribute="leading" constant="10" id="08L-he-t7w"/>
-                            <constraint firstItem="KN3-A8-Hda" firstAttribute="centerY" secondItem="Oqm-Vq-Orf" secondAttribute="centerY" id="49A-LQ-acG"/>
                             <constraint firstAttribute="trailing" secondItem="q53-Xb-apR" secondAttribute="trailing" constant="10" id="7P6-8a-2uB"/>
                             <constraint firstItem="hJG-eN-f1f" firstAttribute="top" secondItem="Oqm-Vq-Orf" secondAttribute="top" constant="5" id="Tf0-9T-mgh"/>
-                            <constraint firstAttribute="trailing" secondItem="KN3-A8-Hda" secondAttribute="trailing" constant="20" id="XG3-y7-L1T"/>
                             <constraint firstAttribute="bottom" secondItem="q53-Xb-apR" secondAttribute="bottom" constant="10" id="ZXg-fa-OXN"/>
+                            <constraint firstItem="cAy-ZD-XAv" firstAttribute="leading" secondItem="hJG-eN-f1f" secondAttribute="trailing" constant="10" id="bkz-Gh-szl"/>
                             <constraint firstItem="q53-Xb-apR" firstAttribute="top" secondItem="hJG-eN-f1f" secondAttribute="bottom" constant="8" id="e0M-Ar-rqj"/>
-                            <constraint firstItem="KN3-A8-Hda" firstAttribute="leading" secondItem="hJG-eN-f1f" secondAttribute="trailing" constant="10" id="o8h-sT-Bce"/>
                             <constraint firstItem="q53-Xb-apR" firstAttribute="leading" secondItem="Oqm-Vq-Orf" secondAttribute="leading" constant="10" id="pxd-xH-Ebf"/>
+                            <constraint firstItem="cAy-ZD-XAv" firstAttribute="centerY" secondItem="Oqm-Vq-Orf" secondAttribute="centerY" id="tmG-ol-BEU"/>
+                            <constraint firstAttribute="trailing" secondItem="cAy-ZD-XAv" secondAttribute="trailing" constant="10" id="uHr-Ds-YWE"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -66,7 +70,14 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="addressNameLabel" destination="hJG-eN-f1f" id="rhi-Hr-oTF"/>
+                <outlet property="contentNameLabel" destination="q53-Xb-apR" id="vSK-Hj-pFv"/>
+            </connections>
             <point key="canvasLocation" x="131.15942028985509" y="119.86607142857142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_call" width="32" height="32"/>
+    </resources>
 </document>

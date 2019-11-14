@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *addressBookTableView;
 
+@property (nonatomic , strong) NSArray *addressBookArray;
+
 @end
 
 @implementation ZHLZAddressBookVC
@@ -28,6 +30,8 @@
 
 - (void)initAddressBookView{
     
+    self.addressBookArray = @[@"施工单位" , @"施工单位" , @"施工单位", @"施工单位", @"施工单位", @"施工单位"];
+    
     self.addressBookTableView.dataSource = self;
     self.addressBookTableView.delegate = self;
     self.addressBookTableView.backgroundColor = kHexRGB(0xf7f7f7);
@@ -41,7 +45,7 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.addressBookArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,6 +57,7 @@
     if (cell == nil) {
         cell = [[ZHLZAddressBookCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    cell.addressBookString = self.addressBookArray[indexPath.row];
     return cell;
  }
 

@@ -8,7 +8,8 @@
 
 #import "ZHLZBookListVC.h"
 #import "ZHLZBookListCell.h"
-
+#import "ZHLZAreaManagementVC.h"
+#import <YYKit/UIControl+YYAdd.h>
 
 @interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -27,7 +28,19 @@
 
 - (void)initBookListView{
     
-    self.navigationController.navigationBar.hidden = NO;
+    UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [areaManagementButton setTitle:@"添加" forState:UIControlStateNormal];
+    [areaManagementButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [areaManagementButton sizeToFit];
+    @weakify(self);
+    [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
+        @strongify(self);
+        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
+        [self.navigationController pushViewController:areaManagementVC animated:YES];
+    }];
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
+    
+    
     
     self.bookListTableView.dataSource = self;
     self.bookListTableView.delegate = self;

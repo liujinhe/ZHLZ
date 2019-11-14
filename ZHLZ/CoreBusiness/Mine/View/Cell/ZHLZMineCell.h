@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZMineCell : UITableViewCell
 
+@property (nonatomic , strong) NSString *itemNameString;
+
+@property (nonatomic , assign) BOOL isRedColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,7 +14,13 @@
 #import "ZHLZMineCell.h"
 
 @interface ZHLZMineVC ()<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) IBOutlet UIView *footerView;
+
 @property (weak, nonatomic) IBOutlet UITableView *mineTableView;
+
+@property (nonatomic , strong) NSArray *itemArray;
+@property (nonatomic , strong) NSArray *loginOut;
 
 @end
 
@@ -30,6 +36,9 @@
 
 - (void)initMineView{
     
+    self.itemArray = @[@"修改密码",@"关于我们",@"帮助中心"];
+    self.loginOut = @[@"退出登录"];
+    
     self.mineTableView.dataSource = self;
     self.mineTableView.delegate = self;
     self.mineTableView.backgroundColor = kHexRGB(0xf7f7f7);
@@ -42,42 +51,99 @@
 
 #pragma mark --UITableView 代理
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    if (section == 0) {
+        return self.itemArray.count;
+    } else {
+        return self.loginOut.count;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
     static NSString *cellID = @"ZHLZMineCell";
-
-    ZHLZMineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
-    if (cell == nil) {
-        cell = [[ZHLZMineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    if (indexPath.section == 0) {
+        ZHLZMineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell == nil) {
+            cell = [[ZHLZMineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        }
+        cell.itemNameString = self.itemArray[indexPath.row];
+        cell.isRedColor = NO;
+        
+        return cell;
+    } else {
+        ZHLZMineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (cell == nil) {
+            cell = [[ZHLZMineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        }
+        cell.itemNameString = self.loginOut[indexPath.row];
+        cell.isRedColor = YES;
+        
+        return cell;
     }
-    return cell;
  }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            ZHLZChangePasswordVC *changePasswordVC = [ZHLZChangePasswordVC new];
+            [self.navigationController pushViewController:changePasswordVC animated:YES];
+        } else if (indexPath.row == 2) {
+            ZHLZAboutVC *aboutVC = [ZHLZAboutVC new];
+            [self.navigationController pushViewController:aboutVC animated:YES];
+        } else if (indexPath.row == 3) {
+            ZHLZHelpVC *helpVC = [ZHLZHelpVC new];
+            [self.navigationController pushViewController:helpVC animated:YES];
+        }
+    } else {
+//        @weakify(self);
+        [self popActionWithTip:@"是否退出登录？" withBlock:^{
+//            @strongify(self);
+        }];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 150;
+    if (section == 0) {
+        return 150;
+    } else {
+        return 10;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    return nil;
+    if (section == 0) {
+        return self.headerView;
+    } else {
+        return nil;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 150;
+    if (section == 1) {
+        return 100;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return nil;
+    if (section == 1) {
+        return self.footerView;
+    } else {
+        return nil;
+    }
+    
 }
 
 

@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZMineVC">
             <connections>
+                <outlet property="footerView" destination="FXW-gR-m9e" id="KvT-8U-d1f"/>
+                <outlet property="headerView" destination="bIZ-eq-Hzy" id="lsP-bu-K4p"/>
                 <outlet property="mineTableView" destination="onR-q1-PtJ" id="3d7-do-BDZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="onR-q1-PtJ">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="onR-q1-PtJ">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
@@ -33,6 +35,42 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="132" y="107"/>
+        </view>
+        <view contentMode="scaleToFill" id="bIZ-eq-Hzy">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="287"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Fh-xx-j1o">
+                    <rect key="frame" x="163" y="103" width="49" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </switch>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Su5-4s-MRJ"/>
+            <point key="canvasLocation" x="-760.14492753623199" y="-76.674107142857139"/>
+        </view>
+        <view contentMode="scaleToFill" id="FXW-gR-m9e">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本1.0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNI-yC-caN">
+                    <rect key="frame" x="20" y="44" width="335" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="cNI-yC-caN" firstAttribute="leading" secondItem="URo-SC-xqd" secondAttribute="leading" constant="20" id="CLb-B1-6Ab"/>
+                <constraint firstItem="cNI-yC-caN" firstAttribute="top" secondItem="URo-SC-xqd" secondAttribute="top" id="D5v-yG-rzr"/>
+                <constraint firstItem="cNI-yC-caN" firstAttribute="centerY" secondItem="FXW-gR-m9e" secondAttribute="centerY" id="cKA-7O-hdd"/>
+                <constraint firstItem="URo-SC-xqd" firstAttribute="trailing" secondItem="cNI-yC-caN" secondAttribute="trailing" constant="20" id="dWQ-7o-fe6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="URo-SC-xqd"/>
+            <point key="canvasLocation" x="-732.60869565217399" y="200.22321428571428"/>
         </view>
     </objects>
 </document>
