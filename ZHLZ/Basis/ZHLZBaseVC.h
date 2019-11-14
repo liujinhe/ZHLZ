@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZBaseVC : UIViewController
 
+@property (nonatomic, strong) NSString *navTitle;
+
 // 当前页码
 @property (nonatomic, assign) NSInteger pageNo;
 

@@ -27,7 +27,7 @@
     
     [self initUI];
     
-    //[self loginAction];
+    [self loginAction];
 }
 
 - (void)initUI {
@@ -63,10 +63,13 @@
     [imageSelectedTabBarItemArray addObject:@"icon_mine_selected"];
     
     for (NSUInteger i = 0; i < self.viewControllers.count; i++) {
-        self.viewControllers[i].tabBarItem = [[UITabBarItem alloc] initWithTitle:titleTabBarItemArray[i]
-                                                                           image:[UIImage imageNamed:imageTabBarItemArray[i]]
-                                                                   selectedImage:[UIImage imageNamed:imageSelectedTabBarItemArray[i]]];
-        self.viewControllers[i].tabBarItem.tag = i;
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:titleTabBarItemArray[i]
+                                                                 image:[UIImage imageNamed:imageTabBarItemArray[i]]
+                                                         selectedImage:[UIImage imageNamed:imageSelectedTabBarItemArray[i]]];
+        tabBarItem.tag = i;
+        tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -3.f);
+        self.viewControllers[i].tabBarItem = tabBarItem;
+        
     }
 }
 

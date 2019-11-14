@@ -21,8 +21,10 @@
     
     self.view.backgroundColor = UIColor.whiteColor;
     
+    self.navigationBar.tintColor = kNavTitleColor;
     self.navigationBar.barTintColor = kThemeColor;
     self.navigationBar.shadowImage = [UIImage imageWithColor:UIColor.clearColor];
+    self.navigationBar.titleTextAttributes = @{ NSForegroundColorAttributeName: kNavTitleColor };
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -42,13 +44,14 @@
 
 - (UIButton *)backButton {
     if (!_backButton) {
-        CGFloat backButtonY = [UIApplication sharedApplication].statusBarFrame.size.height;
-        CGFloat backButtonWH = self.navigationBar.frame.size.height;
+        CGFloat backButtonW = 96.f;
+        CGFloat backButtonH = 40.f;
+        CGFloat backButtonY = [UIApplication sharedApplication].statusBarFrame.size.height + (self.navigationBar.frame.size.height - backButtonH) / 2;
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _backButton.frame = CGRectMake(0, backButtonY, backButtonWH, backButtonWH);
+        _backButton.frame = CGRectMake(0, backButtonY, backButtonW, backButtonH);
         _backButton.adjustsImageWhenHighlighted = NO;
         _backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [_backButton setImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
+        [_backButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
         [_backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;

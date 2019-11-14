@@ -19,5 +19,7 @@
 #define kBgColor kHexRGB(0xFFFFFF)
 // 主色
 #define kThemeColor kHexRGB(0x03A9F4)
+// 导航文字主色
+#define kNavTitleColor kHexRGB(0xFFFFFF)
 
 #endif /* ZHLZColorMacro_h */

@@ -7,7 +7,6 @@
 //
 
 #import "ZHLZBaseVC.h"
-#import <UINavigationController+FDFullscreenPopGesture.h>
 
 @interface ZHLZBaseVC ()
 
@@ -17,17 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.pageNo = 1;
     
-    if (self.navigationController.viewControllers.count == 1) {
-        self.fd_prefersNavigationBarHidden = YES;
-    }
+    self.pageNo = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.fd_prefersNavigationBarHidden = (self.navigationController.viewControllers.count <= 1);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -77,6 +71,10 @@
     }
     _tasks = [NSMutableArray array];
     return _tasks;
+}
+
+- (void)setNavTitle:(NSString *)navTitle {
+    self.navigationItem.title = navTitle;
 }
 
 @end
