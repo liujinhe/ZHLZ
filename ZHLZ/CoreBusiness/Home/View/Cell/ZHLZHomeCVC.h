@@ -1,5 +1,5 @@
 //
-//  ZHLZHomeCollectionViewCell.h
+//  ZHLZHomeCVC.h
 //  ZHLZ
 //
 //  Created by liujinhe on 2019/11/13.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHLZHomeCollectionViewCell : UICollectionViewCell
+@interface ZHLZHomeCVC : UICollectionViewCell
 
 @end
 

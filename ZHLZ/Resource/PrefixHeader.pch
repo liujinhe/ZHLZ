@@ -27,4 +27,6 @@
 #import "GRToast.h"
 #import "ZHLZButton.h"
 
+#import "ZHLZUserManager.h"
+
 #endif /* PrefixHeader_pch */

@@ -1,14 +1,14 @@
 //
-//  ZHLZHomeBannerCollectionViewCell.m
+//  ZHLZHomeRoadConstructionCVC.m
 //  ZHLZ
 //
 //  Created by liujinhe on 2019/11/13.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import "ZHLZHomeBannerCollectionViewCell.h"
+#import "ZHLZHomeRoadConstructionCVC.h"
 
-@implementation ZHLZHomeBannerCollectionViewCell
+@implementation ZHLZHomeRoadConstructionCVC
 
 - (void)awakeFromNib {
     [super awakeFromNib];
