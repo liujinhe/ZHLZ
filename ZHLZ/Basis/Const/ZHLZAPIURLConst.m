@@ -86,41 +86,41 @@ NSString * const ResponsibleUnitSaveAPIURLConst = @"/app/responsibleunit/save";
 NSString * const ResponsibleUnitUpdateAPIURLConst = @"/app/responsibleunit/update";
 NSString * const ResponsibleUnitDeleteAPIURLConst = @"/app/responsibleunit/delete";
 
-NSString * const ConstructionUnitAPIURLConst = @"/mapbuilder/list";
-NSString * const ConstructionUnitInfoAPIURLConst = @"/mapbuilder/info";
-NSString * const ConstructionUnitSaveAPIURLConst = @"/mapbuilder/save";
-NSString * const ConstructionUnitUpdateAPIURLConst = @"/mapbuilder/update";
-NSString * const ConstructionUnitDeleteAPIURLConst = @"/mapbuilder/delete";
+NSString * const ConstructionUnitAPIURLConst = @"/app/mapbuilder/list";
+NSString * const ConstructionUnitInfoAPIURLConst = @"/app/mapbuilder/info";
+NSString * const ConstructionUnitSaveAPIURLConst = @"/app/mapbuilder/save";
+NSString * const ConstructionUnitUpdateAPIURLConst = @"/app/mapbuilder/update";
+NSString * const ConstructionUnitDeleteAPIURLConst = @"/app/mapbuilder/delete";
 
-NSString * const ApprovalDepartmentAPIURLConst = @"/mapapprover/list";
-NSString * const ApprovalDepartmentInfoAPIURLConst = @"/mapapprover/info";
-NSString * const ApprovalDepartmentSaveAPIURLConst = @"/mapapprover/save";
-NSString * const ApprovalDepartmentUpdateAPIURLConst = @"/mapapprover/update";
-NSString * const ApprovalDepartmentDeleteAPIURLConst = @"/mapapprover/delete";
+NSString * const ApprovalDepartmentAPIURLConst = @"/app/mapapprover/list";
+NSString * const ApprovalDepartmentInfoAPIURLConst = @"/app/mapapprover/info";
+NSString * const ApprovalDepartmentSaveAPIURLConst = @"/app/mapapprover/save";
+NSString * const ApprovalDepartmentUpdateAPIURLConst = @"/app/mapapprover/update";
+NSString * const ApprovalDepartmentDeleteAPIURLConst = @"/app/mapapprover/delete";
 
-NSString * const BuildUnitAPIURLConst = @"/mapconstructor/list";
-NSString * const BuildUnitInfoAPIURLConst = @"/mapconstructor/info";
-NSString * const BuildUnitSaveAPIURLConst = @"/mapconstructor/save";
-NSString * const BuildUnitUpdateAPIURLConst = @"/mapconstructor/update";
-NSString * const BuildUnitDeleteAPIURLConst = @"/mapconstructor/delete";
+NSString * const BuildUnitAPIURLConst = @"/app/mapconstructor/list";
+NSString * const BuildUnitInfoAPIURLConst = @"/app/mapconstructor/info";
+NSString * const BuildUnitSaveAPIURLConst = @"/app/mapconstructor/save";
+NSString * const BuildUnitUpdateAPIURLConst = @"/app/mapconstructor/update";
+NSString * const BuildUnitDeleteAPIURLConst = @"/app/mapconstructor/delete";
 
-NSString * const CityManagementUnitAPIURLConst = @"/addressbookcity/list";
-NSString * const CityManagementUnitInfoAPIURLConst = @"/addressbookcity/info";
-NSString * const CityManagementUnitSaveAPIURLConst = @"/addressbookcity/save";
-NSString * const CityManagementUnitUpdateAPIURLConst = @"/addressbookcity/update";
-NSString * const CityManagementUnitDeleteAPIURLConst = @"/addressbookcity/delete";
+NSString * const CityManagementUnitAPIURLConst = @"/app/addressbookcity/list";
+NSString * const CityManagementUnitInfoAPIURLConst = @"/app/addressbookcity/info";
+NSString * const CityManagementUnitSaveAPIURLConst = @"/app/addressbookcity/save";
+NSString * const CityManagementUnitUpdateAPIURLConst = @"/app/addressbookcity/update";
+NSString * const CityManagementUnitDeleteAPIURLConst = @"/app/addressbookcity/delete";
 
-NSString * const DistrictManagementUnitAPIURLConst = @"/addressbookcounty/list";
-NSString * const DistrictManagementUnitInfoAPIURLConst = @"/addressbookcounty/info";
-NSString * const DistrictManagementUnitSaveAPIURLConst = @"/addressbookcounty/save";
-NSString * const DistrictManagementUnitUpdateAPIURLConst = @"/addressbookcounty/update";
-NSString * const DistrictManagementUnitDeleteAPIURLConst = @"/addressbookcounty/delete";
+NSString * const DistrictManagementUnitAPIURLConst = @"/app/addressbookcounty/list";
+NSString * const DistrictManagementUnitInfoAPIURLConst = @"/app/addressbookcounty/info";
+NSString * const DistrictManagementUnitSaveAPIURLConst = @"/app/addressbookcounty/save";
+NSString * const DistrictManagementUnitUpdateAPIURLConst = @"/app/addressbookcounty/update";
+NSString * const DistrictManagementUnitDeleteAPIURLConst = @"/app/addressbookcounty/delete";
 
-NSString * const SpecialOwnerUnitAPIURLConst = @"/addressbooksowner/list";
-NSString * const SpecialOwnerUnitInfoAPIURLConst = @"/addressbooksowner/info";
-NSString * const SpecialOwnerUnitSaveAPIURLConst = @"/addressbooksowner/save";
-NSString * const SpecialOwnerUnitUpdateAPIURLConst = @"/addressbooksowner/update";
-NSString * const SpecialOwnerUnitDeleteAPIURLConst = @"/addressbooksowner/delete";
+NSString * const SpecialOwnerUnitAPIURLConst = @"/app/addressbooksowner/list";
+NSString * const SpecialOwnerUnitInfoAPIURLConst = @"/app/addressbooksowner/info";
+NSString * const SpecialOwnerUnitSaveAPIURLConst = @"/app/addressbooksowner/save";
+NSString * const SpecialOwnerUnitUpdateAPIURLConst = @"/app/addressbooksowner/update";
+NSString * const SpecialOwnerUnitDeleteAPIURLConst = @"/app/addressbooksowner/delete";
 
 #pragma mark - API URL for Mine
 

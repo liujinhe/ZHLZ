@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZAddressBookVM : ZHLZBaseVM
 
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadListWithType:(NSInteger)type CallBack:(void (^)(NSDictionary *parms))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

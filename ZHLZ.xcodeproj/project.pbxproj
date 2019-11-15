@@ -37,6 +37,7 @@
 		184A0654237C289F00AC2C20 /* ZHLZMonadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0652237C289F00AC2C20 /* ZHLZMonadVC.xib */; };
 		184A0657237CF71A00AC2C20 /* ZHLZButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0656237CF71A00AC2C20 /* ZHLZButton.m */; };
 		184A065A237CF73A00AC2C20 /* ZHLZTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 184A0659237CF73A00AC2C20 /* ZHLZTextField.m */; };
+		18957CCC237E4F66002829AC /* ZHLZMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18957CCB237E4F66002829AC /* ZHLZMineModel.m */; };
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A53DB7D4237ADCA00030EEFB /* GRChainRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A53DB7B7237ADC9F0030EEFB /* GRChainRequestAgent.m */; };
@@ -164,6 +165,8 @@
 		184A0658237CF73A00AC2C20 /* ZHLZTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZTextField.h; sourceTree = "<group>"; };
 		184A0659237CF73A00AC2C20 /* ZHLZTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZTextField.m; sourceTree = "<group>"; };
 		184A065B237CF86400AC2C20 /* ZHLZFontSizeMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZFontSizeMacro.h; sourceTree = "<group>"; };
+		18957CCA237E4F66002829AC /* ZHLZMineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZMineModel.h; sourceTree = "<group>"; };
+		18957CCB237E4F66002829AC /* ZHLZMineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZMineModel.m; sourceTree = "<group>"; };
 		42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -691,6 +694,8 @@
 		A5FE3819237A398700576FDF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18957CCA237E4F66002829AC /* ZHLZMineModel.h */,
+				18957CCB237E4F66002829AC /* ZHLZMineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1031,6 +1036,7 @@
 				A53DB7D6237ADCA00030EEFB /* GRCacheMetadata.m in Sources */,
 				A53DB7D7237ADCA00030EEFB /* GRBaseRequest.m in Sources */,
 				A53DB7DE237ADCA00030EEFB /* GRResponse.m in Sources */,
+				18957CCC237E4F66002829AC /* ZHLZMineModel.m in Sources */,
 				A53DB7F4237AE2E20030EEFB /* GRToast.m in Sources */,
 				A53DB7DA237ADCA00030EEFB /* GRRequest.m in Sources */,
 				A59438D4237CE14C00F8DA08 /* ZHLZHomeRoadConstructionCollectionViewCell.m in Sources */,

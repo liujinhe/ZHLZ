@@ -14,6 +14,7 @@
 #import "ZHLZLoginVC.h"
 
 #import "ZHLZMineCell.h"
+#import "ZHLZMineVM.h"
 
 @interface ZHLZMineVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -31,9 +32,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self loadMineData];
+    
     [self initMineView];
 }
 
+- (void)loadMineData{
+    self.task = [[ZHLZMineVM sharedInstance] getUserInfoCallBack:^(ZHLZMineModel * _Nonnull mineModel) {
+        
+    }];
+}
 #pragma mark --初始化视图
 
 - (void)initMineView{
@@ -46,6 +54,7 @@
     self.mineTableView.dataSource = self;
     self.mineTableView.delegate = self;
     self.mineTableView.backgroundColor = kHexRGB(0xf7f7f7);
+    self.footerView.backgroundColor = kHexRGB(0xf7f7f7);
     
     self.mineTableView.showsVerticalScrollIndicator = NO;
     

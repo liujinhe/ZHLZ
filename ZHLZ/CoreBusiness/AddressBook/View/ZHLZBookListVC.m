@@ -9,6 +9,7 @@
 #import "ZHLZBookListVC.h"
 #import <YYKit/UIControl+YYAdd.h>
 #import "ZHLZBookListCell.h"
+#import "ZHLZAddressBookVM.h"
 
 #import "ZHLZRoadWorkVC.h"//施工单位
 #import "ZHLZExamineVC.h"//审批部门
@@ -33,7 +34,16 @@
     [super viewDidLoad];
     
     [self initBookListView];
+    
+    [self loadAddressListData];
 }
+
+- (void)loadAddressListData{
+    self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex CallBack:^(NSDictionary * _Nonnull parms) {
+        
+    }];
+}
+
 #pragma mark --初始化视图
 
 - (void)initBookListView{

@@ -7,8 +7,13 @@
 //
 
 #import "ZHLZChangePasswordVC.h"
+#import "ZHLZMineVM.h"
 
 @interface ZHLZChangePasswordVC ()
+
+@property (weak, nonatomic) IBOutlet UITextField *oldPasswordTextFile;
+@property (weak, nonatomic) IBOutlet UITextField *changePasswordTextFile;
+
 
 @end
 
@@ -18,6 +23,27 @@
     [super viewDidLoad];
     
     self.title = @"修改密码";
+}
+
+- (IBAction)changeAction:(ZHLZButton *)sender {
+    if (![self.oldPasswordTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入旧密码"];
+        return;
+    }
+    if (![self.changePasswordTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入新密码"];
+        return;
+    }
+    
+    self.task = [[ZHLZMineVM sharedInstance] changePasswordWitParms:@{@"password":@"",@"newPassword":@""} withCompletionBlock:^{
+        [GRToast makeText:@"密码修改成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+- (void)changePassword{
+    
+    
 }
 
 /*
