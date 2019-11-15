@@ -51,6 +51,7 @@
     }
     self.task = [[ZHLZLoginVM sharedInstance] loginWithModel:loginModel withCompletionBlock:^{
         [[NSUserDefaults standardUserDefaults] setBool:self.rememberPwdButton.isSelected forKey:LoginRememberPwdConst];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }];
 }
 

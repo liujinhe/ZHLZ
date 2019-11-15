@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *orderArea;
 
-@property (nonatomic, copy) NSArray *orderAreaArr;
+@property (nonatomic, copy) NSString *orderAreaArr;
 
 @property (nonatomic, copy) NSString *orderPowerType;
 
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *roleId;
 
-@property (nonatomic, copy) NSArray *roleIdList;
+@property (nonatomic, copy) NSString *roleIdList;
 
 @property (nonatomic, copy) NSString *roleName;
 

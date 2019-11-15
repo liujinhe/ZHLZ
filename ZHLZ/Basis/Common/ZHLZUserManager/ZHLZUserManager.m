@@ -46,13 +46,14 @@ static ZHLZUserManager *_userManager = nil;
         currentUser = [ZHLZUserModel modelWithJSON:userJson];
     }
     
-    return [ZHLZStoreUtility storeToRootDirectory:currentUser key:kZHLZUserManagerKey];
+    return [ZHLZStoreUtility storeToRootDirectory:[currentUser modelToJSONObject]
+                                              key:kZHLZUserManagerKey];
 }
 
 /// 持久化数据
 - (BOOL)synchronousUserDataToStore {
     if (_user) {
-        return [ZHLZStoreUtility storeToRootDirectory:_user
+        return [ZHLZStoreUtility storeToRootDirectory:[_user modelToJSONObject]
                                                   key:kZHLZUserManagerKey];
     }
     return NO;
