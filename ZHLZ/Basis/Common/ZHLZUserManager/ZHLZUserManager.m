@@ -60,14 +60,15 @@ static ZHLZUserManager *_userManager = nil;
 }
 
 - (ZHLZUserModel *)getCurrentUserModel {
-    ZHLZUserModel *user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
-    _user = user;
-    return user;
+    id user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
+    _user = [ZHLZUserModel modelWithJSON:user];
+    return _user;
 }
 
 - (BOOL)isLogin {
-    ZHLZUserModel *user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
-    return user && user.userId;
+    id user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
+    ZHLZUserModel *userModel = [ZHLZUserModel modelWithJSON:user];
+    return userModel && userModel.userId;
 }
 
 - (BOOL)isLoginPresentLogin {

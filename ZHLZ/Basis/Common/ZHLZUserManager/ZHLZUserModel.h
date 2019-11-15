@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *createTime;
 
-@property (nonatomic, copy) NSString *createUserId;
+@property (nonatomic, copy) NSNumber *createUserId;
 
 @property (nonatomic, copy) NSString *email;
 
@@ -28,11 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *orderArea;
 
-@property (nonatomic, copy) NSString *orderAreaArr;
+@property (nonatomic, copy) NSArray *orderAreaArr;
 
 @property (nonatomic, copy) NSString *orderPowerType;
 
-@property (nonatomic, copy) NSString *orgId;
+@property (nonatomic, copy) NSNumber *orgId;
 
 @property (nonatomic, copy) NSString *orgName;
 
@@ -40,17 +40,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *orgname;
 
-@property (nonatomic, copy) NSString *roleId;
+@property (nonatomic, copy) NSNumber *roleId;
 
-@property (nonatomic, copy) NSString *roleIdList;
+@property (nonatomic, copy) NSArray *roleIdList;
 
 @property (nonatomic, copy) NSString *roleName;
 
 @property (nonatomic, copy) NSString *roleNameNew;
 
-@property (nonatomic, copy) NSString *status;
+@property (nonatomic, assign) NSInteger status;
 
-@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSNumber *userId;
 
 @property (nonatomic, copy) NSString *username;
 
