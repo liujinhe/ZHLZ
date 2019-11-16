@@ -24,8 +24,8 @@
 
 
 - (NSURLSessionTask *)getUserInfoCallBack:(void (^)(ZHLZMineModel *mineModel))block{
-//    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
-    NSString *urlString = [NSString stringWithFormat:@"%@,%@,%@",UserInfoAPIURLConst,@"",@"/",@"1"];
+    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@",UserInfoAPIURLConst,@"/",userModel.userId];
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response && response.data) {

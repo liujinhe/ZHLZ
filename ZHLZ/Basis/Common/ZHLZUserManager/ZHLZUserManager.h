@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import "ZHLZUserModel.h"
 
-@class ZHLZUserModel;
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^LogoutBlock)(void);
 

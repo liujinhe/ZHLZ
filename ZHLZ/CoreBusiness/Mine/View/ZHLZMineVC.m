@@ -32,9 +32,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadMineData];
-    
     [self initMineView];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
+    [self loadMineData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)loadMineData{
@@ -48,8 +60,6 @@
     
     self.itemArray = @[@"修改密码",@"关于我们",@"帮助中心"];
     self.loginOut = @[@"退出登录"];
-    
-    self.navigationController.navigationBar.hidden = YES;
     
     self.mineTableView.dataSource = self;
     self.mineTableView.delegate = self;
