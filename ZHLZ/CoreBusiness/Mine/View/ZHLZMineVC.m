@@ -18,6 +18,12 @@
 
 @interface ZHLZMineVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIView *headerView;
+
+@property (weak, nonatomic) IBOutlet UILabel *headerUserNameLabel;
+
+
+
+
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
 @property (weak, nonatomic) IBOutlet UITableView *mineTableView;
@@ -51,6 +57,8 @@
 
 - (void)loadMineData{
     self.task = [[ZHLZMineVM sharedInstance] getUserInfoCallBack:^(ZHLZMineModel * _Nonnull mineModel) {
+        
+        self.headerUserNameLabel.text = mineModel.fullname;
         
     }];
 }
@@ -128,7 +136,7 @@
             @strongify(self);
             [[ZHLZUserManager sharedInstance] logoutWithBlock:^{
                 @strongify(self);
-                [GRToast makeText:@"退出成功"];
+                [GRToast makeText:@"您已退出登录"];
                 ZHLZLoginVC *loginVC = [ZHLZLoginVC new];
                 loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
                 [self.navigationController presentViewController:loginVC animated:NO completion:nil];
@@ -143,7 +151,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 150;
+        return 300;
     } else {
         return 10;
     }

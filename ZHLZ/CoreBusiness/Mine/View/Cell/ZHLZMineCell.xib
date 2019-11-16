@@ -30,11 +30,11 @@
                         <color key="textColor" red="0.199973762" green="0.2000150383" blue="0.19997116919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_call" translatesAutoresizingMaskIntoConstraints="NO" id="zL3-h8-aDl">
-                        <rect key="frame" x="345" y="17.5" width="15" height="15"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="zL3-h8-aDl">
+                        <rect key="frame" x="343" y="17.5" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="0Xe-lg-kGY"/>
-                            <constraint firstAttribute="width" constant="15" id="Ong-58-TSi"/>
+                            <constraint firstAttribute="width" constant="16" id="Ong-58-TSi"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -44,7 +44,7 @@
                     <constraint firstAttribute="bottom" secondItem="Zvl-bz-ZaN" secondAttribute="bottom" id="FTZ-5h-qKu"/>
                     <constraint firstItem="Zvl-bz-ZaN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Op7-cN-BuK"/>
                     <constraint firstItem="Sit-gE-lgN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="RtA-Oo-goy"/>
-                    <constraint firstAttribute="trailing" secondItem="zL3-h8-aDl" secondAttribute="trailing" constant="15" id="VUm-X2-gXE"/>
+                    <constraint firstAttribute="trailing" secondItem="zL3-h8-aDl" secondAttribute="trailing" constant="16" id="VUm-X2-gXE"/>
                     <constraint firstItem="Sit-gE-lgN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="d38-nv-SAf"/>
                 </constraints>
             </tableViewCellContentView>
@@ -57,6 +57,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_call" width="32" height="32"/>
+        <image name="arrow_right" width="16" height="16"/>
     </resources>
 </document>

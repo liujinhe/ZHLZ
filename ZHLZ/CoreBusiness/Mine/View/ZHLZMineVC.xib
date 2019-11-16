@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZMineVC">
             <connections>
                 <outlet property="footerView" destination="FXW-gR-m9e" id="KvT-8U-d1f"/>
+                <outlet property="headerUserNameLabel" destination="FtC-EY-3oi" id="Kld-mN-7Dz"/>
                 <outlet property="headerView" destination="bIZ-eq-Hzy" id="lsP-bu-K4p"/>
                 <outlet property="mineTableView" destination="onR-q1-PtJ" id="3d7-do-BDZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,18 +38,43 @@
             <point key="canvasLocation" x="132" y="107"/>
         </view>
         <view contentMode="scaleToFill" id="bIZ-eq-Hzy">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="287"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Fh-xx-j1o">
-                    <rect key="frame" x="163" y="103" width="49" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtC-EY-3oi">
+                    <rect key="frame" x="20" y="258.5" width="335" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mineBg" translatesAutoresizingMaskIntoConstraints="NO" id="MBK-22-PE8">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="170" id="clj-x8-9eQ"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_iv" translatesAutoresizingMaskIntoConstraints="NO" id="4SV-KM-LU3">
+                    <rect key="frame" x="155.5" y="174.5" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="KOH-kr-8Wu"/>
+                        <constraint firstAttribute="height" constant="64" id="xsP-qZ-4oA"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="MBK-22-PE8" firstAttribute="leading" secondItem="Su5-4s-MRJ" secondAttribute="leading" id="2wu-4c-mFM"/>
+                <constraint firstAttribute="trailing" secondItem="MBK-22-PE8" secondAttribute="trailing" id="6HD-lY-oCl"/>
+                <constraint firstItem="MBK-22-PE8" firstAttribute="top" secondItem="bIZ-eq-Hzy" secondAttribute="top" id="6Nu-E5-eLF"/>
+                <constraint firstItem="Su5-4s-MRJ" firstAttribute="trailing" secondItem="FtC-EY-3oi" secondAttribute="trailing" constant="20" id="EWO-cP-JRy"/>
+                <constraint firstItem="Su5-4s-MRJ" firstAttribute="bottom" secondItem="FtC-EY-3oi" secondAttribute="bottom" constant="20" id="Eeo-pr-7Gn"/>
+                <constraint firstItem="FtC-EY-3oi" firstAttribute="leading" secondItem="Su5-4s-MRJ" secondAttribute="leading" constant="20" id="JvZ-eh-x6p"/>
+                <constraint firstItem="4SV-KM-LU3" firstAttribute="centerX" secondItem="bIZ-eq-Hzy" secondAttribute="centerX" id="dNb-gH-1Lk"/>
+                <constraint firstItem="FtC-EY-3oi" firstAttribute="top" secondItem="4SV-KM-LU3" secondAttribute="bottom" constant="20" id="yIX-N9-79M"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="Su5-4s-MRJ"/>
-            <point key="canvasLocation" x="-760.14492753623199" y="-76.674107142857139"/>
+            <point key="canvasLocation" x="-760.14492753623199" y="-77.008928571428569"/>
         </view>
         <view contentMode="scaleToFill" id="FXW-gR-m9e">
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -73,4 +99,8 @@
             <point key="canvasLocation" x="-732.60869565217399" y="200.22321428571428"/>
         </view>
     </objects>
+    <resources>
+        <image name="mineBg" width="390" height="195"/>
+        <image name="setting_iv" width="64" height="64"/>
+    </resources>
 </document>

@@ -26,11 +26,11 @@
                                 <color key="textColor" red="0.199973762" green="0.2000150383" blue="0.19997116919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_call" translatesAutoresizingMaskIntoConstraints="NO" id="sLe-Nl-vFv">
-                                <rect key="frame" x="266" y="15.5" width="24" height="19"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_r" translatesAutoresizingMaskIntoConstraints="NO" id="sLe-Nl-vFv">
+                                <rect key="frame" x="274" y="18.5" width="16" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="19" id="Wt9-5i-Aaa"/>
-                                    <constraint firstAttribute="width" constant="24" id="Xd9-UA-2Ow"/>
+                                    <constraint firstAttribute="height" constant="13" id="Wt9-5i-Aaa"/>
+                                    <constraint firstAttribute="width" constant="16" id="Xd9-UA-2Ow"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -59,6 +59,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_call" width="32" height="32"/>
+        <image name="arrow_r" width="16.5" height="13"/>
     </resources>
 </document>
