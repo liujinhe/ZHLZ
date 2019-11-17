@@ -7,8 +7,15 @@
 //
 
 #import "ZHLZMonadVC.h"
+#import <YYKit/UIControl+YYAdd.h>
+
 
 @interface ZHLZMonadVC ()
+
+
+
+
+@property (weak, nonatomic) IBOutlet ZHLZButton *sureButton;
 
 @end
 
@@ -17,17 +24,60 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"添加责任单位";
+    [self loadMonadView];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)loadMonadView{
+    
+    
+    
+    if (self.setType == 1) {
+        
+        self.title = @"添加责任单位";
+        [self.sureButton setTitle:@"确认添加" forState:UIControlStateNormal];
+    
+    } else {
+        
+        self.title = @"编辑责任单位";
+        [self.sureButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        
+        [self addNavRightButton];
+        
+    }
 }
-*/
+
+- (void)addNavRightButton{
+    UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [areaManagementButton setTitle:@"删除" forState:UIControlStateNormal];
+    [areaManagementButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [areaManagementButton sizeToFit];
+    @weakify(self);
+    [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
+        @strongify(self);
+        [self deleteAction];
+    }];
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
+}
+
+- (void)deleteAction{
+    @weakify(self)
+    [self popActionWithTip:@"您确定要删除？" withBlock:^{
+        @strongify(self)
+        
+        [GRToast makeText:@"删除成功"];
+    }];
+}
+
+- (IBAction)sureAction:(ZHLZButton *)sender {
+    
+    if (self.setType == 1) {
+        
+    } else {
+        
+    }
+}
+
+
 
 @end

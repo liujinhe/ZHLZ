@@ -8,6 +8,14 @@
 
 #import "ZHLZMonadModel.h"
 
+@implementation MonadModelList
+
+@end
+
 @implementation ZHLZMonadModel
+
+-(void)setList:(NSArray<MonadModelList *> *)list{
+    _list = [NSArray modelArrayWithClass:[MonadModelList class] json:list];
+}
 
 @end

@@ -57,7 +57,7 @@
     @weakify(self);
     [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
         @strongify(self);
-        [self clickAddAction];
+        [self clickAddActionwithType:1];
     }];
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
     
@@ -73,7 +73,7 @@
     
 }
 
-- (void)clickAddAction{
+- (void)clickAddActionwithType:(NSInteger)type{
     
     if (self.selectIndex == 0) {
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
@@ -101,6 +101,7 @@
         
     } else if(self.selectIndex == 6){
         ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
+        monadVC.setType = type;
         [self.navigationController pushViewController:monadVC animated:YES];
         
     }
@@ -130,7 +131,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self clickAddAction];
+    [self clickAddActionwithType:2];
 }
 
 @end
