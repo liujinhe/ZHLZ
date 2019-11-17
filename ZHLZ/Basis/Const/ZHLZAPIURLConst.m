@@ -28,11 +28,10 @@ NSString * const DocumentUploadAPIURLConst = @"/getData/upload";
 
 #pragma mark - API URL for Home
 
+NSString * const HomeBannerAPIURLConst = @"/homeList";
 NSString * const HomeBulletinAPIURLConst = @"/maphome/list";
-NSString * const HomeBulletinInfoAPIURLConst = @"//maphome/info";
-
+NSString * const HomeBulletinInfoAPIURLConst = @"/maphome/info";
 NSString * const HomeOccupyProblemAPIURLConst = @"/mapproblem/listByMune";
-
 NSString * const HomeMunicipalProblemAPIURLConst = @"/mapinspection/listByMune/toMune";
 
 NSString * const MapDisplayAPIURLConst = @"/mapinspection/ByMune/toMap";

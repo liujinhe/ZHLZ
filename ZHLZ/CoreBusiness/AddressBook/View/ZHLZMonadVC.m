@@ -58,10 +58,7 @@
 }
 
 - (void)deleteAction{
-    @weakify(self)
     [self popActionWithTip:@"您确定要删除？" withBlock:^{
-        @strongify(self)
-        
         [GRToast makeText:@"删除成功"];
     }];
 }

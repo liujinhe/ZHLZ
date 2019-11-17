@@ -29,12 +29,12 @@
     return _method;
 }
 
-- (NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary{
+- (NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary {
     ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
     if (userModel) {
         return @{@"Token":userModel.encryptionKey};
     } else {
-        return @{};
+        return nil;
     }
 }
 

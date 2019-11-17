@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeVM : ZHLZBaseVM
 
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSMutableArray<GRResponse *> *responseArray))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

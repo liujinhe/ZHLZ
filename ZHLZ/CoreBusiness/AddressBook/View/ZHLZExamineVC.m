@@ -52,10 +52,7 @@
     self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
 }
 - (void)deleteAction{
-    @weakify(self)
     [self popActionWithTip:@"您确定要删除该部门吗？" withBlock:^{
-        @strongify(self)
-        
         [GRToast makeText:@"删除成功"];
     }];
 }

@@ -31,6 +31,8 @@ extern NSString * const DocumentUploadAPIURLConst;
 
 #pragma mark - API URL for Home
 
+// 首页-Banner
+extern NSString * const HomeBannerAPIURLConst;
 // 首页-公告
 extern NSString * const HomeBulletinAPIURLConst;
 extern NSString * const HomeBulletinInfoAPIURLConst;

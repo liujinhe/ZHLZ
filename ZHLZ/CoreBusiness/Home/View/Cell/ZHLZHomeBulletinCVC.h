@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBulletinCVC : UICollectionViewCell
 
+@property (nonatomic, strong) NSString *bulletin;
+
 @end
 
 NS_ASSUME_NONNULL_END
