@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZRoadWorkVC : ZHLZBaseVC
 
+@property (nonatomic , assign) NSInteger editType;
+
 @end
 
 NS_ASSUME_NONNULL_END

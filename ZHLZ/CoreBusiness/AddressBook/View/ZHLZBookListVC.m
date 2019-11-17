@@ -77,10 +77,12 @@
     
     if (self.selectIndex == 0) {
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
+        roadWorkVC.editType = type;
         [self.navigationController pushViewController:roadWorkVC animated:YES];
         
     } else if(self.selectIndex == 1){
         ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
+        examineVC.setType = type;
         [self.navigationController pushViewController:examineVC animated:YES];
         
     } else if(self.selectIndex == 2){

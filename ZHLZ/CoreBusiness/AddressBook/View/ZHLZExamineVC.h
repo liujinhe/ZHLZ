@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZExamineVC : ZHLZBaseVC
 
+@property(nonatomic , assign) NSInteger setType;//1增加 2编辑
+
 @end
 
 NS_ASSUME_NONNULL_END

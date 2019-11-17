@@ -11,9 +11,10 @@
 
 
 @interface ZHLZMonadVC ()
-
-
-
+@property (weak, nonatomic) IBOutlet ZHLZTextField *workNnameTextFile;
+@property (weak, nonatomic) IBOutlet ZHLZTextField *principalNnameTextFile;
+@property (weak, nonatomic) IBOutlet ZHLZTextField *principalPhoneTextFile;
+@property (weak, nonatomic) IBOutlet ZHLZTextField *remarkTextFile;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *sureButton;
 
@@ -29,16 +30,12 @@
 
 
 - (void)loadMonadView{
-    
-    
-    
+
     if (self.setType == 1) {
-        
         self.title = @"添加责任单位";
         [self.sureButton setTitle:@"确认添加" forState:UIControlStateNormal];
-    
-    } else {
         
+    } else {
         self.title = @"编辑责任单位";
         [self.sureButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
@@ -71,9 +68,22 @@
 
 - (IBAction)sureAction:(ZHLZButton *)sender {
     
-    if (self.setType == 1) {
+    if (![self.workNnameTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位"];
+        return;
+    }
+    if (![self.principalNnameTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位联系人"];
+        return;
+    }
+    if (![self.principalPhoneTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位联系人手机"];
+        return;
+    }
+    
+    if (self.setType == 1) { //添加
         
-    } else {
+    } else {//编辑
         
     }
 }

@@ -7,8 +7,14 @@
 //
 
 #import "ZHLZExamineVC.h"
+#import <YYKit/UIControl+YYAdd.h>
 
 @interface ZHLZExamineVC ()
+
+@property (weak, nonatomic) IBOutlet ZHLZTextField *examineDepartmentTextFile;
+
+@property (weak, nonatomic) IBOutlet UIButton *examineButton;
+
 
 @end
 
@@ -17,18 +23,58 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"添加审批单位";
-    // Do any additional setup after loading the view from its nib.
+    [self loadExamineView];
 }
 
-/*
-#pragma mark - Navigation
+- (void)loadExamineView{
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (self.setType == 1) {
+        self.title = @"添加审批单位";
+        [self.examineButton setTitle:@"确认添加" forState:UIControlStateNormal];
+        
+    } else {
+        self.title = @"编辑审批单位";
+        [self.examineButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        
+        [self addNavRightButton];
+    }
 }
-*/
+- (void)addNavRightButton{
+    UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [areaManagementButton setTitle:@"删除" forState:UIControlStateNormal];
+    [areaManagementButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [areaManagementButton sizeToFit];
+    @weakify(self);
+    [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
+        @strongify(self);
+        [self deleteAction];
+    }];
+    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
+}
+- (void)deleteAction{
+    @weakify(self)
+    [self popActionWithTip:@"您确定要删除该部门吗？" withBlock:^{
+        @strongify(self)
+        
+        [GRToast makeText:@"删除成功"];
+    }];
+}
+
+
+
+- (IBAction)examineAction:(UIButton *)sender {
+    if (![self.examineDepartmentTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入正确的部门名称"];
+        return;
+    }
+    
+    if (self.setType == 1) { //添加
+        
+    } else {//编辑
+        
+    }
+
+}
+
 
 @end
