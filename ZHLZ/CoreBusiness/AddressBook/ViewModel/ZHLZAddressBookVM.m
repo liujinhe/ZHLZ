@@ -52,7 +52,7 @@
         default:
             break;
     }
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:@{@"limit":@(20),@"page":@(1),@"order":@"desc"}];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block(response.data);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
