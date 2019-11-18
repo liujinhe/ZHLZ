@@ -73,9 +73,9 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                               @"icon_home_occupy_problem",
                               @"icon_home_municipal_problem",
                               @"icon_home_safe_problem",
-                              @"icon_home_road patrol",
+                              @"icon_home_road_patrol",
                               @"icon_home_check_in",
-                              @"icon_home_road patrol_statistics",
+                              @"icon_home_road_patrol_statistics",
                               @"icon_home_business_document",
                               @"icon_home_scan_code_use_car",
                               @"icon_home_info_statistics"];
