@@ -7,26 +7,13 @@
 //
 
 #import "ZHLZBaseModel.h"
+#import "ZHLZHomeTimeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHLZHomeBannerCreatTimeModel : ZHLZBaseModel
-
-@property (nonatomic, copy) NSString *year;
-@property (nonatomic, copy) NSString *month;
-@property (nonatomic, copy) NSString *day;
-@property (nonatomic, copy) NSString *seconds;
-@property (nonatomic, copy) NSString *hours;
-@property (nonatomic, copy) NSString *minutes;
-@property (nonatomic, copy) NSString *date;
-@property (nonatomic, assign) NSTimeInterval time;
-@property (nonatomic, copy) NSString *timezoneOffset;
-
-@end
-
 @interface ZHLZHomeBannerModel : ZHLZBaseModel
 
-@property (nonatomic, strong) ZHLZHomeBannerCreatTimeModel *creatTime;
+@property (nonatomic, strong) ZHLZHomeTimeModel *creatTime;
 
 @property (nonatomic, copy) NSString *dateid;
 @property (nonatomic, copy) NSString *describe;

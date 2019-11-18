@@ -7,6 +7,7 @@
 //
 
 #import "ZHLZHomeMunicipalFacilityCVC.h"
+#import "ZHLZHomeMunicipalFacilityModel.h"
 
 @interface ZHLZHomeMunicipalFacilityCVC ()
 
@@ -64,6 +65,19 @@
         make.left.right.equalTo(self.nameLabel);
         make.bottom.equalTo(self.contentView).offset(-20);
     }];
+}
+
+- (void)setHomeMunicipalFacilityModel:(ZHLZHomeMunicipalFacilityModel *)homeMunicipalFacilityModel {
+    _homeMunicipalFacilityModel = homeMunicipalFacilityModel;
+    
+    if (_homeMunicipalFacilityModel) {
+        self.nameLabel.text = _homeMunicipalFacilityModel.orgname?:@"";
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_homeMunicipalFacilityModel.createdate.time/1000.f];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        self.timeLabel.text = [dateFormatter stringFromDate:date];
+        self.titleLabel.text = _homeMunicipalFacilityModel.problemDet?:@"";
+    }
 }
 
 @end

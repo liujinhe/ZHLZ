@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ZHLZHomeRoadConstructionModel;
+
 @interface ZHLZHomeRoadConstructionCVC : UICollectionViewCell
+
+@property (nonatomic, strong) ZHLZHomeRoadConstructionModel *homeRoadConstructionModel;
 
 @end
 

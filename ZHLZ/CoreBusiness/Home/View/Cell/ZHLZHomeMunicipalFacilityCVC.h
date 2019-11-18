@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ZHLZHomeMunicipalFacilityModel;
+
 @interface ZHLZHomeMunicipalFacilityCVC : UICollectionViewCell
+
+@property (nonatomic, strong) ZHLZHomeMunicipalFacilityModel *homeMunicipalFacilityModel;
 
 @end
 

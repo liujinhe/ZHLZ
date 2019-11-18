@@ -41,7 +41,9 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 @property (nonatomic, strong) NSArray<ZHLZHomeBannerModel *> *homeBannerArray;
 @property (nonatomic, strong) NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray;
 @property (nonatomic, strong) NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray;
+@property (nonatomic, strong) NSMutableArray *homeRoadConstructionHeightArray;
 @property (nonatomic, strong) NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray;
+@property (nonatomic, strong) NSMutableArray *homeMunicipalFacilityHeightArray;
 
 @end
 
@@ -130,6 +132,18 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         self.homeRoadConstructionArray = homeRoadConstructionArray;
         self.homeMunicipalFacilityArray = homeMunicipalFacilityArray;
         
+        self.homeRoadConstructionHeightArray = @[].mutableCopy;
+        for (ZHLZHomeRoadConstructionModel *model in self.homeRoadConstructionArray) {
+            CGFloat height = [model.prodescription sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 15.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
+            [self.homeRoadConstructionHeightArray addObject:@(127.f + height)];
+        }
+        
+        self.homeMunicipalFacilityHeightArray = @[].mutableCopy;
+        for (ZHLZHomeMunicipalFacilityModel *model in self.homeMunicipalFacilityArray) {
+            CGFloat height = [model.problemDet sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 15.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
+            [self.homeMunicipalFacilityHeightArray addObject:@(96.f + height)];
+        }
+        
         [self.collectionView reloadData];
     }];
 }
@@ -138,7 +152,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if (section == 3) {
-        return CGSizeMake(kScreenWidth, 80.f);
+        return CGSizeMake(kScreenWidth, 88.f);
     }
     return CGSizeZero;
 }
@@ -153,14 +167,18 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     } else if (indexPath.section == 2) { // 模块
         return CGSizeMake((kScreenWidth - 2.f * 2) / 3, 85.f);
     } else if (indexPath.section == 3) { // 最新消息
-        return CGSizeMake(kScreenWidth - 15.f * 2, 78.f);
+        if (_showLatestMessageType == 1) { // 市政设施问题
+            return CGSizeMake(kScreenWidth - 15.f * 2, [self.homeMunicipalFacilityHeightArray[indexPath.row] floatValue]);
+        } else {
+            return CGSizeMake(kScreenWidth - 15.f * 2, [self.homeRoadConstructionHeightArray[indexPath.row] floatValue]);
+        }
     } else { // Banner
         return CGSizeMake(kScreenWidth, 180.f);
     }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 2.f;
+    return section == 3 ? 5.f : 2.f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -180,9 +198,9 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         return self.moduleTitleArray.count;
     } else if (section == 3) { // 最新消息
         if (_showLatestMessageType == 1) { // 市政设施问题
-            return self.homeRoadConstructionArray.count;
-        } else {
             return self.homeMunicipalFacilityArray.count;
+        } else {
+            return self.homeRoadConstructionArray.count;
         }
     } else { // Banner
         return self.homeBannerArray.count;
@@ -235,10 +253,19 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         return homeCVC;
     } else if (indexPath.section == 3) { // 最新消息
         if (_showLatestMessageType == 1) { // 市政设施问题
-            return [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeMunicipalFacilityCVCReuseIdentifier forIndexPath:indexPath];
+            ZHLZHomeMunicipalFacilityCVC *homeMunicipalFacilityCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeMunicipalFacilityCVCReuseIdentifier
+                                                                                                               forIndexPath:indexPath];
+            if (homeMunicipalFacilityCVC) {
+                homeMunicipalFacilityCVC.homeMunicipalFacilityModel = self.homeMunicipalFacilityArray[indexPath.row];
+            }
+            return homeMunicipalFacilityCVC;
         } else {
-            return [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeRoadConstructionCVCReuseIdentifier
-                                                             forIndexPath:indexPath];
+            ZHLZHomeRoadConstructionCVC *homeRoadConstructionCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeRoadConstructionCVCReuseIdentifier
+                                                                                                             forIndexPath:indexPath];
+            if (homeRoadConstructionCVC) {
+                homeRoadConstructionCVC.homeRoadConstructionModel = self.homeRoadConstructionArray[indexPath.row];
+            }
+            return homeRoadConstructionCVC;
         }
     } else { // Banner
         SDCollectionViewCell *homeBannerCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBannerCVCReuseIdentifier
@@ -246,7 +273,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         if (homeBannerCVC) {
             ZHLZHomeBannerModel *homeBannerModel = self.homeBannerArray[indexPath.row];
             if (homeBannerModel) {
-                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]]];
+                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]] placeholderImage:[UIImage imageWithColor:UIColor.whiteColor]];
             }
         }
         return homeBannerCVC;

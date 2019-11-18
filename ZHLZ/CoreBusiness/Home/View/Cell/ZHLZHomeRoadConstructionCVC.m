@@ -7,6 +7,7 @@
 //
 
 #import "ZHLZHomeRoadConstructionCVC.h"
+#import "ZHLZHomeRoadConstructionModel.h"
 
 @interface ZHLZHomeRoadConstructionCVC ()
 
@@ -71,6 +72,19 @@
         make.bottom.equalTo(self.contentView).offset(-20);
         make.width.height.offset(16);
     }];
+}
+
+- (void)setHomeRoadConstructionModel:(ZHLZHomeRoadConstructionModel *)homeRoadConstructionModel {
+    _homeRoadConstructionModel = homeRoadConstructionModel;
+    
+    if (_homeRoadConstructionModel) {
+        self.nameLabel.text = _homeRoadConstructionModel.orgName?:@"";
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:_homeRoadConstructionModel.prodate.time/1000.f];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        self.timeLabel.text = [dateFormatter stringFromDate:date];
+        self.titleLabel.text = _homeRoadConstructionModel.prodescription?:@"";
+    }
 }
 
 @end

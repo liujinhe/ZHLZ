@@ -51,7 +51,8 @@
     [self addSubview:self.roadConstructionButton];
     [self.roadConstructionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(titleLabel.mas_bottom);
-        make.left.bottom.equalTo(self);
+        make.left.equalTo(self);
+        make.bottom.equalTo(self).offset(-10);
     }];
     
     self.municipalFacilityButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -66,9 +67,9 @@
     [self.municipalFacilityButton addTarget:self action:@selector(selectType:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.municipalFacilityButton];
     [self.municipalFacilityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(titleLabel.mas_bottom);
+        make.top.bottom.equalTo(self.roadConstructionButton);
         make.left.equalTo(self.roadConstructionButton.mas_right);
-        make.bottom.right.equalTo(self);
+        make.right.equalTo(self);
         make.width.equalTo(self.roadConstructionButton.mas_width);
     }];
 }
