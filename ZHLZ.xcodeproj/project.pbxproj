@@ -137,7 +137,6 @@
 		A557506623828DBD00B24FC4 /* ZHLZMonadVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574FBE23828DBD00B24FC4 /* ZHLZMonadVC.xib */; };
 		A557506723828DBD00B24FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5574FC023828DBD00B24FC4 /* Assets.xcassets */; };
 		A557506823828DBD00B24FC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574FC123828DBD00B24FC4 /* main.m */; };
-		A557506923828DBD00B24FC4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5574FC323828DBD00B24FC4 /* Info.plist */; };
 		A557506A23828DBD00B24FC4 /* GRToast.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574FC723828DBD00B24FC4 /* GRToast.m */; };
 		A557506B23828DBD00B24FC4 /* ZHLZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574FC923828DBD00B24FC4 /* ZHLZTabBarController.m */; };
 		A557506C23828DBD00B24FC4 /* ZHLZBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574FCA23828DBD00B24FC4 /* ZHLZBaseVC.m */; };
@@ -1483,7 +1482,7 @@
 		A5940FF5237905CF00D7A1D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1110;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = liujinhe;
 				TargetAttributes = {
 					A5940FFC237905CF00D7A1D4 = {
@@ -1532,7 +1531,6 @@
 				A557504023828DBD00B24FC4 /* ZHLZChangePasswordVC.xib in Resources */,
 				A557505823828DBD00B24FC4 /* ZHLZCityManagementVC.xib in Resources */,
 				A5574FF823828DBD00B24FC4 /* LaunchScreen.storyboard in Resources */,
-				A557506923828DBD00B24FC4 /* Info.plist in Resources */,
 				A557504723828DBD00B24FC4 /* ZHLZHelpVC.xib in Resources */,
 				A557505D23828DBD00B24FC4 /* ZHLZBookListCell.xib in Resources */,
 				A557503223828DBD00B24FC4 /* ZHLZHomeBuildProjectVC.xib in Resources */,
