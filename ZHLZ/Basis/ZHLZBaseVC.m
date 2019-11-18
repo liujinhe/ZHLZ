@@ -64,6 +64,15 @@
     [self presentViewController:alertController animated:NO completion:nil];
 }
 
+- (void)addRightBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:title
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:action];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:kFont(14), NSForegroundColorAttributeName:UIColor.whiteColor}
+                                                          forState:UIControlStateNormal];
+}
+
 #pragma mark - getter and setter
 
 - (void)setTask:(__kindof NSURLSessionTask *)task {

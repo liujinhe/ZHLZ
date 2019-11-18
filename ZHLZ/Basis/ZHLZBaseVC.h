@@ -39,6 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tip 提示信息
 - (void)popPromptActionWithTitle:(NSString * _Nullable)title withTip:(NSString *)tip;
 
+/// 添加导航栏右侧按钮
+/// @param title 标题
+/// @param action 触发事件
+- (void)addRightBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action;
+
 @end
 
 NS_ASSUME_NONNULL_END
