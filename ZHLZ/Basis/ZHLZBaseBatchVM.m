@@ -24,8 +24,8 @@
     return [self initWithRequestArray:requestArray.copy];
 }
 
-- (void)requestCompletionWithSuccess:(nullable void (^)(NSMutableArray<GRResponse *> *responseArray))success
-                         withFailure:(nullable void (^)(NSMutableArray<GRResponse *> *responseArray))failure {
+- (void)requestCompletionWithSuccess:(nullable void (^)(NSArray<GRResponse *> *responseArray))success
+                         withFailure:(nullable void (^)(NSArray<GRResponse *> *responseArray))failure {
     if (!self.isIgnoreLoading) {
         [SVProgressHUD show];
     }
@@ -36,7 +36,7 @@
                 [responseArray addObject:[GRResponse modelWithJSON:request.responseObject]];
             }
         }
-        success(responseArray);
+        success(responseArray.copy);
         
         if ([SVProgressHUD isVisible]) {
             [SVProgressHUD dismissWithDelay:0.25f];

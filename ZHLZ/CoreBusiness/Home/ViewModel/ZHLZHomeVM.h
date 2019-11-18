@@ -8,13 +8,21 @@
 
 #import "ZHLZBaseVM.h"
 
+#import "ZHLZHomeBannerModel.h"
+#import "ZHLZHomeBulletinModel.h"
+#import "ZHLZHomeRoadConstructionModel.h"
+#import "ZHLZHomeMunicipalFacilityModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeVM : ZHLZBaseVM
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSMutableArray<GRResponse *> *responseArray))block;
+- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSArray<ZHLZHomeBannerModel *> *homeBannerArray,
+                                                  NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray,
+                                                  NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray,
+                                                  NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray))block;
 
 @end
 

@@ -36,7 +36,7 @@
 - (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
     ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
     if (userModel) {
-        return @{@"token":userModel.encryptionKey};
+        return @{@"Token":userModel.encryptionKey};
     } else {
         return nil;
     }

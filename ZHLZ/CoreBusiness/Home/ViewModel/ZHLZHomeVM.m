@@ -20,7 +20,10 @@
     return homeVM;
 }
 
-- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSMutableArray<GRResponse *> *responseArray))block {
+- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSArray<ZHLZHomeBannerModel *> *homeBannerArray,
+                                                  NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray,
+                                                  NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray,
+                                                  NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray))block {
     NSArray *apiURLArray = @[HomeBannerAPIURLConst,
                              HomeBulletinAPIURLConst,
                              HomeOccupyProblemAPIURLConst,
@@ -30,10 +33,43 @@
                                  @(YES),
                                  @(YES)];
     ZHLZBaseBatchVM *baseBatchVM = [[ZHLZBaseBatchVM alloc] initWithRequestUrlArray:apiURLArray withIsLoadListArray:isLoadListArray];
-    [baseBatchVM requestCompletionWithSuccess:^(NSMutableArray<GRResponse *> * _Nonnull responseArray) {
-        block(responseArray);
-    } withFailure:^(NSMutableArray<GRResponse *> * _Nonnull responseArray) {
-        block(nil);
+    [baseBatchVM requestCompletionWithSuccess:^(NSArray<GRResponse *> * _Nonnull responseArray) {
+        if (!responseArray || responseArray.count <= 0) {
+            block(nil, nil, nil, nil);
+            return;
+        }
+        
+        NSArray<ZHLZHomeBannerModel *> *homeBannerArray;
+        GRResponse *homeBannerResponse = responseArray[0];
+        if (homeBannerResponse && homeBannerResponse.data) {
+            homeBannerArray = [NSArray modelArrayWithClass:[ZHLZHomeBannerModel class]
+                                                      json:[homeBannerResponse.data objectForKey:@"list"]];
+        }
+        
+        NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray;
+        GRResponse *homeBulletinResponse = responseArray[1];
+        if (homeBulletinResponse && homeBulletinResponse.data) {
+            homeBulletinArray = [NSArray modelArrayWithClass:[ZHLZHomeBulletinModel class]
+                                                        json:[homeBulletinResponse.data objectForKey:@"list"]];
+        }
+        
+        NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray;
+        GRResponse *homeRoadConstructionResponse = responseArray[2];
+        if (homeRoadConstructionResponse && homeRoadConstructionResponse.data) {
+            homeRoadConstructionArray = [NSArray modelArrayWithClass:[ZHLZHomeRoadConstructionModel class]
+                                                                json:[homeRoadConstructionResponse.data objectForKey:@"list"]];
+        }
+        
+        NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray;
+        GRResponse *homeMunicipalFacilityResponse = responseArray[3];
+        if (homeMunicipalFacilityResponse && homeMunicipalFacilityResponse.data) {
+            homeMunicipalFacilityArray = [NSArray modelArrayWithClass:[ZHLZHomeMunicipalFacilityModel class]
+                                                                 json:[homeMunicipalFacilityResponse.data objectForKey:@"list"]];
+        }
+        
+        block(homeBannerArray, homeBulletinArray, homeRoadConstructionArray, homeMunicipalFacilityArray);
+    } withFailure:^(NSArray<GRResponse *> * _Nonnull responseArray) {
+        block(nil, nil, nil, nil);
     }];
     return self.requestTask;
 }

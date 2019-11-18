@@ -38,6 +38,11 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 @property (nonatomic, strong) NSArray *moduleTitleArray;
 @property (nonatomic, strong) NSArray *moduleImageArray;
 
+@property (nonatomic, strong) NSArray<ZHLZHomeBannerModel *> *homeBannerArray;
+@property (nonatomic, strong) NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray;
+@property (nonatomic, strong) NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray;
+@property (nonatomic, strong) NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray;
+
 @end
 
 @implementation ZHLZHomeVC
@@ -74,6 +79,11 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                               @"icon_home_scan_code_use_car",
                               @"icon_home_info_statistics"];
     
+    self.homeBannerArray = @[];
+    self.homeBulletinArray = @[];
+    self.homeRoadConstructionArray = @[];
+    self.homeMunicipalFacilityArray = @[];
+    
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
@@ -96,18 +106,29 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             forCellWithReuseIdentifier:ZHLZHomeMunicipalFacilityCVCReuseIdentifier];
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    [self loadData];
+    if ([ZHLZUserManager sharedInstance].isLogin) {
+        [self loadData];
+    }
 }
 
 - (void)loadData {
     @weakify(self);
-    self.task = [[ZHLZHomeVM sharedInstance] loadDataWithBlock:^(NSMutableArray<GRResponse *> * _Nonnull responseArray) {
+    self.task = [[ZHLZHomeVM sharedInstance] loadDataWithBlock:^(NSArray<ZHLZHomeBannerModel *> * _Nonnull homeBannerArray, NSArray<ZHLZHomeBulletinModel *> * _Nonnull homeBulletinArray, NSArray<ZHLZHomeRoadConstructionModel *> * _Nonnull homeRoadConstructionArray, NSArray<ZHLZHomeMunicipalFacilityModel *> * _Nonnull homeMunicipalFacilityArray) {
         @strongify(self);
         
         if (self.collectionView.mj_header.isRefreshing) {
             [self.collectionView.mj_header endRefreshing];
         }
+        
+        self.homeBannerArray = homeBannerArray;
+        self.homeBulletinArray = homeBulletinArray;
+        self.homeRoadConstructionArray = homeRoadConstructionArray;
+        self.homeMunicipalFacilityArray = homeMunicipalFacilityArray;
         
         [self.collectionView reloadData];
     }];
@@ -158,9 +179,13 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     } else if (section == 2) { // 模块
         return self.moduleTitleArray.count;
     } else if (section == 3) { // 最新消息
-        return 1;
+        if (_showLatestMessageType == 1) { // 市政设施问题
+            return self.homeRoadConstructionArray.count;
+        } else {
+            return self.homeMunicipalFacilityArray.count;
+        }
     } else { // Banner
-        return 1;
+        return self.homeBannerArray.count;
     }
 }
 
@@ -197,7 +222,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) { // 公告
         ZHLZHomeBulletinCVC *homeBulletinCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBulletinCVCReuseIdentifier
-                                                  forIndexPath:indexPath];
+                                                                                         forIndexPath:indexPath];
         homeBulletinCVC.bulletin = @"你的健康都会尽快恢复好的释放";
         return homeBulletinCVC;
     } else if (indexPath.section == 2) { // 模块
@@ -219,7 +244,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         SDCollectionViewCell *homeBannerCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBannerCVCReuseIdentifier
                                                                                         forIndexPath:indexPath];
         if (homeBannerCVC) {
-            
+            ZHLZHomeBannerModel *homeBannerModel = self.homeBannerArray[indexPath.row];
+            if (homeBannerModel) {
+                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]]];
+            }
         }
         return homeBannerCVC;
     }

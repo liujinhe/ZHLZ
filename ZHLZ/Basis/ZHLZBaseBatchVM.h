@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithRequestUrlArray:(nullable NSArray *)requestUrlArray
                     withIsLoadListArray:(nullable NSArray *)isLoadListArray;
 
-- (void)requestCompletionWithSuccess:(nullable void (^)(NSMutableArray<GRResponse *> *responseArray))success
-                         withFailure:(nullable void (^)(NSMutableArray<GRResponse *> *responseArray))failure;
+- (void)requestCompletionWithSuccess:(nullable void (^)(NSArray<GRResponse *> *responseArray))success
+                         withFailure:(nullable void (^)(NSArray<GRResponse *> *responseArray))failure;
 
 @end
 

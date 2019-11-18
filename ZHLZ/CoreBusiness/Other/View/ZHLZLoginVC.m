@@ -24,13 +24,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rememberPwdButton.selected = [[[NSUserDefaults standardUserDefaults] objectForKey:LoginRememberPwdConst] boolValue];
+    // 退出登录
+    [[ZHLZUserManager sharedInstance] logout];
     
     CGFloat space = 10.f;
     [self.userNameTextField setValue:@(space) forKey:@"paddingLeft"];
     [self.userNameTextField setValue:@(space) forKey:@"paddingRight"];
     [self.pwdTextField setValue:@(space) forKey:@"paddingLeft"];
     [self.pwdTextField setValue:@(space) forKey:@"paddingRight"];
+
+    NSDictionary *loginRememberPwd = [[NSUserDefaults standardUserDefaults] objectForKey:LoginRememberPwdConst];
+    if (loginRememberPwd) {
+        self.userNameTextField.text = [loginRememberPwd objectForKey:@"username"];
+        self.pwdTextField.text = [loginRememberPwd objectForKey:@"password"];
+        self.rememberPwdButton.selected = YES;
+    } else {
+        self.userNameTextField.text = @"";
+        self.pwdTextField.text = @"";
+        self.rememberPwdButton.selected = NO;
+    }
 }
 
 - (IBAction)rememberPwdAction:(UIButton *)sender {
@@ -50,7 +62,11 @@
         return;
     }
     self.task = [[ZHLZLoginVM sharedInstance] loginWithModel:loginModel withCompletionBlock:^{
-        [[NSUserDefaults standardUserDefaults] setBool:self.rememberPwdButton.isSelected forKey:LoginRememberPwdConst];
+        if (self.rememberPwdButton.isSelected) {
+            [[NSUserDefaults standardUserDefaults] setObject:@{@"username":loginModel.username, @"password":loginModel.password} forKey:LoginRememberPwdConst];
+        } else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:LoginRememberPwdConst];
+        }
         [self dismissViewControllerAnimated:NO completion:nil];
     }];
 }

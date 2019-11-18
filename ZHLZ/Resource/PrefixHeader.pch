@@ -25,6 +25,8 @@
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 
+#import <SDWebImage/SDWebImage.h>
+
 #import "ZHLZColorMacro.h"
 #import "ZHLZFontSizeMacro.h"
 
