@@ -17,8 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navTitle = @"在建项目";
-    
     [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
 }
 

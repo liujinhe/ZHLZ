@@ -32,6 +32,7 @@
 #import "ZHLZDeviceMacro.h"
 
 #import "ZHLZNotificationConst.h"
+#import "ZHLZThirdPatryConfigConst.h"
 
 #import "GRToast.h"
 #import "ZHLZButton.h"

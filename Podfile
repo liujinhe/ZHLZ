@@ -20,6 +20,9 @@ target 'ZHLZ' do
   pod 'JXCategoryView', '~> 1.5.2'
   pod 'FDFullscreenPopGesture', '~> 1.1'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
+  
+  pod 'AMap2DMap'
+  pod 'AMapSearch'
 
   target 'ZHLZTests' do
     inherit! :search_paths

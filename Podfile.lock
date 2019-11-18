@@ -14,6 +14,11 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AMap2DMap (5.6.1):
+    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.6.0)
+  - AMapSearch (7.1.0):
+    - AMapFoundation (~> 1.4)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
   - IQKeyboardManager (6.5.3)
@@ -32,6 +37,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - AMap2DMap
+  - AMapSearch
   - DZNEmptyDataSet (~> 1.8.1)
   - FDFullscreenPopGesture (~> 1.1)
   - IQKeyboardManager (~> 6.5.0)
@@ -46,6 +53,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - AMap2DMap
+    - AMapFoundation
+    - AMapSearch
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
     - IQKeyboardManager
@@ -59,6 +69,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMapFoundation: bc2f6e077b9279942734ba55f9624222fcf42848
+  AMapSearch: 6bd6d361c5eb00110e0bffa4acf88b7bb9f7e059
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
@@ -70,6 +83,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 09d9ea5024144b71b8c11fdb3e3149d5472ba257
+PODFILE CHECKSUM: 2f2a1bf9d3f4e975303045fe0362ba17ea69f0a6
 
 COCOAPODS: 1.8.4

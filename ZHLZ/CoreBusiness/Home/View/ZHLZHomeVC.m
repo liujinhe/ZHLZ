@@ -18,6 +18,21 @@
 
 #import "ZHLZHomeVM.h"
 
+#import "ZHLZHomeMapVC.h"
+#import "ZHLZHomeBuildProjectVC.h"
+#import "ZHLZHomeSafeVC.h"
+#import "ZHLZHomeOccupyProblemVC.h"
+#import "ZHLZHomeOccupyProblemDetailVC.h"
+#import "ZHLZHomeMunicipalProblemVC.h"
+#import "ZHLZHomeMunicipalProblemDetailVC.h"
+#import "ZHLZHomeSafeProblemVC.h"
+#import "ZHLZHomeRoadPatrolVC.h"
+#import "ZHLZHomeCheckInVC.h"
+#import "ZHLZHomeRoadPatrolStatisticsVC.h"
+#import "ZHLZHomeBusinessDocumentVC.h"
+#import "ZHLZHomeScanCodeUseCarVC.h"
+#import "ZHLZHomeInfoStatisticsVC.h"
+
 static NSString * const ZHLZHomeBannerCVCReuseIdentifier = @"ZHLZHomeBannerCVCReuseIdentifier";
 static NSString * const ZHLZHomeBulletinCVCReuseIdentifier = @"ZHLZHomeBulletinCVCReuseIdentifier";
 static NSString * const ZHLZHomeCVCReuseIdentifier = @"ZHLZHomeCVCReuseIdentifier";
@@ -275,12 +290,117 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     if (indexPath.section == 1) { // 公告
         return;
     } else if (indexPath.section == 2) { // 模块
-        
+        NSString *navTitle = self.moduleTitleArray[indexPath.row];
+        switch (indexPath.row) {
+            case 0:
+            {
+                ZHLZHomeMapVC *homeMapVC = [ZHLZHomeMapVC new];
+                homeMapVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeMapVC
+                                                     animated:YES];
+            }
+                break;
+            case 1:
+            {
+                ZHLZHomeBuildProjectVC *homeBuildProjectVC = [ZHLZHomeBuildProjectVC new];
+                homeBuildProjectVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeBuildProjectVC
+                                                     animated:YES];
+            }
+                break;
+            case 2:
+            {
+                ZHLZHomeSafeVC *homeSafeVC = [ZHLZHomeSafeVC new];
+                homeSafeVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeSafeVC
+                                                     animated:YES];
+            }
+                break;
+            case 3:
+            {
+                ZHLZHomeOccupyProblemVC *homeOccupyProblemVC = [ZHLZHomeOccupyProblemVC new];
+                homeOccupyProblemVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeOccupyProblemVC
+                                                     animated:YES];
+            }
+                break;
+            case 4:
+            {
+                ZHLZHomeMunicipalProblemVC *homeMunicipalProblemVC = [ZHLZHomeMunicipalProblemVC new];
+                homeMunicipalProblemVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeMunicipalProblemVC
+                                                     animated:YES];
+            }
+                break;
+            case 5:
+            {
+                ZHLZHomeSafeProblemVC *homeSafeProblemVC = [ZHLZHomeSafeProblemVC new];
+                homeSafeProblemVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeSafeProblemVC
+                                                     animated:YES];
+            }
+                break;
+            case 6:
+            {
+                ZHLZHomeRoadPatrolVC *homeRoadPatrolVC = [ZHLZHomeRoadPatrolVC new];
+                homeRoadPatrolVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeRoadPatrolVC
+                                                     animated:YES];
+            }
+                break;
+            case 7:
+            {
+                ZHLZHomeCheckInVC *homeCheckInVC = [ZHLZHomeCheckInVC new];
+                homeCheckInVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeCheckInVC
+                                                     animated:YES];
+            }
+                break;
+            case 8:
+            {
+                ZHLZHomeRoadPatrolStatisticsVC *homeRoadPatrolStatisticsVC = [ZHLZHomeRoadPatrolStatisticsVC new];
+                homeRoadPatrolStatisticsVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeRoadPatrolStatisticsVC
+                                                     animated:YES];
+            }
+                break;
+            case 9:
+            {
+                ZHLZHomeBusinessDocumentVC *homeBusinessDocumentVC = [ZHLZHomeBusinessDocumentVC new];
+                homeBusinessDocumentVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeBusinessDocumentVC
+                                                     animated:YES];
+            }
+                break;
+            case 10:
+            {
+                ZHLZHomeScanCodeUseCarVC *homeScanCodeUseCarVC = [ZHLZHomeScanCodeUseCarVC new];
+                homeScanCodeUseCarVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeScanCodeUseCarVC
+                                                     animated:YES];
+            }
+                break;
+            case 11:
+            {
+                ZHLZHomeInfoStatisticsVC *homeInfoStatisticsVC = [ZHLZHomeInfoStatisticsVC new];
+                homeInfoStatisticsVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeInfoStatisticsVC
+                                                     animated:YES];
+            }
+                break;
+                
+        }
     } else if (indexPath.section == 3) { // 最新消息
         if (_showLatestMessageType == 1) { // 市政设施问题
-            
+            ZHLZHomeMunicipalProblemDetailVC *homeMunicipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
+            homeMunicipalProblemDetailVC.detailId = self.homeMunicipalFacilityArray[indexPath.row].objectID;
+            [self.navigationController pushViewController:homeMunicipalProblemDetailVC
+                                                 animated:YES];
         } else {
-            
+            ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
+            homeOccupyProblemDetailVC.detailId = self.homeRoadConstructionArray[indexPath.row].objectID;
+            [self.navigationController pushViewController:homeOccupyProblemDetailVC
+                                                 animated:YES];
         }
     } else { // Banner
         
