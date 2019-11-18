@@ -16,7 +16,7 @@ NSString * const BaseAPIURLConst = @"http://www.yusuisoft.com:8080";
 
 #pragma mark - API URL for Other
 
-NSString * const LoginAPIURLConst = @"/app/sys/applogin";
+NSString * const LoginAPIURLConst = @"/sys/applogin";
 
 NSString * const UserInfoAPIURLConst = @"/app/sys/user/info";
 
