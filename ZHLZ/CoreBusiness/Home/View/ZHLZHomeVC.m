@@ -238,10 +238,17 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    @weakify(self);
     if (indexPath.section == 1) { // 公告
         ZHLZHomeBulletinCVC *homeBulletinCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBulletinCVCReuseIdentifier
                                                                                          forIndexPath:indexPath];
-        homeBulletinCVC.bulletin = @"你的健康都会尽快恢复好的释放";
+        if (homeBulletinCVC) {
+            homeBulletinCVC.homeBulletinArray = self.homeBulletinArray;
+            homeBulletinCVC.selectBulletinBlock = ^(NSString * _Nonnull tip) {
+                @strongify(self);
+                [self popPromptActionWithTitle:@"公告" withTip:tip];
+            };
+        }
         return homeBulletinCVC;
     } else if (indexPath.section == 2) { // 模块
         ZHLZHomeCVC *homeCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeCVCReuseIdentifier
@@ -284,7 +291,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) { // 公告
-        
+        return;
     } else if (indexPath.section == 2) { // 模块
         
     } else if (indexPath.section == 3) { // 最新消息

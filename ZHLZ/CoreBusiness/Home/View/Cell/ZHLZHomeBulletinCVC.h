@@ -10,9 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ZHLZHomeBulletinModel;
+
+typedef void(^SelectBulletinBlock)(NSString *tip);
+
 @interface ZHLZHomeBulletinCVC : UICollectionViewCell
 
-@property (nonatomic, strong) NSString *bulletin;
+@property (nonatomic, strong) NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray;
+
+@property (nonatomic, copy) SelectBulletinBlock selectBulletinBlock;
 
 @end
 

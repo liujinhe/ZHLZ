@@ -34,6 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param block block description
 - (void)popActionWithTitle:(NSString * _Nullable)title withTip:(NSString *)tip withBlock:(dispatch_block_t)block;
 
+/// 弹出提示
+/// @param title 提示标题
+/// @param tip 提示信息
+- (void)popPromptActionWithTitle:(NSString * _Nullable)title withTip:(NSString *)tip;
+
 @end
 
 NS_ASSUME_NONNULL_END

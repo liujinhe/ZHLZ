@@ -7,13 +7,14 @@
 //
 
 #import "ZHLZHomeBulletinCVC.h"
+#import <SDCycleScrollView/SDCycleScrollView.h>
+#import "ZHLZHomeBulletinModel.h"
 
-@interface ZHLZHomeBulletinCVC ()
-{
-    BOOL _isScrolling;
-}
+@interface ZHLZHomeBulletinCVC () <SDCycleScrollViewDelegate>
 
-@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) SDCycleScrollView *bulletinCycleScrollView;
+
+@property (nonatomic, strong) NSMutableArray *bulletinNameArray;
 
 @end
 
@@ -40,42 +41,50 @@
     [tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
         make.centerY.equalTo(self);
-        make.width.offset(36);
+        make.width.offset(32);
         make.height.offset(22);
     }];
     
     UIView *titleView = [UIView new];
     [self addSubview:titleView];
     [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(tagLabel.mas_left).offset(20);
+        make.left.equalTo(tagLabel.mas_right);
         make.right.equalTo(self).offset(-20);
-        make.centerY.equalTo(self);
-        make.height.offset(22);
+        make.top.bottom.equalTo(self);
     }];
     
-    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(titleView.frame), 0, CGRectGetWidth(titleView.frame), CGRectGetHeight(titleView.frame))];
-    self.titleLabel.font = kFont(12);
-    self.titleLabel.textColor = UIColor.redColor;
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [titleView addSubview:self.titleLabel];
-}
-
-- (void)setBulletin:(NSString *)bulletin {
-    _bulletin = bulletin;
-    
-    self.titleLabel.text = _bulletin?:@"";
-    
-    [self startAnimation];
-}
-
-- (void)startAnimation {
-    [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionRepeat animations:^{
-        CGRect rect = self.titleLabel.frame;
-        rect.origin.x = 0;
-        self.titleLabel.frame = rect;
-    } completion:^(BOOL finished) {
-        
+    self.bulletinCycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:nil];
+    self.bulletinCycleScrollView.delegate = self;
+    self.bulletinCycleScrollView.backgroundColor = UIColor.clearColor;
+    self.bulletinCycleScrollView.titleLabelTextColor = UIColor.redColor;
+    self.bulletinCycleScrollView.titleLabelTextFont = kFont(12);
+    self.bulletinCycleScrollView.titleLabelBackgroundColor = UIColor.clearColor;
+    self.bulletinCycleScrollView.titleLabelHeight = 22.f;
+    self.bulletinCycleScrollView.scrollDirection = UICollectionViewScrollDirectionVertical;
+    self.bulletinCycleScrollView.onlyDisplayText = YES;
+    self.bulletinCycleScrollView.autoScrollTimeInterval = 3.f;
+    [self.bulletinCycleScrollView disableScrollGesture];
+    [titleView addSubview:self.bulletinCycleScrollView];
+    [self.bulletinCycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(titleView);
     }];
+}
+
+- (void)setHomeBulletinArray:(NSArray<ZHLZHomeBulletinModel *> *)homeBulletinArray {
+    _homeBulletinArray = homeBulletinArray;
+    
+    self.bulletinNameArray = @[].mutableCopy;
+    for (ZHLZHomeBulletinModel *homeBulletinModel in _homeBulletinArray) {
+        [self.bulletinNameArray addObject:homeBulletinModel.describe?:@""];
+    }
+    self.bulletinCycleScrollView.titlesGroup = self.bulletinNameArray;
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    NSString *tip = self.bulletinNameArray[index];
+    if ([tip isNotBlank] && self.selectBulletinBlock) {
+        self.selectBulletinBlock(tip);
+    }
 }
 
 @end

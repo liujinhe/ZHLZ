@@ -57,6 +57,13 @@
     [self presentViewController:alertController animated:NO completion:nil];
 }
 
+- (void)popPromptActionWithTitle:(NSString * _Nullable)title withTip:(NSString *)tip {
+    UIAlertAction *iKnowAction = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:tip preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:iKnowAction];
+    [self presentViewController:alertController animated:NO completion:nil];
+}
+
 #pragma mark - getter and setter
 
 - (void)setTask:(__kindof NSURLSessionTask *)task {

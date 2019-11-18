@@ -12,6 +12,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBulletinModel : ZHLZBaseModel
 
+@property (nonatomic, copy) NSString *creatTime;
+@property (nonatomic, copy) NSString *dateid;
+@property (nonatomic, copy) NSString *describe;
+@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, copy) NSString *fileSize;
+@property (nonatomic, copy) NSString *fileTime;
+@property (nonatomic, copy) NSString *fileType;
+@property (nonatomic, copy) NSString *fileid;
+@property (nonatomic, copy) NSString *isdelete;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *uploadId;
+@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *userId;
+
 @end
 
 NS_ASSUME_NONNULL_END
