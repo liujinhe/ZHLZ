@@ -148,6 +148,9 @@
         if (type == 2) {
             roadWorkVC.roadWorkModel = list;
         }
+        roadWorkVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:roadWorkVC animated:YES];
         
     } else if(self.selectIndex == 1){
@@ -157,6 +160,9 @@
         if (type == 2) {
             examineVC.examineModel = list;
         }
+        examineVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:examineVC animated:YES];
         
     } else if(self.selectIndex == 2){
@@ -166,6 +172,9 @@
         if (type == 2) {
             constructionVC.constructionModel = list;
         }
+        constructionVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:constructionVC animated:YES];
         
     } else if(self.selectIndex == 3){
@@ -175,6 +184,9 @@
         if (type == 2) {
             areaManagementVC.cityManagementModel = list;
         }
+        areaManagementVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 4){
@@ -184,6 +196,9 @@
         if (type == 2) {
             areaManagementVC.areaManagementModel = list;
         }
+        areaManagementVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 5){
@@ -193,6 +208,9 @@
         if (type == 2) {
             specialVC.specialModel = list;
         }
+        specialVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:specialVC animated:YES];
         
     } else if(self.selectIndex == 6){
@@ -202,10 +220,11 @@
         if (type == 2) {
             monadVC.monadModel = list;
         }
+        monadVC.reloadDataBlock = ^{
+            [self.bookListTableView.mj_header beginRefreshing];
+        };
         [self.navigationController pushViewController:monadVC animated:YES];
-        
     }
-    
 }
 
 #pragma mark --UITableView 代理

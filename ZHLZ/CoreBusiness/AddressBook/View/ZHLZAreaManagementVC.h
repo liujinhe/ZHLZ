@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
 @property (nonatomic , strong) AreaManagementList *areaManagementModel;//区管单位
 
+@property(nonatomic,copy) void (^reloadDataBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

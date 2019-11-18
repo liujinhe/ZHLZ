@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) RoadWorkList *roadWorkModel;//施工单位
 
 
+@property(nonatomic,copy) void (^reloadDataBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

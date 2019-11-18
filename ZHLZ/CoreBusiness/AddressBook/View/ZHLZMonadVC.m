@@ -40,7 +40,7 @@
         self.title = @"编辑责任单位";
         [self.sureButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        [self addNavRightButton];
+        //[self addNavRightButton];
         
         self.workNnameTextFile.text = self.monadModel.name;
         
@@ -68,7 +68,7 @@
 
 - (void)deleteAction{
     [self popActionWithTip:@"您确定要删除？" withBlock:^{
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",ResponsibleUnitDeleteAPIURLConst,self.monadModel.objectID] andParms:@{} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitDeleteAPIURLConst andParms:@{@"id":@"148"} withCompletionBlock:^{
             [GRToast makeText:@"删除成功"];
         }];
     }];
@@ -92,11 +92,13 @@
     if (self.setType == 1) { //添加
         self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitSaveAPIURLConst andParms:@{@"name":self.workNnameTextFile.text,@"charger":self.principalNnameTextFile.text,@"phone":self.principalPhoneTextFile.text,@"remark":self.remarkTextFile.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.workNnameTextFile.text,@"charger":self.principalNnameTextFile.text,@"phone":self.principalPhoneTextFile.text,@"remark":self.remarkTextFile.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.workNnameTextFile.text,@"charger":self.principalNnameTextFile.text,@"phone":self.principalPhoneTextFile.text,@"remark":self.remarkTextFile.text,@"id":self.monadModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }

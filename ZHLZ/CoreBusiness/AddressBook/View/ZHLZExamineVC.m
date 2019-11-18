@@ -37,7 +37,9 @@
         self.title = @"编辑审批单位";
         [self.examineButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        [self addNavRightButton];
+        self.examineDepartmentTextFile.text = self.examineModel.name;
+        
+        //[self addNavRightButton];
     }
 }
 - (void)addNavRightButton{
@@ -71,11 +73,13 @@
     if (self.setType == 1) { //添加
         self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentSaveAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentUpdateAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentUpdateAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text,@"id":self.examineModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }

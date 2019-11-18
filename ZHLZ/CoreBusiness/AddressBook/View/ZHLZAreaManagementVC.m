@@ -35,10 +35,15 @@
         [self.areaManagementButton setTitle:@"确认添加" forState:UIControlStateNormal];
         
     } else {
+        
         self.title = @"编辑区管管理单位";
         [self.areaManagementButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        [self addNavRightButton];
+        self.nameTextFile.text = self.areaManagementModel.name;
+        self.chargerTextFile.text = self.areaManagementModel.charger;
+        self.phoneTextFile.text = self.areaManagementModel.phone;
+        
+        //[self addNavRightButton];
     }
 }
 
@@ -81,11 +86,13 @@
     if (self.setType == 1) { //添加
         self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFile.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFile.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFile.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFile.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFile.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFile.text,@"id":self.areaManagementModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }

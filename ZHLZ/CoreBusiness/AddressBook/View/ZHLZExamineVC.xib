@@ -39,7 +39,7 @@
                         <constraint firstItem="ait-Uv-TKM" firstAttribute="leading" secondItem="A1g-zl-IXz" secondAttribute="leading" constant="20" id="euD-e5-OTa"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-AL-2Ve">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRT-AL-2Ve" customClass="ZHLZButton">
                     <rect key="frame" x="20" y="164" width="374" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>

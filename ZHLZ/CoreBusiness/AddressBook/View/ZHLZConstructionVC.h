@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
 @property (nonatomic , strong) ConstructionList *constructionModel;//建设单位
 
+@property(nonatomic,copy) void (^reloadDataBlock)(void);
 
 @end
 

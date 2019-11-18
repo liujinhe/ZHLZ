@@ -25,7 +25,8 @@
     [[UITextField appearance] setTintColor:kThemeColor];
     
     [IQKeyboardManager sharedManager].enable = YES;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
     
 #ifdef DEBUG
     [IQKeyboardManager sharedManager].enableDebugging = YES;

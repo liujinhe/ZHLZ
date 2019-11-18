@@ -40,7 +40,11 @@
         self.title = @"编辑建设单位";
         [self.constructionButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        [self addNavRightButton];
+        self.nameTextFIle.text = self.constructionModel.name;
+        self.chargerTextFile.text = self.constructionModel.changer;
+        self.phoneTextFIle.text = self.constructionModel.phone;
+        
+        //[self addNavRightButton];
     }
 }
 
@@ -82,11 +86,13 @@
     if (self.setType == 1) { //添加
         self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ConstructionUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ConstructionUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ConstructionUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text,@"id":self.constructionModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }

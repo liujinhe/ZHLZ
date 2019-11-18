@@ -44,8 +44,11 @@
         self.title = @"编辑施工单位";
         [self.roadWorkButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        [self addNavRightButton];
+        //[self addNavRightButton];
         
+        self.unitNameTextFile.text = self.roadWorkModel.name;
+        self.principalNameTextFile.text = self.roadWorkModel.charger;
+        self.principalPhonetextFile.text = self.roadWorkModel.phone;
     }
 }
 
@@ -90,11 +93,13 @@
     if (self.editType == 1) { //添加
         self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitSaveAPIURLConst andParms:@{@"name":self.unitNameTextFile.text,@"charger":self.principalNameTextFile.text,@"phone":self.principalPhonetextFile.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.unitNameTextFile.text,@"charger":self.principalNameTextFile.text,@"phone":self.principalPhonetextFile.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.unitNameTextFile.text,@"charger":self.principalNameTextFile.text,@"phone":self.principalPhonetextFile.text,@"id":self.roadWorkModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
+            self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
