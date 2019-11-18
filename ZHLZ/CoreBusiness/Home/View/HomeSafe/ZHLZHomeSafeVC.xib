@@ -1,22 +1,72 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeSafeVC">
             <connections>
+                <outlet property="homeSafeTableView" destination="eWl-sE-T9P" id="x4J-3F-El4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWm-jW-RIa">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔍请输入查找的内容" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8LE-S7-PtN" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="334" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3L-lV-xMK">
+                            <rect key="frame" x="364" y="0.0" width="30" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="8Lw-gl-djC"/>
+                            </constraints>
+                            <state key="normal" image="icon_search"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="e3L-lV-xMK" secondAttribute="bottom" id="CNJ-D6-eiH"/>
+                        <constraint firstAttribute="trailing" secondItem="e3L-lV-xMK" secondAttribute="trailing" constant="20" id="Lcm-61-ZiR"/>
+                        <constraint firstItem="8LE-S7-PtN" firstAttribute="leading" secondItem="kWm-jW-RIa" secondAttribute="leading" constant="20" id="Mns-tF-kjQ"/>
+                        <constraint firstItem="8LE-S7-PtN" firstAttribute="top" secondItem="kWm-jW-RIa" secondAttribute="top" constant="10" id="Xnq-tZ-5zG"/>
+                        <constraint firstItem="e3L-lV-xMK" firstAttribute="leading" secondItem="8LE-S7-PtN" secondAttribute="trailing" constant="10" id="b2V-To-VcP"/>
+                        <constraint firstAttribute="bottom" secondItem="8LE-S7-PtN" secondAttribute="bottom" constant="10" id="fQu-Cu-dbm"/>
+                        <constraint firstItem="e3L-lV-xMK" firstAttribute="top" secondItem="kWm-jW-RIa" secondAttribute="top" id="kSA-WS-gFy"/>
+                        <constraint firstAttribute="height" constant="60" id="t8P-r9-mKg"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-sE-T9P">
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kWm-jW-RIa" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="1oB-9d-Qu1"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="kWm-jW-RIa" secondAttribute="trailing" id="1pV-G6-HWs"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="eWl-sE-T9P" secondAttribute="trailing" id="9gz-HF-pzh"/>
+                <constraint firstItem="kWm-jW-RIa" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Gd4-ev-tz6"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="eWl-sE-T9P" secondAttribute="bottom" id="Ntr-gg-2vX"/>
+                <constraint firstItem="eWl-sE-T9P" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="TSa-z4-Vdc"/>
+                <constraint firstItem="eWl-sE-T9P" firstAttribute="top" secondItem="kWm-jW-RIa" secondAttribute="bottom" id="vpP-ng-dml"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="94"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_search" width="16" height="16"/>
+    </resources>
 </document>

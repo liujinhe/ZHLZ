@@ -161,7 +161,9 @@
     if (section == 0) {
         return self.headerView;
     } else {
-        return nil;
+        UIView *lineView = [UIView new];
+        lineView.backgroundColor = kHexRGB(0xF7F7F7);
+        return lineView;
     }
 }
 

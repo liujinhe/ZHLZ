@@ -92,7 +92,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="gSm-r6-pPn" secondAttribute="bottom" constant="10" id="8rw-ZC-Ckm"/>
-                        <constraint firstAttribute="height" constant="60" id="RjE-ef-zAc"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="RjE-ef-zAc"/>
                         <constraint firstItem="gSm-r6-pPn" firstAttribute="top" secondItem="kmR-Hr-eV2" secondAttribute="top" constant="10" id="TAM-hB-P1b"/>
                         <constraint firstItem="gSm-r6-pPn" firstAttribute="centerY" secondItem="kmR-Hr-eV2" secondAttribute="centerY" id="eZM-SA-5mO"/>
                         <constraint firstItem="gSm-r6-pPn" firstAttribute="leading" secondItem="kmR-Hr-eV2" secondAttribute="leading" constant="20" id="rb9-F9-o5f"/>

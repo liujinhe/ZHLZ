@@ -36,15 +36,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
 
 
-@property (nonatomic , strong) ZHLZMonadModel *monadModel;//责任单位
-@property (nonatomic , strong) ZHLZSpecialModel *specialModel;//特殊业主单位
-@property (nonatomic , strong) ZHLZCityManagementModel *cityManagementModel;//市管单位
-@property (nonatomic , strong) ZHLZAreaManagementModel *areaManagementModel;//区管单位
-@property (nonatomic , strong) ZHLZConstructionModel *constructionModel;//建设单位
-@property (nonatomic , strong) ZHLZExamineModel *examineModel;//审批单位
-@property (nonatomic , strong) ZHLZRoadWorkModel *roadWorkModel;//施工单位
-
-
+@property (nonatomic , strong) NSMutableArray <MonadModelList *>*MonadModelArray;//责任单位
+@property (nonatomic , strong) NSMutableArray <SpecialList *>*specialListModelArray;//特殊业主单位
+@property (nonatomic , strong) NSMutableArray <CityManagementList *>*cityManagementListModelArray;//市管单位
+@property (nonatomic , strong) NSMutableArray <AreaManagementList *>*areaManagementListModelArray;//区管单位
+@property (nonatomic , strong) NSMutableArray <ConstructionList *>*constructionModelArray;//建设单位
+@property (nonatomic , strong) NSMutableArray <ExamineList *>*examineModelArray;//审批单位
+@property (nonatomic , strong) NSMutableArray <RoadWorkList *>*roadWorkModelArray;//施工单位
 
 
 
@@ -71,29 +69,102 @@
             [self.bookListTableView.mj_header endRefreshing];
         }
         
-        self.pageNum ++;
-        
+
         if (self.selectIndex == 0) {
-            self.roadWorkModel = [ZHLZRoadWorkModel modelWithJSON:parms];
+            NSArray *roadWorkListArray = [NSArray modelArrayWithClass:[RoadWorkList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.roadWorkModelArray = roadWorkListArray.mutableCopy;
+            } else {
+                if (roadWorkListArray.count > 0) {
+                    [self.roadWorkModelArray addObjectsFromArray:roadWorkListArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
             
         } else if(self.selectIndex == 1){
-            self.examineModel = [ZHLZExamineModel modelWithJSON:parms];
+            
+            NSArray *examineListArray = [NSArray modelArrayWithClass:[ExamineList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.examineModelArray = examineListArray.mutableCopy;
+            } else {
+                if (examineListArray.count > 0) {
+                    [self.examineModelArray addObjectsFromArray:examineListArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
+
             
         } else if(self.selectIndex == 2){
-            self.constructionModel = [ZHLZConstructionModel modelWithJSON:parms];
+            
+            NSArray *constructionModelArray = [NSArray modelArrayWithClass:[ConstructionList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.constructionModelArray = constructionModelArray.mutableCopy;
+            } else {
+                if (constructionModelArray.count > 0) {
+                    [self.constructionModelArray addObjectsFromArray:constructionModelArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
+            
             
         } else if(self.selectIndex == 3){
-            self.cityManagementModel = [ZHLZCityManagementModel modelWithJSON:parms];
+            
+            NSArray *cityManagementListModelArray = [NSArray modelArrayWithClass:[CityManagementList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.cityManagementListModelArray = cityManagementListModelArray.mutableCopy;
+            } else {
+                if (cityManagementListModelArray.count > 0) {
+                    [self.cityManagementListModelArray addObjectsFromArray:cityManagementListModelArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
             
         } else if(self.selectIndex == 4){
-            self.areaManagementModel = [ZHLZAreaManagementModel modelWithJSON:parms];
+            
+            NSArray *areaManagementListModelArray = [NSArray modelArrayWithClass:[AreaManagementList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.areaManagementListModelArray = areaManagementListModelArray.mutableCopy;
+            } else {
+                if (areaManagementListModelArray.count > 0) {
+                    [self.areaManagementListModelArray addObjectsFromArray:areaManagementListModelArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
             
         } else if(self.selectIndex == 5){
-            self.specialModel = [ZHLZSpecialModel modelWithJSON:parms];
             
+            NSArray *specialListModelArray = [NSArray modelArrayWithClass:[SpecialList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.specialListModelArray = specialListModelArray.mutableCopy;
+            } else {
+                if (specialListModelArray.count > 0) {
+                    [self.specialListModelArray addObjectsFromArray:specialListModelArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
+                        
         } else if(self.selectIndex == 6){
-            self.monadModel = [ZHLZMonadModel modelWithJSON:parms];
+            
+            NSArray *MonadModelArray = [NSArray modelArrayWithClass:[MonadModelList class] json:[parms objectForKey:@"list"]];
+            if (self.pageNum == 1) {
+                self.MonadModelArray = MonadModelArray.mutableCopy;
+            } else {
+                if (MonadModelArray.count > 0) {
+                    [self.MonadModelArray addObjectsFromArray:MonadModelArray];
+                } else {
+                    [self.bookListTableView.mj_footer resetNoMoreData];
+                }
+            }
+            
         }
+        
+        self.pageNum ++;
         
         [self.bookListTableView reloadData];
         
@@ -101,6 +172,15 @@
 }
 
 - (void)loadAddressListHeader{
+    
+    [self.roadWorkModelArray removeAllObjects];
+    [self.examineModelArray removeAllObjects];
+    [self.constructionModelArray removeAllObjects];
+    [self.areaManagementListModelArray removeAllObjects];
+    [self.cityManagementListModelArray removeAllObjects];
+    [self.specialListModelArray removeAllObjects];
+    [self.MonadModelArray removeAllObjects];
+    
     self.pageNum = 1;
     [self loadAddressListData];
 }
@@ -112,6 +192,15 @@
     self.pageNum = 1;
     
     self.title = self.titleNameString;
+
+    
+    self.roadWorkModelArray = [NSMutableArray <RoadWorkList *> new];
+    self.examineModelArray = [NSMutableArray <ExamineList *> new];
+    self.constructionModelArray = [NSMutableArray <ConstructionList *> new];
+    self.areaManagementListModelArray = [NSMutableArray <AreaManagementList *> new];
+    self.cityManagementListModelArray = [NSMutableArray <CityManagementList *> new];
+    self.specialListModelArray = [NSMutableArray <SpecialList *> new];
+    self.MonadModelArray = [NSMutableArray <MonadModelList *> new];
     
     UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [areaManagementButton setTitle:@"添加" forState:UIControlStateNormal];
@@ -135,14 +224,14 @@
     [self.bookListTableView registerNib:[UINib nibWithNibName:@"ZHLZBookListCell" bundle:nil] forCellReuseIdentifier:@"ZHLZBookListCell"];
     
     self.bookListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListHeader)];
-    self.bookListTableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListData)];
+    self.bookListTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListData)];
     
 }
 
 - (void)clickAddActionwithType:(NSInteger)type{
     
     if (self.selectIndex == 0) {
-        RoadWorkList *list = self.roadWorkModel.list[self.clickIndex];
+        RoadWorkList *list = self.roadWorkModelArray[self.clickIndex];
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
         roadWorkVC.editType = type;
         if (type == 2) {
@@ -154,7 +243,7 @@
         [self.navigationController pushViewController:roadWorkVC animated:YES];
         
     } else if(self.selectIndex == 1){
-        ExamineList *list = self.examineModel.list[self.clickIndex];
+        ExamineList *list = self.examineModelArray[self.clickIndex];
         ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
         examineVC.setType = type;
         if (type == 2) {
@@ -166,7 +255,7 @@
         [self.navigationController pushViewController:examineVC animated:YES];
         
     } else if(self.selectIndex == 2){
-        ConstructionList *list = self.constructionModel.list[self.clickIndex];
+        ConstructionList *list = self.constructionModelArray[self.clickIndex];
         ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
         constructionVC.setType = type;
         if (type == 2) {
@@ -178,7 +267,7 @@
         [self.navigationController pushViewController:constructionVC animated:YES];
         
     } else if(self.selectIndex == 3){
-        CityManagementList *list = self.cityManagementModel.list[self.clickIndex];
+        CityManagementList *list = self.cityManagementListModelArray[self.clickIndex];
         ZHLZCityManagementVC *areaManagementVC = [ZHLZCityManagementVC new];
         areaManagementVC.setType = type;
         if (type == 2) {
@@ -190,7 +279,7 @@
         [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 4){
-        AreaManagementList *list = self.areaManagementModel.list[self.clickIndex];
+        AreaManagementList *list = self.areaManagementListModelArray[self.clickIndex];
         ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
         areaManagementVC.setType = type;
         if (type == 2) {
@@ -202,7 +291,7 @@
         [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 5){
-        SpecialList *list = self.specialModel.list[self.clickIndex];
+        SpecialList *list = self.specialListModelArray[self.clickIndex];
         ZHLZSpecialVC *specialVC = [ZHLZSpecialVC new];
         specialVC.setType = type;
         if (type == 2) {
@@ -214,7 +303,7 @@
         [self.navigationController pushViewController:specialVC animated:YES];
         
     } else if(self.selectIndex == 6){
-        MonadModelList *list = self.monadModel.list[self.clickIndex];
+        MonadModelList *list = self.MonadModelArray[self.clickIndex];
         ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
         monadVC.setType = type;
         if (type == 2) {
@@ -231,19 +320,19 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.selectIndex == 0) {
-        return self.roadWorkModel.list.count;
+        return self.roadWorkModelArray.count;
     } else if(self.selectIndex == 1){
-        return self.examineModel.list.count;
+        return self.examineModelArray.count;
     } else if(self.selectIndex == 2){
-        return self.constructionModel.list.count;
+        return self.constructionModelArray.count;
     } else if(self.selectIndex == 3){
-        return self.cityManagementModel.list.count;
+        return self.cityManagementListModelArray.count;
     } else if(self.selectIndex == 4){
-        return self.areaManagementModel.list.count;
+        return self.areaManagementListModelArray.count;
     } else if(self.selectIndex == 5){
-        return self.specialModel.list.count;
+        return self.specialListModelArray.count;
     } else if(self.selectIndex == 6){
-        return self.monadModel.list.count;
+        return self.MonadModelArray.count;
     } else {
         return 0;
     }
@@ -261,19 +350,19 @@
 
 
     if (self.selectIndex == 0) {
-        cell.roadWorkList = self.roadWorkModel.list[indexPath.row];
+        cell.roadWorkList = self.roadWorkModelArray[indexPath.row];
     } else if(self.selectIndex == 1){
-        cell.examineList = self.examineModel.list[indexPath.row];
+        cell.examineList = self.examineModelArray[indexPath.row];
     } else if(self.selectIndex == 2){
-        cell.constructionList = self.constructionModel.list[indexPath.row];
+        cell.constructionList = self.constructionModelArray[indexPath.row];
     } else if(self.selectIndex == 3){
-        cell.cityManagementList = self.cityManagementModel.list[indexPath.row];
+        cell.cityManagementList = self.cityManagementListModelArray[indexPath.row];
     } else if(self.selectIndex == 4){
-        cell.areaManagementList = self.areaManagementModel.list[indexPath.row];
+        cell.areaManagementList = self.areaManagementListModelArray[indexPath.row];
     } else if(self.selectIndex == 5){
-        cell.specialList = self.specialModel.list[indexPath.row];
+        cell.specialList = self.specialListModelArray[indexPath.row];
     } else if(self.selectIndex == 6){
-        cell.monadList = self.monadModel.list[indexPath.row];
+        cell.monadList = self.MonadModelArray[indexPath.row];
     }
     
     return cell;
