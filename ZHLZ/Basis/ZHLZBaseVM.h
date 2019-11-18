@@ -6,8 +6,6 @@
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "GRRequest.h"
 
 #import "ZHLZAPIURLConst.h"

@@ -30,30 +30,6 @@
 }
 
 - (id)requestArgument {
-    if (self.isList) {
-        if (_requestParam == nil) {
-            _requestParam = @{}.mutableCopy;
-        }
-        if ([_requestParam objectForKey:@"page"] == nil) {
-            [_requestParam setValue:@(1) forKey:@"page"];
-        }
-        if ([_requestParam objectForKey:@"limit"] == nil) {
-            [_requestParam setValue:@(10) forKey:@"limit"];
-        }
-        if ([_requestParam objectForKey:@"order"] == nil) {
-            [_requestParam setValue:@"desc" forKey:@"order"];
-        }
-        if ([_requestParam objectForKey:@"sidx"] == nil) {
-            [_requestParam setValue:@"" forKey:@"sidx"];
-        }
-    }
-    NSString *paramStr = @"";
-    for (NSString *key in ((NSDictionary *)_requestParam).allKeys) {
-        paramStr = [paramStr stringByAppendingFormat:@"%@=%@&", key, [_requestParam objectForKey:key]];
-    }
-    if ([paramStr isNotBlank]) {
-        _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
-    }
     return _requestParam;
 }
 
@@ -85,6 +61,33 @@
         _requestParam = requestArgument;
     }
     return self;
+}
+
+- (void)setIsList:(BOOL)isList {
+    _isList = isList;
+    
+    NSMutableDictionary *param = _requestParam ? (NSMutableDictionary *)_requestParam : @{}.mutableCopy;
+    if (_isList) {
+        if ([param objectForKey:@"page"] == nil) {
+            [param setValue:@(1) forKey:@"page"];
+        }
+        if ([param objectForKey:@"limit"] == nil) {
+            [param setValue:@(10) forKey:@"limit"];
+        }
+        if ([param objectForKey:@"order"] == nil) {
+            [param setValue:@"desc" forKey:@"order"];
+        }
+        if ([param objectForKey:@"sidx"] == nil) {
+            [param setValue:@"" forKey:@"sidx"];
+        }
+    }
+    NSString *paramStr = @"";
+    for (NSString *key in param.allKeys) {
+        paramStr = [paramStr stringByAppendingFormat:@"%@=%@&", key, [param objectForKey:key]];
+    }
+    if ([paramStr isNotBlank]) {
+        _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+    }
 }
 
 - (NSURLSessionTask *)requestCompletionWithSuccess:(GRResponseCompletionBlock)success

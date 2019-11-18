@@ -25,22 +25,14 @@
                              HomeBulletinAPIURLConst,
                              HomeOccupyProblemAPIURLConst,
                              HomeMunicipalProblemAPIURLConst];
-    NSMutableArray<GRRequest *> *requestArray = @[].mutableCopy;
-    for (NSInteger i = 0; i < apiURLArray.count; i++) {
-        ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:apiURLArray[i]];
-        baseVM.isList = YES;
-        [requestArray addObject:baseVM];
-    }
-    GRBatchRequest *batchRequest = [[GRBatchRequest alloc] initWithRequestArray:requestArray.copy];
-    [batchRequest startWithCompletionBlockWithSuccess:^(GRBatchRequest * _Nonnull batchRequest) {
-        NSMutableArray<GRResponse *> *responseArray = @[].mutableCopy;
-        for (GRRequest *request in batchRequest.requestArray) {
-            if (request && request.responseObject) {
-                [responseArray addObject:[GRResponse modelWithJSON:request.responseObject]];
-            }
-        }
+    NSArray *isLoadListArray = @[@(YES),
+                                 @(YES),
+                                 @(YES),
+                                 @(YES)];
+    ZHLZBaseBatchVM *baseBatchVM = [[ZHLZBaseBatchVM alloc] initWithRequestUrlArray:apiURLArray withIsLoadListArray:isLoadListArray];
+    [baseBatchVM requestCompletionWithSuccess:^(NSMutableArray<GRResponse *> * _Nonnull responseArray) {
         block(responseArray);
-    } failure:^(GRBatchRequest * _Nonnull batchRequest) {
+    } withFailure:^(NSMutableArray<GRResponse *> * _Nonnull responseArray) {
         block(nil);
     }];
     return self.requestTask;

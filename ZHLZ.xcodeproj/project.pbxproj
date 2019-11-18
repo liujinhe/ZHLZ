@@ -75,6 +75,7 @@
 		A5574D2523821F8C00B24FC4 /* ZHLZHomeRoadConstructionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574D2423821F8C00B24FC4 /* ZHLZHomeRoadConstructionModel.m */; };
 		A5574D2823821F9B00B24FC4 /* ZHLZHomeMunicipalFacilityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574D2723821F9B00B24FC4 /* ZHLZHomeMunicipalFacilityModel.m */; };
 		A5574D2B238236C900B24FC4 /* ZHLZHomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574D2A238236C900B24FC4 /* ZHLZHomeBannerModel.m */; };
+		A5574D3123823D4F00B24FC4 /* ZHLZBaseBatchVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574D3023823D4F00B24FC4 /* ZHLZBaseBatchVM.m */; };
 		A5941002237905CF00D7A1D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5941001237905CF00D7A1D4 /* AppDelegate.m */; };
 		A594100D237905D100D7A1D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A594100C237905D100D7A1D4 /* Assets.xcassets */; };
 		A5941010237905D100D7A1D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A594100E237905D100D7A1D4 /* LaunchScreen.storyboard */; };
@@ -247,6 +248,8 @@
 		A5574D2723821F9B00B24FC4 /* ZHLZHomeMunicipalFacilityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeMunicipalFacilityModel.m; path = ZHLZ/CoreBusiness/Home/ZHLZHomeMunicipalFacilityModel.m; sourceTree = SOURCE_ROOT; };
 		A5574D29238236C900B24FC4 /* ZHLZHomeBannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeBannerModel.h; sourceTree = "<group>"; };
 		A5574D2A238236C900B24FC4 /* ZHLZHomeBannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeBannerModel.m; sourceTree = "<group>"; };
+		A5574D2F23823D4F00B24FC4 /* ZHLZBaseBatchVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZBaseBatchVM.h; sourceTree = "<group>"; };
+		A5574D3023823D4F00B24FC4 /* ZHLZBaseBatchVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZBaseBatchVM.m; sourceTree = "<group>"; };
 		A5688D6B237A77C7005B3B23 /* ZHLZColorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZColorMacro.h; sourceTree = "<group>"; };
 		A5940FFD237905CF00D7A1D4 /* 智慧路政.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "智慧路政.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5941000237905CF00D7A1D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				A53DB804237AEAC90030EEFB /* Const */,
 				A5688D6A237A7788005B3B23 /* Macro */,
 				A53DB7F1237AE28C0030EEFB /* Tools */,
+				A5574D2F23823D4F00B24FC4 /* ZHLZBaseBatchVM.h */,
+				A5574D3023823D4F00B24FC4 /* ZHLZBaseBatchVM.m */,
 				A5FE380D237A384A00576FDF /* ZHLZBaseModel.h */,
 				A5FE380E237A384A00576FDF /* ZHLZBaseModel.m */,
 				A5FE3807237A382000576FDF /* ZHLZBaseVC.h */,
@@ -1080,6 +1085,7 @@
 				A5FE3831237A3A0900576FDF /* ZHLZAddressBookVM.m in Sources */,
 				A53DB7D9237ADCA00030EEFB /* GRNetworkConfig.m in Sources */,
 				A5C39833237EE84400C1DD7F /* ZHLZHomeBulletinCVC.m in Sources */,
+				A5574D3123823D4F00B24FC4 /* ZHLZBaseBatchVM.m in Sources */,
 				A5B406A5237A345D003E9FC9 /* ZHLZNavigationController.m in Sources */,
 				A5FE3809237A382000576FDF /* ZHLZBaseVC.m in Sources */,
 				184A0621237C216700AC2C20 /* ZHLZMineCell.m in Sources */,

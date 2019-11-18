@@ -27,7 +27,7 @@
         _finishedCount = 0;
         for (GRRequest * req in _requestArray) {
             if (![req isKindOfClass:[GRRequest class]]) {
-                NSLog(@"Error, request item must be YTKRequest instance.");
+                NSLog(@"Error, request item must be GRRequest instance.");
                 return nil;
             }
         }
