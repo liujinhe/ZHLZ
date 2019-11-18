@@ -23,7 +23,6 @@ static NSString * const ZHLZHomeBulletinCVCReuseIdentifier = @"ZHLZHomeBulletinC
 static NSString * const ZHLZHomeCVCReuseIdentifier = @"ZHLZHomeCVCReuseIdentifier";
 
 static NSString * const ZHLZHomeCRVHeaderReuseIdentifier = @"ZHLZHomeCRVHeaderReuseIdentifier";
-static NSString * const ZHLZHomeCRVFooterReuseIdentifier = @"ZHLZHomeCRVFooterReuseIdentifier";
 static NSString * const ZHLZHomeRoadConstructionCVCReuseIdentifier = @"ZHLZHomeRoadConstructionCVCReuseIdentifier";
 static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHomeMunicipalFacilityCVCReuseIdentifier";
 
@@ -99,9 +98,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     [self.collectionView registerClass:[ZHLZHomeCRV class]
             forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                    withReuseIdentifier:ZHLZHomeCRVHeaderReuseIdentifier];
-    [self.collectionView registerClass:[UICollectionReusableView class]
-            forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                   withReuseIdentifier:ZHLZHomeCRVFooterReuseIdentifier];
     [self.collectionView registerClass:[ZHLZHomeRoadConstructionCVC class]
             forCellWithReuseIdentifier:ZHLZHomeRoadConstructionCVCReuseIdentifier];
     [self.collectionView registerClass:[ZHLZHomeMunicipalFacilityCVC class]
@@ -152,13 +148,9 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if (section == 3) {
-        return CGSizeMake(kScreenWidth, 88.f);
+        return CGSizeMake(kScreenWidth, 80.f);
     }
     return CGSizeZero;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    return CGSizeMake(kScreenWidth, 2.f);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -173,7 +165,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             return CGSizeMake(kScreenWidth - 15.f * 2, [self.homeRoadConstructionHeightArray[indexPath.row] floatValue]);
         }
     } else { // Banner
-        return CGSizeMake(kScreenWidth, 180.f);
+        return CGSizeMake(kScreenWidth, kAutoFitReal(180));
     }
 }
 
@@ -222,16 +214,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             };
         }
         return homeCRV;
-    } else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
-        UICollectionReusableView *footerCRV = [collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                                 withReuseIdentifier:ZHLZHomeCRVFooterReuseIdentifier
-                                                                                        forIndexPath:indexPath];
-        if (footerCRV) {
-            UIView *footerView = [[UIView alloc] initWithFrame:footerCRV.frame];
-            footerView.backgroundColor = UIColor.whiteColor;
-            [footerCRV addSubview:footerView];
-        }
-        return footerCRV;
     } else {
         return nil;
     }
@@ -280,7 +262,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         if (homeBannerCVC) {
             ZHLZHomeBannerModel *homeBannerModel = self.homeBannerArray[indexPath.row];
             if (homeBannerModel) {
-                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]] placeholderImage:[UIImage imageWithColor:UIColor.whiteColor]];
+                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]] placeholderImage:[UIImage imageNamed:@"home_banner_bg"]];
             }
         }
         return homeBannerCVC;

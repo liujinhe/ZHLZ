@@ -35,7 +35,7 @@
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.left.equalTo(self).offset(15);
-        make.height.offset(38);
+        make.height.offset(35);
     }];
     
     self.roadConstructionButton = [UIButton buttonWithType:UIButtonTypeCustom];

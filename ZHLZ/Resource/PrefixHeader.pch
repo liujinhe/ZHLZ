@@ -29,6 +29,7 @@
 
 #import "ZHLZColorMacro.h"
 #import "ZHLZFontSizeMacro.h"
+#import "ZHLZDeviceMacro.h"
 
 #import "GRToast.h"
 #import "ZHLZButton.h"

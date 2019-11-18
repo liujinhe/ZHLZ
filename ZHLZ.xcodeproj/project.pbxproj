@@ -256,6 +256,7 @@
 		A5574D332382492700B24FC4 /* ZHLZHomeBulletinModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeBulletinModel.m; path = ZHLZ/CoreBusiness/ZHLZHomeBulletinModel.m; sourceTree = SOURCE_ROOT; };
 		A5574D352382610D00B24FC4 /* ZHLZHomeTimeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZHomeTimeModel.h; path = ZHLZ/CoreBusiness/Home/ZHLZHomeTimeModel.h; sourceTree = SOURCE_ROOT; };
 		A5574D362382610D00B24FC4 /* ZHLZHomeTimeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeTimeModel.m; path = ZHLZ/CoreBusiness/Home/ZHLZHomeTimeModel.m; sourceTree = SOURCE_ROOT; };
+		A5574D382382790E00B24FC4 /* ZHLZDeviceMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZDeviceMacro.h; sourceTree = "<group>"; };
 		A5688D6B237A77C7005B3B23 /* ZHLZColorMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZColorMacro.h; sourceTree = "<group>"; };
 		A5940FFD237905CF00D7A1D4 /* 智慧路政.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "智慧路政.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5941000237905CF00D7A1D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -495,6 +496,7 @@
 			children = (
 				A5688D6B237A77C7005B3B23 /* ZHLZColorMacro.h */,
 				184A065B237CF86400AC2C20 /* ZHLZFontSizeMacro.h */,
+				A5574D382382790E00B24FC4 /* ZHLZDeviceMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";

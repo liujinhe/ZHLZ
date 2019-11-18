@@ -29,7 +29,16 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = UIColor.whiteColor;
+    self.backgroundColor = UIColor.clearColor;
+    
+    UIView *view = [UIView new];
+    view.backgroundColor = UIColor.whiteColor;
+    [self addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(2);
+        make.bottom.equalTo(self).offset(-2);
+        make.left.right.equalTo(self);
+    }];
     
     UILabel *tagLabel = [UILabel new];
     tagLabel.backgroundColor = kThemeColor;
@@ -37,20 +46,12 @@
     tagLabel.text = @"公告";
     tagLabel.textColor = UIColor.whiteColor;
     tagLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:tagLabel];
+    [view addSubview:tagLabel];
     [tagLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(20);
-        make.centerY.equalTo(self);
+        make.left.equalTo(view).offset(15);
+        make.centerY.equalTo(view);
         make.width.offset(32);
-        make.height.offset(22);
-    }];
-    
-    UIView *titleView = [UIView new];
-    [self addSubview:titleView];
-    [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(tagLabel.mas_right);
-        make.right.equalTo(self).offset(-20);
-        make.top.bottom.equalTo(self);
+        make.height.offset(21);
     }];
     
     self.bulletinCycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:nil];
@@ -64,9 +65,11 @@
     self.bulletinCycleScrollView.onlyDisplayText = YES;
     self.bulletinCycleScrollView.autoScrollTimeInterval = 3.f;
     [self.bulletinCycleScrollView disableScrollGesture];
-    [titleView addSubview:self.bulletinCycleScrollView];
+    [view addSubview:self.bulletinCycleScrollView];
     [self.bulletinCycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(titleView);
+        make.left.equalTo(tagLabel.mas_right);
+        make.right.equalTo(view).offset(-15);
+        make.top.bottom.equalTo(view);
     }];
 }
 
