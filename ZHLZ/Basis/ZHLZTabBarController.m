@@ -25,9 +25,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAction) name:LoginNotificationConst object:nil];
+    
     [self initUI];
     
-    [self loginAction];
+    if ([ZHLZUserManager sharedInstance].isLogin) {
+        [self loginAction];
+    }
 }
 
 - (void)initUI {
@@ -74,9 +78,6 @@
 }
 
 - (void)loginAction {
-    if ([ZHLZUserManager sharedInstance].isLogin) {
-        return;
-    }
     ZHLZNavigationController *nav = (ZHLZNavigationController *)self.selectedViewController;
     if (nav && nav.topViewController) {
         dispatch_async(dispatch_get_main_queue(), ^{

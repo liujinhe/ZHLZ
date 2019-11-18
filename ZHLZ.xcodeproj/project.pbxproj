@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
+		A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */; };
 		A5574FE923828DBD00B24FC4 /* GRBatchRequestAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574E9E23828DBC00B24FC4 /* GRBatchRequestAgent.m */; };
 		A5574FEA23828DBD00B24FC4 /* GRBaseRequest+RequestAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574EA223828DBC00B24FC4 /* GRBaseRequest+RequestAccessory.m */; };
 		A5574FEB23828DBD00B24FC4 /* GRBatchRequest+RequestAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574EA523828DBC00B24FC4 /* GRBatchRequest+RequestAccessory.m */; };
@@ -180,6 +181,8 @@
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZNotificationConst.m; sourceTree = "<group>"; };
+		A506A8D22382B42E004081FC /* ZHLZNotificationConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZNotificationConst.h; sourceTree = "<group>"; };
 		A5574E9C23828DBC00B24FC4 /* GRNetworkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRNetworkConfig.h; sourceTree = "<group>"; };
 		A5574E9D23828DBC00B24FC4 /* GRBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRBaseRequest.h; sourceTree = "<group>"; };
 		A5574E9E23828DBC00B24FC4 /* GRBatchRequestAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRBatchRequestAgent.m; sourceTree = "<group>"; };
@@ -1313,6 +1316,8 @@
 				A5574FD223828DBD00B24FC4 /* ZHLZAPIURLConst.m */,
 				A5574FD323828DBD00B24FC4 /* ZHLZLocalDataStorageConst.h */,
 				A5574FD123828DBD00B24FC4 /* ZHLZLocalDataStorageConst.m */,
+				A506A8D22382B42E004081FC /* ZHLZNotificationConst.h */,
+				A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */,
 			);
 			path = Const;
 			sourceTree = "<group>";
@@ -1674,6 +1679,7 @@
 				A557505B23828DBD00B24FC4 /* ZHLZSpecialVC.m in Sources */,
 				A557502923828DBD00B24FC4 /* ZHLZHomeCVC.m in Sources */,
 				A5574FF123828DBD00B24FC4 /* GRNetworkAgent.m in Sources */,
+				A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */,
 				A557507723828DBD00B24FC4 /* ZHLZBaseBatchVM.m in Sources */,
 				A5574FF723828DBD00B24FC4 /* GRNetworkUtils.m in Sources */,
 				A557506C23828DBD00B24FC4 /* ZHLZBaseVC.m in Sources */,

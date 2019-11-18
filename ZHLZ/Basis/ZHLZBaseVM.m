@@ -96,10 +96,16 @@
         [SVProgressHUD show];
     }
     [self startWithCompletionBlockWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        if (response.status == 0) {
-            success(response);
-        } else {
-            [GRToast makeText:response.message];
+        switch (response.status) {
+            case 0: // 成功
+                success(response);
+                break;
+            case 500: // token 失效
+                [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
+                break;
+            default:
+                [GRToast makeText:response.message];
+                break;
         }
         if ([SVProgressHUD isVisible]) {
             [SVProgressHUD dismissWithDelay:0.25f];
