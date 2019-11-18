@@ -132,7 +132,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     } else if (indexPath.section == 2) { // 模块
         return CGSizeMake((kScreenWidth - 2.f * 2) / 3, 85.f);
     } else if (indexPath.section == 3) { // 最新消息
-        return CGSizeMake(kScreenWidth, 78.f);
+        return CGSizeMake(kScreenWidth - 15.f * 2, 78.f);
     } else { // Banner
         return CGSizeMake(kScreenWidth, 180.f);
     }

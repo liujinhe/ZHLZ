@@ -32,7 +32,7 @@
     self.imageView = [UIImageView new];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.offset(32);
+        make.width.height.offset(24);
         make.centerX.equalTo(self);
         make.centerY.equalTo(self).offset(-8);
     }];

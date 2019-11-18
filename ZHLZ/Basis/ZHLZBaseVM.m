@@ -29,17 +29,17 @@
     return _method;
 }
 
-- (NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary {
+- (id)requestArgument {
+    return _requestParam;
+}
+
+- (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
     ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
     if (userModel) {
-        return @{@"Token":userModel.encryptionKey};
+        return @{@"token":userModel.encryptionKey};
     } else {
         return nil;
     }
-}
-
-- (id)requestArgument {
-    return _requestParam;
 }
 
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl {
@@ -67,6 +67,29 @@
                                        withFailure:(GRResponseCompletionBlock)failure {
     if (!self.isIgnoreLoading) {
         [SVProgressHUD show];
+    }
+    if (self.isList) {
+        NSMutableDictionary *requestParam = ((NSDictionary *)_requestParam).mutableCopy;
+        if (self.isList) {
+            NSMutableString *paramStr = @"".mutableCopy;
+            if ([_requestParam objectForKey:@"page"] == nil) {
+                [requestParam setValue:@(1) forKey:@"page"];
+            }
+            [paramStr stringByAppendingFormat:@"?page=%@", [requestParam objectForKey:@"page"]];
+            if ([_requestParam objectForKey:@"limit"] == nil) {
+                [requestParam setValue:@(10) forKey:@"limit"];
+            }
+            [paramStr stringByAppendingFormat:@"&limit=%@", [requestParam objectForKey:@"limit"]];
+            if ([_requestParam objectForKey:@"order"] == nil) {
+                [requestParam setValue:@"desc" forKey:@"order"];
+            }
+            [paramStr stringByAppendingFormat:@"&order=%@", [requestParam objectForKey:@"order"]];
+            if ([_requestParam objectForKey:@"sidx"] == nil) {
+                [requestParam setValue:@"" forKey:@"sidx"];
+            }
+            [paramStr stringByAppendingFormat:@"&sidx=%@", [requestParam objectForKey:@"sidx"]];
+            _url = [_url stringByAppendingString:paramStr];
+        }
     }
     [self startWithCompletionBlockWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response.status == 0) {

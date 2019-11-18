@@ -9,6 +9,9 @@
 #import "ZHLZHomeBulletinCVC.h"
 
 @interface ZHLZHomeBulletinCVC ()
+{
+    BOOL _isScrolling;
+}
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -41,23 +44,38 @@
         make.height.offset(22);
     }];
     
-    self.titleLabel = [UILabel new];
-    self.titleLabel.font = kFont(12);
-    self.titleLabel.textColor = UIColor.redColor;
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.titleLabel sizeToFit];
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView *titleView = [UIView new];
+    [self addSubview:titleView];
+    [titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(tagLabel.mas_left).offset(20);
         make.right.equalTo(self).offset(-20);
         make.centerY.equalTo(self);
+        make.height.offset(22);
     }];
+    
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(titleView.frame), 0, CGRectGetWidth(titleView.frame), CGRectGetHeight(titleView.frame))];
+    self.titleLabel.font = kFont(12);
+    self.titleLabel.textColor = UIColor.redColor;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [titleView addSubview:self.titleLabel];
 }
 
 - (void)setBulletin:(NSString *)bulletin {
     _bulletin = bulletin;
     
     self.titleLabel.text = _bulletin?:@"";
+    
+    [self startAnimation];
+}
+
+- (void)startAnimation {
+    [UIView animateWithDuration:0.1f delay:0.f options:UIViewAnimationOptionRepeat animations:^{
+        CGRect rect = self.titleLabel.frame;
+        rect.origin.x = 0;
+        self.titleLabel.frame = rect;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 @end

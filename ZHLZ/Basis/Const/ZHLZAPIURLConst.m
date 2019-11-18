@@ -16,66 +16,66 @@ NSString * const BaseAPIURLConst = @"http://www.yusuisoft.com:8080";
 
 #pragma mark - API URL for Other
 
-NSString * const LoginAPIURLConst = @"/sys/applogin";
+NSString * const LoginAPIURLConst = @"/app/sys/applogin";
 
 NSString * const UserInfoAPIURLConst = @"/app/sys/user/info";
 
-NSString * const DepartmentAPIURLConst = @"/organize/select";
+NSString * const DepartmentAPIURLConst = @"/app/organize/select";
 
-NSString * const DocumentListAPIURLConst = @"/maphome/listByFile";
+NSString * const DocumentListAPIURLConst = @"/app/maphome/listByFile";
 
-NSString * const DocumentUploadAPIURLConst = @"/getData/upload";
+NSString * const DocumentUploadAPIURLConst = @"/app/getData/upload";
 
 #pragma mark - API URL for Home
 
-NSString * const HomeBannerAPIURLConst = @"/homeList";
-NSString * const HomeBulletinAPIURLConst = @"/maphome/list";
-NSString * const HomeBulletinInfoAPIURLConst = @"/maphome/info";
-NSString * const HomeOccupyProblemAPIURLConst = @"/mapproblem/listByMune";
-NSString * const HomeMunicipalProblemAPIURLConst = @"/mapinspection/listByMune/toMune";
+NSString * const HomeBannerAPIURLConst = @"/app/homeList/4";
+NSString * const HomeBulletinAPIURLConst = @"/app/maphome/list";
+NSString * const HomeBulletinInfoAPIURLConst = @"/app/maphome/info";
+NSString * const HomeOccupyProblemAPIURLConst = @"/app/mapproblem/listByMune";
+NSString * const HomeMunicipalProblemAPIURLConst = @"/app/mapinspection/listByMune/toMune";
 
-NSString * const MapDisplayAPIURLConst = @"/mapinspection/ByMune/toMap";
+NSString * const MapDisplayAPIURLConst = @"/app/mapinspection/ByMune/toMap";
 
-NSString * const MunicipalProblemAPIURLConst = @"/mapinspection/list";
-NSString * const MunicipalProblemInfoAPIURLConst = @"/mapinspection/info";
-NSString * const MunicipalProblemGetMeasuresAPIURLConst = @"/mapinspection/getMeasures";
-NSString * const MunicipalProblemSaveAPIURLConst = @"/mapinspection/save";
-NSString * const MunicipalProblemUpdateAPIURLConst = @"/mapinspection/update";
-NSString * const MunicipalProblemDeleteAPIURLConst = @"/mapinspection/delete";
-NSString * const MunicipalProblemCloseAPIURLConst = @"/mapinspection/closepro";
-NSString * const MunicipalProblemOpenAPIURLConst = @"/mapinspection/openpro";
+NSString * const MunicipalProblemAPIURLConst = @"/app/mapinspection/list";
+NSString * const MunicipalProblemInfoAPIURLConst = @"/app/mapinspection/info";
+NSString * const MunicipalProblemGetMeasuresAPIURLConst = @"/app/mapinspection/getMeasures";
+NSString * const MunicipalProblemSaveAPIURLConst = @"/app/mapinspection/save";
+NSString * const MunicipalProblemUpdateAPIURLConst = @"/app/mapinspection/update";
+NSString * const MunicipalProblemDeleteAPIURLConst = @"/app/mapinspection/delete";
+NSString * const MunicipalProblemCloseAPIURLConst = @"/app/mapinspection/closepro";
+NSString * const MunicipalProblemOpenAPIURLConst = @"/app/mapinspection/openpro";
 
-NSString * const SafeFloodPreventionProblemAPIURLConst = @"/mapflood/list";
-NSString * const SafeFloodPreventionProblemInfoAPIURLConst = @"/mapflood/list";
-NSString * const SafeFloodPreventionProblemGetMeasuresAPIURLConst = @"/mapflood/getMeasures";
-NSString * const SafeFloodPreventionProblemSaveAPIURLConst = @"/mapflood/save";
-NSString * const SafeFloodPreventionProblemUpdateAPIURLConst = @"/mapflood/update";
-NSString * const SafeFloodPreventionProblemDeleteAPIURLConst = @"/mapflood/delete";
-NSString * const SafeFloodPreventionProblemCloseAPIURLConst = @"/mapflood/closepro";
-NSString * const SafeFloodPreventionProblemOpenAPIURLConst = @"/mapflood/openpro";
+NSString * const SafeFloodPreventionProblemAPIURLConst = @"/app/mapflood/list";
+NSString * const SafeFloodPreventionProblemInfoAPIURLConst = @"/app/mapflood/list";
+NSString * const SafeFloodPreventionProblemGetMeasuresAPIURLConst = @"/app/mapflood/getMeasures";
+NSString * const SafeFloodPreventionProblemSaveAPIURLConst = @"/app/mapflood/save";
+NSString * const SafeFloodPreventionProblemUpdateAPIURLConst = @"/app/mapflood/update";
+NSString * const SafeFloodPreventionProblemDeleteAPIURLConst = @"/app/mapflood/delete";
+NSString * const SafeFloodPreventionProblemCloseAPIURLConst = @"/app/mapflood/closepro";
+NSString * const SafeFloodPreventionProblemOpenAPIURLConst = @"/app/mapflood/openpro";
 
-NSString * const SafeFloodPreventionAPIURLConst = @"/mapsecurityrisks/list";
-NSString * const SafeFloodPreventionInfoAPIURLConst = @"/mapsecurityrisks/list";
-NSString * const SafeFloodPreventionGetMeasuresAPIURLConst = @"/mapsecurityrisks/getMeasures";
-NSString * const SafeFloodPreventionSaveAPIURLConst = @"/mapsecurityrisks/save";
-NSString * const SafeFloodPreventionUpdateAPIURLConst = @"/mapsecurityrisks/update";
-NSString * const SafeFloodPreventionDeleteAPIURLConst = @"/mapsecurityrisks/delete";
+NSString * const SafeFloodPreventionAPIURLConst = @"/app/mapsecurityrisks/list";
+NSString * const SafeFloodPreventionInfoAPIURLConst = @"/app/mapsecurityrisks/list";
+NSString * const SafeFloodPreventionGetMeasuresAPIURLConst = @"/app/mapsecurityrisks/getMeasures";
+NSString * const SafeFloodPreventionSaveAPIURLConst = @"/app/mapsecurityrisks/save";
+NSString * const SafeFloodPreventionUpdateAPIURLConst = @"/app/mapsecurityrisks/update";
+NSString * const SafeFloodPreventionDeleteAPIURLConst = @"/app/mapsecurityrisks/delete";
 
-NSString * const OccupyProblemAPIURLConst = @"/mapproblem/list";
-NSString * const OccupyProblemInfoAPIURLConst = @"/mapproblem/info";
-NSString * const OccupyProblemSaveAPIURLConst = @"/mapproblem/save";
-NSString * const OccupyProblemUpdateAPIURLConst = @"/mapproblem/updateByPro";
-NSString * const OccupyProblemDeleteAPIURLConst = @"/mapproblem/delete";
-NSString * const OccupyProblemCloseAPIURLConst = @"/mapproblem/closepro";
-NSString * const OccupyProblemOpenAPIURLConst = @"/mapproblem/openpro";
+NSString * const OccupyProblemAPIURLConst = @"/app/mapproblem/list";
+NSString * const OccupyProblemInfoAPIURLConst = @"/app/mapproblem/info";
+NSString * const OccupyProblemSaveAPIURLConst = @"/app/mapproblem/save";
+NSString * const OccupyProblemUpdateAPIURLConst = @"/app/mapproblem/updateByPro";
+NSString * const OccupyProblemDeleteAPIURLConst = @"/app/mapproblem/delete";
+NSString * const OccupyProblemCloseAPIURLConst = @"/app/mapproblem/closepro";
+NSString * const OccupyProblemOpenAPIURLConst = @"/app/mapproblem/openpro";
 
-NSString * const CheckInPunchAPIURLConst = @"/mappunch/save";
+NSString * const CheckInPunchAPIURLConst = @"/app/mappunch/save";
 
-NSString * const RoadPatrolSummaryAPIURLConst = @"/mapprtrolentry/list";
+NSString * const RoadPatrolSummaryAPIURLConst = @"/app/mapprtrolentry/list";
 
 NSString * const ScanCodeUseCarAPIURLConst = @"/app/wxcar/wx";
 
-NSString * const SummaryStatisticsAPIURLConst = @"/mapprtrolentry/statisticsBydate";
+NSString * const SummaryStatisticsAPIURLConst = @"/app/mapprtrolentry/statisticsBydate";
 
 #pragma mark - API URL for AddressBook
 
@@ -123,6 +123,6 @@ NSString * const SpecialOwnerUnitDeleteAPIURLConst = @"/app/addressbooksowner/de
 
 #pragma mark - API URL for Mine
 
-NSString * const ChangeUserPwdAPIURLConst = @"/sys/user/password";
+NSString * const ChangeUserPwdAPIURLConst = @"/app/sys/user/password";
 
 @end

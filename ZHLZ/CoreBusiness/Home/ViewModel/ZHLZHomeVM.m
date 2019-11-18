@@ -27,7 +27,9 @@
                              HomeMunicipalProblemAPIURLConst];
     NSMutableArray<GRRequest *> *requestArray = @[].mutableCopy;
     for (NSInteger i = 0; i < apiURLArray.count; i++) {
-        [requestArray addObject:[[ZHLZBaseVM alloc] initWithRequestUrl:apiURLArray[i]]];
+        ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:apiURLArray[i]];
+        baseVM.isList = YES;
+        [requestArray addObject:baseVM];
     }
     GRBatchRequest *batchRequest = [[GRBatchRequest alloc] initWithRequestArray:requestArray.copy];
     [batchRequest startWithCompletionBlockWithSuccess:^(GRBatchRequest * _Nonnull batchRequest) {

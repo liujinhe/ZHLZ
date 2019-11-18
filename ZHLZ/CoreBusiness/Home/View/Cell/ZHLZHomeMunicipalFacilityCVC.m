@@ -8,6 +8,16 @@
 
 #import "ZHLZHomeMunicipalFacilityCVC.h"
 
+@interface ZHLZHomeMunicipalFacilityCVC ()
+
+@property (nonatomic, strong) UILabel *nameLabel;
+
+@property (nonatomic, strong) UILabel *timeLabel;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
+
 @implementation ZHLZHomeMunicipalFacilityCVC
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -19,7 +29,41 @@
 }
 
 - (void)initUI {
+    self.contentView.backgroundColor = UIColor.whiteColor;
     
+    self.contentView.layer.cornerRadius = 10.f;
+    
+    self.nameLabel = [UILabel new];
+    self.nameLabel.font = kFont(14);
+    self.nameLabel.textColor = kHexRGB(0x333333);
+    [self.contentView addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView).offset(20);
+        make.left.equalTo(self.contentView).offset(10);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.height.offset(14);
+    }];
+    
+    self.timeLabel = [UILabel new];
+    self.timeLabel.font = kFont(12);
+    self.timeLabel.textColor = kHexRGB(0x333333);
+    [self.contentView addSubview:self.timeLabel];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(15);
+        make.left.right.equalTo(self.nameLabel);
+        make.height.offset(12);
+    }];
+    
+    self.titleLabel = [UILabel new];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.font = kFont(12);
+    self.titleLabel.textColor = kHexRGB(0x333333);
+    [self.contentView addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(15);
+        make.left.right.equalTo(self.nameLabel);
+        make.bottom.equalTo(self.contentView).offset(-20);
+    }];
 }
 
 @end
