@@ -7,12 +7,14 @@
 //
 
 #import "ZHLZBaseVC.h"
+#import "ZHLZSpecialModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZSpecialVC : ZHLZBaseVC
 
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
+@property (nonatomic , strong) SpecialList *specialModel;//特殊业主单位
 
 @end
 

@@ -8,7 +8,7 @@
 
 #import "ZHLZRoadWorkVC.h"
 #import <YYKit/UIControl+YYAdd.h>
-
+#import "ZHLZAddressBookVM.h"
 
 @interface ZHLZRoadWorkVC ()
 
@@ -29,31 +29,6 @@
     [super viewDidLoad];
     
     [self loadRoadWorkView];
-}
-
-- (IBAction)roadWorkButtonAction:(ZHLZButton *)sender {
-    if (![self.unitNameTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位"];
-        return;
-    }
-    if (![self.principalNameTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人"];
-        return;
-    }
-    if (![self.principalPhonetextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人手机"];
-        return;
-    }
-    
-    if (self.editType == 1) {
-        
-    }
-    
-    else {
-        
-        
-    }
-    
 }
 
 
@@ -88,8 +63,43 @@
 }
 
 - (void)deleteAction {
-    
+    [self popActionWithTip:@"您确定要删除？" withBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",ResponsibleUnitDeleteAPIURLConst,@"12"] andParms:@{} withCompletionBlock:^{
+            [GRToast makeText:@"删除成功"];
+        }];
+    }];
 }
+
+
+
+
+- (IBAction)roadWorkButtonAction:(ZHLZButton *)sender {
+    if (![self.unitNameTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位"];
+        return;
+    }
+    if (![self.principalNameTextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位联系人"];
+        return;
+    }
+    if (![self.principalPhonetextFile.text isNotBlank]) {
+        [GRToast makeText:@"请输入施工单位联系人手机"];
+        return;
+    }
+    
+    if (self.editType == 1) { //添加
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitSaveAPIURLConst andParms:@{@"name":self.unitNameTextFile.text,@"charger":self.principalNameTextFile.text,@"phone":self.principalPhonetextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"添加成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    } else {//编辑
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.unitNameTextFile.text,@"charger":self.principalNameTextFile.text,@"phone":self.principalPhonetextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
+}
+
 
 
 

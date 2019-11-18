@@ -10,7 +10,15 @@
 #import <YYKit/UIControl+YYAdd.h>
 #import "ZHLZBookListCell.h"
 #import "ZHLZAddressBookVM.h"
+
 #import "ZHLZMonadModel.h"
+#import "ZHLZSpecialModel.h"
+#import "ZHLZCityManagementModel.h"
+#import "ZHLZAreaManagementModel.h"
+#import "ZHLZConstructionModel.h"
+#import "ZHLZExamineModel.h"
+#import "ZHLZRoadWorkModel.h"
+
 
 #import "ZHLZRoadWorkVC.h"//施工单位
 #import "ZHLZExamineVC.h"//审批部门
@@ -27,7 +35,20 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
 
-@property (nonatomic , strong) ZHLZMonadModel *monadModel;
+
+@property (nonatomic , strong) ZHLZMonadModel *monadModel;//责任单位
+@property (nonatomic , strong) ZHLZSpecialModel *specialModel;//特殊业主单位
+@property (nonatomic , strong) ZHLZCityManagementModel *cityManagementModel;//市管单位
+@property (nonatomic , strong) ZHLZAreaManagementModel *areaManagementModel;//区管单位
+@property (nonatomic , strong) ZHLZConstructionModel *constructionModel;//建设单位
+@property (nonatomic , strong) ZHLZExamineModel *examineModel;//审批单位
+@property (nonatomic , strong) ZHLZRoadWorkModel *roadWorkModel;//施工单位
+
+
+
+
+
+@property (nonatomic , assign) NSInteger pageNum;
 
 @property (nonatomic , assign) NSInteger clickIndex;
 
@@ -44,18 +65,51 @@
 }
 
 - (void)loadAddressListData{
-    self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex CallBack:^(NSDictionary * _Nonnull parms) {
+    self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex withPageNum:self.pageNum CallBack:^(NSDictionary * _Nonnull parms) {
         
-        self.monadModel = [ZHLZMonadModel modelWithJSON:parms];
+        if (self.bookListTableView.mj_header.isRefreshing) {
+            [self.bookListTableView.mj_header endRefreshing];
+        }
+        
+        self.pageNum ++;
+        
+        if (self.selectIndex == 0) {
+            self.roadWorkModel = [ZHLZRoadWorkModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 1){
+            self.examineModel = [ZHLZExamineModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 2){
+            self.constructionModel = [ZHLZConstructionModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 3){
+            self.cityManagementModel = [ZHLZCityManagementModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 4){
+            self.areaManagementModel = [ZHLZAreaManagementModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 5){
+            self.specialModel = [ZHLZSpecialModel modelWithJSON:parms];
+            
+        } else if(self.selectIndex == 6){
+            self.monadModel = [ZHLZMonadModel modelWithJSON:parms];
+        }
         
         [self.bookListTableView reloadData];
         
     }];
 }
 
+- (void)loadAddressListHeader{
+    self.pageNum = 1;
+    [self loadAddressListData];
+}
+
 #pragma mark --初始化视图
 
 - (void)initBookListView{
+    
+    self.pageNum = 1;
     
     self.title = self.titleNameString;
     
@@ -80,34 +134,65 @@
     
     [self.bookListTableView registerNib:[UINib nibWithNibName:@"ZHLZBookListCell" bundle:nil] forCellReuseIdentifier:@"ZHLZBookListCell"];
     
+    self.bookListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListHeader)];
+    self.bookListTableView.mj_footer = [MJRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListData)];
+    
 }
 
 - (void)clickAddActionwithType:(NSInteger)type{
     
     if (self.selectIndex == 0) {
+        RoadWorkList *list = self.roadWorkModel.list[self.clickIndex];
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
         roadWorkVC.editType = type;
+        if (type == 2) {
+            roadWorkVC.roadWorkModel = list;
+        }
         [self.navigationController pushViewController:roadWorkVC animated:YES];
         
     } else if(self.selectIndex == 1){
+        ExamineList *list = self.examineModel.list[self.clickIndex];
         ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
         examineVC.setType = type;
+        if (type == 2) {
+            examineVC.examineModel = list;
+        }
         [self.navigationController pushViewController:examineVC animated:YES];
         
     } else if(self.selectIndex == 2){
+        ConstructionList *list = self.constructionModel.list[self.clickIndex];
         ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
+        constructionVC.setType = type;
+        if (type == 2) {
+            constructionVC.constructionModel = list;
+        }
         [self.navigationController pushViewController:constructionVC animated:YES];
         
     } else if(self.selectIndex == 3){
-        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
+        CityManagementList *list = self.cityManagementModel.list[self.clickIndex];
+        ZHLZCityManagementVC *areaManagementVC = [ZHLZCityManagementVC new];
+        areaManagementVC.setType = type;
+        if (type == 2) {
+            areaManagementVC.cityManagementModel = list;
+        }
         [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 4){
-        ZHLZCityManagementVC *cityManagementVC = [ZHLZCityManagementVC new];
-        [self.navigationController pushViewController:cityManagementVC animated:YES];
+        AreaManagementList *list = self.areaManagementModel.list[self.clickIndex];
+        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
+        areaManagementVC.setType = type;
+        if (type == 2) {
+            areaManagementVC.areaManagementModel = list;
+        }
+        [self.navigationController pushViewController:areaManagementVC animated:YES];
         
     } else if(self.selectIndex == 5){
+        SpecialList *list = self.specialModel.list[self.clickIndex];
         ZHLZSpecialVC *specialVC = [ZHLZSpecialVC new];
+        specialVC.setType = type;
+        if (type == 2) {
+            specialVC.specialModel = list;
+        }
         [self.navigationController pushViewController:specialVC animated:YES];
         
     } else if(self.selectIndex == 6){
@@ -126,7 +211,23 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.monadModel.list.count;
+    if (self.selectIndex == 0) {
+        return self.roadWorkModel.list.count;
+    } else if(self.selectIndex == 1){
+        return self.examineModel.list.count;
+    } else if(self.selectIndex == 2){
+        return self.constructionModel.list.count;
+    } else if(self.selectIndex == 3){
+        return self.cityManagementModel.list.count;
+    } else if(self.selectIndex == 4){
+        return self.areaManagementModel.list.count;
+    } else if(self.selectIndex == 5){
+        return self.specialModel.list.count;
+    } else if(self.selectIndex == 6){
+        return self.monadModel.list.count;
+    } else {
+        return 0;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -138,7 +239,23 @@
     if (cell == nil) {
         cell = [[ZHLZBookListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.list = self.monadModel.list[indexPath.row];
+
+
+    if (self.selectIndex == 0) {
+        cell.roadWorkList = self.roadWorkModel.list[indexPath.row];
+    } else if(self.selectIndex == 1){
+        cell.examineList = self.examineModel.list[indexPath.row];
+    } else if(self.selectIndex == 2){
+        cell.constructionList = self.constructionModel.list[indexPath.row];
+    } else if(self.selectIndex == 3){
+        cell.cityManagementList = self.cityManagementModel.list[indexPath.row];
+    } else if(self.selectIndex == 4){
+        cell.areaManagementList = self.areaManagementModel.list[indexPath.row];
+    } else if(self.selectIndex == 5){
+        cell.specialList = self.specialModel.list[indexPath.row];
+    } else if(self.selectIndex == 6){
+        cell.monadList = self.monadModel.list[indexPath.row];
+    }
     
     return cell;
  }

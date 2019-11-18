@@ -18,7 +18,7 @@
     return addressBookVM;
 }
 
-- (NSURLSessionTask *)loadListWithType:(NSInteger)type CallBack:(void (^)(NSDictionary *parms))block{
+- (NSURLSessionTask *)loadListWithType:(NSInteger)type withPageNum:(NSInteger)page CallBack:(void (^)(NSDictionary *parms))block{
     
     NSString *requestString = @"";
     switch (type) {
@@ -53,7 +53,7 @@
             break;
     }
 
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:@{@"page":@(1),@"limit":@(10),@"order":@"desc",@"sidx":@""}];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:@{@"page":@(page),@"limit":@(10),@"order":@"desc",@"sidx":@""}];
     baseVM.isList = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block(response.data);
@@ -69,60 +69,5 @@
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
     }];
 }
-
-
-- (NSURLSessionTask *)saveResponsibleunitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ResponsibleUnitSaveAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-
-- (NSURLSessionTask *)editResponsibleunitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ResponsibleUnitUpdateAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-
-- (NSURLSessionTask *)deleteResponsibleunitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ResponsibleUnitDeleteAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-
-
-
-#pragma mark 施工单位
-//增加保存
-- (NSURLSessionTask *)saveConstructionUnitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ConstructionUnitSaveAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-//修改
-- (NSURLSessionTask *)editConstructionUnitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ConstructionUnitUpdateAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-//删除
-- (NSURLSessionTask *)deleteConstructionUnitWithParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ConstructionUnitDeleteAPIURLConst withRequestArgument:parms];
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-    }];
-}
-
-
 
 @end

@@ -7,10 +7,14 @@
 //
 
 #import "ZHLZBaseVC.h"
+#import "ZHLZAreaManagementModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZAreaManagementVC : ZHLZBaseVC
+
+@property(nonatomic , assign) NSInteger setType;//1增加 2编辑
+@property (nonatomic , strong) AreaManagementList *areaManagementModel;//区管单位
 
 @end
 

@@ -7,12 +7,14 @@
 //
 
 #import "ZHLZBaseVC.h"
-
+#import "ZHLZRoadWorkModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZRoadWorkVC : ZHLZBaseVC
 
 @property (nonatomic , assign) NSInteger editType;
+@property (nonatomic , strong) RoadWorkList *roadWorkModel;//施工单位
+
 
 @end
 

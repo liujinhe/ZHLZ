@@ -23,8 +23,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1g-zl-IXz">
                     <rect key="frame" x="0.0" y="64" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入部门名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ait-Uv-TKM" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入部门名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ait-Uv-TKM" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -33,7 +33,9 @@
                     <constraints>
                         <constraint firstItem="ait-Uv-TKM" firstAttribute="centerY" secondItem="A1g-zl-IXz" secondAttribute="centerY" id="53c-kC-8cA"/>
                         <constraint firstAttribute="trailing" secondItem="ait-Uv-TKM" secondAttribute="trailing" constant="20" id="GhN-qS-2mP"/>
+                        <constraint firstItem="ait-Uv-TKM" firstAttribute="top" secondItem="A1g-zl-IXz" secondAttribute="top" constant="10" id="W5F-it-eET"/>
                         <constraint firstAttribute="height" constant="60" id="WdM-Sh-nYK"/>
+                        <constraint firstAttribute="bottom" secondItem="ait-Uv-TKM" secondAttribute="bottom" constant="10" id="YT7-cD-ytD"/>
                         <constraint firstItem="ait-Uv-TKM" firstAttribute="leading" secondItem="A1g-zl-IXz" secondAttribute="leading" constant="20" id="euD-e5-OTa"/>
                     </constraints>
                 </view>

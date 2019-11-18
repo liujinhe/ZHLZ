@@ -26,8 +26,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0of-8P-dLP">
                     <rect key="frame" x="0.0" y="64" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入单位名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVH-jx-UIp" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入单位名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gVH-jx-UIp" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -37,14 +37,16 @@
                         <constraint firstAttribute="trailing" secondItem="gVH-jx-UIp" secondAttribute="trailing" constant="20" id="JE6-yy-aH2"/>
                         <constraint firstItem="gVH-jx-UIp" firstAttribute="centerY" secondItem="0of-8P-dLP" secondAttribute="centerY" id="Ppt-Ip-Ka1"/>
                         <constraint firstItem="gVH-jx-UIp" firstAttribute="leading" secondItem="0of-8P-dLP" secondAttribute="leading" constant="20" id="WoO-kE-0fN"/>
+                        <constraint firstAttribute="bottom" secondItem="gVH-jx-UIp" secondAttribute="bottom" constant="10" id="XiA-Sb-mPr"/>
                         <constraint firstAttribute="height" constant="60" id="dtz-wB-Chu"/>
+                        <constraint firstItem="gVH-jx-UIp" firstAttribute="top" secondItem="0of-8P-dLP" secondAttribute="top" constant="10" id="mwq-gx-jHq"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Y1-5iy">
                     <rect key="frame" x="0.0" y="124" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入负责人名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NSf-c7-y74" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入负责人名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NSf-c7-y74" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -52,6 +54,8 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="669-Lt-I6F"/>
+                        <constraint firstItem="NSf-c7-y74" firstAttribute="top" secondItem="m1b-Y1-5iy" secondAttribute="top" constant="10" id="GHs-Lg-Led"/>
+                        <constraint firstAttribute="bottom" secondItem="NSf-c7-y74" secondAttribute="bottom" constant="10" id="GLu-1C-074"/>
                         <constraint firstAttribute="trailing" secondItem="NSf-c7-y74" secondAttribute="trailing" constant="20" id="Myh-Lk-Bag"/>
                         <constraint firstItem="NSf-c7-y74" firstAttribute="centerY" secondItem="m1b-Y1-5iy" secondAttribute="centerY" id="v46-fk-MD5"/>
                         <constraint firstItem="NSf-c7-y74" firstAttribute="leading" secondItem="m1b-Y1-5iy" secondAttribute="leading" constant="20" id="xC9-fC-ooR"/>
@@ -60,8 +64,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DO9-Tx-hew">
                     <rect key="frame" x="0.0" y="184" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入联系人电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Cc-whZ" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Cc-whZ" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -70,22 +74,26 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="i7q-Cc-whZ" secondAttribute="trailing" constant="20" id="J7L-hp-vWM"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="leading" secondItem="DO9-Tx-hew" secondAttribute="leading" constant="20" id="MjV-th-HSD"/>
+                        <constraint firstItem="i7q-Cc-whZ" firstAttribute="top" secondItem="DO9-Tx-hew" secondAttribute="top" constant="10" id="Xti-HU-gvl"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="centerY" secondItem="DO9-Tx-hew" secondAttribute="centerY" id="YEU-gO-r43"/>
                         <constraint firstAttribute="height" constant="60" id="oJz-c2-xDq"/>
+                        <constraint firstAttribute="bottom" secondItem="i7q-Cc-whZ" secondAttribute="bottom" constant="10" id="so2-Qp-Gjh"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kmR-Hr-eV2">
                     <rect key="frame" x="0.0" y="244" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入备注" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSm-r6-pPn" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入备注" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSm-r6-pPn" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="gSm-r6-pPn" secondAttribute="bottom" constant="10" id="8rw-ZC-Ckm"/>
                         <constraint firstAttribute="height" constant="60" id="RjE-ef-zAc"/>
+                        <constraint firstItem="gSm-r6-pPn" firstAttribute="top" secondItem="kmR-Hr-eV2" secondAttribute="top" constant="10" id="TAM-hB-P1b"/>
                         <constraint firstItem="gSm-r6-pPn" firstAttribute="centerY" secondItem="kmR-Hr-eV2" secondAttribute="centerY" id="eZM-SA-5mO"/>
                         <constraint firstItem="gSm-r6-pPn" firstAttribute="leading" secondItem="kmR-Hr-eV2" secondAttribute="leading" constant="20" id="rb9-F9-o5f"/>
                         <constraint firstAttribute="trailing" secondItem="gSm-r6-pPn" secondAttribute="trailing" constant="20" id="xUi-iC-rKc"/>

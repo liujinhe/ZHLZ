@@ -8,6 +8,7 @@
 
 #import "ZHLZExamineVC.h"
 #import <YYKit/UIControl+YYAdd.h>
+#import "ZHLZAddressBookVM.h"
 
 @interface ZHLZExamineVC ()
 
@@ -53,7 +54,9 @@
 }
 - (void)deleteAction{
     [self popActionWithTip:@"您确定要删除该部门吗？" withBlock:^{
-        [GRToast makeText:@"删除成功"];
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",ResponsibleUnitDeleteAPIURLConst,@"123"] andParms:@{} withCompletionBlock:^{
+            [GRToast makeText:@"删除成功"];
+        }];
     }];
 }
 
@@ -66,9 +69,15 @@
     }
     
     if (self.setType == 1) { //添加
-        
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentSaveAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"添加成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     } else {//编辑
-        
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentUpdateAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 
 }

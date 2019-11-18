@@ -7,10 +7,15 @@
 //
 
 #import "ZHLZBaseVC.h"
+#import "ZHLZConstructionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZConstructionVC : ZHLZBaseVC
+
+@property(nonatomic , assign) NSInteger setType;//1增加 2编辑
+@property (nonatomic , strong) ConstructionList *constructionModel;//建设单位
+
 
 @end
 

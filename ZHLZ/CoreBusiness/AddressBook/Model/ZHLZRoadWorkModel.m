@@ -7,7 +7,15 @@
 //
 
 #import "ZHLZRoadWorkModel.h"
+@implementation RoadWorkList
+
+@end
 
 @implementation ZHLZRoadWorkModel
 
+- (void)setList:(NSArray<RoadWorkList *> *)list{
+    _list = [NSArray modelArrayWithClass:[RoadWorkList class] json:list];
+}
+
 @end
+

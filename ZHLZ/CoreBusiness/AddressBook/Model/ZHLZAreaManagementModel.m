@@ -8,6 +8,13 @@
 
 #import "ZHLZAreaManagementModel.h"
 
-@implementation ZHLZAreaManagementModel
+@implementation AreaManagementList
 
 @end
+
+@implementation ZHLZAreaManagementModel
+- (void)setList:(NSArray<AreaManagementList *> *)list{
+    _list = [NSArray modelArrayWithClass:[AreaManagementList class] json:list];
+}
+@end
+

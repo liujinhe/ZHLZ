@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZTextField : UITextField
 
+- (CGRect)textRectForBounds:(CGRect)bounds;
+- (CGRect)editingRectForBounds:(CGRect)bounds;  
+
 @end
 
 NS_ASSUME_NONNULL_END

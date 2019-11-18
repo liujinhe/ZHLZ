@@ -8,6 +8,12 @@
 
 #import "ZHLZCityManagementModel.h"
 
-@implementation ZHLZCityManagementModel
+@implementation CityManagementList
 
+@end
+
+@implementation ZHLZCityManagementModel
+- (void)setList:(NSArray<CityManagementList *> *)list{
+    _list = [NSArray modelArrayWithClass:[CityManagementList class] json:list];
+}
 @end

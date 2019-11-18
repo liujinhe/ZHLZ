@@ -10,6 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZCityManagementVC">
             <connections>
+                <outlet property="chargerTextFile" destination="BRa-Wk-b2R" id="Mbz-WB-AA4"/>
+                <outlet property="cityManagementButton" destination="4dV-h7-c2Q" id="REN-0p-Etz"/>
+                <outlet property="nameTextFile" destination="8Hd-22-zys" id="bax-yw-i04"/>
+                <outlet property="phoneTextFile" destination="I1F-Lh-oVn" id="xwp-Vf-hG7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,16 +25,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWZ-CS-3KN">
                     <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入单位名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Hd-22-zys" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入单位名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Hd-22-zys" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="8Hd-22-zys" secondAttribute="bottom" constant="10" id="3lu-eQ-2eU"/>
                         <constraint firstItem="8Hd-22-zys" firstAttribute="centerY" secondItem="pWZ-CS-3KN" secondAttribute="centerY" id="5Ib-DD-JVJ"/>
                         <constraint firstAttribute="trailing" secondItem="8Hd-22-zys" secondAttribute="trailing" constant="20" id="aZE-YG-u8p"/>
+                        <constraint firstItem="8Hd-22-zys" firstAttribute="top" secondItem="pWZ-CS-3KN" secondAttribute="top" constant="10" id="pwU-Ih-Agy"/>
                         <constraint firstItem="8Hd-22-zys" firstAttribute="leading" secondItem="pWZ-CS-3KN" secondAttribute="leading" constant="20" id="rZJ-ef-DZw"/>
                         <constraint firstAttribute="height" constant="60" id="wVd-iC-EOY"/>
                     </constraints>
@@ -38,8 +44,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5N-D7-t4e">
                     <rect key="frame" x="0.0" y="104" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入负责人名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-Wk-b2R" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入负责人名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-Wk-b2R" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -47,6 +53,8 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="BRa-Wk-b2R" firstAttribute="leading" secondItem="L5N-D7-t4e" secondAttribute="leading" constant="20" id="4pR-zC-NGa"/>
+                        <constraint firstItem="BRa-Wk-b2R" firstAttribute="top" secondItem="L5N-D7-t4e" secondAttribute="top" constant="10" id="LW3-TT-CFI"/>
+                        <constraint firstAttribute="bottom" secondItem="BRa-Wk-b2R" secondAttribute="bottom" constant="10" id="Xs4-ZB-cGb"/>
                         <constraint firstAttribute="height" constant="60" id="bNR-PW-fog"/>
                         <constraint firstItem="BRa-Wk-b2R" firstAttribute="centerY" secondItem="L5N-D7-t4e" secondAttribute="centerY" id="jpz-DX-0Ge"/>
                         <constraint firstAttribute="trailing" secondItem="BRa-Wk-b2R" secondAttribute="trailing" constant="20" id="nmE-XF-ppm"/>
@@ -55,8 +63,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGE-WD-JfP">
                     <rect key="frame" x="0.0" y="164" width="414" height="60"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入负责人联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1F-Lh-oVn" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="13" width="374" height="34"/>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入负责人联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1F-Lh-oVn" customClass="ZHLZTextField">
+                            <rect key="frame" x="20" y="10" width="374" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -65,8 +73,10 @@
                     <constraints>
                         <constraint firstItem="I1F-Lh-oVn" firstAttribute="centerY" secondItem="OGE-WD-JfP" secondAttribute="centerY" id="89U-7H-gQ7"/>
                         <constraint firstItem="I1F-Lh-oVn" firstAttribute="leading" secondItem="OGE-WD-JfP" secondAttribute="leading" constant="20" id="N0Q-1G-c9L"/>
+                        <constraint firstItem="I1F-Lh-oVn" firstAttribute="top" secondItem="OGE-WD-JfP" secondAttribute="top" constant="10" id="RIP-C3-OL5"/>
                         <constraint firstAttribute="trailing" secondItem="I1F-Lh-oVn" secondAttribute="trailing" constant="20" id="c70-Ly-Lke"/>
                         <constraint firstAttribute="height" constant="60" id="ro3-SQ-pnS"/>
+                        <constraint firstAttribute="bottom" secondItem="I1F-Lh-oVn" secondAttribute="bottom" constant="10" id="ydx-9o-mgz"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dV-h7-c2Q" customClass="ZHLZButton">
@@ -77,6 +87,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="保存"/>
+                    <connections>
+                        <action selector="cityManagementAction:" destination="-1" eventType="touchUpInside" id="Vis-HH-PT9"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

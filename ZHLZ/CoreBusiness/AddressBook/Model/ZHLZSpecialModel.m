@@ -7,7 +7,14 @@
 //
 
 #import "ZHLZSpecialModel.h"
+@implementation SpecialList
+
+@end
 
 @implementation ZHLZSpecialModel
+
+- (void)setList:(NSArray<SpecialList *> *)list{
+    _list = [NSArray modelArrayWithClass:[SpecialList class] json:list];
+}
 
 @end

@@ -7,7 +7,13 @@
 //
 
 #import "ZHLZConstructionModel.h"
-
-@implementation ZHLZConstructionModel
+@implementation ConstructionList
 
 @end
+@implementation ZHLZConstructionModel
+- (void)setList:(NSArray<ConstructionList *> *)list{
+    _list = [NSArray modelArrayWithClass:[ConstructionList class] json:list];
+}
+
+@end
+

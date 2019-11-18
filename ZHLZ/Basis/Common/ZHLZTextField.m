@@ -17,9 +17,21 @@
     self.backgroundColor = kHexRGB(0xf7f7f7);
     self.font = [UIFont fontWithName:@"Arial" size:16.0f];
     self.textColor = [UIColor blackColor];
-    self.layer.cornerRadius = 10;
+    self.layer.cornerRadius = 5.0f;
+    self.layer.borderWidth = 1.0f;
+    self.layer.borderColor = kHexRGB(0xE5E5E5).CGColor;
     
 }
 
+//控制文本所在的的位置，左右缩 10
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    return CGRectInset( bounds , 10 , 0 );
+}
+  
+//控制编辑文本时所在的位置，左右缩 10
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+    return CGRectInset( bounds , 10 , 0 );
+}
+  
 
 @end

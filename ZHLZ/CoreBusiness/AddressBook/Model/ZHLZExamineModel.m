@@ -8,6 +8,13 @@
 
 #import "ZHLZExamineModel.h"
 
-@implementation ZHLZExamineModel
+@implementation ExamineList
 
 @end
+@implementation ZHLZExamineModel
+- (void)setList:(NSArray<ExamineList *> *)list{
+    _list = [NSArray modelArrayWithClass:[ExamineList class] json:list];
+}
+
+@end
+
