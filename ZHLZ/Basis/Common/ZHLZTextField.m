@@ -17,6 +17,7 @@
     self.backgroundColor = kHexRGB(0xf7f7f7);
     self.font = [UIFont fontWithName:@"Arial" size:16.0f];
     self.textColor = [UIColor blackColor];
+    self.layer.cornerRadius = 10;
     
 }
 

@@ -10,6 +10,7 @@
 #import <YYKit/UIControl+YYAdd.h>
 #import "ZHLZBookListCell.h"
 #import "ZHLZAddressBookVM.h"
+#import "ZHLZMonadModel.h"
 
 #import "ZHLZRoadWorkVC.h"//施工单位
 #import "ZHLZExamineVC.h"//审批部门
@@ -26,6 +27,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
 
+@property (nonatomic , strong) ZHLZMonadModel *monadModel;
+
+@property (nonatomic , assign) NSInteger clickIndex;
+
 @end
 
 @implementation ZHLZBookListVC
@@ -40,6 +45,10 @@
 
 - (void)loadAddressListData{
     self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex CallBack:^(NSDictionary * _Nonnull parms) {
+        
+        self.monadModel = [ZHLZMonadModel modelWithJSON:parms];
+        
+        [self.bookListTableView reloadData];
         
     }];
 }
@@ -102,8 +111,12 @@
         [self.navigationController pushViewController:specialVC animated:YES];
         
     } else if(self.selectIndex == 6){
+        MonadModelList *list = self.monadModel.list[self.clickIndex];
         ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
         monadVC.setType = type;
+        if (type == 2) {
+            monadVC.monadModel = list;
+        }
         [self.navigationController pushViewController:monadVC animated:YES];
         
     }
@@ -113,7 +126,7 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.monadModel.list.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,6 +138,8 @@
     if (cell == nil) {
         cell = [[ZHLZBookListCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    cell.list = self.monadModel.list[indexPath.row];
+    
     return cell;
  }
 
@@ -133,6 +148,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.clickIndex = indexPath.row;
     [self clickAddActionwithType:2];
 }
 

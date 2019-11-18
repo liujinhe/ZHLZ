@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *addressListBgView;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 @end
 
@@ -23,11 +24,35 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.addressListBgView.layer.cornerRadius = 10.0f;
-    self.addressNameLabel.text = @"深圳市福田区北环大道2001段";
-    self.contentNameLabel.text = @"李锦辉  13691781589";
+    
 }
+
+- (void)setList:(MonadModelList *)list {
+    if (!list) {
+        return;
+    }
+    if ([list.name isNotBlank]) {
+        self.addressNameLabel.text = list.name;
+    }
+    
+    if ([list.charger isNotBlank]) {
+        self.contentNameLabel.text = [NSString stringWithFormat:@"%@  %@",list.charger,list.phone];
+    }
+    
+}
+
 - (IBAction)callPhoneAction:(UIButton *)sender {
     
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", @""]];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (@available(iOS 10.0, *)) {
+                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+            } else {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        });
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -20,13 +20,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oqm-Vq-Orf">
                         <rect key="frame" x="10" y="0.0" width="355" height="70"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智慧路政智慧路政智慧路政" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-eN-f1f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-eN-f1f">
                                 <rect key="frame" x="10" y="5" width="300" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.199973762" green="0.2000150383" blue="0.19997116919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智慧路政  智慧路政" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q53-Xb-apR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q53-Xb-apR">
                                 <rect key="frame" x="10" y="48" width="335" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="4EL-ch-qUr"/>
@@ -73,6 +73,7 @@
             <connections>
                 <outlet property="addressListBgView" destination="Oqm-Vq-Orf" id="Eok-mQ-aQC"/>
                 <outlet property="addressNameLabel" destination="hJG-eN-f1f" id="rhi-Hr-oTF"/>
+                <outlet property="callButton" destination="cAy-ZD-XAv" id="iTb-Vw-Jdg"/>
                 <outlet property="contentNameLabel" destination="q53-Xb-apR" id="vSK-Hj-pFv"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="119.86607142857142"/>

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHLZMonadModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZBookListCell : UITableViewCell
+
+@property (nonatomic , strong) MonadModelList *list;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "ZHLZMonadVC.h"
 #import <YYKit/UIControl+YYAdd.h>
+#import "ZHLZAddressBookVM.h"
 
 
 @interface ZHLZMonadVC ()
@@ -41,6 +42,14 @@
         
         [self addNavRightButton];
         
+        self.workNnameTextFile.text = self.monadModel.name;
+        
+        self.principalNnameTextFile.text = self.monadModel.charger;
+        
+        self.principalPhoneTextFile.text = self.monadModel.phone;
+        
+        self.remarkTextFile.text = self.monadModel.remark;
+        
     }
 }
 
@@ -59,7 +68,9 @@
 
 - (void)deleteAction{
     [self popActionWithTip:@"您确定要删除？" withBlock:^{
-        [GRToast makeText:@"删除成功"];
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",ResponsibleUnitDeleteAPIURLConst,self.monadModel.objectID] andParms:@{} withCompletionBlock:^{
+            [GRToast makeText:@"删除成功"];
+        }];
     }];
 }
 
@@ -79,9 +90,15 @@
     }
     
     if (self.setType == 1) { //添加
-        
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitSaveAPIURLConst andParms:@{@"name":self.workNnameTextFile.text,@"charger":self.principalNnameTextFile.text,@"phone":self.principalPhoneTextFile.text,@"remark":self.remarkTextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"添加成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     } else {//编辑
-        
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ResponsibleUnitUpdateAPIURLConst andParms:@{@"name":self.workNnameTextFile.text,@"charger":self.principalNnameTextFile.text,@"phone":self.principalPhoneTextFile.text,@"remark":self.remarkTextFile.text} withCompletionBlock:^{
+            [GRToast makeText:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 }
 

@@ -7,13 +7,16 @@
 //
 
 #import "ZHLZBaseVC.h"
+#import "ZHLZMonadModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZMonadVC : ZHLZBaseVC
 
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
- 
+
+@property (nonatomic , strong) MonadModelList *monadModel;
+
 @end
 
 NS_ASSUME_NONNULL_END
