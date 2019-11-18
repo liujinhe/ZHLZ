@@ -50,7 +50,7 @@
     self.timeLabel.textColor = kHexRGB(0x333333);
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(15);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(10);
         make.left.right.equalTo(self.nameLabel);
         make.height.offset(12);
     }];
@@ -61,7 +61,7 @@
     self.titleLabel.textColor = kHexRGB(0x333333);
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(15);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(10);
         make.left.right.equalTo(self.nameLabel);
         make.bottom.equalTo(self.contentView).offset(-20);
     }];
@@ -76,7 +76,12 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         self.timeLabel.text = [dateFormatter stringFromDate:date];
-        self.titleLabel.text = _homeMunicipalFacilityModel.problemDet?:@"";
+        
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineSpacing = 3.f;
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_homeMunicipalFacilityModel.problemDet?:@""];
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+        self.titleLabel.attributedText = attributedString;
     }
 }
 

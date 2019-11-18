@@ -130,13 +130,13 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
         
         self.homeRoadConstructionHeightArray = @[].mutableCopy;
         for (ZHLZHomeRoadConstructionModel *model in self.homeRoadConstructionArray) {
-            CGFloat height = [model.prodescription sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 15.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
+            CGFloat height = [model.prodescription sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 10.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
             [self.homeRoadConstructionHeightArray addObject:@(127.f + height)];
         }
         
         self.homeMunicipalFacilityHeightArray = @[].mutableCopy;
         for (ZHLZHomeMunicipalFacilityModel *model in self.homeMunicipalFacilityArray) {
-            CGFloat height = [model.problemDet sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 15.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
+            CGFloat height = [model.problemDet sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 10.f * 2 - 10.f * 2, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
             [self.homeMunicipalFacilityHeightArray addObject:@(96.f + height)];
         }
         
