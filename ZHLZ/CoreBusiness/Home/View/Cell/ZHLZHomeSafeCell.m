@@ -8,6 +8,14 @@
 
 #import "ZHLZHomeSafeCell.h"
 
+@interface ZHLZHomeSafeCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLable;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
+@end
+
 @implementation ZHLZHomeSafeCell
 
 - (void)awakeFromNib {
@@ -15,6 +23,26 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+
+- (void)setHomeSafeModel:(ZHLZHomeSafeModel *)homeSafeModel {
+    if (!homeSafeModel) {
+        return;
+    }
+    
+    
+    if ([homeSafeModel.orgName isNotBlank]) {
+        self.nameLable.text = homeSafeModel.orgName;
+    }
+    if ([homeSafeModel.prodescription isNotBlank]) {
+        self.contentLabel.text = homeSafeModel.prodescription;
+    }
+    
+    if ([homeSafeModel.currentPlace isNotBlank]) {
+        self.locationLabel.text = homeSafeModel.currentPlace;
+    }
+    
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

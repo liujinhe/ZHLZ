@@ -9,6 +9,8 @@
 #import "ZHLZHomeBuildProjectVC.h"
 #import "ZHLZHomeBuildProjectCell.h"
 #import "ZHLZHomeBuildProjectVM.h"
+#import "ZHLZHomeBuildProjectDetailVC.h"
+
 
 
 @interface ZHLZHomeBuildProjectVC ()<UITableViewDataSource,UITableViewDelegate>
@@ -16,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *hmeBuildProjectTableView;
 
 @property (nonatomic , assign) NSInteger pageNum;
+
+@property (nonatomic , strong) NSMutableArray <ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray;
 
 @end
 
@@ -33,17 +37,23 @@
 
 - (void)addAction {
     
+    ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
+    [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 }
 
 - (void)loadHomeProjectBuildData{
     self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+        self.homeBuildProjectModelArray = homeBuildProjectModelArray.modelCopy;
         
+        [self.hmeBuildProjectTableView reloadData];
     }];
 }
 
 - (void)loadHomeProjectBuildView{
     
     self.pageNum = 1;
+    
+    self.homeBuildProjectModelArray = [NSMutableArray <ZHLZHomeBuildProjectModel *> new];
     
     self.hmeBuildProjectTableView.dataSource = self;
     self.hmeBuildProjectTableView.delegate = self;
@@ -68,7 +78,7 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.homeBuildProjectModelArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

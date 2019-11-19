@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHLZHomeSafeProblemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemCell : UITableViewCell
+
+@property (nonatomic , strong) ZHLZHomeSafeProblemModel *homeSafeProblemModel;
 
 @end
 

@@ -16,6 +16,8 @@
 
 @property (nonatomic , assign) NSInteger pageNum;
 
+@property (nonatomic , strong) NSMutableArray <ZHLZHomeSafeProblemModel *> *homeSafeProblemModelArray;
+
 @end
 
 @implementation ZHLZHomeSafeProblemVC
@@ -37,6 +39,8 @@
 - (void)loadHomeSafeProblemData{
     self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeProblemDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeProblemModel *> * _Nonnull homeSafeProblemArray) {
         
+        self.homeSafeProblemModelArray = homeSafeProblemArray.mutableCopy;
+        
         [self.homeSafeProblemTableView reloadData];
     }];
 }
@@ -44,6 +48,8 @@
 - (void)loadHomeSafeProblemView{
     
     self.pageNum = 1;
+    
+    self.homeSafeProblemModelArray = [NSMutableArray <ZHLZHomeSafeProblemModel *> new];
     
     self.homeSafeProblemTableView.dataSource = self;
     self.homeSafeProblemTableView.delegate = self;
@@ -68,18 +74,19 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.homeSafeProblemModelArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     static NSString *cellID = @"ZHLZHomeSafeProblemCell";
-
+    
     ZHLZHomeSafeProblemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
     if (cell == nil) {
         cell = [[ZHLZHomeSafeProblemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    cell.homeSafeProblemModel = self.homeSafeProblemModelArray[indexPath.row];
 
     return cell;
  }

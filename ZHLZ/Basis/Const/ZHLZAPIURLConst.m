@@ -45,6 +45,9 @@ NSString * const MunicipalProblemDeleteAPIURLConst = @"/app/mapinspection/delete
 NSString * const MunicipalProblemCloseAPIURLConst = @"/app/mapinspection/closepro";
 NSString * const MunicipalProblemOpenAPIURLConst = @"/app/mapinspection/openpro";
 
+// 在建项目
+NSString * const ProjectBuildeListAPIURLConst = @"/app/mapproject/list";
+
 NSString * const SafeFloodPreventionProblemAPIURLConst = @"/app/mapflood/list";
 NSString * const SafeFloodPreventionProblemInfoAPIURLConst = @"/app/mapflood/list";
 NSString * const SafeFloodPreventionProblemGetMeasuresAPIURLConst = @"/app/mapflood/getMeasures";

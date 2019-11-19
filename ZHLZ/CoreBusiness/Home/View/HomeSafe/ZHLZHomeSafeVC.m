@@ -17,6 +17,7 @@
 
 @property (nonatomic , assign) NSInteger pageNum;
 
+@property (nonatomic , strong) NSMutableArray <ZHLZHomeSafeModel *> *homeSafeModelArray;
 
 @end
 
@@ -39,6 +40,7 @@
 - (void)loadHomeSafeList{
     self.task = [[ZHLZHomeSafeVM sharedInstance] loadHomeSafeDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeModel *> * _Nonnull homeSafeModelArray) {
         
+        self.homeSafeModelArray = homeSafeModelArray.mutableCopy;
         
         [self.homeSafeTableView reloadData];
     }];
@@ -47,6 +49,8 @@
 - (void)loadHomeSafeView{
     
     self.pageNum = 1;
+    
+    self.homeSafeModelArray = [NSMutableArray <ZHLZHomeSafeModel *> new];
     
     self.homeSafeTableView.dataSource = self;
     self.homeSafeTableView.delegate = self;
@@ -71,7 +75,7 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.homeSafeModelArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -83,6 +87,8 @@
     if (cell == nil) {
         cell = [[ZHLZHomeSafeCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
+    
+    cell.homeSafeModel = self.homeSafeModelArray[indexPath.row];
 
     return cell;
  }
