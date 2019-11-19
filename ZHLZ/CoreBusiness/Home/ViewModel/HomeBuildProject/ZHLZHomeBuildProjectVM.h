@@ -7,10 +7,16 @@
 //
 
 #import "ZHLZBaseVM.h"
+#import "ZHLZHomeBuildProjectModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBuildProjectVM : ZHLZBaseVM
+
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadHomeBuildProjectDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray))block;
 
 @end
 

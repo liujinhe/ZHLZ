@@ -10,4 +10,5 @@
 
 @implementation ZHLZHomeSafeModel
 
+
 @end

@@ -10,4 +10,26 @@
 
 @implementation ZHLZHomeSafeProblemVM
 
++ (instancetype)sharedInstance {
+    static id homeSafeProblemVM = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        homeSafeProblemVM = [[self alloc] init];
+    });
+    return homeSafeProblemVM;
+}
+
+- (NSURLSessionTask *)loadHomeSafeProblemDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemArray))block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemInfoAPIURLConst withRequestArgument:@{@"page":@(pageNum),@"limit":@(10),@"order":@"desc",@"sidx":@""}];
+    baseVM.isList = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            NSArray *homeSafeProblemArray = [NSArray modelArrayWithClass:[ZHLZHomeSafeProblemModel class] json:[response.data objectForKey:@"list"]];
+            block(homeSafeProblemArray);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+        
+    }];
+}
+
 @end

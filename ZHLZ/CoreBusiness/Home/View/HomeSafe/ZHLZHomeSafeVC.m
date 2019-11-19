@@ -8,11 +8,14 @@
 
 #import "ZHLZHomeSafeVC.h"
 #import "ZHLZHomeSafeCell.h"
+#import "ZHLZHomeSafeVM.h"
 
 
 @interface ZHLZHomeSafeVC ()<UITableViewDelegate , UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *homeSafeTableView;
+
+@property (nonatomic , assign) NSInteger pageNum;
 
 
 @end
@@ -25,14 +28,26 @@
     [self addRightBarButtonItemWithTitle:@"添加" action:@selector(addAction)];
     
     [self loadHomeSafeView];
+    
+    [self loadHomeSafeList];
 }
 
 - (void)addAction {
     
 }
 
+- (void)loadHomeSafeList{
+    self.task = [[ZHLZHomeSafeVM sharedInstance] loadHomeSafeDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeModel *> * _Nonnull homeSafeModelArray) {
+        
+        
+        [self.homeSafeTableView reloadData];
+    }];
+}
 
 - (void)loadHomeSafeView{
+    
+    self.pageNum = 1;
+    
     self.homeSafeTableView.dataSource = self;
     self.homeSafeTableView.delegate = self;
     self.homeSafeTableView.backgroundColor = kHexRGB(0xf7f7f7);

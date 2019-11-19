@@ -8,11 +8,14 @@
 
 #import "ZHLZHomeBuildProjectVC.h"
 #import "ZHLZHomeBuildProjectCell.h"
+#import "ZHLZHomeBuildProjectVM.h"
+
 
 @interface ZHLZHomeBuildProjectVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *hmeBuildProjectTableView;
 
+@property (nonatomic , assign) NSInteger pageNum;
 
 @end
 
@@ -24,13 +27,24 @@
     [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
     
     [self loadHomeProjectBuildView];
+    
+    [self loadHomeProjectBuildData];
 }
 
 - (void)addAction {
     
 }
 
+- (void)loadHomeProjectBuildData{
+    self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+        
+    }];
+}
+
 - (void)loadHomeProjectBuildView{
+    
+    self.pageNum = 1;
+    
     self.hmeBuildProjectTableView.dataSource = self;
     self.hmeBuildProjectTableView.delegate = self;
     self.hmeBuildProjectTableView.backgroundColor = kHexRGB(0xf7f7f7);

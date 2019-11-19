@@ -7,10 +7,15 @@
 //
 
 #import "ZHLZBaseVM.h"
+#import "ZHLZHomeSafeProblemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemVM : ZHLZBaseVM
+
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadHomeSafeProblemDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemArray))block;
 
 @end
 
