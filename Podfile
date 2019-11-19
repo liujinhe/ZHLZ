@@ -21,8 +21,9 @@ target 'ZHLZ' do
   pod 'FDFullscreenPopGesture', '~> 1.1'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
   
-  pod 'AMap2DMap'
   pod 'AMapSearch'
+  pod 'AMapLocation'
+  pod 'AMapNavi'
 
   target 'ZHLZTests' do
     inherit! :search_paths

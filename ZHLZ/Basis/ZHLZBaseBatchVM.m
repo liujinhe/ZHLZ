@@ -33,13 +33,12 @@
         NSMutableArray<GRResponse *> *responseArray = @[].mutableCopy;
         for (GRRequest *request in batchRequest.requestArray) {
             if (request && request.responseObject) {
-                GRResponse *response = [GRResponse modelWithJSON:request.responseObject];
-                if (response.status == 500) { // token 失效
-                    [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
-                    return;
-                }
-                [responseArray addObject:response];
+                [responseArray addObject:[GRResponse modelWithJSON:request.responseObject]];
             }
+        }
+        if (batchRequest.requestAccessories) { // token 失效
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
+            return;
         }
         success(responseArray.copy);
         

@@ -68,13 +68,13 @@ static ZHLZUserManager *_userManager = nil;
 - (BOOL)isLogin {
     id user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
     ZHLZUserModel *userModel = [ZHLZUserModel modelWithJSON:user];
-    return userModel && userModel.userId;
+    return userModel && [userModel.encryptionKey isNotBlank];
 }
 
 - (BOOL)isLoginPresentLogin {
     BOOL isLogin = [self isLogin];
     if (!isLogin) {
-        // todo
+        [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
         return YES;
     }
     return NO;

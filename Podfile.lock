@@ -14,9 +14,14 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AMap2DMap (5.6.1):
-    - AMapFoundation (~> 1.4)
+  - AMap3DMap (7.1.0):
+    - AMapFoundation (~> 1.5)
   - AMapFoundation (1.6.0)
+  - AMapLocation (2.6.3):
+    - AMapFoundation (~> 1.4)
+  - AMapNavi (7.1.0):
+    - AMap3DMap (~> 7.0)
+    - AMapFoundation (~> 1.5)
   - AMapSearch (7.1.0):
     - AMapFoundation (~> 1.4)
   - DZNEmptyDataSet (1.8.1)
@@ -37,7 +42,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
-  - AMap2DMap
+  - AMapLocation
+  - AMapNavi
   - AMapSearch
   - DZNEmptyDataSet (~> 1.8.1)
   - FDFullscreenPopGesture (~> 1.1)
@@ -53,8 +59,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
-    - AMap2DMap
+    - AMap3DMap
     - AMapFoundation
+    - AMapLocation
+    - AMapNavi
     - AMapSearch
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
@@ -69,8 +77,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
+  AMap3DMap: ef26e2fb120ae9f1635b4b26b28df6d1379a05f0
   AMapFoundation: bc2f6e077b9279942734ba55f9624222fcf42848
+  AMapLocation: dc2c4fde95d72087d73934338160fadc72104bb7
+  AMapNavi: 28a5c56377342428a7381ac6abab286ff33c6251
   AMapSearch: 6bd6d361c5eb00110e0bffa4acf88b7bb9f7e059
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
@@ -83,6 +93,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2f2a1bf9d3f4e975303045fe0362ba17ea69f0a6
+PODFILE CHECKSUM: 80d6e1a1922cc9b6de2ba3f19fef7c01b0a729ab
 
 COCOAPODS: 1.8.4

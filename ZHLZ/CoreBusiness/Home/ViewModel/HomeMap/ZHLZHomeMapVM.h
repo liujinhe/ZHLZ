@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ZHLZHomeMapModel;
+
 @interface ZHLZHomeMapVM : ZHLZBaseVM
+
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadHomeMapDataWithBlock:(void (^)(NSArray<ZHLZHomeMapModel *> *homeMapArray))block;
 
 @end
 
