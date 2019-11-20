@@ -26,6 +26,8 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) AMapDistrictSearchRequest *dist;
 
+@property (nonatomic, strong) UIButton *gpsButton;
+
 @property (nonatomic, strong) NSMutableArray<MAPointAnnotation *> *annotationArray;
 
 @end
@@ -56,10 +58,10 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     CLLocationCoordinate2D defaultLocationCoordinate = CLLocationCoordinate2DMake(AMapDefaultLatitudeConst, AMapDefaultLongitudeConst);
     
     // 限制地图的显示范围
-    _limitRegion = MACoordinateRegionMake(defaultLocationCoordinate, MACoordinateSpanMake(2, 2));
+    _limitRegion = MACoordinateRegionMake(defaultLocationCoordinate, MACoordinateSpanMake(1, 1));
     _limitMapRect = MAMapRectForCoordinateRegion(_limitRegion);
     
-    self.mapView = [[MAMapView alloc] initWithFrame:self.view.frame];
+    self.mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.delegate = self;
     self.mapView.showsCompass = YES;
@@ -67,6 +69,48 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     self.mapView.rotateCameraEnabled = NO;
     self.mapView.centerCoordinate = defaultLocationCoordinate;
     [self.view addSubview:self.mapView];
+    
+    self.gpsButton = [self makeGPSButtonView];
+    self.gpsButton.center = CGPointMake(CGRectGetMidX(self.gpsButton.bounds) + 10,
+                                        CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.gpsButton.bounds) - 30);
+    [self.view addSubview:self.gpsButton];
+    self.gpsButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
+    
+    UIView *zoomPannelView = [self makeZoomPannelView];
+    zoomPannelView.center = CGPointMake(CGRectGetWidth(self.view.bounds) -  CGRectGetMidX(zoomPannelView.bounds) - 10,
+                                        CGRectGetHeight(self.view.bounds) - CGRectGetMidY(zoomPannelView.bounds) - 10);
+    zoomPannelView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+    [self.view addSubview:zoomPannelView];
+}
+
+- (UIButton *)makeGPSButtonView {
+    UIButton *ret = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    ret.backgroundColor = [UIColor whiteColor];
+    ret.layer.cornerRadius = 4;
+    
+    [ret setImage:[UIImage imageNamed:@"icon_map_gps"] forState:UIControlStateNormal];
+    [ret addTarget:self action:@selector(gpsAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    return ret;
+}
+
+- (UIView *)makeZoomPannelView {
+    UIView *ret = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 53, 98)];
+    
+    UIButton *incBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 53, 49)];
+    [incBtn setImage:[UIImage imageNamed:@"icon_map_increase"] forState:UIControlStateNormal];
+    [incBtn sizeToFit];
+    [incBtn addTarget:self action:@selector(zoomPlusAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *decBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 49, 53, 49)];
+    [decBtn setImage:[UIImage imageNamed:@"icon_map_decrease"] forState:UIControlStateNormal];
+    [decBtn sizeToFit];
+    [decBtn addTarget:self action:@selector(zoomMinusAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    [ret addSubview:incBtn];
+    [ret addSubview:decBtn];
+    
+    return ret;
 }
 
 - (void)configSearch {
@@ -104,6 +148,27 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     }];
 }
 
+#pragma mark - Action
+
+- (void)gpsAction {
+    if (self.mapView.userLocation.updating && self.mapView.userLocation.location) {
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.location.coordinate animated:YES];
+        [self.gpsButton setSelected:YES];
+    }
+}
+
+- (void)zoomPlusAction {
+    CGFloat oldZoom = self.mapView.zoomLevel;
+    [self.mapView setZoomLevel:(oldZoom + 1) animated:YES];
+    self.mapView.showsScale = YES;
+}
+
+- (void)zoomMinusAction {
+    CGFloat oldZoom = self.mapView.zoomLevel;
+    [self.mapView setZoomLevel:(oldZoom - 1) animated:YES];
+    self.mapView.showsScale = NO;
+}
+
 #pragma mark - MAMapViewDelegate
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
@@ -115,7 +180,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-        annotationView.image = [UIImage imageNamed:@"luqiao_green"];
+        annotationView.image = [UIImage imageNamed:@"dianli_green_1"];
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -8);
         return annotationView;

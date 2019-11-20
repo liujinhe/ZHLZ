@@ -131,7 +131,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 
 - (void)loadData {
     @weakify(self);
-    self.task = [[ZHLZHomeVM sharedInstance] loadDataWithBlock:^(NSArray<ZHLZHomeBannerModel *> * _Nonnull homeBannerArray, NSArray<ZHLZHomeBulletinModel *> * _Nonnull homeBulletinArray, NSArray<ZHLZHomeRoadConstructionModel *> * _Nonnull homeRoadConstructionArray, NSArray<ZHLZHomeMunicipalFacilityModel *> * _Nonnull homeMunicipalFacilityArray) {
+    self.task = [[ZHLZHomeVM sharedInstance] loadDataWithRefreshing:self.collectionView.mj_header.isRefreshing WithBlock:^(NSArray<ZHLZHomeBannerModel *> * _Nonnull homeBannerArray, NSArray<ZHLZHomeBulletinModel *> * _Nonnull homeBulletinArray, NSArray<ZHLZHomeRoadConstructionModel *> * _Nonnull homeRoadConstructionArray, NSArray<ZHLZHomeMunicipalFacilityModel *> * _Nonnull homeMunicipalFacilityArray) {
         @strongify(self);
         
         if (self.collectionView.mj_header.isRefreshing) {

@@ -19,10 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadDataWithBlock:(void (^)(NSArray<ZHLZHomeBannerModel *> *homeBannerArray,
-                                                  NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray,
-                                                  NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray,
-                                                  NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray))block;
+- (NSURLSessionTask *)loadDataWithRefreshing:(BOOL)isRefreshing WithBlock:(void (^)(NSArray<ZHLZHomeBannerModel *> *homeBannerArray,
+                                                                                    NSArray<ZHLZHomeBulletinModel *> *homeBulletinArray,
+                                                                                    NSArray<ZHLZHomeRoadConstructionModel *> *homeRoadConstructionArray,
+                                                                                    NSArray<ZHLZHomeMunicipalFacilityModel *> *homeMunicipalFacilityArray))block;
 
 @end
 
