@@ -14,6 +14,8 @@
 
 #import <IQKeyboardManager/IQKeyboardManager.h>
 
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
 @implementation AppDelegate (Category)
 
 - (void)initAppLaunch {
@@ -27,6 +29,9 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    
+    [AMapServices sharedServices].apiKey = AMapKeyConst;
+    [AMapServices sharedServices].enableHTTPS = YES;
     
 #ifdef DEBUG
     [IQKeyboardManager sharedManager].enableDebugging = YES;

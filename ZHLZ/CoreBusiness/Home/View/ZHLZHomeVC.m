@@ -126,9 +126,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if ([ZHLZUserManager sharedInstance].isLogin) {
-        [self loadData];
-    }
+    [self loadData];
 }
 
 - (void)loadData {

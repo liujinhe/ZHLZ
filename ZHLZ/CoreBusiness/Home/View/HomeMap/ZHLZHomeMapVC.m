@@ -10,21 +10,23 @@
 #import "ZHLZHomeMapVM.h"
 #import "ZHLZHomeMapModel.h"
 
-#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <MAMapKit/MAMapKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 
 static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
-@interface ZHLZHomeMapVC () <MAMapViewDelegate, AMapLocationManagerDelegate, AMapSearchDelegate>
+@interface ZHLZHomeMapVC () <MAMapViewDelegate, AMapSearchDelegate>
+{
+    MACoordinateRegion _limitRegion;
+    MAMapRect _limitMapRect;
+}
 
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) AMapLocationManager *locationManager;
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) AMapDistrictSearchRequest *dist;
 
-@property (nonatomic, strong) NSMutableArray *annotations;
+@property (nonatomic, strong) NSMutableArray<MAPointAnnotation *> *annotationArray;
 
 @end
 
@@ -37,36 +39,40 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     
     [self configMapView];
     
-    [self configLocationManager];
-    
     [self configSearch];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    self.mapView.limitRegion = _limitRegion;
+    self.mapView.limitMapRect = _limitMapRect;
+    self.mapView.visibleMapRect = _limitMapRect;
     
     [self loadHomeMapData];
 }
 
 - (void)configMapView {
-    [AMapServices sharedServices].apiKey = AMapKeyConst;
-    [AMapServices sharedServices].enableHTTPS = YES;
+    CLLocationCoordinate2D defaultLocationCoordinate = CLLocationCoordinate2DMake(AMapDefaultLatitudeConst, AMapDefaultLongitudeConst);
     
-    self.mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
-    self.mapView.delegate = self;
+    // 限制地图的显示范围
+    _limitRegion = MACoordinateRegionMake(defaultLocationCoordinate, MACoordinateSpanMake(2, 2));
+    _limitMapRect = MAMapRectForCoordinateRegion(_limitRegion);
+    
+    self.mapView = [[MAMapView alloc] initWithFrame:self.view.frame];
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.mapView.delegate = self;
+    self.mapView.showsCompass = YES;
+    self.mapView.rotateEnabled = NO;
+    self.mapView.rotateCameraEnabled = NO;
+    self.mapView.centerCoordinate = defaultLocationCoordinate;
     [self.view addSubview:self.mapView];
-}
-
-- (void)configLocationManager {
-    self.locationManager = [[AMapLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.pausesLocationUpdatesAutomatically = NO;
-    self.locationManager.allowsBackgroundLocationUpdates = YES;
-    
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)configSearch {
     self.search = [[AMapSearchAPI alloc] init];
     self.search.delegate = self;
-    
+
     self.dist = [[AMapDistrictSearchRequest alloc] init];
     self.dist.requireExtension = YES;
     [self.search AMapDistrictSearch:self.dist];
@@ -77,17 +83,23 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray) {
         @strongify(self);
         
-        self.annotations = @[].mutableCopy;
+        if (self.annotationArray && self.annotationArray.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mapView removeAnnotations:self.annotationArray];
+            });
+        }
+        self.annotationArray = @[].mutableCopy;
         for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
             MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-            pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.lonY.doubleValue,
-                                                                    homeMapModel.latX.doubleValue);
-            pointAnnotation.lockedToScreen = YES;
-            pointAnnotation.title = homeMapModel.problemDet?:@"";
-            [self.annotations addObject:pointAnnotation];
-            
-            [self.mapView addAnnotations:self.annotations];
-            [self.mapView showAnnotations:self.annotations edgePadding:UIEdgeInsetsMake(20, 20, 20, 80) animated:YES];
+            pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.lonY, homeMapModel.latX);
+            pointAnnotation.title = homeMapModel.problemType?:@"";
+            pointAnnotation.subtitle = homeMapModel.problemDet?:@"";
+            [self.annotationArray addObject:pointAnnotation];
+        }
+        if (self.annotationArray && self.annotationArray.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mapView addAnnotations:self.annotationArray];
+            });
         }
     }];
 }
@@ -103,38 +115,24 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-        annotationView.draggable = YES;
-        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        annotationView.pinColor = [self.annotations indexOfObject:annotation] % 3;
+        annotationView.image = [UIImage imageNamed:@"luqiao_green"];
+        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
+        annotationView.centerOffset = CGPointMake(0, -8);
         return annotationView;
     }
     return nil;
 }
 
-#pragma mark - AMapLocationManagerDelegate
-
-- (void)amapLocationManager:(AMapLocationManager *)manager doRequireLocationAuth:(CLLocationManager *)locationManager {
-    
-}
-
-- (void)amapLocationManager:(AMapLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"%s, amapLocationManager = %@, error = %@", __func__, [manager class], error);
-}
-
-- (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location {
-    NSLog(@"location:{lat:%f; lon:%f; accuracy:%f}", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
-}
-
 #pragma mark - AMapSearchDelegate
 
-- (void)onDistrictSearchDone:(AMapDistrictSearchRequest *)request response:(AMapDistrictSearchResponse *)response {
-    if (response == nil) {
-        return;
-    }
-}
-
-- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error {
-    NSLog(@"Error: %@", error.localizedDescription);
-}
+//- (void)onDistrictSearchDone:(AMapDistrictSearchRequest *)request response:(AMapDistrictSearchResponse *)response {
+//    if (response == nil) {
+//        return;
+//    }
+//}
+//
+//- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error {
+//    NSLog(@"Error: %@", error.localizedDescription);
+//}
 
 @end

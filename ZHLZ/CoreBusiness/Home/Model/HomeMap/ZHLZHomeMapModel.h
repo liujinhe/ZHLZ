@@ -39,10 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *isnoticesend;
 @property (nonatomic, copy) NSString *isnoticesendname;
 @property (nonatomic, copy) NSString *jw;
-@property (nonatomic, copy) NSString *latX; // 经度
+@property (nonatomic, assign) double latX; // 经度
 @property (nonatomic, copy) NSString *licensingIssue;
 @property (nonatomic, copy) NSString *licensingMatter;
-@property (nonatomic, copy) NSString *lonY; // 纬度
+@property (nonatomic, assign) double lonY; // 纬度
 @property (nonatomic, copy) NSString *mailTime;
 @property (nonatomic, copy) NSString *noticeType;
 @property (nonatomic, copy) NSString *orgid;

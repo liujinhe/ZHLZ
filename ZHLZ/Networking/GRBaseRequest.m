@@ -182,7 +182,7 @@ NSString * const GRRequestValidationErrorDomain = @"com.zhlz.request.validation"
 
 - (BOOL)statusCodeValidator {
     NSInteger statusCode = [self responseStatusCode];
-    return (statusCode >= 200 && statusCode <= 299);
+    return (statusCode >= 200 && statusCode <= 500);
 }
 
 #pragma mark - NSObject

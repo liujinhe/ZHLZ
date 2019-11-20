@@ -44,8 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, strong, readonly, nullable) GRRequest *failedRequest;
 @property (nonatomic, strong, readonly, nullable) GRResponse *failedRequest;
 
-//- (instancetype)initWithRequestArray:(NSArray<GRRequest *> *)requestArray;
-- (instancetype)initWithRequestArray:(NSArray<GRResponse *> *)requestArray;
+- (instancetype)initWithRequestArray:(NSArray<GRRequest *> *)requestArray;
 
 - (void)setCompletionBlockWithSuccess:(nullable void (^)(GRBatchRequest *batchRequest))success
                               failure:(nullable void (^)(GRBatchRequest *batchRequest))failure;

@@ -32,13 +32,13 @@
     [self startWithCompletionBlockWithSuccess:^(GRBatchRequest * _Nonnull batchRequest) {
         NSMutableArray<GRResponse *> *responseArray = @[].mutableCopy;
         for (GRRequest *request in batchRequest.requestArray) {
-            if (request && request.responseObject) {
-                [responseArray addObject:[GRResponse modelWithJSON:request.responseObject]];
+            GRResponse *response = [GRResponse new];
+            response.request = request;
+            if (response && response.status == 500) { // token 失效
+                [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
+                return;
             }
-        }
-        if (batchRequest.requestAccessories) { // token 失效
-            [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
-            return;
+            [responseArray addObject:response];
         }
         success(responseArray.copy);
         
