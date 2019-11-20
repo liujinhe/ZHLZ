@@ -90,7 +90,9 @@
     if (cell == nil) {
         cell = [[ZHLZHomeBuildProjectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-
+    
+    cell.homeBuildProjectModel  = self.homeBuildProjectModelArray[indexPath.row];
+    
     return cell;
  }
 
@@ -99,6 +101,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
+    homeBuildProjectDetailVC.isEdit = YES;
+    [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 
 }
 

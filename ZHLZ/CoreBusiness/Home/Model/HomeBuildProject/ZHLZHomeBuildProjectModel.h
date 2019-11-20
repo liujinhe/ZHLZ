@@ -71,6 +71,61 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHLZHomeBuildProjectModel : ZHLZBaseModel
 
 @property (nonatomic , strong) NSString *a;
+@property (nonatomic , strong) NSString *approverId;
+@property (nonatomic , strong) NSString *approverName;
+@property (nonatomic , strong) NSString *area;
+@property (nonatomic , strong) NSString *areaid;
+@property (nonatomic , strong) NSString *b;
+@property (nonatomic , strong) NSString *belong;
+@property (nonatomic , strong) NSString *bid;
+@property (nonatomic , strong) NSString *bidName;
+@property (nonatomic , strong) NSString *builderCharger;
+@property (nonatomic , strong) NSString *builderId;
+@property (nonatomic , strong) NSString *builderName;
+@property (nonatomic , strong) NSString *builderPhone;
+@property (nonatomic , strong) NSString *c;
+@property (nonatomic , strong) NSString *constructorChanger;
+@property (nonatomic , strong) NSString *constructorId;
+@property (nonatomic , strong) NSString *constructorName;
+@property (nonatomic , strong) NSString *constructorPhone;
+@property (nonatomic , strong) NSString *coordinatesX;
+@property (nonatomic , strong) NSString *coordinatesXs;
+@property (nonatomic , strong) NSString *coordinatesY;
+@property (nonatomic , strong) NSString *coordinatesYs;
+@property (nonatomic , strong) NSString *createdate;
+@property (nonatomic , strong) NSString *d;
+@property (nonatomic , strong) NSString *e;
+@property (nonatomic , strong) NSString *enddateNew;
+@property (nonatomic , strong) NSString *f;
+@property (nonatomic , strong) NSString *finishdate;
+@property (nonatomic , strong) NSString *focuson;
+@property (nonatomic , strong) NSString *frequency;
+@property (nonatomic , strong) NSString *frequencyName;
+@property (nonatomic , strong) NSString *g;
+@property (nonatomic , strong) NSString *h;
+@property (nonatomic , strong) NSString *i;
+@property (nonatomic , strong) NSString *j;
+@property (nonatomic , strong) NSString *k;
+@property (nonatomic , strong) NSString *l;
+@property (nonatomic , strong) NSString *licenseId;
+@property (nonatomic , strong) NSString *name;
+@property (nonatomic , strong) NSString *noNew;
+@property (nonatomic , strong) NSString *position;
+@property (nonatomic , strong) NSString *practicaldate;
+@property (nonatomic , strong) NSString *practicaldatetos;
+@property (nonatomic , strong) NSString *projStatus;
+@property (nonatomic , strong) NSString *projectno;
+@property (nonatomic , strong) NSString *projectstatusId;
+@property (nonatomic , strong) NSString *projecttypeId;
+@property (nonatomic , strong) NSString *pronum;
+@property (nonatomic , strong) NSString *remark;
+@property (nonatomic , strong) NSString *selVal;
+@property (nonatomic , strong) NSString *statusName;
+@property (nonatomic , strong) NSString *typeName;
+@property (nonatomic , strong) NSString *uploadId;
+@property (nonatomic , strong) NSString *uuid;
+@property (nonatomic , strong) NSString *yq;
+
 
 @end
 

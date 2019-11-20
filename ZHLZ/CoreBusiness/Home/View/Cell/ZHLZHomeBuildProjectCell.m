@@ -9,7 +9,11 @@
 #import "ZHLZHomeBuildProjectCell.h"
 
 @interface ZHLZHomeBuildProjectCell()
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
+@property (weak, nonatomic) IBOutlet UILabel *projectNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *projectPlaceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *projectTimeLabel;
 
 
 @end
@@ -21,6 +25,26 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.bgView.layer.cornerRadius = 10.0f;
+}
+
+-(void)setHomeBuildProjectModel:(ZHLZHomeBuildProjectModel *)homeBuildProjectModel {
+    if (!homeBuildProjectModel) {
+        return;
+    }
+    
+    
+    if ([homeBuildProjectModel.name isNotBlank]) {
+        self.projectNameLabel.text = homeBuildProjectModel.name;
+    }
+    
+    if ([homeBuildProjectModel.position isNotBlank]) {
+        self.projectPlaceLabel.text = homeBuildProjectModel.position;
+    }
+    
+    self.projectTimeLabel.text = [NSString stringWithFormat:@"%@ %@",homeBuildProjectModel.bidName , homeBuildProjectModel.enddateNew];
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

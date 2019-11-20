@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHLZHomeBuildProjectModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBuildProjectCell : UITableViewCell
+
+@property (nonatomic , strong) ZHLZHomeBuildProjectModel *homeBuildProjectModel;
 
 @end
 

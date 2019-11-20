@@ -13,6 +13,8 @@
 		18254FFD2382E67100C8CC14 /* ZHLZHomeSafeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18254FFB2382E67100C8CC14 /* ZHLZHomeSafeCell.xib */; };
 		182550012382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18254FFF2382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m */; };
 		182550022382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182550002382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.xib */; };
+		18AE316C2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AE316A2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m */; };
+		18AE316D2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AE316B2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib */; };
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */; };
@@ -197,6 +199,9 @@
 		18254FFE2382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZHomeSafeProblemCell.h; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeSafeProblemCell.h; sourceTree = SOURCE_ROOT; };
 		18254FFF2382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeSafeProblemCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeSafeProblemCell.m; sourceTree = SOURCE_ROOT; };
 		182550002382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZHomeSafeProblemCell.xib; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeSafeProblemCell.xib; sourceTree = SOURCE_ROOT; };
+		18AE31692384331B00CBB278 /* ZHLZProjectDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZProjectDetailTableViewCell.h; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		18AE316A2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZProjectDetailTableViewCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		18AE316B2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZProjectDetailTableViewCell.xib; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1058,6 +1063,9 @@
 				18254FF42382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.h */,
 				18254FF52382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m */,
 				18254FF62382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib */,
+				18AE31692384331B00CBB278 /* ZHLZProjectDetailTableViewCell.h */,
+				18AE316A2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m */,
+				18AE316B2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib */,
 			);
 			path = HomeBuildProject;
 			sourceTree = "<group>";
@@ -1575,6 +1583,7 @@
 			files = (
 				A557506023828DBD00B24FC4 /* ZHLZAddressBookCell.xib in Resources */,
 				A557505623828DBD00B24FC4 /* ZHLZBookListVC.xib in Resources */,
+				18AE316D2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib in Resources */,
 				A557501A23828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.xib in Resources */,
 				A557502523828DBD00B24FC4 /* ZHLZHomeSafeProblemVC.xib in Resources */,
 				A557501D23828DBD00B24FC4 /* ZHLZHomeBusinessDocumentVC.xib in Resources */,
@@ -1816,6 +1825,7 @@
 				A5574FF423828DBD00B24FC4 /* GRChainRequest.m in Sources */,
 				A557503F23828DBD00B24FC4 /* ZHLZHelpVC.m in Sources */,
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
+				18AE316C2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m in Sources */,
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,
 				A557506E23828DBD00B24FC4 /* ZHLZNavigationController.m in Sources */,
