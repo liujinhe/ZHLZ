@@ -8,11 +8,16 @@
 
 #import "ZHLZHomeBusinessDocumentVC.h"
 #import "ZHLZBusinessDocumentCell.h"
+#import "ZHLZHomeBusinessDocumentVM.h"
+
 
 @interface ZHLZHomeBusinessDocumentVC ()<UITableViewDataSource , UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *businessDocumentTableView;
 
+@property (nonatomic , assign) NSInteger pageNum;
+
+@property (nonatomic , strong) NSMutableArray <ZHLZHomeBusinessDocumentModel *> *businessDocumentModelArray;
 
 @end
 
@@ -22,10 +27,26 @@
     [super viewDidLoad];
     
     [self laodBusinessDocumentView];
+    
+    [self homeBusinessDocumentData];
 }
+
+- (void)homeBusinessDocumentData {
+    self.task  = [[ZHLZHomeBusinessDocumentVM sharedInstance] loadHomeBusinessDocumentDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBusinessDocumentModel *> * _Nonnull homeBusinessDocumentModel) {
+        
+        self.businessDocumentModelArray = homeBusinessDocumentModel.mutableCopy;
+        
+        [self.businessDocumentTableView reloadData];
+    }];
+}
+
 
 - (void)laodBusinessDocumentView{
     self.title = @"业务文件";
+    
+    self.pageNum = 1;
+    
+    self.businessDocumentModelArray = [NSMutableArray <ZHLZHomeBusinessDocumentModel *> new];
     
     self.businessDocumentTableView.dataSource = self;
     self.businessDocumentTableView.delegate = self;
@@ -39,7 +60,7 @@
 #pragma mark --UITableView 代理
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 9;
+    return self.businessDocumentModelArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,6 +73,8 @@
         cell = [[ZHLZBusinessDocumentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
+    cell.homeBusinessDocumentModel = self.businessDocumentModelArray[indexPath.row];
+    
     return cell;
  }
 
@@ -63,6 +86,5 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
-
 
 @end

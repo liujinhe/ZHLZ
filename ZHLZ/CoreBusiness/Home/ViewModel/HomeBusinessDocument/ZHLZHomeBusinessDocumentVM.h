@@ -7,10 +7,16 @@
 //
 
 #import "ZHLZBaseVM.h"
+#import "ZHLZHomeBusinessDocumentModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN 
 
 @interface ZHLZHomeBusinessDocumentVM : ZHLZBaseVM
+
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadHomeBusinessDocumentDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeBusinessDocumentModel *> *homeBusinessDocumentModel))block;
+
 
 @end
 

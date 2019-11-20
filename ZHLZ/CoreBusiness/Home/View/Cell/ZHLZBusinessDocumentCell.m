@@ -22,10 +22,18 @@
     // Initialization code
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    self.fileNameLabel.text = @"InitializationcodeInitializationcodeInitializationcode";
-    self.fileSizeLabel.text = @"32 kb";
 }
+
+- (void)setHomeBusinessDocumentModel:(ZHLZHomeBusinessDocumentModel *)homeBusinessDocumentModel{
+    if (!homeBusinessDocumentModel) {
+           return;
+       }
+       
+       self.fileNameLabel.text = homeBusinessDocumentModel.fileName;
+       self.fileSizeLabel.text = [NSString stringWithFormat:@"%@ KB",homeBusinessDocumentModel.fileSize];
+}
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -9,6 +9,7 @@
 #import "ZHLZHomeBuildProjectCell.h"
 
 @interface ZHLZHomeBuildProjectCell()
+
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @property (weak, nonatomic) IBOutlet UILabel *projectNameLabel;
