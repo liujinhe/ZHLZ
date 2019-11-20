@@ -28,7 +28,7 @@
                              HomeBulletinAPIURLConst,
                              HomeOccupyProblemAPIURLConst,
                              HomeMunicipalProblemAPIURLConst];
-    NSArray *isLoadListArray = @[@(YES),
+    NSArray *isLoadListArray = @[@(NO),
                                  @(YES),
                                  @(YES),
                                  @(YES)];
