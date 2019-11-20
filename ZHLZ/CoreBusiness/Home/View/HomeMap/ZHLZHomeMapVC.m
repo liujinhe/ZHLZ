@@ -14,6 +14,8 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 
+#import "ZHLZHomeMapSearchVC.h"
+
 static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 @interface ZHLZHomeMapVC () <MAMapViewDelegate, AMapSearchDelegate>
@@ -26,8 +28,11 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) AMapDistrictSearchRequest *dist;
 
+@property (nonatomic, strong) ZHLZHomeMapSearchVC *homeMapSearchVC;
+
 @property (nonatomic, strong) UIButton *gpsButton;
 
+@property (nonatomic, strong) NSArray<ZHLZHomeMapModel *> *homeMapArray;
 @property (nonatomic, strong) NSMutableArray<MAPointAnnotation *> *annotationArray;
 
 @end
@@ -55,6 +60,12 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 }
 
 - (void)configMapView {
+    self.homeMapArray = @[];
+    
+    [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
+    
+    self.homeMapSearchVC = [ZHLZHomeMapSearchVC new];
+    
     CLLocationCoordinate2D defaultLocationCoordinate = CLLocationCoordinate2DMake(AMapDefaultLatitudeConst, AMapDefaultLongitudeConst);
     
     // 限制地图的显示范围
@@ -148,6 +159,33 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     }];
 }
 
+/// 获取图标
+/// @param typeName 工程类型名称
+/// @param focuson 是否重点（1-重点  2-非重点）
+/// @param finishdate 预计完工时间（0<=day<15）
+/// @param pronum 问题数量（大于0：红色，否则：绿色）
+- (NSString *)getImageNameWithTypeName:(NSString *)typeName withFocuson:(NSInteger)focuson withFinishdate:(NSTimeInterval)finishdate withPronum:(NSInteger)pronum {
+    NSString *color = @"";
+    if (pronum == 0) {
+        color = @"green";
+    } else {
+        color = @"red";
+    }
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:finishdate];
+    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:date];
+    int day = ((int)time) / (3600 * 24);
+    if (day < 15 && day >= 0) {
+        color = @"yellow";
+    }
+    NSString *tag = @"";
+    if (focuson == 1) {
+        tag = @"1";
+    } else {
+        tag = @"2";
+    }
+    return [NSString stringWithFormat:@"%@_%@_%@", typeName, color, tag];
+}
+
 #pragma mark - Action
 
 - (void)gpsAction {
@@ -169,6 +207,12 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     self.mapView.showsScale = NO;
 }
 
+- (void)searchAction {
+    [self presentViewController:self.homeMapSearchVC animated:NO completion:^{
+        [self.homeMapSearchVC showFilterView];
+    }];
+}
+
 #pragma mark - MAMapViewDelegate
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
@@ -180,9 +224,13 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-        annotationView.image = [UIImage imageNamed:@"dianli_green_1"];
+        ZHLZHomeMapModel *homeMapModel = self.homeMapArray[[self.annotationArray indexOfObject:annotation]];
+        annotationView.image = [UIImage imageNamed:[self getImageNameWithTypeName:homeMapModel.typeName
+                                                                      withFocuson:homeMapModel.focuson
+                                                                   withFinishdate:homeMapModel.finishdate.time
+                                                                       withPronum:homeMapModel.pronum]];
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -8);
+        annotationView.centerOffset = CGPointMake(0, -7.5);
         return annotationView;
     }
     return nil;

@@ -73,6 +73,13 @@
                                                           forState:UIControlStateNormal];
 }
 
+- (void)addRightBarButtonItemWithImageName:(NSString *)imageName action:(nullable SEL)action {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:action];
+}
+
 #pragma mark - getter and setter
 
 - (void)setTask:(__kindof NSURLSessionTask *)task {

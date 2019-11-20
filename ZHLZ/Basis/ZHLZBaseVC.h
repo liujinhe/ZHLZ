@@ -44,6 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param action 触发事件
 - (void)addRightBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action;
 
+
+/// 添加导航栏右侧按钮
+/// @param imageName 图标
+/// @param action 触发事件
+- (void)addRightBarButtonItemWithImageName:(NSString *)imageName action:(nullable SEL)action;
+
 @end
 
 NS_ASSUME_NONNULL_END

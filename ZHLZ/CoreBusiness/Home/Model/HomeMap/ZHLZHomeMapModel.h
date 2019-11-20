@@ -67,6 +67,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *uploadId;
 @property (nonatomic, copy) NSString *username;
 
+
+@property (nonatomic, copy) NSString *typeName;
+@property (nonatomic, assign) NSInteger focuson;
+@property (nonatomic, strong) ZHLZHomeTimeModel *finishdate;
+@property (nonatomic, assign) NSInteger pronum;
+
 @end
 
 NS_ASSUME_NONNULL_END

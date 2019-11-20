@@ -40,4 +40,6 @@
 
 #import "ZHLZUserManager.h"
 
+#import "UIViewController+modalPresentationStyle.h"
+
 #endif /* PrefixHeader_pch */
