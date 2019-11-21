@@ -7,6 +7,7 @@
 //
 
 #import "ZHLZHomeMapSearchVC.h"
+#import "ZHLZPickerViewVC.h"
 
 CGFloat const FilterViewAnimationTimeConst = 0.35f;
 
@@ -23,6 +24,8 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 @property (weak, nonatomic) IBOutlet UIButton *bigTeamButton;
 @property (weak, nonatomic) IBOutlet UIButton *projectTypeButton;
 
+@property (nonatomic, strong) ZHLZPickerViewVC *pickerViewVC;
+
 @end
 
 @implementation ZHLZHomeMapSearchVC
@@ -37,22 +40,24 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(hideFilterView)]];
+    
+    self.pickerViewVC = [ZHLZPickerViewVC new];
 }
 
 - (IBAction)picLayerAction {
-    
+    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)colorAction {
-    
+    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)bigTeamAction {
-    
+    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)projectTypeAction {
-    
+    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
 }
 
 - (void)filterAnimation:(BOOL)isHidden {
