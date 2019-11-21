@@ -14,12 +14,12 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
-    self.backgroundColor = kHexRGB(0xf7f7f7);
+    self.backgroundColor = [UIColor whiteColor];
     self.font = [UIFont fontWithName:@"Arial" size:16.0f];
     self.textColor = [UIColor blackColor];
     self.layer.cornerRadius = 5.0f;
     self.layer.borderWidth = 1.0f;
-    self.layer.borderColor = kHexRGB(0xE5E5E5).CGColor;
+    self.layer.borderColor = kHexRGB(0xF7F7F7).CGColor;
     
 }
 

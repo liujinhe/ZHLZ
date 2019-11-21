@@ -9,9 +9,8 @@
 #import "ZHLZHomeBuildProjectDetailVC.h"
 #import "ZHLZProjectDetailTableViewCell.h"
 
-@interface ZHLZHomeBuildProjectDetailVC ()<UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeBuildProjectDetailVC ()
 
-@property (weak, nonatomic) IBOutlet UITableView *buildProjectDetailTableView;
 
 @end
 
@@ -37,37 +36,7 @@
     } else {
         self.title = @"新增在建项目";
     }
-    
-    self.buildProjectDetailTableView.dataSource = self;
-    self.buildProjectDetailTableView.delegate = self;
-    self.buildProjectDetailTableView.backgroundColor = kHexRGB(0xf7f7f7);
-    
-    self.buildProjectDetailTableView.showsVerticalScrollIndicator = NO;
-    
-    [self.buildProjectDetailTableView registerNib:[UINib nibWithNibName:@"ZHLZProjectDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"ZHLZProjectDetailTableViewCell"];
 }
 
-#pragma mark --UITableView 代理
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 9;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    static NSString *cellID = @"ZHLZProjectDetailTableViewCell";
-
-    ZHLZProjectDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
-    if (cell == nil) {
-        cell = [[ZHLZProjectDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    
-    return cell;
- }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
 
 @end

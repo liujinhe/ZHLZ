@@ -9,6 +9,7 @@
 #import "ZHLZHomeSafeProblemVC.h"
 #import "ZHLZHomeSafeProblemCell.h"
 #import "ZHLZHomeSafeProblemVM.h"
+#import "ZHLZHomeSafeProblemDetailVC.h"
 
 @interface ZHLZHomeSafeProblemVC ()<UITableViewDataSource , UITableViewDelegate>
 
@@ -33,7 +34,8 @@
 }
 
 - (void)addAction {
-    
+    ZHLZHomeSafeProblemDetailVC *homeSafeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
+    [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
 
 - (void)loadHomeSafeProblemData{

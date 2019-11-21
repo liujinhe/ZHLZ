@@ -9,7 +9,7 @@
 #import "ZHLZHomeSafeVC.h"
 #import "ZHLZHomeSafeCell.h"
 #import "ZHLZHomeSafeVM.h"
-
+#import "ZHLZHomeSafeDetailVC.h"
 
 @interface ZHLZHomeSafeVC ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -34,7 +34,8 @@
 }
 
 - (void)addAction {
-    
+    ZHLZHomeSafeDetailVC *homeSafeDetailVC = [ZHLZHomeSafeDetailVC new];
+    [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
 }
 
 - (void)loadHomeSafeList{
