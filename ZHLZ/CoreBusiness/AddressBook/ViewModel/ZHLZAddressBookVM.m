@@ -18,7 +18,7 @@
     return addressBookVM;
 }
 
-- (NSURLSessionTask *)loadListWithType:(NSInteger)type withPageNum:(NSInteger)page CallBack:(void (^)(NSDictionary *parms))block{
+- (NSURLSessionTask *)loadListWithType:(NSInteger)type withPageNum:(NSInteger)page andSearchKeyString:(NSString *)searchString CallBack:(void (^)(NSDictionary *parms))block{
     
     NSString *requestString = @"";
     switch (type) {
@@ -52,8 +52,17 @@
         default:
             break;
     }
+    
+    NSMutableDictionary *parms = [NSMutableDictionary new];
+    [parms setValue:@(page) forKey:@"page"];
+    [parms setValue:@(10) forKey:@"limit"];
+    [parms setValue:@"desc" forKey:@"order"];
+    [parms setValue:@"" forKey:@"sidx"];
+    if ([searchString isNotBlank]) {
+        [parms setValue:searchString forKey:@"name"];
+    }
 
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:@{@"page":@(page),@"limit":@(10),@"order":@"desc",@"sidx":@""}];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:parms];
     baseVM.isList = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block(response.data);

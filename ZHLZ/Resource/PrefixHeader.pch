@@ -37,6 +37,7 @@
 #import "GRToast.h"
 #import "ZHLZButton.h"
 #import "ZHLZTextField.h"
+#import "ZHLZTextView.h"
 
 #import "ZHLZUserManager.h"
 

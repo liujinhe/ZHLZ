@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeDetailVC : ZHLZBaseVC
 
-@property (nonatomic , assign) BOOL isAdd;
+@property (nonatomic , assign) NSInteger type; // 1新增 2查看 3编辑
 
 @end
 

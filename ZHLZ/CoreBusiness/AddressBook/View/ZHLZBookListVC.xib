@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZBookListVC">
             <connections>
                 <outlet property="bookListTableView" destination="3Vq-AR-TsZ" id="bBD-AH-H8p"/>
+                <outlet property="searchTextFile" destination="UN2-Jk-Oy5" id="jVQ-tS-cKy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,6 +35,9 @@
                                 <constraint firstAttribute="height" constant="33" id="43P-cq-Sg2"/>
                             </constraints>
                             <state key="normal" image="icon_search"/>
+                            <connections>
+                                <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="G8x-65-PuP"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

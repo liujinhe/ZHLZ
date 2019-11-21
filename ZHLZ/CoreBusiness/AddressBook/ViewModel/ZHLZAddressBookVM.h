@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 //查询列表
-- (NSURLSessionTask *)loadListWithType:(NSInteger)type withPageNum:(NSInteger)page CallBack:(void (^)(NSDictionary *parms))block;
+- (NSURLSessionTask *)loadListWithType:(NSInteger)type withPageNum:(NSInteger)page andSearchKeyString:(NSString *)searchString CallBack:(void (^)(NSDictionary *parms))block;
 
 
 //数据操作

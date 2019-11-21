@@ -34,6 +34,7 @@
 @interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextFile;
 
 
 @property (nonatomic , strong) NSMutableArray <MonadModelList *>*MonadModelArray;//责任单位
@@ -62,8 +63,16 @@
     [self loadAddressListData];
 }
 
+
+- (IBAction)searchAction:(UIButton *)sender {
+
+    self.pageNum = 1;
+    [self loadAddressListData];
+    
+}
+
 - (void)loadAddressListData{
-    self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex withPageNum:self.pageNum CallBack:^(NSDictionary * _Nonnull parms) {
+    self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex withPageNum:self.pageNum andSearchKeyString:self.searchTextFile.text CallBack:^(NSDictionary * _Nonnull parms) {
         
         if (self.bookListTableView.mj_header.isRefreshing) {
             [self.bookListTableView.mj_header endRefreshing];

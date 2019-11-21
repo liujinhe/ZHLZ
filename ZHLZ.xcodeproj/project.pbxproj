@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1811C7C423865E1700CEBDB1 /* ZHLZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811C7C323865E1700CEBDB1 /* ZHLZTextView.m */; };
+		1811C7C82386968C00CEBDB1 /* ZHLZAddCouncilorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811C7C62386968B00CEBDB1 /* ZHLZAddCouncilorVC.m */; };
+		1811C7C92386968C00CEBDB1 /* ZHLZAddCouncilorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811C7C72386968B00CEBDB1 /* ZHLZAddCouncilorVC.xib */; };
+		1811C7CD238696D800CEBDB1 /* ZHLZChosseStepVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811C7CB238696D800CEBDB1 /* ZHLZChosseStepVC.m */; };
+		1811C7CE238696D800CEBDB1 /* ZHLZChosseStepVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811C7CC238696D800CEBDB1 /* ZHLZChosseStepVC.xib */; };
 		18254FF72382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18254FF52382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m */; };
 		18254FF82382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18254FF62382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib */; };
 		18254FFC2382E67100C8CC14 /* ZHLZHomeSafeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18254FFA2382E67100C8CC14 /* ZHLZHomeSafeCell.m */; };
@@ -246,6 +250,12 @@
 /* Begin PBXFileReference section */
 		1811C7C223865E1700CEBDB1 /* ZHLZTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZTextView.h; sourceTree = "<group>"; };
 		1811C7C323865E1700CEBDB1 /* ZHLZTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZTextView.m; sourceTree = "<group>"; };
+		1811C7C52386968B00CEBDB1 /* ZHLZAddCouncilorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZAddCouncilorVC.h; sourceTree = "<group>"; };
+		1811C7C62386968B00CEBDB1 /* ZHLZAddCouncilorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZAddCouncilorVC.m; sourceTree = "<group>"; };
+		1811C7C72386968B00CEBDB1 /* ZHLZAddCouncilorVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZAddCouncilorVC.xib; sourceTree = "<group>"; };
+		1811C7CA238696D800CEBDB1 /* ZHLZChosseStepVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChosseStepVC.h; sourceTree = "<group>"; };
+		1811C7CB238696D800CEBDB1 /* ZHLZChosseStepVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChosseStepVC.m; sourceTree = "<group>"; };
+		1811C7CC238696D800CEBDB1 /* ZHLZChosseStepVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChosseStepVC.xib; sourceTree = "<group>"; };
 		18254FF42382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZHomeBuildProjectCell.h; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.h; sourceTree = SOURCE_ROOT; };
 		18254FF52382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeBuildProjectCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.m; sourceTree = SOURCE_ROOT; };
 		18254FF62382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZHomeBuildProjectCell.xib; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.xib; sourceTree = SOURCE_ROOT; };
@@ -1083,6 +1093,12 @@
 				189DAA4123862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.h */,
 				189DAA4223862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.m */,
 				189DAA4323862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib */,
+				1811C7C52386968B00CEBDB1 /* ZHLZAddCouncilorVC.h */,
+				1811C7C62386968B00CEBDB1 /* ZHLZAddCouncilorVC.m */,
+				1811C7C72386968B00CEBDB1 /* ZHLZAddCouncilorVC.xib */,
+				1811C7CA238696D800CEBDB1 /* ZHLZChosseStepVC.h */,
+				1811C7CB238696D800CEBDB1 /* ZHLZChosseStepVC.m */,
+				1811C7CC238696D800CEBDB1 /* ZHLZChosseStepVC.xib */,
 			);
 			path = HomeSafeProblem;
 			sourceTree = "<group>";
@@ -1855,10 +1871,12 @@
 				A557505523828DBD00B24FC4 /* ZHLZSpecialVC.xib in Resources */,
 				A5B19476238574FF00FF5080 /* yanghu_red_2.png in Resources */,
 				A5B1945D238574FF00FF5080 /* shuiwu_green_2.png in Resources */,
+				1811C7C92386968C00CEBDB1 /* ZHLZAddCouncilorVC.xib in Resources */,
 				18254FF82382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib in Resources */,
 				A557506723828DBD00B24FC4 /* Assets.xcassets in Resources */,
 				A5B1945E238574FF00FF5080 /* guidaojiaotong_yellow_2.png in Resources */,
 				A557502F23828DBD00B24FC4 /* ZHLZHomeVC.xib in Resources */,
+				1811C7CE238696D800CEBDB1 /* ZHLZChosseStepVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1984,6 +2002,7 @@
 				A557506C23828DBD00B24FC4 /* ZHLZBaseVC.m in Sources */,
 				A557502823828DBD00B24FC4 /* ZHLZHomeCRV.m in Sources */,
 				A557507523828DBD00B24FC4 /* ZHLZButton.m in Sources */,
+				1811C7CD238696D800CEBDB1 /* ZHLZChosseStepVC.m in Sources */,
 				A557506523828DBD00B24FC4 /* ZHLZExamineVC.m in Sources */,
 				189944F22384CC16009714F5 /* ZHLZBusinessDocumentCell.m in Sources */,
 				A54B2D1023861394004990C0 /* ZHLZPickerViewVC.m in Sources */,
@@ -2077,6 +2096,7 @@
 				A557507223828DBD00B24FC4 /* ZHLZUserManager.m in Sources */,
 				A5574FFA23828DBD00B24FC4 /* AppDelegate.m in Sources */,
 				A557504523828DBD00B24FC4 /* ZHLZMineCell.m in Sources */,
+				1811C7C82386968C00CEBDB1 /* ZHLZAddCouncilorVC.m in Sources */,
 				182550012382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m in Sources */,
 				A5574FEC23828DBD00B24FC4 /* GRChainRequest+RequestAccessory.m in Sources */,
 				A557501023828DBD00B24FC4 /* ZHLZHomeBulletinModel.m in Sources */,
