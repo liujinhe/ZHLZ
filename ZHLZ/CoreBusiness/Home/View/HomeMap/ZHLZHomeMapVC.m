@@ -22,6 +22,10 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 {
     MACoordinateRegion _limitRegion;
     MAMapRect _limitMapRect;
+    
+    NSString *_projectName;
+    NSString *_bid;
+    NSString *_projecttypeId;
 }
 
 @property (nonatomic, strong) MAMapView *mapView;
@@ -60,11 +64,20 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 }
 
 - (void)configMapView {
+    @weakify(self);
     self.homeMapArray = @[];
     
     [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
     
     self.homeMapSearchVC = [ZHLZHomeMapSearchVC new];
+    self.homeMapSearchVC.selectSearchBlock = ^(NSString * _Nonnull projectName, NSString * _Nonnull bid, NSString * _Nonnull projecttypeId) {
+        @strongify(self);
+        self->_projectName = projectName;
+        self->_bid = bid;
+        self->_projecttypeId = projecttypeId;
+        
+        [self loadHomeMapData];
+    };
     
     CLLocationCoordinate2D defaultLocationCoordinate = CLLocationCoordinate2DMake(AMapDefaultLatitudeConst, AMapDefaultLongitudeConst);
     
@@ -127,7 +140,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 - (void)configSearch {
     self.search = [[AMapSearchAPI alloc] init];
     self.search.delegate = self;
-
+    
     self.dist = [[AMapDistrictSearchRequest alloc] init];
     self.dist.requireExtension = YES;
     [self.search AMapDistrictSearch:self.dist];
@@ -135,7 +148,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 - (void)loadHomeMapData {
     @weakify(self);
-    self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray) {
+    self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithName:_projectName withBid:_bid withProjecttypeId:_projecttypeId withBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray) {
         @strongify(self);
         
         if (self.annotationArray && self.annotationArray.count > 0) {
@@ -145,11 +158,13 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         self.annotationArray = @[].mutableCopy;
         for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
-            MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-            pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.lonY, homeMapModel.latX);
-            pointAnnotation.title = homeMapModel.problemType?:@"";
-            pointAnnotation.subtitle = homeMapModel.problemDet?:@"";
-            [self.annotationArray addObject:pointAnnotation];
+            if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
+                MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+                pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesX, homeMapModel.coordinatesY);
+                pointAnnotation.title = homeMapModel.typeName?:@"";
+                pointAnnotation.subtitle = homeMapModel.name?:@"";
+                [self.annotationArray addObject:pointAnnotation];
+            }
         }
         if (self.annotationArray && self.annotationArray.count > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -160,11 +175,35 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 }
 
 /// 获取图标
-/// @param typeName 工程类型名称
+/// @param projecttypeId 工程类型（1-养护及其他 2-电力 3-路桥 4-燃气 5-轨道交通 6-水务 7-园林绿化）
 /// @param focuson 是否重点（1-重点  2-非重点）
 /// @param finishdate 预计完工时间（0<=day<15）
 /// @param pronum 问题数量（大于0：红色，否则：绿色）
-- (NSString *)getImageNameWithTypeName:(NSString *)typeName withFocuson:(NSInteger)focuson withFinishdate:(NSTimeInterval)finishdate withPronum:(NSInteger)pronum {
+- (NSString *)getImageNameWithProjecttypeId:(NSInteger)projecttypeId withFocuson:(NSInteger)focuson withFinishdate:(NSTimeInterval)finishdate withPronum:(NSInteger)pronum {
+    NSString *projecttype = @"marker";
+    switch (projecttypeId) {
+        case 1:
+            projecttype = @"yanghu";
+            break;
+        case 2:
+            projecttype = @"dianli";
+            break;
+        case 3:
+            projecttype = @"luqiao";
+            break;
+        case 4:
+            projecttype = @"ranqi";
+            break;
+        case 5:
+            projecttype = @"guidaojiaotong";
+            break;
+        case 6:
+            projecttype = @"shuiwu";
+            break;
+        case 7:
+            projecttype = @"yuanlinlvhua";
+            break;
+    }
     NSString *color = @"";
     if (pronum == 0) {
         color = @"green";
@@ -183,7 +222,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     } else {
         tag = @"2";
     }
-    return [NSString stringWithFormat:@"%@_%@_%@", typeName, color, tag];
+    return [NSString stringWithFormat:@"%@_%@_%@", projecttype, color, tag];
 }
 
 #pragma mark - Action
@@ -224,11 +263,16 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-        ZHLZHomeMapModel *homeMapModel = self.homeMapArray[[self.annotationArray indexOfObject:annotation]];
-        annotationView.image = [UIImage imageNamed:[self getImageNameWithTypeName:homeMapModel.typeName
-                                                                      withFocuson:homeMapModel.focuson
-                                                                   withFinishdate:homeMapModel.finishdate.time
-                                                                       withPronum:homeMapModel.pronum]];
+        NSUInteger index = [self.annotationArray indexOfObject:annotation];
+        ZHLZHomeMapModel *homeMapModel = self.homeMapArray[index];
+        if (!homeMapModel) {
+            return annotationView;
+        }
+        NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
+                                                    withFocuson:homeMapModel.focuson
+                                                 withFinishdate:homeMapModel.finishdate.time
+                                                     withPronum:homeMapModel.pronum];
+        annotationView.image = [UIImage imageNamed:imgName];
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -7.5);
         return annotationView;

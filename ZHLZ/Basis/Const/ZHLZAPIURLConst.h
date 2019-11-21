@@ -138,6 +138,13 @@ extern NSString * const SpecialOwnerUnitDeleteAPIURLConst;
 // 修改用户密码
 extern NSString * const ChangeUserPwdAPIURLConst;
 
+#pragma mark - API URL for Other
+
+// 所有部门（大队）
+extern NSString * const BrigadeAPIURLConst;
+// 工程类型
+extern NSString * const ProjectTypeAPIURLConst;
+
 @end
 
 NS_ASSUME_NONNULL_END

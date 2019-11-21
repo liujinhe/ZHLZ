@@ -34,7 +34,7 @@
     UITapGestureRecognizer *tapGesturRecognizer=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(workerInAction:)];
     [self.workerInView addGestureRecognizer:tapGesturRecognizer];
 
-    NSString *nowStr = [self getCurrentTimeyyyymmdd];
+//    NSString *nowStr = [self getCurrentTimeyyyymmdd];
 }
 
 -(void)workerInAction:(id)tap{

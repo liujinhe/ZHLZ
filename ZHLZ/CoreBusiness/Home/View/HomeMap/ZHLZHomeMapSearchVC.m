@@ -7,11 +7,17 @@
 //
 
 #import "ZHLZHomeMapSearchVC.h"
-#import "ZHLZPickerViewVC.h"
+#import "ZHLZBrigadePickerViewVC.h"
+#import "ZHLZProjectTypePickerViewVC.h"
 
 CGFloat const FilterViewAnimationTimeConst = 0.35f;
 
 @interface ZHLZHomeMapSearchVC ()
+{
+    NSString *_projectName;
+    NSString *_bid;
+    NSString *_projecttypeId;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIView *filterTopView;
@@ -24,13 +30,15 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 @property (weak, nonatomic) IBOutlet UIButton *bigTeamButton;
 @property (weak, nonatomic) IBOutlet UIButton *projectTypeButton;
 
-@property (nonatomic, strong) ZHLZPickerViewVC *pickerViewVC;
+@property (nonatomic, strong) ZHLZBrigadePickerViewVC *brigadePickerViewVC;
+@property (nonatomic, strong) ZHLZProjectTypePickerViewVC *projectTypePickerViewVC;
 
 @end
 
 @implementation ZHLZHomeMapSearchVC
 
 - (void)viewDidLoad {
+    @weakify(self);
     [super viewDidLoad];
     
     self.maskView.hidden = YES;
@@ -41,23 +49,53 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(hideFilterView)]];
     
-    self.pickerViewVC = [ZHLZPickerViewVC new];
+    self.brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
+    self.brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
+        @strongify(self);
+        
+        self->_bid = brigadeType;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.bigTeamButton setTitle:brigadeName forState:UIControlStateNormal];
+        });
+    };
+    
+    self.projectTypePickerViewVC = [ZHLZProjectTypePickerViewVC new];
+    self.projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull projectType, NSString * _Nonnull projectName) {
+        @strongify(self);
+        
+        self->_projecttypeId = projectType;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.projectTypeButton setTitle:projectName forState:UIControlStateNormal];
+        });
+    };
 }
 
 - (IBAction)picLayerAction {
-    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
+    
 }
 
 - (IBAction)colorAction {
-    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
+    
 }
 
-- (IBAction)bigTeamAction {
-    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
+- (IBAction)brigadeTeamAction {
+    [self presentViewController:self.brigadePickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)projectTypeAction {
-    [self presentViewController:self.pickerViewVC animated:NO completion:nil];
+    [self presentViewController:self.projectTypePickerViewVC animated:NO completion:nil];
+}
+
+- (IBAction)resetAction:(id)sender {
+    
+}
+
+- (IBAction)determineAction {
+    if (self.selectSearchBlock) {
+        self.selectSearchBlock(_projectName?:@"", _bid?:@"", _projecttypeId?:@"");
+    }
 }
 
 - (void)filterAnimation:(BOOL)isHidden {

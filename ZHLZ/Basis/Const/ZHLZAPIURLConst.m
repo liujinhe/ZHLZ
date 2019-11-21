@@ -34,7 +34,7 @@ NSString * const HomeBulletinInfoAPIURLConst = @"/app/maphome/info";
 NSString * const HomeOccupyProblemAPIURLConst = @"/app/mapproblem/listByMune";
 NSString * const HomeMunicipalProblemAPIURLConst = @"/app/mapinspection/listByMune/toMune";
 
-NSString * const MapDisplayAPIURLConst = @"/app/mapproject/ToMap";
+NSString * const MapDisplayAPIURLConst = @"/app/mapproject/ToMmap";
 
 NSString * const MunicipalProblemAPIURLConst = @"/app/mapinspection/list";
 NSString * const MunicipalProblemInfoAPIURLConst = @"/app/mapinspection/info";
@@ -127,5 +127,11 @@ NSString * const SpecialOwnerUnitDeleteAPIURLConst = @"/app/addressbooksowner/de
 #pragma mark - API URL for Mine
 
 NSString * const ChangeUserPwdAPIURLConst = @"/app/sys/user/password";
+
+#pragma mark - API URL for Other
+
+NSString * const BrigadeAPIURLConst = @"/organize/select";
+
+NSString * const ProjectTypeAPIURLConst = @"/getData/getCodeValues";
 
 @end

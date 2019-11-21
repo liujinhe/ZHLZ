@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isList;
 
+@property (nonatomic, assign) BOOL isRequestArgument;
+
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl;
 
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl

@@ -90,6 +90,21 @@
     }
 }
 
+- (void)setIsRequestArgument:(BOOL)isRequestArgument {
+    _isRequestArgument = isRequestArgument;
+    
+    if (_isRequestArgument && _requestParam) {
+        NSString *paramStr = @"";
+        for (NSString *key in ((NSDictionary *)_requestParam).allKeys) {
+            paramStr = [paramStr stringByAppendingFormat:@"%@=%@&", key, [_requestParam objectForKey:key]];
+        }
+        if ([paramStr isNotBlank]) {
+            _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+        }
+    }
+}
+
+
 - (NSURLSessionTask *)requestCompletionWithSuccess:(GRResponseCompletionBlock)success
                                        withFailure:(GRResponseCompletionBlock)failure {
     if (!self.isIgnoreLoading) {

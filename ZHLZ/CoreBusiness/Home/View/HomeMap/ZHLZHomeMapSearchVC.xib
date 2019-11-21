@@ -53,7 +53,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5R7-dr-Mc9">
                                     <rect key="frame" x="85" y="0.0" width="199" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="原始图层" image="arrow_right">
+                                    <state key="normal" title="请选择" image="arrow_right">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
@@ -163,7 +163,7 @@
                                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="bigTeamAction" destination="-1" eventType="touchUpInside" id="jus-Ch-nrf"/>
+                                        <action selector="brigadeTeamAction" destination="-1" eventType="touchUpInside" id="eBd-8q-GKE"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -231,6 +231,9 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="resetAction:" destination="-1" eventType="touchUpInside" id="sDL-KR-XlZ"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-H0-scA">
                             <rect key="frame" x="174.5" y="758" width="134.5" height="40"/>
@@ -242,6 +245,9 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="determineAction" destination="-1" eventType="touchUpInside" id="o8e-8y-ttz"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.77254901960784317" green="0.92549019607843142" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>

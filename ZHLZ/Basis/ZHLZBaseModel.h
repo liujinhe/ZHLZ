@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZBaseModel : NSObject
 
-@property (nonatomic, strong, nonnull) NSNumber *objectID;
+@property (nonatomic, strong, nonnull) NSString *objectID;
 
 @end
 

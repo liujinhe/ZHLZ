@@ -20,8 +20,10 @@
     return homeMapVM;
 }
 
-- (NSURLSessionTask *)loadHomeMapDataWithBlock:(void (^)(NSArray<ZHLZHomeMapModel *> *homeMapArray))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MapDisplayAPIURLConst];
+- (NSURLSessionTask *)loadHomeMapDataWithName:(NSString *)name withBid:(NSString *)bid withProjecttypeId:(NSString *)projecttypeId withBlock:(void (^)(NSArray<ZHLZHomeMapModel *> *homeMapArray))block {
+    id requestArgument = @{@"name": name?:@"", @"bid": bid?:@"", @"projecttypeId": projecttypeId?:@""};
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MapDisplayAPIURLConst withRequestArgument:requestArgument];
+    baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZHomeMapModel *> *homeMapArray = nil;
         if (response && response.data && [response.data objectForKey:@"list"]) {

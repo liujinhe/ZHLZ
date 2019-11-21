@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeMapSearchVC : ZHLZBaseVC
 
+@property (nonatomic, copy) void (^selectSearchBlock)(NSString *projectName, NSString *bid, NSString *projecttypeId);
+
 - (void)showFilterView;
 
 - (void)hideFilterView;

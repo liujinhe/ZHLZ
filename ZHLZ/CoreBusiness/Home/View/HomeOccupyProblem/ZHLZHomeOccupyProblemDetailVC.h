@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeOccupyProblemDetailVC : ZHLZBaseVC
 
-@property (nonatomic, strong) NSNumber *detailId;
+@property (nonatomic, strong) NSString *detailId;
 
 @end
 
