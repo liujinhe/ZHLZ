@@ -16,17 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self initHomeSafeDetailView];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initHomeSafeDetailView {
+    if (self.isAdd) {
+        self.title = @"新增安全(三防)台账";
+    } else {
+        self.title = @"查看安全(三防)台账";
+    }
+    
+    [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
 }
-*/
+
+- (void)editAction {
+    self.title = @"编辑安全(三防)台账";
+}
 
 @end

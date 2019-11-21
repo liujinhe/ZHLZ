@@ -35,6 +35,7 @@
 
 - (void)addAction {
     ZHLZHomeSafeProblemDetailVC *homeSafeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
+    homeSafeProblemDetailVC.isAdd = YES;
     [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
 
@@ -98,7 +99,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    ZHLZHomeSafeProblemDetailVC *homeSafeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
+    homeSafeProblemDetailVC.isAdd = NO;
+    [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
 
 

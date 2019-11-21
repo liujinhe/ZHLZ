@@ -22,20 +22,20 @@
     [self buildProjectDetailView];
 }
 
-- (void)editAction {
-    
-}
-
 - (void)buildProjectDetailView{
     
     if (self.isEdit) {
         
-        self.title = @"编辑在建项目";
+        self.title = @"查看在建项目";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
         
     } else {
         self.title = @"新增在建项目";
     }
+}
+
+-(void)editAction {
+    self.title = @"编辑在建项目";
 }
 
 

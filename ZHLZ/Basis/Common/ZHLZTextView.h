@@ -1,18 +1,16 @@
 //
-//  ZHLZHomeSafeProblemDetailVC.h
+//  ZHLZTextView.h
 //  ZHLZ
 //
 //  Created by apple on 2019/11/21.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import "ZHLZBaseVC.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHLZHomeSafeProblemDetailVC : ZHLZBaseVC
-
-@property (nonatomic , assign) BOOL isAdd;
+@interface ZHLZTextView : UITextView
 
 @end
 

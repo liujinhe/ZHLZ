@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1811C7C423865E1700CEBDB1 /* ZHLZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811C7C323865E1700CEBDB1 /* ZHLZTextView.m */; };
 		18254FF72382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18254FF52382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m */; };
 		18254FF82382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18254FF62382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib */; };
 		18254FFC2382E67100C8CC14 /* ZHLZHomeSafeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18254FFA2382E67100C8CC14 /* ZHLZHomeSafeCell.m */; };
@@ -243,6 +244,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1811C7C223865E1700CEBDB1 /* ZHLZTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZTextView.h; sourceTree = "<group>"; };
+		1811C7C323865E1700CEBDB1 /* ZHLZTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZTextView.m; sourceTree = "<group>"; };
 		18254FF42382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZHomeBuildProjectCell.h; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.h; sourceTree = SOURCE_ROOT; };
 		18254FF52382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeBuildProjectCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.m; sourceTree = SOURCE_ROOT; };
 		18254FF62382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZHomeBuildProjectCell.xib; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZHomeBuildProjectCell.xib; sourceTree = SOURCE_ROOT; };
@@ -1507,6 +1510,8 @@
 		A5574FD423828DBD00B24FC4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1811C7C223865E1700CEBDB1 /* ZHLZTextView.h */,
+				1811C7C323865E1700CEBDB1 /* ZHLZTextView.m */,
 				A5574FDC23828DBD00B24FC4 /* ZHLZButton.h */,
 				A5574FDE23828DBD00B24FC4 /* ZHLZButton.m */,
 				A5574FDD23828DBD00B24FC4 /* ZHLZTextField.h */,
@@ -2089,6 +2094,7 @@
 				A557504B23828DBD00B24FC4 /* ZHLZConstructionModel.m in Sources */,
 				189DAA49238635410049B5FF /* ZHLZHomeSafeDetailVC.m in Sources */,
 				A557507423828DBD00B24FC4 /* ZHLZUserModel.m in Sources */,
+				1811C7C423865E1700CEBDB1 /* ZHLZTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

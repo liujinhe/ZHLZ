@@ -35,6 +35,7 @@
 
 - (void)addAction {
     ZHLZHomeSafeDetailVC *homeSafeDetailVC = [ZHLZHomeSafeDetailVC new];
+    homeSafeDetailVC.isAdd = YES;
     [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
 }
 
@@ -99,7 +100,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    ZHLZHomeSafeDetailVC *homeSafeDetailVC = [ZHLZHomeSafeDetailVC new];
+    homeSafeDetailVC.isAdd = NO;
+    [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
 }
 
 
