@@ -40,9 +40,6 @@
 }
 
 - (void)initUI {
-    self.maskView.hidden = YES;
-    self.popView.hidden = YES;
-    
     self.array = @[];
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)]];
@@ -127,43 +124,6 @@
 
 - (void)setOrgId:(NSString *)orgId {
     _orgId = orgId;
-}
-
-#pragma mark - Public
-
-- (void)showFilterViewWithVC:(UIViewController *)vc {
-    [vc presentViewController:self animated:NO completion:^{
-        self.maskView.hidden = NO;
-        
-        [self filterAnimation:NO];
-    }];
-}
-
-- (void)hideFilterView {
-    [self filterAnimation:YES];
-    
-    [self performSelector:@selector(hideMaskView) withObject:nil afterDelay:PopAnimationDurationConst];
-}
-
-#pragma mark - Private
-
-- (void)filterAnimation:(BOOL)isHidden {
-    self.maskView.hidden = isHidden;
-    self.popView.hidden = isHidden;
-    
-    CATransition *animation = [CATransition animation];
-    // 设置动画的类型
-    animation.type = kCATransitionPush;
-    // 设置动画的方向
-    animation.subtype = isHidden ? kCATransitionFromBottom : kCATransitionFromTop;
-    animation.duration = PopAnimationDurationConst;
-    [self.popView.layer addAnimation:animation forKey:@"pushAnimation"];
-}
-
-- (void)hideMaskView {
-    self.maskView.hidden = YES;
-    
-    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

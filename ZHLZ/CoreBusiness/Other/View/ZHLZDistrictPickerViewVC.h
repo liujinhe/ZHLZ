@@ -14,10 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^selectPickerBlock)(NSString *districtType, NSString *districtName);
 
-- (void)showFilterViewWithVC:(UIViewController *)vc;
-
-- (void)hideFilterView;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,6 +11,8 @@
 #import "ZHLZProjectTypePickerViewVC.h"
 #import "ZHLZPickerViewVC.h"
 
+#import "ZHLZDatePickerVC.h"
+
 @interface ZHLZHomeMapSearchVC ()
 {
     NSInteger _picLayerIndex;
@@ -71,7 +73,7 @@
         [self.bigTeamButton setImage:[UIImage imageNamed:@"arrow_right"] forState:UIControlStateNormal];
     } else {
         self.bigTeamButton.userInteractionEnabled = NO;
-
+        
         self.bigTeamButton.selected = YES;
         [self.bigTeamButton setTitle:userModel.orgname forState:UIControlStateSelected];
         
@@ -130,20 +132,20 @@
 
 - (IBAction)picLayerAction {
     self.picLayerPickerViewVC.titleArray = @[@"原始图层", @"问题图层"];
-    [self.picLayerPickerViewVC showFilterViewWithVC:self];
+    [self presentViewController:self.picLayerPickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)colorAction {
     self.colorPickerViewVC.titleArray = @[@"绿色", @"红色", @"黄色"];
-    [self.colorPickerViewVC showFilterViewWithVC:self];
+    [self presentViewController:self.colorPickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)brigadeTeamAction {
-    [self.brigadePickerViewVC showFilterViewWithVC:self];
+    [self presentViewController:self.brigadePickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)projectTypeAction {
-    [self.projectTypePickerViewVC showFilterViewWithVC:self];
+    [self presentViewController:self.projectTypePickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)resetAction:(id)sender {
