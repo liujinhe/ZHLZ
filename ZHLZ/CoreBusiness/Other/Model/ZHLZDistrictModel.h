@@ -12,7 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZDistrictModel : ZHLZBaseModel
 
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *code;
+@property (nonatomic, strong) NSString *paraCode;
+@property (nonatomic, strong) NSString *paraId;
+@property (nonatomic, strong) NSString *paraKey;
+@property (nonatomic, strong) NSString *paraName;
+@property (nonatomic, strong) NSString *sortNo;
+@property (nonatomic, strong) NSString *state;
+@property (nonatomic, strong) NSString *value;
 
 @end
 

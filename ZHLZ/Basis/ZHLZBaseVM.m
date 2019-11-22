@@ -122,7 +122,7 @@
             case 0: // 成功
                 success(response);
                 break;
-            case 500: // token 失效
+            case 401: // 请先登录
                 [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
                 break;
             default:

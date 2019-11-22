@@ -71,7 +71,7 @@
         @strongify(self);
         ZHLZDistrictModel *model = self.array[self->_currentIndex];
         if (self.selectPickerBlock && model) {
-            self.selectPickerBlock(model.objectID, [model.objectID isNotBlank] ? model.name : @"请选择");
+            self.selectPickerBlock(model.code, [model.code isNotBlank] ? model.code : @"请选择");
         }
     }];
 }
@@ -112,7 +112,7 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.array[row].name?:@"";
+    return self.array[row].value?:@"";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {

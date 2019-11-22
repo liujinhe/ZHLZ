@@ -34,7 +34,7 @@
         for (GRRequest *request in batchRequest.requestArray) {
             GRResponse *response = [GRResponse new];
             response.request = request;
-            if (response && response.status == 500) { // token 失效
+            if (response && response.status == 401) { // 请先登录
                 [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
                 return;
             }

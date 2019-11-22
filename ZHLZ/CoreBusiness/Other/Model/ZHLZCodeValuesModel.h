@@ -1,8 +1,8 @@
 //
-//  ZHLZProjectTypeModel.h
+//  ZHLZCodeValuesModel.h
 //  ZHLZ
 //
-//  Created by liujinhe on 2019/11/21.
+//  Created by liujinhe on 2019/11/22.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHLZProjectTypeModel : ZHLZBaseModel
+@interface ZHLZCodeValuesModel : ZHLZBaseModel
 
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *paraCode;

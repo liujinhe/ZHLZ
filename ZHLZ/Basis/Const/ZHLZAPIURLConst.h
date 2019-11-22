@@ -142,8 +142,8 @@ extern NSString * const ChangeUserPwdAPIURLConst;
 
 // 所有部门（大队）
 extern NSString * const BrigadeAPIURLConst;
-// 工程类型
-extern NSString * const ProjectTypeAPIURLConst;
+// 公共字典下拉列表
+extern NSString * const CodeValuesAPIURLConst;
 
 @end
 

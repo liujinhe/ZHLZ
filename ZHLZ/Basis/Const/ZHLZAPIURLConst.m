@@ -132,6 +132,6 @@ NSString * const ChangeUserPwdAPIURLConst = @"/app/sys/user/password";
 
 NSString * const BrigadeAPIURLConst = @"/organize/select";
 
-NSString * const ProjectTypeAPIURLConst = @"/getData/getCodeValues";
+NSString * const CodeValuesAPIURLConst = @"/getData/getCodeValues";
 
 @end

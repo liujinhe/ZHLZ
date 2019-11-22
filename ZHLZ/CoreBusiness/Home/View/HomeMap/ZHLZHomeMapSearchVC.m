@@ -14,7 +14,6 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 
 @interface ZHLZHomeMapSearchVC ()
 {
-    NSString *_projectName;
     NSString *_bid;
     NSString *_projecttypeId;
 }
@@ -56,7 +55,8 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
         self->_bid = brigadeType;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.bigTeamButton setTitle:brigadeName forState:UIControlStateNormal];
+            self.bigTeamButton.selected = YES;
+            [self.bigTeamButton setTitle:brigadeName forState:UIControlStateSelected];
         });
     };
     
@@ -67,7 +67,8 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
         self->_projecttypeId = projectType;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.projectTypeButton setTitle:projectName forState:UIControlStateNormal];
+            self.projectTypeButton.selected = YES;
+            [self.projectTypeButton setTitle:projectName forState:UIControlStateSelected];
         });
     };
 }
@@ -89,12 +90,18 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 }
 
 - (IBAction)resetAction:(id)sender {
+    self.projectNameTextField.text = @"";
     
+    _bid = @"";
+    self.bigTeamButton.selected = NO;
+    
+    _projecttypeId = @"";
+    self.projectTypeButton.selected = NO;
 }
 
 - (IBAction)determineAction {
     if (self.selectSearchBlock) {
-        self.selectSearchBlock(_projectName?:@"", _bid?:@"", _projecttypeId?:@"");
+        self.selectSearchBlock(self.projectNameTextField.text?:@"", _bid?:@"", _projecttypeId?:@"");
     }
 }
 

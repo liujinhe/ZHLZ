@@ -61,7 +61,7 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 }
 
 - (NSURLSessionTask *)getDistrictWithBlock:(void(^)(NSArray<ZHLZDistrictModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:BrigadeAPIURLConst];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"blong"}];
     baseVM.isIgnoreLoading = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZDistrictModel *> *array = nil;
@@ -70,7 +70,7 @@ static NSString * const SelectDefaultValue = @"---请选择---";
         }
         if (array && array.count > 0) {
             ZHLZDistrictModel *model = [ZHLZDistrictModel new];
-            model.name = SelectDefaultValue;
+            model.value = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];
         }
         block(array);
@@ -80,8 +80,9 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 }
 
 - (NSURLSessionTask *)getProjectTypeWithBlock:(void(^)(NSArray<ZHLZProjectTypeModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ProjectTypeAPIURLConst];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"projecttype"}];
     baseVM.isIgnoreLoading = YES;
+    baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZProjectTypeModel *> *array = nil;
         if (response && response.data) {
@@ -89,7 +90,27 @@ static NSString * const SelectDefaultValue = @"---请选择---";
         }
         if (array && array.count > 0) {
             ZHLZProjectTypeModel *model = [ZHLZProjectTypeModel new];
-            model.name = SelectDefaultValue;
+            model.value = SelectDefaultValue;
+            array = [@[model] arrayByAddingObjectsFromArray:array];
+        }
+        block(array);
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+        block(nil);
+    }];
+}
+
+- (NSURLSessionTask *)getProjectStatusWithBlock:(void(^)(NSArray<ZHLZCodeValuesModel *> *array))block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"projectstatus"}];
+    baseVM.isIgnoreLoading = YES;
+    baseVM.isRequestArgument = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        NSArray<ZHLZCodeValuesModel *> *array = nil;
+        if (response && response.data) {
+            array = [NSArray modelArrayWithClass:[ZHLZCodeValuesModel class] json:response.data];
+        }
+        if (array && array.count > 0) {
+            ZHLZCodeValuesModel *model = [ZHLZCodeValuesModel new];
+            model.value = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];
         }
         block(array);
