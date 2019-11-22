@@ -241,6 +241,7 @@
 		A5B1947C2385919D00FF5080 /* ZHLZHomeMapSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1947A2385919D00FF5080 /* ZHLZHomeMapSearchVC.m */; };
 		A5B1947D2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B1947B2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib */; };
 		A5B194812385A2BE00FF5080 /* UIViewController+modalPresentationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */; };
+		A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */; };
 		ACF3FBAFCB782A0BF83736BA /* libPods-ZHLZUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -648,6 +649,8 @@
 		A5B1947B2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeMapSearchVC.xib; sourceTree = "<group>"; };
 		A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+modalPresentationStyle.m"; sourceTree = "<group>"; };
 		A5B194802385A2BD00FF5080 /* UIViewController+modalPresentationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+modalPresentationStyle.h"; sourceTree = "<group>"; };
+		A5F4FB2B2387948D00225D45 /* ZHLZLocalConfigConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZLocalConfigConst.h; sourceTree = "<group>"; };
+		A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZLocalConfigConst.m; sourceTree = "<group>"; };
 		AF90FDB87C4CF5A05C925C79 /* Pods-ZHLZ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZ.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZ/Pods-ZHLZ.debug.xcconfig"; sourceTree = "<group>"; };
 		B333059FB917412F756CC479 /* Pods-ZHLZTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.release.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.release.xcconfig"; sourceTree = "<group>"; };
 		D586209A9CA27AE5FCA90DB9 /* Pods-ZHLZUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZUITests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZUITests/Pods-ZHLZUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1575,6 +1578,8 @@
 			children = (
 				A5574FD023828DBD00B24FC4 /* ZHLZAPIURLConst.h */,
 				A5574FD223828DBD00B24FC4 /* ZHLZAPIURLConst.m */,
+				A5F4FB2B2387948D00225D45 /* ZHLZLocalConfigConst.h */,
+				A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */,
 				A5574FD323828DBD00B24FC4 /* ZHLZLocalDataStorageConst.h */,
 				A5574FD123828DBD00B24FC4 /* ZHLZLocalDataStorageConst.m */,
 				A506A8D22382B42E004081FC /* ZHLZNotificationConst.h */,
@@ -2161,6 +2166,7 @@
 				A557503F23828DBD00B24FC4 /* ZHLZHelpVC.m in Sources */,
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
 				18AE316C2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m in Sources */,
+				A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */,
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,
 				A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */,

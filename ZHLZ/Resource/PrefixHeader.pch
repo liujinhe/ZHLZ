@@ -33,6 +33,7 @@
 
 #import "ZHLZNotificationConst.h"
 #import "ZHLZThirdPatryConfigConst.h"
+#import "ZHLZLocalConfigConst.h"
 
 #import "GRToast.h"
 #import "ZHLZButton.h"

@@ -11,8 +11,6 @@
 #import "ZHLZProjectTypePickerViewVC.h"
 #import "ZHLZPickerViewVC.h"
 
-CGFloat const FilterViewAnimationTimeConst = 0.35f;
-
 @interface ZHLZHomeMapSearchVC ()
 {
     NSInteger _picLayerIndex;
@@ -132,20 +130,20 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 
 - (IBAction)picLayerAction {
     self.picLayerPickerViewVC.titleArray = @[@"原始图层", @"问题图层"];
-    [self presentViewController:self.picLayerPickerViewVC animated:NO completion:nil];
+    [self.picLayerPickerViewVC showFilterViewWithVC:self];
 }
 
 - (IBAction)colorAction {
     self.colorPickerViewVC.titleArray = @[@"绿色", @"红色", @"黄色"];
-    [self presentViewController:self.colorPickerViewVC animated:NO completion:nil];
+    [self.colorPickerViewVC showFilterViewWithVC:self];
 }
 
 - (IBAction)brigadeTeamAction {
-    [self presentViewController:self.brigadePickerViewVC animated:NO completion:nil];
+    [self.brigadePickerViewVC showFilterViewWithVC:self];
 }
 
 - (IBAction)projectTypeAction {
-    [self presentViewController:self.projectTypePickerViewVC animated:NO completion:nil];
+    [self.projectTypePickerViewVC showFilterViewWithVC:self];
 }
 
 - (IBAction)resetAction:(id)sender {
@@ -166,21 +164,7 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
     }
 }
 
-- (void)filterAnimation:(BOOL)isHidden {
-    self.filterTopView.hidden = isHidden;
-    self.filterView.hidden = isHidden;
-    self.filterBottomView.hidden = isHidden;
-    
-    CATransition *animation = [CATransition animation];
-    // 设置动画的类型
-    animation.type = kCATransitionPush;
-    // 设置动画的方向
-    animation.subtype = isHidden ? kCATransitionFromLeft : kCATransitionFromRight;
-    animation.duration = FilterViewAnimationTimeConst;
-    [self.filterTopView.layer addAnimation:animation forKey:@"pushAnimation"];
-    [self.filterView.layer addAnimation:animation forKey:@"pushAnimation"];
-    [self.filterBottomView.layer addAnimation:animation forKey:@"pushAnimation"];
-}
+#pragma mark - Public
 
 - (void)showFilterView {
     self.maskView.hidden = NO;
@@ -191,7 +175,25 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 - (void)hideFilterView {
     [self filterAnimation:YES];
     
-    [self performSelector:@selector(hideMaskView) withObject:nil afterDelay:FilterViewAnimationTimeConst];
+    [self performSelector:@selector(hideMaskView) withObject:nil afterDelay:PopAnimationDurationConst];
+}
+
+#pragma mark - Private
+
+- (void)filterAnimation:(BOOL)isHidden {
+    self.filterTopView.hidden = isHidden;
+    self.filterView.hidden = isHidden;
+    self.filterBottomView.hidden = isHidden;
+    
+    CATransition *animation = [CATransition animation];
+    // 设置动画的类型
+    animation.type = kCATransitionPush;
+    // 设置动画的方向
+    animation.subtype = isHidden ? kCATransitionFromLeft : kCATransitionFromRight;
+    animation.duration = PopAnimationDurationConst;
+    [self.filterTopView.layer addAnimation:animation forKey:@"pushAnimation"];
+    [self.filterView.layer addAnimation:animation forKey:@"pushAnimation"];
+    [self.filterBottomView.layer addAnimation:animation forKey:@"pushAnimation"];
 }
 
 - (void)hideMaskView {
