@@ -22,8 +22,8 @@
 
 - (NSURLSessionTask *)loadHomeBusinessDocumentDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeBusinessDocumentModel *> *homeBusinessDocumentModel))block{
     
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:DocumentListAPIURLConst withRequestArgument:@{@"page":@(pageNum),@"limit":@(10),@"order":@"desc",@"sidx":@""}];
-    baseVM.isList = YES;
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:DocumentListAPIURLConst withRequestArgument:@{@"page":@(pageNum), @"limit":@(10), @"order":@"desc", @"sidx":@""}];
+    baseVM.isDefaultArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response.data) {
             NSArray *homeBusinessDocumentModel = [NSArray modelArrayWithClass:[ZHLZHomeBusinessDocumentModel class] json:[response.data objectForKey:@"list"]];

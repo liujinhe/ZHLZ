@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //数据操作
-- (NSURLSessionTask *)operationWithUrl:(NSString *)url andParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block;
+- (NSURLSessionTask *)operationWithUrl:(NSString *)url andParms:(id)parms withCompletionBlock:(dispatch_block_t)block;
 
 
 @end

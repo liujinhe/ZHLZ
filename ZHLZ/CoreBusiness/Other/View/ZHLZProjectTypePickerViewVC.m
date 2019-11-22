@@ -29,6 +29,15 @@
     [self initUI];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.array && self.array.count > 0) {
+        return;
+    }
+    [self loadData];
+}
+
 - (void)initUI {
     self.array = @[].mutableCopy;
     
@@ -36,8 +45,6 @@
     
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
-    
-    [self loadData];
 }
 
 - (void)loadData {

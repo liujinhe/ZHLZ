@@ -32,6 +32,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (self.array && self.array.count > 0) {
+        return;
+    }
     [self loadData];
 }
 

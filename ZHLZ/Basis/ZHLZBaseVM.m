@@ -63,11 +63,11 @@
     return self;
 }
 
-- (void)setIsList:(BOOL)isList {
-    _isList = isList;
+- (void)setIsDefaultArgument:(BOOL)isDefaultArgument {
+    _isDefaultArgument = isDefaultArgument;
     
     NSMutableDictionary *param = _requestParam ? (NSMutableDictionary *)_requestParam : @{}.mutableCopy;
-    if (_isList) {
+    if (_isDefaultArgument) {
         if ([param objectForKey:@"page"] == nil) {
             [param setValue:@(1) forKey:@"page"];
         }
@@ -104,6 +104,13 @@
     }
 }
 
+- (void)setIsRequestArgumentSlash:(BOOL)isRequestArgumentSlash {
+    _isRequestArgumentSlash = isRequestArgumentSlash;
+    
+    if (_isRequestArgumentSlash && _requestParam) {
+        _url = [_url stringByAppendingFormat:@"/%@", _requestParam];
+    }
+}
 
 - (NSURLSessionTask *)requestCompletionWithSuccess:(GRResponseCompletionBlock)success
                                        withFailure:(GRResponseCompletionBlock)failure {

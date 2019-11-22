@@ -56,7 +56,9 @@
 }
 - (void)deleteAction{
     [self popActionWithTip:@"您确定要删除该部门吗？" withBlock:^{
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",ResponsibleUnitDeleteAPIURLConst,@"123"] andParms:@{} withCompletionBlock:^{
+        ZHLZAddressBookVM *addressBookVM = [ZHLZAddressBookVM sharedInstance];
+        addressBookVM.isRequestArgumentSlash = YES;
+        self.task = [addressBookVM operationWithUrl:ResponsibleUnitDeleteAPIURLConst andParms:@"123" withCompletionBlock:^{
             [GRToast makeText:@"删除成功"];
         }];
     }];
@@ -77,7 +79,7 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentUpdateAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text,@"id":self.examineModel.objectID} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:ApprovalDepartmentUpdateAPIURLConst andParms:@{@"name":self.examineDepartmentTextFile.text, @"id":self.examineModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
             self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];

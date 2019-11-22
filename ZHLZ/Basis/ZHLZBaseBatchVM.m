@@ -18,7 +18,7 @@
     NSMutableArray<GRRequest *> *requestArray = @[].mutableCopy;
     for (NSInteger i = 0; i < requestUrlArray.count; i++) {
         ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestUrlArray[i]];
-        baseVM.isList = [isLoadListArray[i] boolValue];
+        baseVM.isDefaultArgument = [isLoadListArray[i] boolValue];
         [requestArray addObject:baseVM];
     }
     return [self initWithRequestArray:requestArray.copy];

@@ -16,9 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isIgnoreLoading;
 
-@property (nonatomic, assign) BOOL isList;
+/// 是否默认参数（列表加载）
+@property (nonatomic, assign) BOOL isDefaultArgument;
 
+/// 是否拼接请求参数（带?）
 @property (nonatomic, assign) BOOL isRequestArgument;
+
+/// 是否拼接请求参数（带/）
+@property (nonatomic, assign) BOOL isRequestArgumentSlash;
 
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl;
 

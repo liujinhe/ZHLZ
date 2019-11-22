@@ -29,7 +29,7 @@
 }
 
 - (void)loadAreaManagementView{
-
+    
     if (self.setType == 1) {
         self.title = @"添加区管管理单位";
         [self.areaManagementButton setTitle:@"确认添加" forState:UIControlStateNormal];
@@ -62,7 +62,9 @@
 
 - (void)deleteAction {
     [self popActionWithTip:@"您确定要删除？" withBlock:^{
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",DistrictManagementUnitDeleteAPIURLConst,@"123"] andParms:@{} withCompletionBlock:^{
+        ZHLZAddressBookVM *addressBookVM = [ZHLZAddressBookVM sharedInstance];
+        addressBookVM.isRequestArgumentSlash = YES;
+        self.task = [addressBookVM operationWithUrl:DistrictManagementUnitDeleteAPIURLConst andParms:@"123" withCompletionBlock:^{
             [GRToast makeText:@"删除成功"];
         }];
     }];
@@ -84,13 +86,13 @@
     }
     
     if (self.setType == 1) { //添加
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFile.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFile.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFile.text, @"charger":self.chargerTextFile.text, @"phone":self.phoneTextFile.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
             self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFile.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFile.text,@"id":self.areaManagementModel.objectID} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:DistrictManagementUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFile.text, @"charger":self.chargerTextFile.text, @"phone":self.phoneTextFile.text, @"id":self.areaManagementModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
             self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];

@@ -63,7 +63,7 @@
     }
 
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:parms];
-    baseVM.isList = YES;
+    baseVM.isDefaultArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block(response.data);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
@@ -71,7 +71,7 @@
     }];
 }
 
-- (NSURLSessionTask *)operationWithUrl:(NSString *)url andParms:(NSDictionary *)parms withCompletionBlock:(dispatch_block_t)block{
+- (NSURLSessionTask *)operationWithUrl:(NSString *)url andParms:(id)parms withCompletionBlock:(dispatch_block_t)block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:url withRequestArgument:parms];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block();

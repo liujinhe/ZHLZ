@@ -23,11 +23,13 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 
 - (NSURLSessionTask *)getBrigadeWithBlock:(void(^)(NSArray<ZHLZBrigadeModel *> *array))block {
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:BrigadeAPIURLConst];
+    baseVM.isIgnoreLoading = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZBrigadeModel *> *array = nil;
         if (response && response.data) {
             array = [NSArray modelArrayWithClass:[ZHLZBrigadeModel class] json:response.data];
-            
+        }
+        if (array && array.count > 0) {
             ZHLZBrigadeModel *model = [ZHLZBrigadeModel new];
             model.name = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];
@@ -39,12 +41,15 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 }
 
 - (NSURLSessionTask *)getAreaWithOrgId:(NSString *)orgId withBlock:(void(^)(NSArray<ZHLZAreaModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:[BrigadeAPIURLConst stringByAppendingFormat:@"?orgid=%@", orgId]];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:BrigadeAPIURLConst withRequestArgument:@{@"orgid": orgId}];
+    baseVM.isIgnoreLoading = YES;
+    baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZAreaModel *> *array = nil;
         if (response && response.data) {
             array = [NSArray modelArrayWithClass:[ZHLZAreaModel class] json:response.data];
-            
+        }
+        if (array && array.count > 0) {
             ZHLZAreaModel *model = [ZHLZAreaModel new];
             model.name = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];
@@ -57,11 +62,13 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 
 - (NSURLSessionTask *)getDistrictWithBlock:(void(^)(NSArray<ZHLZDistrictModel *> *array))block {
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:BrigadeAPIURLConst];
+    baseVM.isIgnoreLoading = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZDistrictModel *> *array = nil;
         if (response && response.data) {
             array = [NSArray modelArrayWithClass:[ZHLZDistrictModel class] json:response.data];
-            
+        }
+        if (array && array.count > 0) {
             ZHLZDistrictModel *model = [ZHLZDistrictModel new];
             model.name = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];
@@ -74,11 +81,13 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 
 - (NSURLSessionTask *)getProjectTypeWithBlock:(void(^)(NSArray<ZHLZProjectTypeModel *> *array))block {
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ProjectTypeAPIURLConst];
+    baseVM.isIgnoreLoading = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray<ZHLZProjectTypeModel *> *array = nil;
         if (response && response.data) {
             array = [NSArray modelArrayWithClass:[ZHLZProjectTypeModel class] json:response.data];
-            
+        }
+        if (array && array.count > 0) {
             ZHLZProjectTypeModel *model = [ZHLZProjectTypeModel new];
             model.name = SelectDefaultValue;
             array = [@[model] arrayByAddingObjectsFromArray:array];

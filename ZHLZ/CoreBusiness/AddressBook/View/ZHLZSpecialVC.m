@@ -29,7 +29,7 @@
 
 
 - (void)loadSpecialView{
-
+    
     if (self.setType == 1) {
         
         self.title = @"添加特殊业主单位";
@@ -64,7 +64,9 @@
 
 - (void)deleteAction {
     [self popActionWithTip:@"您确定要删除？" withBlock:^{
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:[NSString stringWithFormat:@"%@/%@",SpecialOwnerUnitDeleteAPIURLConst,@"12"] andParms:@{} withCompletionBlock:^{
+        ZHLZAddressBookVM *addressBookVM = [ZHLZAddressBookVM sharedInstance];
+        addressBookVM.isRequestArgumentSlash = YES;
+        self.task = [addressBookVM operationWithUrl:SpecialOwnerUnitDeleteAPIURLConst andParms:@"12" withCompletionBlock:^{
             [GRToast makeText:@"删除成功"];
         }];
     }];
