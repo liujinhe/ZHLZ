@@ -60,47 +60,33 @@ static NSString * const SelectDefaultValue = @"---请选择---";
     }];
 }
 
-- (NSURLSessionTask *)getDistrictWithBlock:(void(^)(NSArray<ZHLZDistrictModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"blong"}];
-    baseVM.isIgnoreLoading = YES;
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        NSArray<ZHLZDistrictModel *> *array = nil;
-        if (response && response.data) {
-            array = [NSArray modelArrayWithClass:[ZHLZDistrictModel class] json:response.data];
-        }
-        if (array && array.count > 0) {
-            ZHLZDistrictModel *model = [ZHLZDistrictModel new];
-            model.value = SelectDefaultValue;
-            array = [@[model] arrayByAddingObjectsFromArray:array];
-        }
-        block(array);
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        block(nil);
-    }];
-}
-
-- (NSURLSessionTask *)getProjectTypeWithBlock:(void(^)(NSArray<ZHLZProjectTypeModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"projecttype"}];
-    baseVM.isIgnoreLoading = YES;
-    baseVM.isRequestArgument = YES;
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        NSArray<ZHLZProjectTypeModel *> *array = nil;
-        if (response && response.data) {
-            array = [NSArray modelArrayWithClass:[ZHLZProjectTypeModel class] json:response.data];
-        }
-        if (array && array.count > 0) {
-            ZHLZProjectTypeModel *model = [ZHLZProjectTypeModel new];
-            model.value = SelectDefaultValue;
-            array = [@[model] arrayByAddingObjectsFromArray:array];
-        }
-        block(array);
-    } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        block(nil);
-    }];
-}
-
-- (NSURLSessionTask *)getProjectStatusWithBlock:(void(^)(NSArray<ZHLZCodeValuesModel *> *array))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": @"projectstatus"}];
+- (NSURLSessionTask *)getListWithType:(NSInteger)type withBlock:(void (^)(NSArray<ZHLZCodeValuesModel *> *array))block {
+    NSString *codeName;
+    switch (type) {
+        case 1: // 是否重点
+            codeName = @"focusproject";
+            break;
+        case 2: // 施工状态
+            codeName = @"projectstatus";
+            break;
+        case 3: // 巡查频次
+            codeName = @"frequency";
+            break;
+        case 4: // 工程类型
+            codeName = @"projecttype";
+            break;
+        case 5: // 责任所属区县
+            codeName = @"blong";
+            break;
+        case 6: // 上级交办、舆情及应急处理
+            codeName = @"whether";
+            break;
+    }
+    if (![codeName isNotBlank]) {
+        return nil;
+    }
+    
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CodeValuesAPIURLConst withRequestArgument:@{@"codeName": codeName}];
     baseVM.isIgnoreLoading = YES;
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {

@@ -140,7 +140,7 @@ extern NSString * const ChangeUserPwdAPIURLConst;
 
 #pragma mark - API URL for Other
 
-// 所有部门（大队）
+// 所有大队
 extern NSString * const BrigadeAPIURLConst;
 // 公共字典下拉列表
 extern NSString * const CodeValuesAPIURLConst;

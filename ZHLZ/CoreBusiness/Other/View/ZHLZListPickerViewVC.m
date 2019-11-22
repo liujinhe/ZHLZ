@@ -1,15 +1,15 @@
 //
-//  ZHLZDistrictPickerViewVC.m
+//  ZHLZListPickerViewVC.m
 //  ZHLZ
 //
 //  Created by liujinhe on 2019/11/21.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import "ZHLZDistrictPickerViewVC.h"
+#import "ZHLZListPickerViewVC.h"
 #import "ZHLZOtherVM.h"
 
-@interface ZHLZDistrictPickerViewVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ZHLZListPickerViewVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 {
     NSInteger _currentIndex;
 }
@@ -18,11 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIView *popView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
-@property (nonatomic, strong) NSArray<ZHLZDistrictModel *> *array;
+@property (nonatomic, strong) NSArray<ZHLZCodeValuesModel *> *array;
 
 @end
 
-@implementation ZHLZDistrictPickerViewVC
+@implementation ZHLZListPickerViewVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +40,7 @@
 }
 
 - (void)initUI {
-    self.array = @[];
+    self.array = @[].mutableCopy;
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)]];
     
@@ -50,12 +50,14 @@
 
 - (void)loadData {
     @weakify(self);
-    self.task = [[ZHLZOtherVM sharedInstance] getDistrictWithBlock:^(NSArray<ZHLZDistrictModel *> * _Nonnull array) {
-        @strongify(self);
-        self.array = array;
-        
-        [self.pickerView reloadAllComponents];
-    }];
+    if (self.type > 0) {
+        self.task = [[ZHLZOtherVM sharedInstance] getListWithType:self.type withBlock:^(NSArray<ZHLZCodeValuesModel *> * _Nonnull array) {
+            @strongify(self);
+            self.array = array;
+            
+            [self.pickerView reloadAllComponents];
+        }];
+    }
 }
 
 #pragma mark - Action
@@ -70,7 +72,7 @@
     @weakify(self);
     [self dismissViewControllerAnimated:NO completion:^{
         @strongify(self);
-        ZHLZDistrictModel *model = self.array[self->_currentIndex];
+        ZHLZCodeValuesModel *model = self.array[self->_currentIndex];
         if (self.selectPickerBlock && model) {
             self.selectPickerBlock(model.code, [model.code isNotBlank] ? model.value : @"请选择");
         }

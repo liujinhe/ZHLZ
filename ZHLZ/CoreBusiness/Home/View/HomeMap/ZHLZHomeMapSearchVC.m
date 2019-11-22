@@ -8,7 +8,7 @@
 
 #import "ZHLZHomeMapSearchVC.h"
 #import "ZHLZBrigadePickerViewVC.h"
-#import "ZHLZProjectTypePickerViewVC.h"
+#import "ZHLZListPickerViewVC.h"
 #import "ZHLZPickerViewVC.h"
 
 #import "ZHLZDatePickerVC.h"
@@ -39,7 +39,7 @@
 @property (nonatomic, strong) ZHLZPickerViewVC *picLayerPickerViewVC;
 @property (nonatomic, strong) ZHLZPickerViewVC *colorPickerViewVC;
 @property (nonatomic, strong) ZHLZBrigadePickerViewVC *brigadePickerViewVC;
-@property (nonatomic, strong) ZHLZProjectTypePickerViewVC *projectTypePickerViewVC;
+@property (nonatomic, strong) ZHLZListPickerViewVC *projectTypePickerViewVC;
 
 @end
 
@@ -118,14 +118,15 @@
         });
     };
     
-    self.projectTypePickerViewVC = [ZHLZProjectTypePickerViewVC new];
-    self.projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull projectType, NSString * _Nonnull projectName) {
+    self.projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+    self.projectTypePickerViewVC.type = 4;
+    self.projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
         
-        self->_projecttypeId = projectType;
+        self->_projecttypeId = code;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.projectTypeButton setTitle:projectName forState:UIControlStateNormal];
+            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
         });
     };
 }

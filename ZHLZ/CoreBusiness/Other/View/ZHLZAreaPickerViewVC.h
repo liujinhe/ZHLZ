@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZAreaPickerViewVC : ZHLZBaseVC
 
+// 所属大队 ID
 @property (nonatomic, strong) NSString *orgId;
 
 @property (nonatomic, copy) void (^selectPickerBlock)(NSString *areaType, NSString *areaName);
