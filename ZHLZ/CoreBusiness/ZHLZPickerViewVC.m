@@ -1,15 +1,16 @@
 //
-//  ZHLZDistrictPickerViewVC.m
+//  ZHLZPickerViewVC.m
 //  ZHLZ
 //
-//  Created by liujinhe on 2019/11/21.
+//  Created by liujinhe on 2019/11/22.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import "ZHLZDistrictPickerViewVC.h"
-#import "ZHLZOtherVM.h"
+#import "ZHLZPickerViewVC.h"
 
-@interface ZHLZDistrictPickerViewVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+static NSString * const SelectDefaultValue = @"---请选择---";
+
+@interface ZHLZPickerViewVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 {
     NSInteger _currentIndex;
 }
@@ -18,11 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIView *popView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
-@property (nonatomic, strong) NSArray<ZHLZDistrictModel *> *array;
-
 @end
 
-@implementation ZHLZDistrictPickerViewVC
+@implementation ZHLZPickerViewVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,32 +29,13 @@
     [self initUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.array && self.array.count > 0) {
-        return;
-    }
-    [self loadData];
-}
-
 - (void)initUI {
-    self.array = @[];
+    _currentIndex = -1;
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)]];
     
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
-}
-
-- (void)loadData {
-    @weakify(self);
-    self.task = [[ZHLZOtherVM sharedInstance] getDistrictWithBlock:^(NSArray<ZHLZDistrictModel *> * _Nonnull array) {
-        @strongify(self);
-        self.array = array;
-        
-        [self.pickerView reloadAllComponents];
-    }];
 }
 
 #pragma mark - Action
@@ -70,9 +50,9 @@
     @weakify(self);
     [self dismissViewControllerAnimated:NO completion:^{
         @strongify(self);
-        ZHLZDistrictModel *model = self.array[self->_currentIndex];
-        if (self.selectPickerBlock && model) {
-            self.selectPickerBlock(model.code, [model.code isNotBlank] ? model.value : @"请选择");
+        if (self.selectPickerBlock) {
+            NSString *name = (self->_currentIndex > 0) ? self.titleArray[self->_currentIndex] : @"请选择";
+            self.selectPickerBlock(self->_currentIndex - 1, name);
         }
     }];
 }
@@ -99,7 +79,7 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return self.array.count;
+    return self.titleArray.count;
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -113,11 +93,22 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return self.array[row].value?:@"";
+    return self.titleArray[row]?:@"";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     _currentIndex = row;
+}
+
+#pragma mark - Getter and Setter
+
+- (void)setTitleArray:(NSArray<NSString *> *)titleArray {
+    _titleArray = titleArray;
+    
+    if (_titleArray && _titleArray.count > 0) {
+        _titleArray = [@[SelectDefaultValue] arrayByAddingObjectsFromArray:_titleArray];
+        [self.pickerView reloadAllComponents];
+    }
 }
 
 @end

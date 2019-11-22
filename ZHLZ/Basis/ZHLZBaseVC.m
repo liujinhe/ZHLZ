@@ -80,7 +80,7 @@
                                                                              action:action];
 }
 
-#pragma mark - getter and setter
+#pragma mark - Getter and Setter
 
 - (void)setTask:(__kindof NSURLSessionTask *)task {
     if (task && [task isKindOfClass:[NSURLSessionTask class]]) {

@@ -9,11 +9,14 @@
 #import "ZHLZHomeMapSearchVC.h"
 #import "ZHLZBrigadePickerViewVC.h"
 #import "ZHLZProjectTypePickerViewVC.h"
+#import "ZHLZPickerViewVC.h"
 
 CGFloat const FilterViewAnimationTimeConst = 0.35f;
 
 @interface ZHLZHomeMapSearchVC ()
 {
+    NSInteger _picLayerIndex;
+    NSInteger _colorIndex;
     NSString *_bid;
     NSString *_projecttypeId;
 }
@@ -29,6 +32,12 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 @property (weak, nonatomic) IBOutlet UIButton *bigTeamButton;
 @property (weak, nonatomic) IBOutlet UIButton *projectTypeButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *colorTopLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *colorHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIView *colorView;
+
+@property (nonatomic, strong) ZHLZPickerViewVC *picLayerPickerViewVC;
+@property (nonatomic, strong) ZHLZPickerViewVC *colorPickerViewVC;
 @property (nonatomic, strong) ZHLZBrigadePickerViewVC *brigadePickerViewVC;
 @property (nonatomic, strong) ZHLZProjectTypePickerViewVC *projectTypePickerViewVC;
 
@@ -45,8 +54,58 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
     self.filterView.hidden = YES;
     self.filterBottomView.hidden = YES;
     
+    if (self.isOccupyProblem) {
+        self.colorView.hidden = NO;
+        self.colorTopLayoutConstraint.constant = 10;
+        self.colorHeightLayoutConstraint.constant = 50;
+    } else {
+        self.colorView.hidden = YES;
+        self.colorTopLayoutConstraint.constant = 0;
+        self.colorHeightLayoutConstraint.constant = 0;
+    }
+    
+    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+    if ([userModel.userId isEqualToString:@"1"]) {
+        self.bigTeamButton.userInteractionEnabled = YES;
+        
+        self.bigTeamButton.selected = NO;
+        
+        [self.bigTeamButton setImage:[UIImage imageNamed:@"arrow_right"] forState:UIControlStateNormal];
+    } else {
+        self.bigTeamButton.userInteractionEnabled = NO;
+
+        self.bigTeamButton.selected = YES;
+        [self.bigTeamButton setTitle:userModel.orgname forState:UIControlStateSelected];
+        
+        [self.bigTeamButton setImage:[UIImage imageWithColor:UIColor.whiteColor] forState:UIControlStateNormal];
+        
+        _bid = userModel.orgId;
+    }
+    
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(hideFilterView)]];
+    
+    self.picLayerPickerViewVC = [ZHLZPickerViewVC new];
+    self.picLayerPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
+        @strongify(self);
+        
+        self->_picLayerIndex = index;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.picLayerButton setTitle:name forState:UIControlStateNormal];
+        });
+    };
+    
+    self.colorPickerViewVC = [ZHLZPickerViewVC new];
+    self.colorPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
+        @strongify(self);
+        
+        self->_colorIndex = index;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.colorButton setTitle:name forState:UIControlStateNormal];
+        });
+    };
     
     self.brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
     self.brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
@@ -55,8 +114,7 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
         self->_bid = brigadeType;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.bigTeamButton.selected = YES;
-            [self.bigTeamButton setTitle:brigadeName forState:UIControlStateSelected];
+            [self.bigTeamButton setTitle:brigadeName forState:UIControlStateNormal];
         });
     };
     
@@ -67,18 +125,19 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
         self->_projecttypeId = projectType;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.projectTypeButton.selected = YES;
-            [self.projectTypeButton setTitle:projectName forState:UIControlStateSelected];
+            [self.projectTypeButton setTitle:projectName forState:UIControlStateNormal];
         });
     };
 }
 
 - (IBAction)picLayerAction {
-    
+    self.picLayerPickerViewVC.titleArray = @[@"原始图层", @"问题图层"];
+    [self presentViewController:self.picLayerPickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)colorAction {
-    
+    self.colorPickerViewVC.titleArray = @[@"绿色", @"红色", @"黄色"];
+    [self presentViewController:self.colorPickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)brigadeTeamAction {
@@ -92,8 +151,10 @@ CGFloat const FilterViewAnimationTimeConst = 0.35f;
 - (IBAction)resetAction:(id)sender {
     self.projectNameTextField.text = @"";
     
-    _bid = @"";
-    self.bigTeamButton.selected = NO;
+    if (self.bigTeamButton.isUserInteractionEnabled) {
+        _bid = @"";
+        self.bigTeamButton.selected = NO;
+    }
     
     _projecttypeId = @"";
     self.projectTypeButton.selected = NO;

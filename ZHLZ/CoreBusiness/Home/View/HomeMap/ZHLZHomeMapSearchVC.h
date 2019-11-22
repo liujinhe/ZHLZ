@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeMapSearchVC : ZHLZBaseVC
 
+// 是否为占道问题
+@property (nonatomic, assign) BOOL isOccupyProblem;
+
 @property (nonatomic, copy) void (^selectSearchBlock)(NSString *projectName, NSString *bid, NSString *projecttypeId);
 
 - (void)showFilterView;

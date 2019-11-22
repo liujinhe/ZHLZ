@@ -12,6 +12,9 @@
             <connections>
                 <outlet property="bigTeamButton" destination="Jw3-0x-deV" id="5kT-ZU-Db0"/>
                 <outlet property="colorButton" destination="oAT-ye-4oZ" id="lru-1a-BW0"/>
+                <outlet property="colorHeightLayoutConstraint" destination="N5t-eq-jEk" id="V9u-5H-ctL"/>
+                <outlet property="colorTopLayoutConstraint" destination="I37-oU-xMs" id="hha-ZW-4b7"/>
+                <outlet property="colorView" destination="b3i-rq-cl3" id="cAh-Xa-J2G"/>
                 <outlet property="filterBottomView" destination="rQo-V8-ysY" id="r5k-vG-VOk"/>
                 <outlet property="filterTopView" destination="2WB-5W-8Hs" id="sgz-MY-boT"/>
                 <outlet property="filterView" destination="kKA-kC-Cfx" id="QWS-zh-Zva"/>

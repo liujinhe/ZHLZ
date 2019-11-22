@@ -15,6 +15,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIView *maskView;
+@property (weak, nonatomic) IBOutlet UIView *popView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
 @property (nonatomic, strong) NSArray<ZHLZBrigadeModel *> *array;

@@ -192,6 +192,8 @@
 		A557507B238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5575079238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.m */; };
 		A557507C238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A557507A238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.xib */; };
 		A55D26ED23876A3700E2BA81 /* ZHLZCodeValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */; };
+		A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */; };
+		A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */; };
 		A594101D237905D100D7A1D4 /* ZHLZTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A594101C237905D100D7A1D4 /* ZHLZTests.m */; };
 		A5941028237905D100D7A1D4 /* ZHLZUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5941027237905D100D7A1D4 /* ZHLZUITests.m */; };
 		A5B1944F238574FF00FF5080 /* dianli_yellow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19425238574FC00FF5080 /* dianli_yellow_1.png */; };
@@ -588,6 +590,9 @@
 		A557507A238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZHomeBuildProjectDetailVC.xib; path = ZHLZ/CoreBusiness/Home/ZHLZHomeBuildProjectDetailVC.xib; sourceTree = SOURCE_ROOT; };
 		A55D26EB23876A3700E2BA81 /* ZHLZCodeValuesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZCodeValuesModel.h; sourceTree = "<group>"; };
 		A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZCodeValuesModel.m; sourceTree = "<group>"; };
+		A55D26EE238781E100E2BA81 /* ZHLZPickerViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZPickerViewVC.h; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.h; sourceTree = SOURCE_ROOT; };
+		A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZPickerViewVC.m; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.m; sourceTree = SOURCE_ROOT; };
+		A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZPickerViewVC.xib; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.xib; sourceTree = SOURCE_ROOT; };
 		A5940FFD237905CF00D7A1D4 /* 智慧路政.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "智慧路政.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5941018237905D100D7A1D4 /* ZHLZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHLZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A594101C237905D100D7A1D4 /* ZHLZTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZTests.m; sourceTree = "<group>"; };
@@ -1364,6 +1369,9 @@
 				A5574F6F23828DBD00B24FC4 /* ZHLZLoginVC.h */,
 				A5574F7023828DBD00B24FC4 /* ZHLZLoginVC.m */,
 				A5574F6E23828DBD00B24FC4 /* ZHLZLoginVC.xib */,
+				A55D26EE238781E100E2BA81 /* ZHLZPickerViewVC.h */,
+				A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */,
+				A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */,
 				A538B5252386991E002E30CC /* ZHLZProjectTypePickerViewVC.h */,
 				A538B5292386991E002E30CC /* ZHLZProjectTypePickerViewVC.m */,
 				A538B52C2386991F002E30CC /* ZHLZProjectTypePickerViewVC.xib */,
@@ -1886,6 +1894,7 @@
 				A5B19459238574FF00FF5080 /* luqiao_green_2.png in Resources */,
 				A557503723828DBD00B24FC4 /* ZHLZHomeMapVC.xib in Resources */,
 				A557505A23828DBD00B24FC4 /* ZHLZExamineVC.xib in Resources */,
+				A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */,
 				A557505423828DBD00B24FC4 /* ZHLZAddressBookVC.xib in Resources */,
 				189DAA4A238635410049B5FF /* ZHLZHomeSafeDetailVC.xib in Resources */,
 				A557507C238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.xib in Resources */,
@@ -2175,6 +2184,7 @@
 				A557500E23828DBD00B24FC4 /* ZHLZHomeSafeModel.m in Sources */,
 				A5B1947C2385919D00FF5080 /* ZHLZHomeMapSearchVC.m in Sources */,
 				A557502A23828DBD00B24FC4 /* ZHLZHomeMunicipalFacilityCVC.m in Sources */,
+				A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */,
 				A557507323828DBD00B24FC4 /* ZHLZStoreUtility.m in Sources */,
 				A557504B23828DBD00B24FC4 /* ZHLZConstructionModel.m in Sources */,
 				189DAA49238635410049B5FF /* ZHLZHomeSafeDetailVC.m in Sources */,

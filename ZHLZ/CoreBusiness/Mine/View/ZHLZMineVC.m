@@ -16,13 +16,13 @@
 #import "ZHLZMineCell.h"
 #import "ZHLZMineVM.h"
 
+#import <UINavigationController+FDFullscreenPopGesture.h>
+
 @interface ZHLZMineVC ()<UITableViewDataSource,UITableViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 
 @property (weak, nonatomic) IBOutlet UILabel *headerUserNameLabel;
-
-
-
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
 
@@ -38,13 +38,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.fd_prefersNavigationBarHidden = YES;
+    
+    if (@available(iOS 11.0, *)) {
+        self.mineTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     [self initMineView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.hidden = YES;
+    self.fd_prefersNavigationBarHidden = NO;
     
     [self loadMineData];
 }
@@ -52,7 +58,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    self.navigationController.navigationBar.hidden = NO;
+    self.fd_prefersNavigationBarHidden = YES;
 }
 
 - (void)loadMineData{
@@ -115,7 +121,7 @@
         
         return cell;
     }
- }
+}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
