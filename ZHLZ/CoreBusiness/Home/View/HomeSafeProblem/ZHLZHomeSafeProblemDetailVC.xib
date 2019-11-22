@@ -43,16 +43,26 @@
                                         <constraint firstAttribute="width" constant="5" id="F5h-a8-ETP"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-wd-6yl">
+                                    <rect key="frame" x="150" y="0.0" width="244" height="50"/>
+                                    <connections>
+                                        <action selector="setSupervisorAction:" destination="-1" eventType="touchUpInside" id="Qoo-Z9-8XT"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="8Ed-mH-kR0" firstAttribute="top" secondItem="7p3-zT-gNw" secondAttribute="top" constant="10" id="06q-7d-hOi"/>
                                 <constraint firstItem="brf-8X-mwb" firstAttribute="centerY" secondItem="7p3-zT-gNw" secondAttribute="centerY" id="Ahw-NO-mSQ"/>
                                 <constraint firstItem="fQj-g7-Tlb" firstAttribute="leading" secondItem="8Ed-mH-kR0" secondAttribute="trailing" constant="10" id="Gbe-Fb-oKt"/>
+                                <constraint firstAttribute="trailing" secondItem="tUv-wd-6yl" secondAttribute="trailing" id="PLT-sL-W8y"/>
                                 <constraint firstItem="fQj-g7-Tlb" firstAttribute="centerY" secondItem="7p3-zT-gNw" secondAttribute="centerY" id="T0j-2x-dtJ"/>
                                 <constraint firstAttribute="bottom" secondItem="8Ed-mH-kR0" secondAttribute="bottom" constant="10" id="Uvi-7t-3gp"/>
+                                <constraint firstAttribute="bottom" secondItem="tUv-wd-6yl" secondAttribute="bottom" id="gYl-W4-3ZN"/>
+                                <constraint firstItem="tUv-wd-6yl" firstAttribute="top" secondItem="7p3-zT-gNw" secondAttribute="top" id="mMh-zj-CR6"/>
                                 <constraint firstAttribute="trailing" secondItem="brf-8X-mwb" secondAttribute="trailing" constant="10" id="o6f-ce-p9r"/>
                                 <constraint firstItem="8Ed-mH-kR0" firstAttribute="leading" secondItem="7p3-zT-gNw" secondAttribute="leading" constant="10" id="s8Q-dA-Coe"/>
+                                <constraint firstItem="tUv-wd-6yl" firstAttribute="leading" secondItem="fQj-g7-Tlb" secondAttribute="trailing" constant="10" id="wwe-B9-wKp"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lj9-lC-zLE">

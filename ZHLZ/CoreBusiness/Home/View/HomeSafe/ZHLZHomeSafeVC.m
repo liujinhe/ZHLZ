@@ -100,8 +100,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZHLZHomeSafeModel *safeModel = self.homeSafeModelArray[indexPath.row];
     ZHLZHomeSafeDetailVC *homeSafeDetailVC = [ZHLZHomeSafeDetailVC new];
     homeSafeDetailVC.type = 2;
+    homeSafeDetailVC.detailId = [NSString stringWithFormat:@"%@",safeModel.objectID];
     [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
 }
 

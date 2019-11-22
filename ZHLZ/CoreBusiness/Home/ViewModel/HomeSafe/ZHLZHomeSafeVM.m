@@ -33,4 +33,16 @@
 }
 
 
+- (NSURLSessionTask *)loadHomeSafeDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeModel *homeSafeModel))block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionDetailAPIURLConst withRequestArgument:detailId];
+    baseVM.isRequestArgumentSlash = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            ZHLZHomeSafeModel *safeModel = [ZHLZHomeSafeModel modelWithJSON:response.data];
+            block(safeModel);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
 @end

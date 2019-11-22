@@ -32,4 +32,31 @@
     }];
 }
 
+- (NSURLSessionTask *)loadHomeSafeProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemDetailAPIURLConst withRequestArgument:detailId];
+    baseVM.isRequestArgumentSlash = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            ZHLZHomeSafeProblemModel *detailModel = [ZHLZHomeSafeProblemModel modelWithJSON:response.data];
+            block(detailModel);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+        
+    }];
+}
+
+- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemGetMeasuresAPIURLConst];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            ZHLZHomeSafeProblemModel *detailModel = [ZHLZHomeSafeProblemModel modelWithJSON:response.data];
+            block(detailModel);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+        
+    }];
+}
+
+//
+
 @end

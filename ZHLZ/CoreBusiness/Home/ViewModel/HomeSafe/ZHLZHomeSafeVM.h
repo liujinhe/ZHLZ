@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURLSessionTask *)loadHomeSafeDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeModel *> *homeSafeModelArray))block;
 
+- (NSURLSessionTask *)loadHomeSafeDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeModel *homeSafeModel))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

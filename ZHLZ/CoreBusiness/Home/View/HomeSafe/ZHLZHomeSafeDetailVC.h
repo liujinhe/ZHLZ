@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , assign) NSInteger type; // 1新增 2查看 3编辑
 
+@property (nonatomic ,strong) NSString *detailId;
+
 @end
 
 NS_ASSUME_NONNULL_END
