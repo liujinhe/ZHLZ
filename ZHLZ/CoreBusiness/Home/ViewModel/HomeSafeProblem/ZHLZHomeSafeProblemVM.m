@@ -23,10 +23,11 @@
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemInfoAPIURLConst withRequestArgument:@{@"page":@(pageNum), @"limit":@(10), @"order":@"desc", @"sidx":@""}];
     baseVM.isDefaultArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        NSArray *homeSafeProblemArray = nil;
         if (response.data) {
-            NSArray *homeSafeProblemArray = [NSArray modelArrayWithClass:[ZHLZHomeSafeProblemModel class] json:[response.data objectForKey:@"list"]];
-            block(homeSafeProblemArray);
+            homeSafeProblemArray = [NSArray modelArrayWithClass:[ZHLZHomeSafeProblemModel class] json:[response.data objectForKey:@"list"]];
         }
+        block(homeSafeProblemArray);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
         
     }];

@@ -27,6 +27,7 @@
 - (void)editAction {
     ZHLZHomeSafeProblemDetailVC *safeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
     safeProblemDetailVC.detailType = 3;
+    safeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@",self.homeSafeProblemModel.objectID];
     [self.navigationController pushViewController:safeProblemDetailVC animated:YES];
 }
 

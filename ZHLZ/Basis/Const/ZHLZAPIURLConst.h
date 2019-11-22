@@ -66,7 +66,6 @@ extern NSString * const SafeFloodPreventionProblemDeleteAPIURLConst;
 extern NSString * const SafeFloodPreventionProblemCloseAPIURLConst;
 extern NSString * const SafeFloodPreventionProblemOpenAPIURLConst;
 // 安全防汛台账
-extern NSString * const SafeFloodPreventionAPIURLConst;
 extern NSString * const SafeFloodPreventionInfoAPIURLConst;
 extern NSString * const SafeFloodPreventionGetMeasuresAPIURLConst;
 extern NSString * const SafeFloodPreventionDetailAPIURLConst;

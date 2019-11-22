@@ -45,26 +45,28 @@ NSString * const MunicipalProblemDeleteAPIURLConst = @"/app/mapinspection/delete
 NSString * const MunicipalProblemCloseAPIURLConst = @"/app/mapinspection/closepro";
 NSString * const MunicipalProblemOpenAPIURLConst = @"/app/mapinspection/openpro";
 
-// 在建项目
+/// 在建项目
 NSString * const ProjectBuildeListAPIURLConst = @"/app/mapproject/list";
 
+/// 安全防汛问题
 NSString * const SafeFloodPreventionProblemAPIURLConst = @"/app/mapflood/list";
 NSString * const SafeFloodPreventionProblemInfoAPIURLConst = @"/app/mapflood/list";
 NSString * const SafeFloodPreventionProblemGetMeasuresAPIURLConst = @"/app/mapflood/getMeasures";
 NSString * const SafeFloodPreventionProblemSaveAPIURLConst = @"/app/mapflood/save";
-NSString * const SafeFloodPreventionProblemDetailAPIURLConst = @"/app/mapflood/info/10005";
+NSString * const SafeFloodPreventionProblemDetailAPIURLConst = @"/app/mapflood/info";
 NSString * const SafeFloodPreventionProblemUpdateAPIURLConst = @"/app/mapflood/update";
 NSString * const SafeFloodPreventionProblemDeleteAPIURLConst = @"/app/mapflood/delete";
 NSString * const SafeFloodPreventionProblemCloseAPIURLConst = @"/app/mapflood/closepro";
 NSString * const SafeFloodPreventionProblemOpenAPIURLConst = @"/app/mapflood/openpro";
 
-NSString * const SafeFloodPreventionAPIURLConst = @"/app/mapsecurityrisks/list";
+/// 安全防汛台账
 NSString * const SafeFloodPreventionInfoAPIURLConst = @"/app/mapsecurityrisks/list";
-NSString * const SafeFloodPreventionGetMeasuresAPIURLConst = @"/app/mapsecurityrisks/getMeasures";
 NSString * const SafeFloodPreventionDetailAPIURLConst = @"/app/mapsecurityrisks/info";
 NSString * const SafeFloodPreventionSaveAPIURLConst = @"/app/mapsecurityrisks/save";
 NSString * const SafeFloodPreventionUpdateAPIURLConst = @"/app/mapsecurityrisks/update";
 NSString * const SafeFloodPreventionDeleteAPIURLConst = @"/app/mapsecurityrisks/delete";
+NSString * const SafeFloodPreventionGetMeasuresAPIURLConst = @"/app/mapsecurityrisks/getMeasures";
+
 
 NSString * const OccupyProblemAPIURLConst = @"/app/mapproblem/list";
 NSString * const OccupyProblemInfoAPIURLConst = @"/app/mapproblem/info";

@@ -59,6 +59,7 @@
 - (void)editAction {
     ZHLZHomeSafeDetailVC *safeDetailVC = [ZHLZHomeSafeDetailVC new];
     safeDetailVC.type = 3;
+    safeDetailVC.detailId = [NSString stringWithFormat:@"%@",self.safeDetailModel.objectID];
     [self.navigationController pushViewController:safeDetailVC animated:YES];
 }
 
