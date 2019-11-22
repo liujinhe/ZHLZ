@@ -100,6 +100,7 @@
         }
         if ([paramStr isNotBlank]) {
             _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+            _requestParam = nil;
         }
     }
 }
@@ -107,8 +108,9 @@
 - (void)setIsRequestArgumentSlash:(BOOL)isRequestArgumentSlash {
     _isRequestArgumentSlash = isRequestArgumentSlash;
     
-    if (_isRequestArgumentSlash && _requestParam) {
+    if (_isRequestArgumentSlash && [_requestParam isNotBlank]) {
         _url = [_url stringByAppendingFormat:@"/%@", _requestParam];
+        _requestParam = nil;
     }
 }
 
