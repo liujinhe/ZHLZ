@@ -9,6 +9,7 @@
 #import "ZHLZHomeSafeDetailVC.h"
 #import "ZHLZHomeSafeVM.h"
 #import "ZHLZBrigadePickerViewVC.h"
+#import "ZHLZSafeSubmitModel.h"
 
 @interface ZHLZHomeSafeDetailVC ()
 
@@ -28,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
 @property (nonatomic , strong) ZHLZHomeSafeModel *safeDetailModel;
+
+@property (nonatomic , strong) ZHLZSafeSubmitModel *safeSubmitModel;
+
 
 
 @end
@@ -82,6 +86,9 @@
         [self.submitButton setTitle:@"确认修改" forState:UIControlStateNormal];
         [self loadDetailData];
     }
+    
+    self.safeSubmitModel = [ZHLZSafeSubmitModel new];
+    
 }
 
 - (void)isLookControl{
@@ -107,7 +114,7 @@
         @strongify(self);
         
 //        self->_bid = brigadeType;
-        
+        self.safeSubmitModel.orgName = brigadeName;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
         });
@@ -121,6 +128,32 @@
 
 - (IBAction)SubmitAction:(UIButton *)sender {
     
+    self.safeSubmitModel.currentPlace = self.locationTextFile.text;
+    self.safeSubmitModel.prodescription = self.problemTextView.text;
+    self.safeSubmitModel.workRecord = self.lookHistoryTextView.text;
+    self.safeSubmitModel.unitId = @"123";
+    self.safeSubmitModel.photoNumber = self.photoNumTextFile.text;
+    self.safeSubmitModel.workMeasures = self.workTypeTextView.text;
+    
+    
+    if (![self.safeSubmitModel.orgName isNotBlank]) {
+        [GRToast makeText:@"请选择负责大队"];
+        return;
+    }
+
+    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
+        [GRToast makeText:@"请输入所在位置"];
+        return;
+    }
+    @weakify(self)
+    self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
+        @strongify(self)
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    
+
 }
 
 @end

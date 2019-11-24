@@ -32,5 +32,32 @@
     }];
 }
 
+- (NSURLSessionTask *)loadHomeBuildProjectDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeBuildProjectModel *homeBuildProjectModel))block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ProjectBuildeDetailAPIURLConst withRequestArgument:detailId];
+    baseVM.isRequestArgumentSlash = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            ZHLZHomeBuildProjectModel *homeBuildProjectModel = [ZHLZHomeBuildProjectModel modelWithJSON:response.data];
+            block(homeBuildProjectModel);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+- (NSURLSessionTask *)submitHomeBuildProjectSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeBuildProjectSubmitModel *)projectSubmitModel withBlock:(dispatch_block_t)block {
+    
+    NSString *urlString  = ProjectBuildeDetailSaveAPIURLConst;
+    if (submitType == 3) {
+        urlString  = ProjectBuildeDetailUpdateAPIURLConst;
+    }
+    
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:[projectSubmitModel modelToJSONObject]];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+
 
 @end

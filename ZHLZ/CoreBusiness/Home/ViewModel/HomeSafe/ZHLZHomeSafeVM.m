@@ -47,6 +47,20 @@
 }
 
 
+- (NSURLSessionTask *)submitHomeSafeWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZSafeSubmitModel *)submitModel withBlock:(dispatch_block_t)block {
+    
+    NSString *urlString  = SafeFloodPreventionSaveAPIURLConst;
+    if (submitType == 3) {
+        urlString  = SafeFloodPreventionUpdateAPIURLConst;
+    }
+    
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:[submitModel modelToJSONObject]];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
 
 
 @end

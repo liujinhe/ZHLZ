@@ -47,6 +47,10 @@ NSString * const MunicipalProblemOpenAPIURLConst = @"/app/mapinspection/openpro"
 
 /// 在建项目
 NSString * const ProjectBuildeListAPIURLConst = @"/app/mapproject/list";
+NSString * const ProjectBuildeDetailAPIURLConst = @"/app/mapproject/info";
+NSString * const ProjectBuildeDetailSaveAPIURLConst = @"/app/mapproject/save";
+NSString * const ProjectBuildeDetailUpdateAPIURLConst = @"/app/mapproject/update";
+
 
 /// 安全防汛问题
 NSString * const SafeFloodPreventionProblemAPIURLConst = @"/app/mapflood/list";

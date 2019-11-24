@@ -87,7 +87,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入所在位置" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OAd-Zh-KCs">
-                                    <rect key="frame" x="78" y="0.0" width="306" height="50"/>
+                                    <rect key="frame" x="78" y="0.0" width="296" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
@@ -96,7 +96,7 @@
                             <constraints>
                                 <constraint firstItem="hDG-u1-UnR" firstAttribute="leading" secondItem="jdv-MJ-Ez7" secondAttribute="leading" constant="10" id="6go-qo-XzT"/>
                                 <constraint firstAttribute="bottom" secondItem="OAd-Zh-KCs" secondAttribute="bottom" id="AiS-qI-UR4"/>
-                                <constraint firstAttribute="trailing" secondItem="OAd-Zh-KCs" secondAttribute="trailing" constant="10" id="RvK-Ir-lQ1"/>
+                                <constraint firstAttribute="trailing" secondItem="OAd-Zh-KCs" secondAttribute="trailing" constant="20" id="RvK-Ir-lQ1"/>
                                 <constraint firstItem="OAd-Zh-KCs" firstAttribute="leading" secondItem="hDG-u1-UnR" secondAttribute="trailing" constant="10" id="ez0-eS-iOH"/>
                                 <constraint firstItem="OAd-Zh-KCs" firstAttribute="top" secondItem="jdv-MJ-Ez7" secondAttribute="top" id="fMq-7C-ec8"/>
                                 <constraint firstItem="hDG-u1-UnR" firstAttribute="centerY" secondItem="jdv-MJ-Ez7" secondAttribute="centerY" id="t5j-Mp-L0h"/>
@@ -251,14 +251,14 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入相片号" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O0X-FD-5wB">
-                                    <rect key="frame" x="77.5" y="0.0" width="306.5" height="50"/>
+                                    <rect key="frame" x="77.5" y="0.0" width="296.5" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="O0X-FD-5wB" secondAttribute="trailing" constant="10" id="6UZ-eN-iDR"/>
+                                <constraint firstAttribute="trailing" secondItem="O0X-FD-5wB" secondAttribute="trailing" constant="20" id="6UZ-eN-iDR"/>
                                 <constraint firstItem="1Zi-ch-QQB" firstAttribute="centerY" secondItem="Nec-en-br8" secondAttribute="centerY" id="6ct-6K-Oc1"/>
                                 <constraint firstAttribute="height" constant="50" id="VRh-rJ-ijj"/>
                                 <constraint firstItem="O0X-FD-5wB" firstAttribute="leading" secondItem="1Zi-ch-QQB" secondAttribute="trailing" constant="10" id="YK9-lZ-3gb"/>
