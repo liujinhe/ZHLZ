@@ -44,6 +44,8 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
+@property (nonatomic , strong) ZHLZHomeBuildProjectSubmitModel *projectSubmitModel;
+
 @end
 
 @implementation ZHLZHomeBuildProjectDetailVC
@@ -57,6 +59,7 @@
 -(void)editAction {
     ZHLZHomeBuildProjectDetailVC *buildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
     buildProjectDetailVC.detailType = 3;
+    buildProjectDetailVC.detailId = self.detailId;
     [self.navigationController pushViewController:buildProjectDetailVC animated:YES];
 }
 
@@ -75,12 +78,61 @@
         
         [self loadDetailData];
         
+        [self setViewToLookDetail];
+        
     } else {
         self.title = @"编辑在建项目";
         [self.submitButton setTitle:@"确认保存" forState:UIControlStateNormal];
         
         [self loadDetailData];
     }
+    
+    self.projectSubmitModel = [ZHLZHomeBuildProjectSubmitModel new];
+}
+
+- (void)setViewToLookDetail {
+    
+    //设置UIButton背景颜色
+    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
+    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
+    self.developmentUnitButton.backgroundColor = [UIColor whiteColor];
+    self.roadWorkButton.backgroundColor = [UIColor whiteColor];
+    self.approvalAuthorityButton.backgroundColor = [UIColor whiteColor];
+    
+    self.licenceStartButton.backgroundColor = [UIColor whiteColor];
+    self.licenceEndButton.backgroundColor = [UIColor whiteColor];
+    self.demandTimeButton.backgroundColor = [UIColor whiteColor];
+    self.roadWorkTypeButton.backgroundColor = [UIColor whiteColor];
+    self.brigadeButton.backgroundColor = [UIColor whiteColor];
+    
+    self.areaButton.backgroundColor = [UIColor whiteColor];
+    self.dutyAreaButton.backgroundColor = [UIColor whiteColor];
+    self.emphasisProjectButton.backgroundColor = [UIColor whiteColor];
+    
+    
+    //设置按钮不可编辑
+    self.projectTypeButton.userInteractionEnabled = NO;
+    self.projectTypeButton.userInteractionEnabled = NO;
+    self.projectLocationTextFile.userInteractionEnabled = NO;
+    self.developmentUnitButton.userInteractionEnabled = NO;
+    self.roadWorkButton.userInteractionEnabled = NO;
+    
+    self.approvalAuthorityButton.userInteractionEnabled = NO;
+    self.licenceStartButton.userInteractionEnabled = NO;
+    self.licenceEndButton.userInteractionEnabled = NO;
+    self.demandTimeButton.userInteractionEnabled = NO;
+    self.roadWorkTypeButton.userInteractionEnabled = NO;
+    
+    self.brigadeButton.userInteractionEnabled = NO;
+    self.areaButton.userInteractionEnabled = NO;
+    self.dutyAreaButton.userInteractionEnabled = NO;
+    self.acreageTextFile.userInteractionEnabled = NO;
+    self.licenceNumTextFile.userInteractionEnabled = NO;
+    
+    self.projectNumTextFile.userInteractionEnabled = NO;
+    self.emphasisProjectButton.userInteractionEnabled = NO;
+    [self.remarkTextView setEditable:NO];
+    
 }
 
 - (void)loadDetailData {
@@ -121,10 +173,16 @@
         [self.dutyAreaButton setTitle:homeBuildProjectModel.belong forState:UIControlStateNormal];
         
         self.acreageTextFile.text = homeBuildProjectModel.area;
-        self.licenceNumTextFile.text = @"";
-        self.projectNumTextFile.text = @"";
+        self.licenceNumTextFile.text = homeBuildProjectModel.licenseId;
+        self.projectNumTextFile.text = homeBuildProjectModel.projectno;
         
         [self.emphasisProjectButton setTitle:homeBuildProjectModel.focuson forState:UIControlStateNormal];
+    
+        
+        self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",homeBuildProjectModel.coordinatesX];
+        self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",homeBuildProjectModel.coordinatesY];
+        self.locationLabel.text = [NSString stringWithFormat:@"当前位置：%@",homeBuildProjectModel.position];
+        
     }];
 }
 
@@ -132,6 +190,21 @@
 
 - (IBAction)submitAction:(id)sender {
     
+    
+    
+    
+    
+    @weakify(self)
+    self.task = [[ZHLZHomeBuildProjectVM sharedInstance] submitHomeBuildProjectSubmitType:self.detailType andSubmitModel:self.projectSubmitModel withBlock:^{
+        @strongify(self)
+        
+        if (self.detailType == 1) {
+            [GRToast makeText:@"新增成功"];
+        } else {
+            [GRToast makeText:@"保存成功"];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 

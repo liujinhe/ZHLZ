@@ -29,7 +29,7 @@
     
     [self initUI];
     
-    if ([ZHLZUserManager sharedInstance].isLogin) {
+    if (![ZHLZUserManager sharedInstance].isLogin) {
         [self loginAction];
     }
 }

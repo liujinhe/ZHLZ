@@ -8,6 +8,7 @@
 
 #import "ZHLZBaseVM.h"
 #import "ZHLZHomeBuildProjectModel.h"
+#import "ZHLZHomeBuildProjectSubmitModel.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionTask *)loadHomeBuildProjectDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray))block;
 
 - (NSURLSessionTask *)loadHomeBuildProjectDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeBuildProjectModel *homeBuildProjectModel))block;
+
+- (NSURLSessionTask *)submitHomeBuildProjectSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeBuildProjectSubmitModel *)projectSubmitModel withBlock:(dispatch_block_t)block;
 
 @end
 
