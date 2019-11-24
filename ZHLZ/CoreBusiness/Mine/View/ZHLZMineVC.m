@@ -38,6 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMineData) name:LoadDataNotificationConst object:nil];
+    
     self.fd_prefersNavigationBarHidden = YES;
     
     if (@available(iOS 11.0, *)) {
@@ -61,11 +63,9 @@
     self.fd_prefersNavigationBarHidden = YES;
 }
 
-- (void)loadMineData{
+- (void)loadMineData {
     self.task = [[ZHLZMineVM sharedInstance] getUserInfoCallBack:^(ZHLZMineModel * _Nonnull mineModel) {
-        
         self.headerUserNameLabel.text = mineModel.fullname;
-        
     }];
 }
 #pragma mark --初始化视图

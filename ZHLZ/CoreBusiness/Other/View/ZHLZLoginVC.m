@@ -67,7 +67,9 @@
         } else {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:LoginRememberPwdConst];
         }
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoadDataNotificationConst object:nil];
+        }];
     }];
 }
 

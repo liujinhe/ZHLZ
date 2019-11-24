@@ -38,6 +38,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 @property (nonatomic, strong) NSArray<ZHLZHomeMapModel *> *homeMapArray;
 @property (nonatomic, strong) NSMutableArray<MAPointAnnotation *> *annotationArray;
+@property (nonatomic, strong) NSMutableArray<UIImage *> *imgArray;
 
 @end
 
@@ -61,6 +62,13 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     self.mapView.visibleMapRect = _limitMapRect;
     
     [self loadHomeMapData];
+}
+
+- (void)dealloc {
+    if (self.mapView) {
+        self.mapView.showsUserLocation = NO;
+        self.mapView.delegate = nil;
+    }
 }
 
 - (void)configMapView {
@@ -95,10 +103,10 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     [self.view addSubview:self.mapView];
     
     self.gpsButton = [self makeGPSButtonView];
+    self.gpsButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
     self.gpsButton.center = CGPointMake(CGRectGetMidX(self.gpsButton.bounds) + 10,
                                         CGRectGetHeight(self.view.bounds) - CGRectGetMidY(self.gpsButton.bounds) - 30);
     [self.view addSubview:self.gpsButton];
-    self.gpsButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
     
     UIView *zoomPannelView = [self makeZoomPannelView];
     zoomPannelView.center = CGPointMake(CGRectGetWidth(self.view.bounds) -  CGRectGetMidX(zoomPannelView.bounds) - 10,
@@ -152,11 +160,10 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         @strongify(self);
         
         if (self.annotationArray && self.annotationArray.count > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.mapView removeAnnotations:self.annotationArray];
-            });
+            [self.mapView removeAnnotations:self.annotationArray];
         }
         self.annotationArray = @[].mutableCopy;
+        self.imgArray = @[].mutableCopy;
         for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
             if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
                 MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
@@ -164,12 +171,17 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
                 pointAnnotation.title = homeMapModel.typeName?:@"";
                 pointAnnotation.subtitle = homeMapModel.name?:@"";
                 [self.annotationArray addObject:pointAnnotation];
+                
+                NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
+                                                            withFocuson:homeMapModel.focuson
+                                                         withFinishdate:homeMapModel.finishdate.time
+                                                             withPronum:homeMapModel.pronum];
+                [self.imgArray addObject:[UIImage imageNamed:imgName]];
             }
         }
         if (self.annotationArray && self.annotationArray.count > 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.mapView addAnnotations:self.annotationArray];
-            });
+            [self.mapView addAnnotations:self.annotationArray];
+            [self.mapView reloadMap];
         }
     }];
 }
@@ -263,16 +275,8 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-        NSUInteger index = [self.annotationArray indexOfObject:annotation];
-        ZHLZHomeMapModel *homeMapModel = self.homeMapArray[index];
-        if (!homeMapModel) {
-            return annotationView;
-        }
-        NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
-                                                    withFocuson:homeMapModel.focuson
-                                                 withFinishdate:homeMapModel.finishdate.time
-                                                     withPronum:homeMapModel.pronum];
-        annotationView.image = [UIImage imageNamed:imgName];
+//        NSUInteger index = [self.annotationArray indexOfObject:annotation];
+//        annotationView.image = self.imgArray[index];
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -7.5);
         return annotationView;

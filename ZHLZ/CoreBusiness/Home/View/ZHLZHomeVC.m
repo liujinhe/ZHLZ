@@ -67,6 +67,8 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:LoadDataNotificationConst object:nil];
+    
     self.navTitle = @"智慧路政";
     
     _showLatestMessageType = 0;

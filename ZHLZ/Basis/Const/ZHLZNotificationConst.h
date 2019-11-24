@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 登录
 extern NSString * const LoginNotificationConst;
+// 加载数据
+extern NSString * const LoadDataNotificationConst;
 
 @end
 
