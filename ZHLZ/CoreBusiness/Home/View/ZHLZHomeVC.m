@@ -8,8 +8,7 @@
 
 #import "ZHLZHomeVC.h"
 
-#import <SDCycleScrollView/SDCollectionViewCell.h>
-
+#import "ZHLZHomeBannerCVC.h"
 #import "ZHLZHomeBulletinCVC.h"
 #import "ZHLZHomeCVC.h"
 #import "ZHLZHomeCRV.h"
@@ -105,7 +104,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    [self.collectionView registerClass:[SDCollectionViewCell class]
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([[ZHLZHomeBannerCVC class] class]) bundle:nil]
             forCellWithReuseIdentifier:ZHLZHomeBannerCVCReuseIdentifier];
     [self.collectionView registerClass:[ZHLZHomeBulletinCVC class]
             forCellWithReuseIdentifier:ZHLZHomeBulletinCVCReuseIdentifier];
@@ -210,7 +209,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             return self.homeRoadConstructionArray.count;
         }
     } else { // Banner
-        return self.homeBannerArray.count;
+        return 1;
     }
 }
 
@@ -272,13 +271,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             return homeRoadConstructionCVC;
         }
     } else { // Banner
-        SDCollectionViewCell *homeBannerCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBannerCVCReuseIdentifier
-                                                                                        forIndexPath:indexPath];
+        ZHLZHomeBannerCVC *homeBannerCVC = [collectionView dequeueReusableCellWithReuseIdentifier:ZHLZHomeBannerCVCReuseIdentifier
+                                                                                     forIndexPath:indexPath];
         if (homeBannerCVC) {
-            ZHLZHomeBannerModel *homeBannerModel = self.homeBannerArray[indexPath.row];
-            if (homeBannerModel) {
-                [homeBannerCVC.imageView sd_setImageWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:homeBannerModel.url]] placeholderImage:[UIImage imageNamed:@"home_banner_bg"]];
-            }
+            homeBannerCVC.homeBannerArray = self.homeBannerArray;
         }
         return homeBannerCVC;
     }
@@ -287,9 +283,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) { // 公告
-        return;
-    } else if (indexPath.section == 2) { // 模块
+    if (indexPath.section == 2) { // 模块
         NSString *navTitle = self.moduleTitleArray[indexPath.row];
         switch (indexPath.row) {
             case 0:
@@ -402,8 +396,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             [self.navigationController pushViewController:homeOccupyProblemDetailVC
                                                  animated:YES];
         }
-    } else { // Banner
-        
     }
 }
 

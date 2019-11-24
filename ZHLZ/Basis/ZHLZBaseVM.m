@@ -87,6 +87,7 @@
     }
     if ([paramStr isNotBlank]) {
         _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+        _requestParam = nil;
     }
 }
 
