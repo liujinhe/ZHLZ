@@ -46,6 +46,22 @@
     }];
 }
 
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeSafeProblemSUbmitModel *)safeProblemSUbmitModel withBlock:(dispatch_block_t)block {
+    
+    NSString *urlString  = SafeFloodPreventionProblemSaveAPIURLConst;
+    if (submitType == 3) {
+        urlString  = SafeFloodPreventionProblemUpdateAPIURLConst;
+    }
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:[safeProblemSUbmitModel modelToJSONObject]];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+
+
+
 - (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemGetMeasuresAPIURLConst];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
@@ -58,6 +74,5 @@
     }];
 }
 
-//
 
 @end
