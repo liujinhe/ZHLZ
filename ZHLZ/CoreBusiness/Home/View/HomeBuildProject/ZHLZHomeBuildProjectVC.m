@@ -38,6 +38,7 @@
 - (void)addAction {
     
     ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
+    homeBuildProjectDetailVC.detailType = 1;
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 }
 
@@ -101,8 +102,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZHLZHomeBuildProjectModel *homeBuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];
+    
     ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
-    homeBuildProjectDetailVC.isEdit = YES;
+    homeBuildProjectDetailVC.detailType = 2;
+    homeBuildProjectDetailVC.detailId = [NSString stringWithFormat:@"%@",homeBuildProjectModel.objectID];
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 
 }

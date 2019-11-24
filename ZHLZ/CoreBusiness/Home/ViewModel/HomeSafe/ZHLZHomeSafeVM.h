@@ -8,6 +8,7 @@
 
 #import "ZHLZBaseVM.h"
 #import "ZHLZHomeSafeModel.h"
+#import "ZHLZSafeSubmitModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionTask *)loadHomeSafeDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeModel *> *homeSafeModelArray))block;
 
 - (NSURLSessionTask *)loadHomeSafeDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeModel *homeSafeModel))block;
+
+- (NSURLSessionTask *)submitHomeSafeWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZSafeSubmitModel *)submitModel withBlock:(dispatch_block_t)block;
 
 @end
 

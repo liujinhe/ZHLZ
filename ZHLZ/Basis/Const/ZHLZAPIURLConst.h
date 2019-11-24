@@ -54,6 +54,8 @@ extern NSString * const MunicipalProblemOpenAPIURLConst;
 
 // 在建项目
 extern NSString * const ProjectBuildeListAPIURLConst;
+extern NSString * const ProjectBuildeDetailAPIURLConst;
+
 
 // 安全防汛问题
 extern NSString * const SafeFloodPreventionProblemAPIURLConst;
