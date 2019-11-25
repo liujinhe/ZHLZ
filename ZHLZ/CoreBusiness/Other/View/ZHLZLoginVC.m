@@ -67,6 +67,7 @@
         } else {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:LoginRememberPwdConst];
         }
+        [GRToast makeText:@"登录成功"];
         [self dismissViewControllerAnimated:NO completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:LoadDataNotificationConst object:nil];
         }];

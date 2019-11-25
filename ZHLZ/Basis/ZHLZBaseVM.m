@@ -66,19 +66,27 @@
 - (void)setIsDefaultArgument:(BOOL)isDefaultArgument {
     _isDefaultArgument = isDefaultArgument;
     
-    NSMutableDictionary *param = _requestParam ? (NSMutableDictionary *)_requestParam : @{}.mutableCopy;
+    NSMutableDictionary *param = @{}.mutableCopy;
     if (_isDefaultArgument) {
-        if ([param objectForKey:@"page"] == nil) {
-            [param setValue:@(1) forKey:@"page"];
+        if ([_requestParam objectForKey:@"page"]) {
+            [param setObject:[_requestParam objectForKey:@"page"] forKey:@"page"];
+        } else {
+            [param setObject:@(1) forKey:@"page"];
         }
-        if ([param objectForKey:@"limit"] == nil) {
-            [param setValue:@(10) forKey:@"limit"];
+        if ([_requestParam objectForKey:@"limit"]) {
+            [param setObject:[_requestParam objectForKey:@"limit"] forKey:@"limit"];
+        } else {
+            [param setObject:@(10) forKey:@"limit"];
         }
-        if ([param objectForKey:@"order"] == nil) {
-            [param setValue:@"desc" forKey:@"order"];
+        if ([_requestParam objectForKey:@"order"]) {
+            [param setObject:[_requestParam objectForKey:@"order"] forKey:@"order"];
+        } else {
+            [param setObject:@"desc" forKey:@"order"];
         }
-        if ([param objectForKey:@"sidx"] == nil) {
-            [param setValue:@"" forKey:@"sidx"];
+        if ([_requestParam objectForKey:@"sidx"]) {
+            [param setObject:[_requestParam objectForKey:@"sidx"] forKey:@"sidx"];
+        } else {
+            [param setObject:@"" forKey:@"sidx"];
         }
     }
     NSString *paramStr = @"";

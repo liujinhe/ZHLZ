@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const LoginNotificationConst;
 // 加载数据
 extern NSString * const LoadDataNotificationConst;
+// 打开文件
+extern NSString * const OpenDocNotificationConst;
 
 @end
 

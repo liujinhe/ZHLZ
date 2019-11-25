@@ -14,4 +14,6 @@ NSString * const LoginNotificationConst = @"LoginNotificationConst";
 
 NSString * const LoadDataNotificationConst = @"LoadDataNotificationConst";
 
+NSString * const OpenDocNotificationConst =  @"OpenDocNotificationConst";
+
 @end

@@ -1,22 +1,21 @@
 //
-//  ZHLZBusinessDocumentCell.h
+//  ZHLZHomeDownloadBusinessDocumentVC.h
 //  ZHLZ
 //
-//  Created by apple on 2019/11/20.
+//  Created by liujinhe on 2019/11/25.
 //  Copyright © 2019 liujinhe. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZHLZBaseVC.h"
 #import "ZHLZHomeBusinessDocumentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZHLZBusinessDocumentCell : UITableViewCell
+@interface ZHLZHomeDownloadBusinessDocumentVC : ZHLZBaseVC
 
 @property (nonatomic, strong) ZHLZHomeBusinessDocumentModel *homeBusinessDocumentModel;
 
-/// 是否已下载
-@property (nonatomic, assign) BOOL isHasDownLoad;
+@property (nonatomic, strong) NSString *fullPath;
 
 @end
 

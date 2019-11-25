@@ -234,7 +234,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     } else {
         tag = @"2";
     }
-    return [NSString stringWithFormat:@"%@_%@_%@", projecttype, color, tag];
+    return [NSString stringWithFormat:@"%@_%@_%@.png", projecttype, color, tag];
 }
 
 #pragma mark - Action
@@ -275,8 +275,8 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         annotationView.canShowCallout = YES;
         annotationView.animatesDrop = YES;
-//        NSUInteger index = [self.annotationArray indexOfObject:annotation];
-//        annotationView.image = self.imgArray[index];
+        NSUInteger index = [self.annotationArray indexOfObject:annotation];
+        annotationView.image = self.imgArray[index];
         // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
         annotationView.centerOffset = CGPointMake(0, -7.5);
         return annotationView;

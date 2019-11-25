@@ -7,11 +7,14 @@
 //
 
 #import "ZHLZBusinessDocumentCell.h"
+
 @interface ZHLZBusinessDocumentCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *fileNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *fileSizeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
 
 @end
 
@@ -19,26 +22,29 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setHomeBusinessDocumentModel:(ZHLZHomeBusinessDocumentModel *)homeBusinessDocumentModel{
-    if (!homeBusinessDocumentModel) {
-           return;
-       }
-       
-       self.fileNameLabel.text = homeBusinessDocumentModel.fileName;
-       self.fileSizeLabel.text = [NSString stringWithFormat:@"%@ KB",homeBusinessDocumentModel.fileSize];
-}
-
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setHomeBusinessDocumentModel:(ZHLZHomeBusinessDocumentModel *)homeBusinessDocumentModel{
+    if (!homeBusinessDocumentModel) {
+        return;
+    }
+    
+    self.fileNameLabel.text = homeBusinessDocumentModel.fileName;
+    self.fileSizeLabel.text = [NSString stringWithFormat:@"%@ KB",homeBusinessDocumentModel.fileSize];
+}
+- (void)setIsHasDownLoad:(BOOL)isHasDownLoad {
+    _isHasDownLoad = isHasDownLoad;
+    if (_isHasDownLoad) {
+        self.descLabel.text = @" / 已下载";
+    } else {
+        self.descLabel.text = @"";
+    }
 }
 
 @end

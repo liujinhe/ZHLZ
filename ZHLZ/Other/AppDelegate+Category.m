@@ -24,6 +24,12 @@
     
     self.window.rootViewController = [ZHLZTabBarController new];
     
+    if (@available(iOS 11.0, *)) {
+        [UITableView appearance].estimatedRowHeight = 0;
+        [UITableView appearance].estimatedSectionHeaderHeight = 0;
+        [UITableView appearance].estimatedSectionFooterHeight = 0;
+    }
+    
     [[UITextField appearance] setTintColor:kThemeColor];
     
     [IQKeyboardManager sharedManager].enable = YES;
