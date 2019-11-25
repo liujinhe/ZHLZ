@@ -9,8 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeSafeProblemDetailVC">
             <connections>
+                <outlet property="areaNameButton" destination="b1S-HG-Mu5" id="pVq-wc-lq2"/>
+                <outlet property="dutyAreaButton" destination="mcc-3k-6P0" id="vYT-B8-v4A"/>
+                <outlet property="homeSafeButton" destination="G3b-Xz-T1v" id="ijq-FT-pZC"/>
+                <outlet property="problemDetailTextView" destination="9U5-ny-GOo" id="UfB-UK-fwJ"/>
+                <outlet property="problemMarkTextView" destination="hkc-iq-63S" id="obA-k9-nYQ"/>
                 <outlet property="problemSubmitButton" destination="s5a-C0-kU8" id="iS9-i2-idN"/>
+                <outlet property="problemTimeButton" destination="GdB-Bz-a5R" id="dUu-DE-Fw5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="workUserButton" destination="KaQ-nA-XvF" id="aH6-p7-z4D"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -89,6 +96,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="homeSafeAction:" destination="-1" eventType="touchUpInside" id="pDe-tN-nyd"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -127,6 +137,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="areaNameAction:" destination="-1" eventType="touchUpInside" id="nlS-14-DNW"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -164,6 +177,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="dutyAreaAction:" destination="-1" eventType="touchUpInside" id="cvm-YJ-Flb"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -201,6 +217,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="problemTimeAction:" destination="-1" eventType="touchUpInside" id="sxC-5K-62H"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

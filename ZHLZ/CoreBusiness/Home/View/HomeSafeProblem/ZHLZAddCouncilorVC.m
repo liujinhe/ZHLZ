@@ -55,7 +55,10 @@
 }
 
 - (IBAction)addSupervisorAction:(UIButton *)sender {
-    
+    if (self.addCouncilorBlock) {
+        self.addCouncilorBlock(self.supervisorDetailTextView.text);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
