@@ -9,6 +9,10 @@
 #import "ZHLZHomeBuildProjectDetailVC.h"
 #import "ZHLZProjectDetailTableViewCell.h"
 #import "ZHLZHomeBuildProjectVM.h"
+#import "ZHLZListPickerViewVC.h"
+#import "ZHLZBrigadePickerViewVC.h"
+#import "ZHLZDatePickerVC.h"
+#import "ZHLZAreaPickerViewVC.h"
 
 @interface ZHLZHomeBuildProjectDetailVC ()
 
@@ -186,6 +190,156 @@
     }];
 }
 
+///工程类型
+- (IBAction)projectTypeAction:(UIButton *)sender {
+    ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+            projectTypePickerViewVC.type = 4;
+            @weakify(self)
+            projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+                @strongify(self);
+                
+        //        self->_projecttypeId = code;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                });
+            };
+    [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
+}
+
+///责任单位
+- (IBAction)dutyUnitAction:(UIButton *)sender {
+    
+}
+
+///施工单位
+- (IBAction)roadWorkAction:(UIButton *)sender {
+}
+///审批单位
+- (IBAction)approveUnitAction:(UIButton *)sender {
+    
+}
+
+///许可证开始时间
+- (IBAction)licenceSatrtAction:(UIButton *)sender {
+    ZHLZDatePickerVC *datePickerVC = [ZHLZDatePickerVC new];
+    datePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
+        if (date) {
+//            [self.supervisorTimeButton setTitle:date forState:UIControlStateNormal];
+        }
+    };
+    [self presentViewController:datePickerVC animated:NO completion:nil];
+}
+///许可证结束时间
+- (IBAction)licenceEndAction:(UIButton *)sender {
+    ZHLZDatePickerVC *datePickerVC = [ZHLZDatePickerVC new];
+    datePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
+        if (date) {
+//            [self.supervisorTimeButton setTitle:date forState:UIControlStateNormal];
+        }
+    };
+    [self presentViewController:datePickerVC animated:NO completion:nil];
+}
+///巡查x次数
+- (IBAction)chenckTimeAction:(UIButton *)sender {
+    ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+            projectTypePickerViewVC.type = 3;
+            @weakify(self)
+            projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+                @strongify(self);
+                
+        //        self->_projecttypeId = code;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                });
+            };
+    [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
+    
+}
+///施工状态
+- (IBAction)workStatusAction:(UIButton *)sender {
+    ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+            projectTypePickerViewVC.type = 2;
+            @weakify(self)
+            projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+                @strongify(self);
+                
+        //        self->_projecttypeId = code;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                });
+            };
+    [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
+    
+}
+///所属大队
+- (IBAction)brigadeAction:(UIButton *)sender {
+    ZHLZBrigadePickerViewVC *brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
+        @weakify(self)
+        brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
+            @strongify(self);
+            
+    //        self->_bid = brigadeType;
+//            self.safeSubmitModel.orgName = brigadeName;
+            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
+            });
+        };
+    [self presentViewController:brigadePickerViewVC animated:NO completion:nil];
+}
+///片区名称
+- (IBAction)areaNmeAction:(UIButton *)sender {
+    
+    ZHLZAreaPickerViewVC *areaPickerViewVC = [ZHLZAreaPickerViewVC new];
+    areaPickerViewVC.orgId = @"123";
+    @weakify(self)
+    areaPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
+                @strongify(self);
+                
+        //        self->_bid = brigadeType;
+    //            self.safeSubmitModel.orgName = brigadeName;
+                dispatch_async(dispatch_get_main_queue(), ^{
+    //                [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
+                });
+            };
+    [self presentViewController:areaPickerViewVC animated:NO completion:nil];
+}
+
+///责任区县
+- (IBAction)dutyAreaAction:(UIButton *)sender {
+    ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+        projectTypePickerViewVC.type = 5;
+        @weakify(self)
+        projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            @strongify(self);
+            
+    //        self->_projecttypeId = code;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+    //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+            });
+        };
+        [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
+}
+
+///重点项目
+- (IBAction)emphasisProjectAction:(UIButton *)sender {
+        ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
+        projectTypePickerViewVC.type = 1;
+        @weakify(self)
+        projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            @strongify(self);
+            
+    //        self->_projecttypeId = code;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+    //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+            });
+        };
+        [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
+}
 
 
 - (IBAction)submitAction:(id)sender {

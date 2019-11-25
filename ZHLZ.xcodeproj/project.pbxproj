@@ -29,6 +29,10 @@
 		189DAA4A238635410049B5FF /* ZHLZHomeSafeDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DAA48238635410049B5FF /* ZHLZHomeSafeDetailVC.xib */; };
 		18AE316C2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AE316A2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m */; };
 		18AE316D2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AE316B2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib */; };
+		18C24B86238B869A00C9EBC2 /* ZHLZChooseListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */; };
+		18C24B87238B869A00C9EBC2 /* ZHLZChooseListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */; };
+		18C24B8C238B86EC00C9EBC2 /* ZHLZChooseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */; };
+		18C24B8D238B86EC00C9EBC2 /* ZHLZChooseListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B8B238B86EC00C9EBC2 /* ZHLZChooseListCell.xib */; };
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */; };
@@ -301,6 +305,12 @@
 		18AE31692384331B00CBB278 /* ZHLZProjectDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZProjectDetailTableViewCell.h; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		18AE316A2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZProjectDetailTableViewCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.m; sourceTree = SOURCE_ROOT; };
 		18AE316B2384331B00CBB278 /* ZHLZProjectDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZProjectDetailTableViewCell.xib; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZProjectDetailTableViewCell.xib; sourceTree = SOURCE_ROOT; };
+		18C24B83238B869900C9EBC2 /* ZHLZChooseListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChooseListVC.h; sourceTree = "<group>"; };
+		18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChooseListVC.m; sourceTree = "<group>"; };
+		18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChooseListVC.xib; sourceTree = "<group>"; };
+		18C24B89238B86EC00C9EBC2 /* ZHLZChooseListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChooseListCell.h; sourceTree = "<group>"; };
+		18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChooseListCell.m; sourceTree = "<group>"; };
+		18C24B8B238B86EC00C9EBC2 /* ZHLZChooseListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChooseListCell.xib; sourceTree = "<group>"; };
 		42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4F88F219E2F50A104B530A /* Pods-ZHLZTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZHLZTests.debug.xcconfig"; path = "Target Support Files/Pods-ZHLZTests/Pods-ZHLZTests.debug.xcconfig"; sourceTree = "<group>"; };
 		539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -694,6 +704,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18C24B88238B86C400C9EBC2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				18C24B89238B86EC00C9EBC2 /* ZHLZChooseListCell.h */,
+				18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */,
+				18C24B8B238B86EC00C9EBC2 /* ZHLZChooseListCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A5574E9A23828DBC00B24FC4 /* ZHLZ */ = {
 			isa = PBXGroup;
 			children = (
@@ -1373,6 +1393,7 @@
 		A5574F6D23828DBD00B24FC4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18C24B88238B86C400C9EBC2 /* Cell */,
 				A538B5282386991E002E30CC /* ZHLZAreaPickerViewVC.h */,
 				A538B52D2386991F002E30CC /* ZHLZAreaPickerViewVC.m */,
 				A538B5222386991E002E30CC /* ZHLZAreaPickerViewVC.xib */,
@@ -1391,6 +1412,9 @@
 				A5F4FB2E2387B9D600225D45 /* ZHLZDatePickerVC.h */,
 				A5F4FB2F2387B9D600225D45 /* ZHLZDatePickerVC.m */,
 				A5F4FB302387B9D600225D45 /* ZHLZDatePickerVC.xib */,
+				18C24B83238B869900C9EBC2 /* ZHLZChooseListVC.h */,
+				18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */,
+				18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1944,11 +1968,13 @@
 				A557505C23828DBD00B24FC4 /* ZHLZAreaManagementVC.xib in Resources */,
 				A5B19477238574FF00FF5080 /* dianli_green_2.png in Resources */,
 				A557502623828DBD00B24FC4 /* ZHLZHomeCheckInVC.xib in Resources */,
+				18C24B87238B869A00C9EBC2 /* ZHLZChooseListVC.xib in Resources */,
 				A557502323828DBD00B24FC4 /* ZHLZHomeInfoStatisticsVC.xib in Resources */,
 				A5B1946E238574FF00FF5080 /* shuiwu_red_2.png in Resources */,
 				A557502E23828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVC.xib in Resources */,
 				A557502023828DBD00B24FC4 /* ZHLZHomeSafeVC.xib in Resources */,
 				A5B19463238574FF00FF5080 /* yuanlinlvhua_yellow_2.png in Resources */,
+				18C24B8D238B86EC00C9EBC2 /* ZHLZChooseListCell.xib in Resources */,
 				A557506623828DBD00B24FC4 /* ZHLZMonadVC.xib in Resources */,
 				A557504323828DBD00B24FC4 /* ZHLZAboutVC.xib in Resources */,
 				A5B1946B238574FF00FF5080 /* luqiao_green_1.png in Resources */,
@@ -2147,6 +2173,7 @@
 				A557505F23828DBD00B24FC4 /* ZHLZAddressBookCell.m in Sources */,
 				A557507023828DBD00B24FC4 /* ZHLZLocalDataStorageConst.m in Sources */,
 				A5574FFB23828DBD00B24FC4 /* AppDelegate+Category.m in Sources */,
+				18C24B86238B869A00C9EBC2 /* ZHLZChooseListVC.m in Sources */,
 				188C7C33238A682800AAC71D /* ZHLZSafeSubmitModel.m in Sources */,
 				A5574FF923828DBD00B24FC4 /* FPSDisplay.m in Sources */,
 				A5574FF223828DBD00B24FC4 /* GRCacheMetadata.m in Sources */,
@@ -2165,6 +2192,7 @@
 				A557501123828DBD00B24FC4 /* ZHLZHomeBannerModel.m in Sources */,
 				A5574FF623828DBD00B24FC4 /* GRResponse.m in Sources */,
 				A5574FFC23828DBD00B24FC4 /* ZHLZHomeOccupyProblemVM.m in Sources */,
+				18C24B8C238B86EC00C9EBC2 /* ZHLZChooseListCell.m in Sources */,
 				18254FF72382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.m in Sources */,
 				A557500523828DBD00B24FC4 /* ZHLZHomeBuildProjectVM.m in Sources */,
 				1864EFB3238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m in Sources */,
