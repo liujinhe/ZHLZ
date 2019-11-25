@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *orgId;
 
-@property (nonatomic, copy) NSString *orgName;
+//@property (nonatomic, copy) NSString *orgName;
 
 @property (nonatomic, copy) NSString *orgcode;
 

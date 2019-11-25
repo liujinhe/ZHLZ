@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *photoNumber;
 @property (nonatomic , copy) NSString *prodescription;
 @property (nonatomic , copy) NSString *unitCharger;
-@property (nonatomic , assign) NSInteger unitId;
+@property (nonatomic , copy) NSString *unitId;
 @property (nonatomic , copy) NSString *unitName;
 @property (nonatomic , copy) NSString *unitPhone;
 @property (nonatomic , copy) NSString *uploadId;

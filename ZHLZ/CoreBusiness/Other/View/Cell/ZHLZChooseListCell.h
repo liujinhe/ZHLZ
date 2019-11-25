@@ -8,9 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ZHLZMonadModel.h"
+#import "ZHLZSpecialModel.h"
+#import "ZHLZCityManagementModel.h"
+#import "ZHLZAreaManagementModel.h"
+#import "ZHLZConstructionModel.h"
+#import "ZHLZExamineModel.h"
+#import "ZHLZRoadWorkModel.h"
+#import "ZHLZHomeSafeModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZChooseListCell : UITableViewCell
+
+@property (nonatomic , strong) MonadModelList *monadList;
+@property (nonatomic , strong) SpecialList *specialList;
+@property (nonatomic , strong) CityManagementList *cityManagementList;
+@property (nonatomic , strong) AreaManagementList *areaManagementList;
+@property (nonatomic , strong) ConstructionList *constructionList;
+@property (nonatomic , strong) ExamineList *examineList;
+@property (nonatomic , strong) RoadWorkList *roadWorkList;
+@property (nonatomic , strong) ZHLZHomeSafeModel *homeSafeModel;
+
 
 @end
 

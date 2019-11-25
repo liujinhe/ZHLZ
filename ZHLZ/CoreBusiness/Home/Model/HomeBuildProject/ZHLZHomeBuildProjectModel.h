@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) NSString *uploadId;
 @property (nonatomic , strong) NSString *uuid;
 @property (nonatomic , strong) NSString *yq;
-
+@property (nonatomic , strong) NSString *belongname;
 
 @end
 

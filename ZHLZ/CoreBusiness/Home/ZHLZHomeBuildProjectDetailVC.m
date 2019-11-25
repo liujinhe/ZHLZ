@@ -9,10 +9,12 @@
 #import "ZHLZHomeBuildProjectDetailVC.h"
 #import "ZHLZProjectDetailTableViewCell.h"
 #import "ZHLZHomeBuildProjectVM.h"
+#import "ZHLZOtherVM.h"
 #import "ZHLZListPickerViewVC.h"
 #import "ZHLZBrigadePickerViewVC.h"
 #import "ZHLZDatePickerVC.h"
 #import "ZHLZAreaPickerViewVC.h"
+#import "ZHLZChooseListVC.h"
 
 @interface ZHLZHomeBuildProjectDetailVC ()
 
@@ -91,6 +93,10 @@
         [self loadDetailData];
     }
     
+    self.brigadeButton.userInteractionEnabled = NO;
+    self.brigadeButton.backgroundColor = [UIColor whiteColor];
+    [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
+    
     self.projectSubmitModel = [ZHLZHomeBuildProjectSubmitModel new];
 }
 
@@ -115,7 +121,7 @@
     
     
     //设置按钮不可编辑
-    self.projectTypeButton.userInteractionEnabled = NO;
+    self.projectNameTextFile.userInteractionEnabled = NO;
     self.projectTypeButton.userInteractionEnabled = NO;
     self.projectLocationTextFile.userInteractionEnabled = NO;
     self.developmentUnitButton.userInteractionEnabled = NO;
@@ -171,21 +177,31 @@
         
         [self.brigadeButton setTitle:homeBuildProjectModel.bidName forState:UIControlStateNormal];
         
-        //
+        
         [self.areaButton setTitle:homeBuildProjectModel.areaid forState:UIControlStateNormal];
-        //
-        [self.dutyAreaButton setTitle:homeBuildProjectModel.belong forState:UIControlStateNormal];
+        
+        [self.dutyAreaButton setTitle:homeBuildProjectModel.belongname forState:UIControlStateNormal];
         
         self.acreageTextFile.text = homeBuildProjectModel.area;
         self.licenceNumTextFile.text = homeBuildProjectModel.licenseId;
         self.projectNumTextFile.text = homeBuildProjectModel.projectno;
         
-        [self.emphasisProjectButton setTitle:homeBuildProjectModel.focuson forState:UIControlStateNormal];
-    
+        if ([homeBuildProjectModel.focuson integerValue] == 1) {
+            [self.emphasisProjectButton setTitle:@"重点" forState:UIControlStateNormal];
+        } else {
+            [self.emphasisProjectButton setTitle:@"非重点 " forState:UIControlStateNormal];
+        }
+        
         
         self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",homeBuildProjectModel.coordinatesX];
         self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",homeBuildProjectModel.coordinatesY];
         self.locationLabel.text = [NSString stringWithFormat:@"当前位置：%@",homeBuildProjectModel.position];
+        
+        
+        
+        
+        
+        
         
     }];
 }
@@ -198,25 +214,46 @@
             projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
                 @strongify(self);
                 
-        //        self->_projecttypeId = code;
+                self.projectSubmitModel.projecttypeId = code;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                    [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
                 });
             };
     [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
 }
 
-///责任单位
+///建设单位
 - (IBAction)dutyUnitAction:(UIButton *)sender {
-    
+    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+    chooseListVC.selectIndex = 2;
+    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        self.projectSubmitModel.constructorId = code;
+        [self.developmentUnitButton setTitle:name forState:UIControlStateNormal];
+    };
+    [self.navigationController pushViewController:chooseListVC animated:YES];
 }
 
 ///施工单位
 - (IBAction)roadWorkAction:(UIButton *)sender {
+    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+    chooseListVC.selectIndex = 0;
+    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        self.projectSubmitModel.builderId = code;
+        [self.roadWorkButton setTitle:name forState:UIControlStateNormal];
+    };
+    [self.navigationController pushViewController:chooseListVC animated:YES];
 }
 ///审批单位
 - (IBAction)approveUnitAction:(UIButton *)sender {
+    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+    chooseListVC.selectIndex = 1;
+    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        self.projectSubmitModel.approverId = code;
+        [self.approvalAuthorityButton setTitle:name forState:UIControlStateNormal];
+        
+    };
+    [self.navigationController pushViewController:chooseListVC animated:YES];
     
 }
 
@@ -225,7 +262,8 @@
     ZHLZDatePickerVC *datePickerVC = [ZHLZDatePickerVC new];
     datePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
         if (date) {
-//            [self.supervisorTimeButton setTitle:date forState:UIControlStateNormal];
+            self.projectSubmitModel.createdate = date;
+            [self.licenceStartButton setTitle:date forState:UIControlStateNormal];
         }
     };
     [self presentViewController:datePickerVC animated:NO completion:nil];
@@ -235,7 +273,8 @@
     ZHLZDatePickerVC *datePickerVC = [ZHLZDatePickerVC new];
     datePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
         if (date) {
-//            [self.supervisorTimeButton setTitle:date forState:UIControlStateNormal];
+            self.projectSubmitModel.finishdate = date;
+            [self.licenceEndButton setTitle:date forState:UIControlStateNormal];
         }
     };
     [self presentViewController:datePickerVC animated:NO completion:nil];
@@ -248,10 +287,10 @@
             projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
                 @strongify(self);
                 
-        //        self->_projecttypeId = code;
+                self.projectSubmitModel.frequency = code;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                    [self.demandTimeButton setTitle:name forState:UIControlStateNormal];
                 });
             };
     [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
@@ -265,10 +304,10 @@
             projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
                 @strongify(self);
                 
-        //        self->_projecttypeId = code;
+                self.projectSubmitModel.projectstatusId = code;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-        //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                    [self.roadWorkTypeButton setTitle:name forState:UIControlStateNormal];
                 });
             };
     [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
@@ -276,32 +315,30 @@
 }
 ///所属大队
 - (IBAction)brigadeAction:(UIButton *)sender {
-    ZHLZBrigadePickerViewVC *brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
-        @weakify(self)
-        brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
-            @strongify(self);
-            
-    //        self->_bid = brigadeType;
-//            self.safeSubmitModel.orgName = brigadeName;
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
-            });
-        };
-    [self presentViewController:brigadePickerViewVC animated:NO completion:nil];
+//    ZHLZBrigadePickerViewVC *brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
+//        @weakify(self)
+//        brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
+//            @strongify(self);
+//
+////            self.safeSubmitModel.orgName = brigadeName;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+////                [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
+//            });
+//        };
+//    [self presentViewController:brigadePickerViewVC animated:NO completion:nil];
 }
 ///片区名称
 - (IBAction)areaNmeAction:(UIButton *)sender {
     
     ZHLZAreaPickerViewVC *areaPickerViewVC = [ZHLZAreaPickerViewVC new];
-    areaPickerViewVC.orgId = @"123";
+    areaPickerViewVC.orgId = [ZHLZUserManager sharedInstance].user.orgId;
     @weakify(self)
-    areaPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
+    areaPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull areaType, NSString * _Nonnull areaName) {
                 @strongify(self);
                 
-        //        self->_bid = brigadeType;
-    //            self.safeSubmitModel.orgName = brigadeName;
+                self.projectSubmitModel.areaid = areaType;
                 dispatch_async(dispatch_get_main_queue(), ^{
-    //                [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
+                    [self.areaButton setTitle:areaName forState:UIControlStateNormal];
                 });
             };
     [self presentViewController:areaPickerViewVC animated:NO completion:nil];
@@ -315,10 +352,9 @@
         projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
             @strongify(self);
             
-    //        self->_projecttypeId = code;
-            
+            self.projectSubmitModel.belong = code;
             dispatch_async(dispatch_get_main_queue(), ^{
-    //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
             });
         };
         [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
@@ -332,10 +368,10 @@
         projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
             @strongify(self);
             
-    //        self->_projecttypeId = code;
+            self.projectSubmitModel.focuson = code;
             
             dispatch_async(dispatch_get_main_queue(), ^{
-    //            [self.projectTypeButton setTitle:name forState:UIControlStateNormal];
+                [self.emphasisProjectButton setTitle:name forState:UIControlStateNormal];
             });
         };
         [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
@@ -343,10 +379,15 @@
 
 
 - (IBAction)submitAction:(id)sender {
-    
-    
-    
-    
+
+    self.projectSubmitModel.name = self.projectNameTextFile.text;
+    self.projectSubmitModel.position = self.projectLocationTextFile.text;
+    self.projectSubmitModel.area = self.acreageTextFile.text;
+    self.projectSubmitModel.licenseId = self.licenceNumTextFile.text;
+    self.projectSubmitModel.projectno = self.projectNumTextFile.text;
+    self.projectSubmitModel.coordinatesX = self.locationXLabel.text;
+    self.projectSubmitModel.coordinatesY = self.locationYLabel.text;
+    self.projectSubmitModel.remark = self.remarkTextView.text;
     
     @weakify(self)
     self.task = [[ZHLZHomeBuildProjectVM sharedInstance] submitHomeBuildProjectSubmitType:self.detailType andSubmitModel:self.projectSubmitModel withBlock:^{
