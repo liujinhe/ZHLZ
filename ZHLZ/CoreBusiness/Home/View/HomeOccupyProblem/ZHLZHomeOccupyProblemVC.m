@@ -7,8 +7,11 @@
 //
 
 #import "ZHLZHomeOccupyProblemVC.h"
+#import "ZHLZHomeOccupyProblemSearchVC.h"
 
 @interface ZHLZHomeOccupyProblemVC ()
+
+@property (nonatomic, strong) ZHLZHomeOccupyProblemSearchVC *homeOccupyProblemSearchVC;
 
 @end
 
@@ -16,6 +19,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
+    
+    self.homeOccupyProblemSearchVC = [ZHLZHomeOccupyProblemSearchVC new];
+}
+
+#pragma mark - Action
+
+- (void)searchAction {
+    [self presentViewController:self.homeOccupyProblemSearchVC animated:NO completion:^{
+        [self.homeOccupyProblemSearchVC showFilterView];
+    }];
 }
 
 @end

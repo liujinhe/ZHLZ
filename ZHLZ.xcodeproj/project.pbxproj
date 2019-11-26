@@ -203,6 +203,10 @@
 		A5941028237905D100D7A1D4 /* ZHLZUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5941027237905D100D7A1D4 /* ZHLZUITests.m */; };
 		A5AD701C238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5AD7019238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.xib */; };
 		A5AD701D238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701B238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.m */; };
+		A5AD7021238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701F238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.m */; };
+		A5AD7022238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5AD7020238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.xib */; };
+		A5AD7026238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7024238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m */; };
+		A5AD7027238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5AD7025238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.xib */; };
 		A5B1944F238574FF00FF5080 /* dianli_yellow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19425238574FC00FF5080 /* dianli_yellow_1.png */; };
 		A5B19450238574FF00FF5080 /* guidaojiaotong_red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */; };
 		A5B19451238574FF00FF5080 /* shuiwu_yellow_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */; };
@@ -622,6 +626,12 @@
 		A5AD7019238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeDownloadBusinessDocumentVC.xib; sourceTree = "<group>"; };
 		A5AD701A238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeDownloadBusinessDocumentVC.h; sourceTree = "<group>"; };
 		A5AD701B238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeDownloadBusinessDocumentVC.m; sourceTree = "<group>"; };
+		A5AD701E238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZHomeMunicipalProblemSearchVC.h; path = ZHLZ/CoreBusiness/Home/ZHLZHomeMunicipalProblemSearchVC.h; sourceTree = SOURCE_ROOT; };
+		A5AD701F238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZHomeMunicipalProblemSearchVC.m; path = ZHLZ/CoreBusiness/Home/ZHLZHomeMunicipalProblemSearchVC.m; sourceTree = SOURCE_ROOT; };
+		A5AD7020238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZHomeMunicipalProblemSearchVC.xib; path = ZHLZ/CoreBusiness/Home/ZHLZHomeMunicipalProblemSearchVC.xib; sourceTree = SOURCE_ROOT; };
+		A5AD7023238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeOccupyProblemSearchVC.h; sourceTree = "<group>"; };
+		A5AD7024238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeOccupyProblemSearchVC.m; sourceTree = "<group>"; };
+		A5AD7025238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeOccupyProblemSearchVC.xib; sourceTree = "<group>"; };
 		A5B19425238574FC00FF5080 /* dianli_yellow_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dianli_yellow_1.png; sourceTree = "<group>"; };
 		A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guidaojiaotong_red_2.png; sourceTree = "<group>"; };
 		A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuiwu_yellow_2.png; sourceTree = "<group>"; };
@@ -1111,12 +1121,15 @@
 		A5574F1F23828DBD00B24FC4 /* HomeOccupyProblem */ = {
 			isa = PBXGroup;
 			children = (
-				A5574F2123828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.h */,
-				A5574F2223828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.m */,
-				A5574F2023828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.xib */,
 				A54C72382382D66E00BE7A23 /* ZHLZHomeOccupyProblemDetailVC.h */,
 				A54C72392382D66E00BE7A23 /* ZHLZHomeOccupyProblemDetailVC.m */,
 				A54C723A2382D66E00BE7A23 /* ZHLZHomeOccupyProblemDetailVC.xib */,
+				A5AD7023238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.h */,
+				A5AD7024238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m */,
+				A5AD7025238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.xib */,
+				A5574F2123828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.h */,
+				A5574F2223828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.m */,
+				A5574F2023828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.xib */,
 			);
 			path = HomeOccupyProblem;
 			sourceTree = "<group>";
@@ -1339,12 +1352,15 @@
 		A5574F5D23828DBD00B24FC4 /* HomeMunicipalProblem */ = {
 			isa = PBXGroup;
 			children = (
-				A5574F6023828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.h */,
-				A5574F5E23828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.m */,
-				A5574F5F23828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.xib */,
 				A54C723D2382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.h */,
 				A54C723E2382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.m */,
 				A54C723F2382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.xib */,
+				A5AD701E238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.h */,
+				A5AD701F238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.m */,
+				A5AD7020238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.xib */,
+				A5574F6023828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.h */,
+				A5574F5E23828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.m */,
+				A5574F5F23828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.xib */,
 			);
 			path = HomeMunicipalProblem;
 			sourceTree = "<group>";
@@ -1935,12 +1951,14 @@
 				A538B5342386991F002E30CC /* ZHLZListPickerViewVC.xib in Resources */,
 				A557504623828DBD00B24FC4 /* ZHLZMineCell.xib in Resources */,
 				A557503523828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.xib in Resources */,
+				A5AD7027238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.xib in Resources */,
 				189944F32384CC16009714F5 /* ZHLZBusinessDocumentCell.xib in Resources */,
 				A557506223828DBD00B24FC4 /* ZHLZConstructionVC.xib in Resources */,
 				A557501E23828DBD00B24FC4 /* ZHLZHomeRoadPatrolVC.xib in Resources */,
 				A5B19474238574FF00FF5080 /* yanghu_green_1.png in Resources */,
 				A557505723828DBD00B24FC4 /* ZHLZRoadWorkVC.xib in Resources */,
 				A5B1946D238574FF00FF5080 /* ranqi_green_2.png in Resources */,
+				A5AD7022238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.xib in Resources */,
 				A5B19461238574FF00FF5080 /* ranqi_red_2.png in Resources */,
 				A5B19459238574FF00FF5080 /* luqiao_green_2.png in Resources */,
 				A557503723828DBD00B24FC4 /* ZHLZHomeMapVC.xib in Resources */,
@@ -2168,6 +2186,7 @@
 				A5574FEE23828DBD00B24FC4 /* GRRequest.m in Sources */,
 				A5574FFD23828DBD00B24FC4 /* ZHLZHomeBusinessDocumentVM.m in Sources */,
 				A557500D23828DBD00B24FC4 /* ZHLZHomeRoadPatrolModel.m in Sources */,
+				A5AD7021238CC2A00053B9B9 /* ZHLZHomeMunicipalProblemSearchVC.m in Sources */,
 				A5B194812385A2BE00FF5080 /* UIViewController+modalPresentationStyle.m in Sources */,
 				A557507B238290D400B24FC4 /* ZHLZHomeBuildProjectDetailVC.m in Sources */,
 				A557504C23828DBD00B24FC4 /* ZHLZAreaManagementModel.m in Sources */,
@@ -2234,6 +2253,7 @@
 				182550012382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m in Sources */,
 				A5574FEC23828DBD00B24FC4 /* GRChainRequest+RequestAccessory.m in Sources */,
 				A557501023828DBD00B24FC4 /* ZHLZHomeBulletinModel.m in Sources */,
+				A5AD7026238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m in Sources */,
 				A557502B23828DBD00B24FC4 /* ZHLZHomeRoadConstructionCVC.m in Sources */,
 				A557505323828DBD00B24FC4 /* ZHLZRoadWorkVC.m in Sources */,
 				A557503923828DBD00B24FC4 /* ZHLZLoginVM.m in Sources */,
