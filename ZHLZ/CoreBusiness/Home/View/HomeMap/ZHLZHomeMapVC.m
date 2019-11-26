@@ -12,13 +12,12 @@
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapSearchKit/AMapSearchKit.h>
 
 #import "ZHLZHomeMapSearchVC.h"
 
 static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
-@interface ZHLZHomeMapVC () <MAMapViewDelegate, AMapSearchDelegate>
+@interface ZHLZHomeMapVC () <MAMapViewDelegate>
 {
     MACoordinateRegion _limitRegion;
     MAMapRect _limitMapRect;
@@ -29,8 +28,6 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 }
 
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) AMapSearchAPI *search;
-@property (nonatomic, strong) AMapDistrictSearchRequest *dist;
 
 @property (nonatomic, strong) ZHLZHomeMapSearchVC *homeMapSearchVC;
 
@@ -50,8 +47,6 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     [super viewDidLoad];
     
     [self configMapView];
-    
-    [self configSearch];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -74,6 +69,11 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 - (void)configMapView {
     @weakify(self);
     self.homeMapArray = @[];
+    
+    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+    if (userModel && [userModel.userId isNotBlank] && userModel.userId.integerValue != 1) {
+        _bid = userModel.orgId;
+    }
     
     [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
     
@@ -145,15 +145,6 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     return ret;
 }
 
-- (void)configSearch {
-    self.search = [[AMapSearchAPI alloc] init];
-    self.search.delegate = self;
-    
-    self.dist = [[AMapDistrictSearchRequest alloc] init];
-    self.dist.requireExtension = YES;
-    [self.search AMapDistrictSearch:self.dist];
-}
-
 - (void)loadHomeMapData {
     @weakify(self);
     self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithName:_projectName withBid:_bid withProjecttypeId:_projecttypeId withBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray) {
@@ -167,7 +158,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
             if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
                 MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-                pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesX, homeMapModel.coordinatesY);
+                pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesY, homeMapModel.coordinatesX);
                 pointAnnotation.title = homeMapModel.typeName?:@"";
                 pointAnnotation.subtitle = homeMapModel.name?:@"";
                 [self.annotationArray addObject:pointAnnotation];
@@ -283,17 +274,5 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     }
     return nil;
 }
-
-#pragma mark - AMapSearchDelegate
-
-//- (void)onDistrictSearchDone:(AMapDistrictSearchRequest *)request response:(AMapDistrictSearchResponse *)response {
-//    if (response == nil) {
-//        return;
-//    }
-//}
-//
-//- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error {
-//    NSLog(@"Error: %@", error.localizedDescription);
-//}
 
 @end

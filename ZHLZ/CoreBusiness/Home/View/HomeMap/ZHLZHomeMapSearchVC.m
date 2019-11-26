@@ -165,6 +165,7 @@
     if (self.selectSearchBlock) {
         self.selectSearchBlock(self.projectNameTextField.text?:@"", _bid?:@"", _projecttypeId?:@"");
     }
+    [self hideFilterView];
 }
 
 #pragma mark - Public

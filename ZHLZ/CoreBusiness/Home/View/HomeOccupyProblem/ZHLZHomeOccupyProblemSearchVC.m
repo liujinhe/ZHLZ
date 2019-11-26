@@ -198,7 +198,7 @@
     if (self.selectSearchBlock) {
         self.selectSearchBlock(model);
     }
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self hideFilterView];
 }
 
 #pragma mark - Public
