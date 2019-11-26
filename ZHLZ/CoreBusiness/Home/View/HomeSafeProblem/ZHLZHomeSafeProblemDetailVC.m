@@ -101,7 +101,7 @@
 ///台账id
 - (IBAction)homeSafeAction:(UIButton *)sender {
     ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 0;
+    chooseListVC.selectIndex = 7;
     chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         self.homeSafeProblemSUbmitModel.risksid = code;
         [self.homeSafeButton setTitle:name forState:UIControlStateNormal];
