@@ -181,16 +181,12 @@
         return;
     }
     
-    
     @weakify(self)
     self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
         @strongify(self)
-        
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
-    
-
 }
 
 @end

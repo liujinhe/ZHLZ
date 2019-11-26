@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemModel : ZHLZBaseModel
 
-@property (nonatomic , assign) NSInteger areaid;
+@property (nonatomic , copy) NSString *areaid;
 
-@property (nonatomic , assign) NSInteger belong;
+@property (nonatomic , copy) NSString *belong;
 
 @property (nonatomic , copy) NSString *belongname;
 
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *imgurl;
 
-@property (nonatomic , assign) NSInteger isdelete;
+@property (nonatomic , copy) NSString *isdelete;
 
 @property (nonatomic , copy) NSString *measure;
 
@@ -70,15 +70,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *profulfiltype;
 
-@property (nonatomic , assign) NSInteger promanager;
+@property (nonatomic , copy) NSString *promanager;
 
 @property (nonatomic , copy) NSString *promanagername;
 
-@property (nonatomic , assign) NSInteger prostatus;
+@property (nonatomic , copy) NSString *prostatus;
 
 @property (nonatomic , copy) NSString *remark;
 
-@property (nonatomic , assign) NSInteger risksid;
+@property (nonatomic , copy) NSString *risksid;
 
 @property (nonatomic , copy) NSString *uploadId;
 

@@ -13,6 +13,7 @@
 #import "ZHLZPickerViewVC.h"
 #import "ZHLZDatePickerVC.h"
 #import "ZHLZListPickerViewVC.h"
+#import "ZHLZSupervisorSubmitModel.h"
 
 @interface ZHLZHomeSafeProblemDetailVC ()
 
@@ -26,15 +27,13 @@
 @property (weak, nonatomic) IBOutlet ZHLZTextView *problemMarkTextView;
 
 
-
-
-
-
 @property (weak, nonatomic) IBOutlet ZHLZButton *problemSubmitButton;
 
 @property (nonatomic , strong) ZHLZHomeSafeProblemModel *homeSafeProblemModel;
 
 @property (nonatomic , strong) ZHLZHomeSafeProblemSUbmitModel *homeSafeProblemSUbmitModel;
+
+@property (nonatomic , strong) NSMutableArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray;
 
 @end
 
@@ -57,7 +56,49 @@
     self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeProblemDetailWithId:self.detailId WithBlock:^(ZHLZHomeSafeProblemModel * _Nonnull homeSafeProblem) {
         self.homeSafeProblemModel = homeSafeProblem;
         
-
+        [self.homeSafeButton setTitle:homeSafeProblem.risksid forState:UIControlStateNormal];
+       
+        //片区名称
+        NSString *orgnameString = [ZHLZUserManager sharedInstance].user.orgname;
+        NSInteger areaid = [homeSafeProblem.areaid integerValue];
+        
+        NSString *areaString = @"";
+        if ([orgnameString isEqualToString:@"一大队"]) {
+            if (areaid == 1) {
+                areaString = @"北片";
+            } else if (areaid == 2) {
+                areaString = @"南片";
+            }
+        } else if ([orgnameString isEqualToString:@"二大队"]) {
+            if (areaid == 3) {
+                areaString = @"南北片";
+            } else if (areaid == 4) {
+                areaString = @"芳村片";
+            }
+        } else if ([orgnameString isEqualToString:@"三大队"]) {
+            if (areaid == 5) {
+                areaString = @"北片";
+            } else if (areaid == 6) {
+                areaString = @"南片";
+            }
+        } else if ([orgnameString isEqualToString:@"四大队"]) {
+            if (areaid == 7) {
+                areaString = @"北片";
+            } else if (areaid == 8) {
+                areaString = @"西南片";
+            }
+        } else if ([orgnameString isEqualToString:@"五大队"]) {
+            areaString = @"广圆快速路";
+        }
+        [self.areaNameButton setTitle:areaString forState:UIControlStateNormal];
+        
+        [self.dutyAreaButton setTitle:homeSafeProblem.belongname forState:UIControlStateNormal];
+        
+        [self.problemTimeButton setTitle:homeSafeProblem.finddate forState:UIControlStateNormal];
+        
+        [self.workUserButton setTitle:homeSafeProblem.promanagername forState:UIControlStateNormal];
+        
+        
         
     }];
 }
@@ -86,8 +127,9 @@
         
     }
     
-    self.homeSafeProblemSUbmitModel = [ZHLZHomeSafeProblemSUbmitModel new];
+    self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     
+    self.homeSafeProblemSUbmitModel = [ZHLZHomeSafeProblemSUbmitModel new];
     [self.workUserButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
     
     self.homeSafeProblemSUbmitModel.promanager = [ZHLZUserManager sharedInstance].user.fullname;
@@ -173,18 +215,26 @@
 
 - (IBAction)setSupervisorAction:(UIButton *)sender {
     ZHLZAddCouncilorVC *addCouncilorVC = [ZHLZAddCouncilorVC new];
-    addCouncilorVC.addCouncilorBlock = ^(NSString * _Nonnull detailStr) {
-        
+    @weakify(self)
+    addCouncilorVC.addCouncilorBlock = ^(ZHLZSupervisorSubmitModel * _Nonnull supervisorSubmitModel) {
+        @strongify(self)
+        if (supervisorSubmitModel) {
+            [self.supervisorSubmitModelArray addObject:supervisorSubmitModel];
+        }
     };
     [self.navigationController pushViewController:addCouncilorVC animated:YES];
 }
 
 - (IBAction)problemSubmitAction:(ZHLZButton *)sender {
     
-    self.homeSafeProblemSUbmitModel.ddssjtms = @"123";
+    self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
     self.homeSafeProblemSUbmitModel.prodescription = self.problemDetailTextView.text;
     self.homeSafeProblemSUbmitModel.remark = self.problemMarkTextView.text;
     self.homeSafeProblemSUbmitModel.uploadId = @"123";
+    
+    NSArray *safeProblemArr = @[self.homeSafeProblemSUbmitModel];
+    
+    NSArray *safeProblemSubmitArr = @[safeProblemArr,self.supervisorSubmitModelArray];
     
     
     @weakify(self)
@@ -199,6 +249,19 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+- (NSString *)setddssjtms {
+    
+    NSMutableString *ddssjtmsString = [NSMutableString new];
+    for (int i = 0 ; i < self.supervisorSubmitModelArray.count; i ++) {
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
+        [ddssjtmsString appendFormat:@"%@；",supervisorSubmitModel.meCustomize];
+    }
+    NSRange ddssjtmsStringRange = {[ddssjtmsString length] - 1, 1};
+    [ddssjtmsString deleteCharactersInRange:ddssjtmsStringRange];
+    
+    return ddssjtmsString;
 }
 
 @end

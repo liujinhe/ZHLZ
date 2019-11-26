@@ -25,6 +25,8 @@
 @property (nonatomic , strong) NSString *stepTimeString;
 @property (nonatomic , strong) NSString *isPutOutString;
 
+@property (nonatomic , strong) ZHLZSupervisorSubmitModel *supervisorSubmitModel;
+
 @end
 
 @implementation ZHLZAddCouncilorVC
@@ -35,6 +37,8 @@
     self.title = @"新增督导措施";
     
     [self.supervisorDetailTextView setEditable:NO];
+    
+    self.supervisorSubmitModel = [ZHLZSupervisorSubmitModel new];
 }
 
 - (IBAction)supervisorTimeAction:(UIButton *)sender {
@@ -43,6 +47,10 @@
         if (date) {
             [self.supervisorTimeButton setTitle:date forState:UIControlStateNormal];
             self.stepTimeString = date;
+            
+            if ([self.stepCodeString isNotBlank]) {
+                self.supervisorDetailTextView.text = [NSString stringWithFormat:@"%@对该问题进行“%@”的措施;",date,self.supervisorDetailTextView.text];
+            }
         }
     };
     [self presentViewController:datePickerVC animated:NO completion:nil];
@@ -51,7 +59,12 @@
 - (IBAction)supervisorTypeAction:(UIButton *)sender {
     ZHLZChosseStepVC *chosseStepVC = [ZHLZChosseStepVC new];
     chosseStepVC.chooseStepBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        self.supervisorDetailTextView.text = [NSString stringWithFormat:@"对该问题进行“%@”的措施;",name];
+        NSString *dateString = @"";
+        if ([self.stepTimeString isNotBlank]) {
+            dateString = [NSString stringWithFormat:@"于%@",self.stepTimeString];
+        }
+        self.supervisorDetailTextView.text = [NSString stringWithFormat:@"%@对该问题进行“%@”的措施;",dateString,name];
+        [self.supervisorTypeButton setTitle:self.supervisorDetailTextView.text forState:UIControlStateNormal];
         self.stepCodeString = code;
     };
     [self.navigationController pushViewController:chosseStepVC animated:YES];
@@ -65,7 +78,11 @@
     pickerVC.titleArray = outArray;
     pickerVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         [self.isPutOutButton setTitle:name forState:UIControlStateNormal];
-        self.isPutOutString = outArray[index];
+        if (index == 0) {
+            self.isPutOutString = @"1";
+        } else if (index == 1) {
+            self.isPutOutString = @"0";
+        }
     };
     [self presentViewController:pickerVC animated:NO completion:nil];
 }
@@ -85,16 +102,30 @@
         return;
     }
     
-    @weakify(self)
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitSupervisorWithParms:@{@"meadate":self.stepTimeString,@"isexport":self.isPutOutString,@"meCustomize":self.supervisorDetailTextView.text,@"book":self.stepCodeString} withBlock:^{
-        @strongify(self)
-        
-        if (self.addCouncilorBlock) {
-            self.addCouncilorBlock(self.supervisorDetailTextView.text);
-        }
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    self.supervisorSubmitModel.meadate = self.stepTimeString;
+    self.supervisorSubmitModel.isexport = self.isPutOutString;
+    self.supervisorSubmitModel.book = self.stepCodeString;
+    self.supervisorSubmitModel.meCustomize = self.supervisorDetailTextView.text;
+    self.supervisorSubmitModel.uuid = [self random:8];
+    
+    if (self.addCouncilorBlock) {
+        self.addCouncilorBlock(self.supervisorSubmitModel);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+// 随机生成字符串(由大小写字母、数字组成)
+- (NSString *)random:(int)len {
+    char ch[len];
+    for (int index=0; index<len; index++) {
+        int num = arc4random_uniform(75)+48;
+        if (num>57 && num<65) { num = num%57+48; }
+        else if (num>90 && num<97) { num = num%90+65; }
+        ch[index] = num;
+    }
+    return [[NSString alloc] initWithBytes:ch length:len encoding:NSUTF8StringEncoding];
+}
+
 
 @end
