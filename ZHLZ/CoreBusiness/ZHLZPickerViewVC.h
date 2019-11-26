@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZPickerViewVC : ZHLZBaseVC
 
+@property (nonatomic, assign) BOOL isDisablePleaseSelected;
+
 @property (nonatomic, strong) NSArray<NSString *> *titleArray;
 
 @property (nonatomic, copy) void (^selectPickerBlock)(NSInteger index, NSString *name);

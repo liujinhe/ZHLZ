@@ -30,7 +30,7 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 }
 
 - (void)initUI {
-    _currentIndex = -1;
+    _currentIndex = _isDisablePleaseSelected ? 0 : -1;
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)]];
     
@@ -51,8 +51,12 @@ static NSString * const SelectDefaultValue = @"---请选择---";
     [self dismissViewControllerAnimated:NO completion:^{
         @strongify(self);
         if (self.selectPickerBlock) {
-            NSString *name = (self->_currentIndex > 0) ? self.titleArray[self->_currentIndex] : @"请选择";
-            self.selectPickerBlock(self->_currentIndex - 1, name);
+            if (self->_isDisablePleaseSelected) {
+                self.selectPickerBlock(self->_currentIndex, self.titleArray[self->_currentIndex]);
+            } else {
+                NSString *name = (self->_currentIndex > 0) ? self.titleArray[self->_currentIndex] : @"请选择";
+                self.selectPickerBlock(self->_currentIndex - 1, name);
+            }
         }
     }];
 }
@@ -102,11 +106,17 @@ static NSString * const SelectDefaultValue = @"---请选择---";
 
 #pragma mark - Getter and Setter
 
+- (void)setIsDisablePleaseSelected:(BOOL)isDisablePleaseSelected {
+    _isDisablePleaseSelected = isDisablePleaseSelected;
+}
+
 - (void)setTitleArray:(NSArray<NSString *> *)titleArray {
     _titleArray = titleArray;
     
     if (_titleArray && _titleArray.count > 0) {
-        _titleArray = [@[SelectDefaultValue] arrayByAddingObjectsFromArray:_titleArray];
+        if (!_isDisablePleaseSelected) {
+            _titleArray = [@[SelectDefaultValue] arrayByAddingObjectsFromArray:_titleArray];
+        }
         [self.pickerView reloadAllComponents];
     }
 }

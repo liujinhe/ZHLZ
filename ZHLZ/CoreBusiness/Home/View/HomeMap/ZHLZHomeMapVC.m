@@ -9,6 +9,7 @@
 #import "ZHLZHomeMapVC.h"
 #import "ZHLZHomeMapVM.h"
 #import "ZHLZHomeMapModel.h"
+#import "ZHLZHomeMapProblemModel.h"
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
@@ -25,6 +26,9 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     NSString *_projectName;
     NSString *_bid;
     NSString *_projecttypeId;
+    
+    NSInteger _picLayerIndex;
+    NSInteger _colorIndex;
 }
 
 @property (nonatomic, strong) MAMapView *mapView;
@@ -78,11 +82,14 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
     
     self.homeMapSearchVC = [ZHLZHomeMapSearchVC new];
-    self.homeMapSearchVC.selectSearchBlock = ^(NSString * _Nonnull projectName, NSString * _Nonnull bid, NSString * _Nonnull projecttypeId) {
+    self.homeMapSearchVC.selectSearchBlock = ^(NSString * _Nonnull projectName, NSString * _Nonnull bid, NSString * _Nonnull projecttypeId, NSInteger picLayerIndex, NSInteger colorIndex) {
         @strongify(self);
         self->_projectName = projectName;
         self->_bid = bid;
         self->_projecttypeId = projecttypeId;
+        
+        self->_picLayerIndex = picLayerIndex;
+        self->_colorIndex = colorIndex;
         
         [self loadHomeMapData];
     };
@@ -147,7 +154,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 - (void)loadHomeMapData {
     @weakify(self);
-    self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithName:_projectName withBid:_bid withProjecttypeId:_projecttypeId withBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray) {
+    self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithpicLayer:_picLayerIndex withName:_projectName withBid:_bid withProjecttypeId:_projecttypeId withBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray, NSArray<ZHLZHomeMapProblemModel *> * _Nonnull homeMapProblemArray) {
         @strongify(self);
         
         if (self.annotationArray && self.annotationArray.count > 0) {
@@ -155,21 +162,47 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
         }
         self.annotationArray = @[].mutableCopy;
         self.imgArray = @[].mutableCopy;
-        for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
-            if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
-                MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
-                pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesY, homeMapModel.coordinatesX);
-                pointAnnotation.title = homeMapModel.typeName?:@"";
-                pointAnnotation.subtitle = homeMapModel.name?:@"";
-                [self.annotationArray addObject:pointAnnotation];
-                
-                NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
-                                                            withFocuson:homeMapModel.focuson
-                                                         withFinishdate:homeMapModel.finishdate.time
-                                                             withPronum:homeMapModel.pronum];
-                [self.imgArray addObject:[UIImage imageNamed:imgName]];
+        if (self->_picLayerIndex == 1) {
+            for (ZHLZHomeMapProblemModel *homeMapProblemModel in homeMapProblemArray) {
+                if (homeMapProblemModel.latX > 0 &&
+                    homeMapProblemModel.lonY > 0 &&
+                    (self->_colorIndex == 0 || (
+                    [homeMapProblemModel.problemStatus isNotBlank] && self->_colorIndex == homeMapProblemModel.problemStatus.integerValue))) {
+                    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+                    pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapProblemModel.lonY, homeMapProblemModel.latX);
+                    pointAnnotation.title = homeMapProblemModel.problemType?:@"";
+                    pointAnnotation.subtitle = homeMapProblemModel.problemDet?:@"";
+                    [self.annotationArray addObject:pointAnnotation];
+                    // 问题状态（1-正在处理 2-已解决 3-处理跟踪情况）
+                    NSString *imgName;
+                    if ([homeMapProblemModel.problemStatus isEqualToString:@"2"]) {
+                        imgName = @"marker_green.png";
+                    } else if ([homeMapProblemModel.problemStatus isEqualToString:@"3"]) {
+                        imgName = @"marker_blue.png";
+                    } else {
+                        imgName = @"marker_red.png";
+                    }
+                    [self.imgArray addObject:[UIImage imageNamed:imgName]];
+                }
+            }
+        } else {
+            for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
+                if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
+                    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+                    pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesY, homeMapModel.coordinatesX);
+                    pointAnnotation.title = homeMapModel.typeName?:@"";
+                    pointAnnotation.subtitle = homeMapModel.name?:@"";
+                    [self.annotationArray addObject:pointAnnotation];
+                    
+                    NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
+                                                                withFocuson:homeMapModel.focuson
+                                                             withFinishdate:homeMapModel.finishdate.time
+                                                                 withPronum:homeMapModel.pronum];
+                    [self.imgArray addObject:[UIImage imageNamed:imgName]];
+                }
             }
         }
+        
         if (self.annotationArray && self.annotationArray.count > 0) {
             [self.mapView addAnnotations:self.annotationArray];
             [self.mapView reloadMap];

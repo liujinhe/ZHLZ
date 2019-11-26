@@ -8,6 +8,7 @@
 
 #import "ZHLZHomeMapVM.h"
 #import "ZHLZHomeMapModel.h"
+#import "ZHLZHomeMapProblemModel.h"
 
 @implementation ZHLZHomeMapVM
 
@@ -20,18 +21,23 @@
     return homeMapVM;
 }
 
-- (NSURLSessionTask *)loadHomeMapDataWithName:(NSString *)name withBid:(NSString *)bid withProjecttypeId:(NSString *)projecttypeId withBlock:(void (^)(NSArray<ZHLZHomeMapModel *> *homeMapArray))block {
+- (NSURLSessionTask *)loadHomeMapDataWithpicLayer:(NSInteger)picLayer withName:(NSString *)name withBid:(NSString *)bid withProjecttypeId:(NSString *)projecttypeId withBlock:(void (^)(NSArray<ZHLZHomeMapModel *> *homeMapArray, NSArray<ZHLZHomeMapProblemModel *> *homeMapProblemArray))block {
     id requestArgument = @{@"name": name?:@"", @"bid": bid?:@"", @"projecttypeId": projecttypeId?:@""};
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MapDisplayAPIURLConst withRequestArgument:requestArgument];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:(picLayer == 1 ? MapDisplayMunicipalProblemAPIURLConst : MapDisplayAPIURLConst) withRequestArgument:requestArgument];
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        NSArray<ZHLZHomeMapProblemModel *> *homeMapProblemArray = nil;
         NSArray<ZHLZHomeMapModel *> *homeMapArray = nil;
         if (response && response.data && [response.data objectForKey:@"list"]) {
-            homeMapArray = [NSArray modelArrayWithClass:[ZHLZHomeMapModel class] json:[response.data objectForKey:@"list"]];
+            if (picLayer == 1) {
+                homeMapProblemArray = [NSArray modelArrayWithClass:[ZHLZHomeMapProblemModel class] json:[response.data objectForKey:@"list"]];
+            } else {
+                homeMapArray = [NSArray modelArrayWithClass:[ZHLZHomeMapModel class] json:[response.data objectForKey:@"list"]];
+            }
         }
-        block(homeMapArray);
+        block(homeMapArray, homeMapProblemArray);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        block(nil);
+        block(nil, nil);
     }];
 }
 

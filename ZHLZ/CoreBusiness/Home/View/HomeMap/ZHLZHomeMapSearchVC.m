@@ -54,15 +54,9 @@
     self.filterView.hidden = YES;
     self.filterBottomView.hidden = YES;
     
-    if (self.isOccupyProblem) {
-        self.colorView.hidden = NO;
-        self.colorTopLayoutConstraint.constant = 10;
-        self.colorHeightLayoutConstraint.constant = 50;
-    } else {
-        self.colorView.hidden = YES;
-        self.colorTopLayoutConstraint.constant = 0;
-        self.colorHeightLayoutConstraint.constant = 0;
-    }
+    self.colorView.hidden = YES;
+    self.colorTopLayoutConstraint.constant = 0;
+    self.colorHeightLayoutConstraint.constant = 0;
     
     ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
     if ([userModel.userId isEqualToString:@"1"]) {
@@ -86,21 +80,34 @@
                                                                                 action:@selector(hideFilterView)]];
     
     self.picLayerPickerViewVC = [ZHLZPickerViewVC new];
+    self.picLayerPickerViewVC.isDisablePleaseSelected = YES;
+    self.picLayerPickerViewVC.titleArray = @[@"原始图层", @"问题图层"];
     self.picLayerPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         @strongify(self);
         
         self->_picLayerIndex = index;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (self->_picLayerIndex == 1) {
+                self.colorView.hidden = NO;
+                self.colorTopLayoutConstraint.constant = 10;
+                self.colorHeightLayoutConstraint.constant = 50;
+            } else {
+                self.colorView.hidden = YES;
+                self.colorTopLayoutConstraint.constant = 0;
+                self.colorHeightLayoutConstraint.constant = 0;
+            }
             [self.picLayerButton setTitle:name forState:UIControlStateNormal];
         });
     };
+    [self.picLayerButton setTitle:[self.picLayerPickerViewVC.titleArray firstObject] forState:UIControlStateNormal];
     
     self.colorPickerViewVC = [ZHLZPickerViewVC new];
+    self.colorPickerViewVC.titleArray = @[@"红色", @"绿色", @"蓝色"];
     self.colorPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         @strongify(self);
         
-        self->_colorIndex = index;
+        self->_colorIndex = index + 1;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.colorButton setTitle:name forState:UIControlStateNormal];
@@ -132,12 +139,10 @@
 }
 
 - (IBAction)picLayerAction {
-    self.picLayerPickerViewVC.titleArray = @[@"原始图层", @"问题图层"];
     [self presentViewController:self.picLayerPickerViewVC animated:NO completion:nil];
 }
 
 - (IBAction)colorAction {
-    self.colorPickerViewVC.titleArray = @[@"绿色", @"红色", @"黄色"];
     [self presentViewController:self.colorPickerViewVC animated:NO completion:nil];
 }
 
@@ -162,8 +167,11 @@
 }
 
 - (IBAction)determineAction {
+    if (_picLayerIndex != 1) {
+        _colorIndex = 0;
+    }
     if (self.selectSearchBlock) {
-        self.selectSearchBlock(self.projectNameTextField.text?:@"", _bid?:@"", _projecttypeId?:@"");
+        self.selectSearchBlock(self.projectNameTextField.text?:@"", _bid?:@"", _projecttypeId?:@"", _picLayerIndex, _colorIndex);
     }
     [self hideFilterView];
 }

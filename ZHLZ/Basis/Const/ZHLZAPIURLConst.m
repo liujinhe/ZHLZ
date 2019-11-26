@@ -35,6 +35,7 @@ NSString * const HomeOccupyProblemAPIURLConst = @"/app/mapproblem/listByMune";
 NSString * const HomeMunicipalProblemAPIURLConst = @"/app/mapinspection/listByMune/toMune";
 
 NSString * const MapDisplayAPIURLConst = @"/app/mapproject/ToMmap";
+NSString * const MapDisplayMunicipalProblemAPIURLConst = @"/app/mapinspection/ByMune/toMap";
 
 NSString * const MunicipalProblemAPIURLConst = @"/app/mapinspection/list";
 NSString * const MunicipalProblemInfoAPIURLConst = @"/app/mapinspection/info";

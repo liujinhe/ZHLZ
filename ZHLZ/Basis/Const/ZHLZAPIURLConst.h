@@ -40,8 +40,10 @@ extern NSString * const HomeBulletinInfoAPIURLConst;
 extern NSString * const HomeOccupyProblemAPIURLConst;
 // 首页-市政设施
 extern NSString * const HomeMunicipalProblemAPIURLConst;
-// 地图展示
+// 地图展示-工程信息
 extern NSString * const MapDisplayAPIURLConst;
+// 地图展示-市政设施问题
+extern NSString * const MapDisplayMunicipalProblemAPIURLConst;
 // 市政问题
 extern NSString * const MunicipalProblemAPIURLConst;
 extern NSString * const MunicipalProblemInfoAPIURLConst;
