@@ -198,6 +198,7 @@
     if (self.selectSearchBlock) {
         self.selectSearchBlock(model);
     }
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark - Public

@@ -66,24 +66,24 @@
 - (void)setIsDefaultArgument:(BOOL)isDefaultArgument {
     _isDefaultArgument = isDefaultArgument;
     
-    NSMutableDictionary *param = _requestParam ? (NSMutableDictionary *)_requestParam : @{}.mutableCopy;
+    NSMutableDictionary *param = _requestParam ? ((NSDictionary *)_requestParam).mutableCopy : @{}.mutableCopy;
     if (_isDefaultArgument) {
-        if ([_requestParam objectForKey:@"page"]) {
+        if ([param objectForKey:@"page"]) {
             [param setObject:[_requestParam objectForKey:@"page"] forKey:@"page"];
         } else {
             [param setObject:@(1) forKey:@"page"];
         }
-        if ([_requestParam objectForKey:@"limit"]) {
+        if ([param objectForKey:@"limit"]) {
             [param setObject:[_requestParam objectForKey:@"limit"] forKey:@"limit"];
         } else {
             [param setObject:@(10) forKey:@"limit"];
         }
-        if ([_requestParam objectForKey:@"order"]) {
+        if ([param objectForKey:@"order"]) {
             [param setObject:[_requestParam objectForKey:@"order"] forKey:@"order"];
         } else {
             [param setObject:@"desc" forKey:@"order"];
         }
-        if ([_requestParam objectForKey:@"sidx"]) {
+        if ([param objectForKey:@"sidx"]) {
             [param setObject:[_requestParam objectForKey:@"sidx"] forKey:@"sidx"];
         } else {
             [param setObject:@"" forKey:@"sidx"];
