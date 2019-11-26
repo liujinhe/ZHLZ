@@ -2423,7 +2423,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.guangzhou.zhlz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2445,7 +2445,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.guangzhou.zhlz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

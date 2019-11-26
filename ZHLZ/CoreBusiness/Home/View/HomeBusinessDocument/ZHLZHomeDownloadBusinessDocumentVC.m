@@ -8,10 +8,7 @@
 
 #import "ZHLZHomeDownloadBusinessDocumentVC.h"
 
-@interface ZHLZHomeDownloadBusinessDocumentVC ()
-{
-    NSString *_url;
-}
+@interface ZHLZHomeDownloadBusinessDocumentVC () <NSURLSessionDownloadDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UILabel *documentNameLabel;
@@ -19,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *startDownloadButton;
 
+@property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSURLSessionDownloadTask *downloadTask;
 
 @property (assign, nonatomic) CGFloat progress;
@@ -36,6 +34,8 @@
 - (void)dealloc {
     [self.downloadTask cancel];
     self.downloadTask = nil;
+    [self.session invalidateAndCancel];
+    self.session = nil;
 }
 
 - (void)changeProgress:(float)progress {
@@ -49,6 +49,72 @@
     }
 }
 
+- (void)downloadDoc {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:_homeBusinessDocumentModel.url]]];
+    self.downloadTask = [self.session downloadTaskWithRequest:request];
+    [self.downloadTask resume];
+}
+
+#pragma mark - NSURLSessionDownloadDelegate
+
+/// 写数据调用
+/// @param session 会话对象
+/// @param downloadTask 下载任务
+/// @param bytesWritten 写入的数据大小
+/// @param totalBytesWritten 下载的数据总大小
+/// @param totalBytesExpectedToWrite 文件总大小
+- (void)URLSession:(NSURLSession *)session downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self changeProgress:(totalBytesWritten / totalBytesExpectedToWrite)];
+    });
+}
+
+/// 恢复下载调用
+/// @param session 会话对象
+/// @param downloadTask 下载任务
+/// @param fileOffset 需恢复下载的文件位置
+/// @param expectedTotalBytes 文件总大小
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes {
+    
+}
+
+/// 下载完成调用
+/// @param session 会话对象
+/// @param downloadTask 下载任务
+/// @param location 文件临时存储的路径
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    NSError *error = nil;
+    BOOL isCopySuccess = [[NSFileManager defaultManager] copyItemAtURL:location toURL:[NSURL fileURLWithPath:self->_fullPath] error:&error];
+    if (!isCopySuccess || error) {
+        NSLog(@"========: %@", error.localizedDescription);
+    }
+}
+
+/// 请求结束后调用
+/// @param session 会话对象
+/// @param task 下载任务
+/// @param error NSError
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.startDownloadButton.selected = NO;
+        self.startDownloadButton.backgroundColor = kThemeColor;
+        if (error) {
+            self.tipLabel.text = @"下载失败";
+            
+            self.startDownloadButton.userInteractionEnabled = YES;
+            [self.startDownloadButton setTitle:@"重新下载" forState:UIControlStateNormal];
+        } else {
+            [self.startDownloadButton setTitle:@"下载完成" forState:UIControlStateNormal];
+            
+            [self dismissViewControllerAnimated:NO completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:OpenDocNotificationConst object:@{@"filePath": self->_fullPath}];
+            }];
+        }
+    });
+}
+
+#pragma mark - Action
+
 - (IBAction)downloadAction:(UIButton *)sender {
     [self changeProgress:0];
     self.startDownloadButton.selected = YES;
@@ -56,6 +122,15 @@
     self.startDownloadButton.backgroundColor = UIColor.lightGrayColor;
     
     [self downloadDoc];
+}
+
+#pragma mark - Getter and Setter
+
+- (NSURLSession *)session {
+    if (!_session) {
+        _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    }
+    return _session;
 }
 
 - (void)setHomeBusinessDocumentModel:(ZHLZHomeBusinessDocumentModel *)homeBusinessDocumentModel {
@@ -70,39 +145,6 @@
 
 - (void)setFullPath:(NSString *)fullPath {
     _fullPath = fullPath;
-}
-
-- (void)downloadDoc {
-    @weakify(self);
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[BaseAPIURLConst stringByAppendingString:_homeBusinessDocumentModel.url]]];
-    self.downloadTask = [[AFHTTPSessionManager manager] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self changeProgress:(downloadProgress.completedUnitCount / downloadProgress.totalUnitCount)];
-        });
-    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-        // 必须携带file://
-        return [NSURL fileURLWithPath:self->_fullPath];
-    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        @strongify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.startDownloadButton.selected = NO;
-            self.startDownloadButton.userInteractionEnabled = YES;
-            self.startDownloadButton.backgroundColor = kThemeColor;
-            if (error) {
-                self.tipLabel.text = @"";
-                return;
-            }
-            [self.startDownloadButton setTitle:@"下载完成" forState:UIControlStateNormal];
-        });
-        
-        if ([self respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]) {
-            [self dismissViewControllerAnimated:NO completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:OpenDocNotificationConst object:@{@"filePath": filePath}];
-            }];
-        }
-    }];
-    [self.downloadTask resume];
 }
 
 @end

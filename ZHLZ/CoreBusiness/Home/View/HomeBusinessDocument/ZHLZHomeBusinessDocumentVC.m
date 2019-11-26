@@ -138,15 +138,20 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
 /// @param filePath 文件地址
 - (NSString *)getFileFullPath:(NSString *)filePath {
     NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsPath = [documents firstObject];
+    NSString *documentsPath = [documents lastObject];
     
     NSString *filesPath = [documentsPath stringByAppendingPathComponent:@"ZHLZDocFiles"];
+    NSArray *filePathArray = [filePath componentsSeparatedByString:@"/"];
+    for (NSInteger i = 0; i < filePathArray.count - 1; i++) {
+        filesPath = [filesPath stringByAppendingPathComponent:filePathArray[i]];
+    }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     // 是否存在 ZHLZDocFiles 目录
     if (![fileManager fileExistsAtPath:filesPath]) {
         [fileManager createDirectoryAtPath:filesPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    return [filesPath stringByAppendingPathComponent:filePath];
+    return [filesPath stringByAppendingPathComponent:[filePathArray lastObject]];
 }
 
 - (void)openDocWithPath:(NSURL *)filePath {
@@ -163,23 +168,22 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
 }
 
 - (void)openDocWithPathAction:(NSNotification *)notification {
+    [self homeBusinessDocumentData];
+    
     [self openDocWithPath:[notification.object objectForKey:@"filePath"]];
 }
 
 #pragma mark - UIDocumentInteractionControllerDelegate
 
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
-    NSLog(@"%s", __func__);
     return self;
 }
 
 - (UIView*)documentInteractionControllerViewForPreview:(UIDocumentInteractionController*)controller {
-    NSLog(@"%s", __func__);
     return self.view;
 }
 
 - (CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController*)controller {
-    NSLog(@"%s", __func__);
     return CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height);
 }
 
