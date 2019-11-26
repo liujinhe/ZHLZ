@@ -40,9 +40,26 @@
 }
 
 - (void)loadHomeSafeProblemData{
+    @weakify(self)
     self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeProblemDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeProblemModel *> * _Nonnull homeSafeProblemArray) {
+        @strongify(self)
         
-        self.homeSafeProblemModelArray = homeSafeProblemArray.mutableCopy;
+        if (self.homeSafeProblemTableView.mj_header.isRefreshing) {
+            [self.homeSafeProblemTableView.mj_header endRefreshing];
+        }
+        if ([self.homeSafeProblemTableView.mj_footer isRefreshing]) {
+            [self.homeSafeProblemTableView.mj_footer endRefreshing];
+        }
+        
+        if (self.pageNum == 1) {
+            self.homeSafeProblemModelArray = homeSafeProblemArray.mutableCopy;
+        } else {
+            if (homeSafeProblemArray.count > 0) {
+                [self.homeSafeProblemModelArray addObjectsFromArray:homeSafeProblemArray];
+            } else {
+                [self.homeSafeProblemTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
         
         [self.homeSafeProblemTableView reloadData];
     }];
@@ -67,11 +84,13 @@
 }
 
 - (void)loadHomeSafeProblemHeader{
-    
+    self.pageNum = 1;
+    [self loadHomeSafeProblemData];
 }
 
 - (void)loadHomeSafeProblemFooter{
-    
+    self.pageNum ++;
+    [self loadHomeSafeProblemData];
 }
 
 #pragma mark --UITableView 代理

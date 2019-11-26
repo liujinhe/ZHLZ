@@ -77,6 +77,9 @@
         if (self.bookListTableView.mj_header.isRefreshing) {
             [self.bookListTableView.mj_header endRefreshing];
         }
+        if ([self.bookListTableView.mj_footer isRefreshing]) {
+            [self.bookListTableView.mj_footer endRefreshing];
+        }
         
 
         if (self.selectIndex == 0) {
@@ -87,7 +90,7 @@
                 if (roadWorkListArray.count > 0) {
                     [self.roadWorkModelArray addObjectsFromArray:roadWorkListArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             
@@ -100,7 +103,7 @@
                 if (examineListArray.count > 0) {
                     [self.examineModelArray addObjectsFromArray:examineListArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
 
@@ -114,7 +117,7 @@
                 if (constructionModelArray.count > 0) {
                     [self.constructionModelArray addObjectsFromArray:constructionModelArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             
@@ -128,7 +131,7 @@
                 if (cityManagementListModelArray.count > 0) {
                     [self.cityManagementListModelArray addObjectsFromArray:cityManagementListModelArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             
@@ -141,7 +144,7 @@
                 if (areaManagementListModelArray.count > 0) {
                     [self.areaManagementListModelArray addObjectsFromArray:areaManagementListModelArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             
@@ -154,7 +157,7 @@
                 if (specialListModelArray.count > 0) {
                     [self.specialListModelArray addObjectsFromArray:specialListModelArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
                         
@@ -167,7 +170,7 @@
                 if (MonadModelArray.count > 0) {
                     [self.MonadModelArray addObjectsFromArray:MonadModelArray];
                 } else {
-                    [self.bookListTableView.mj_footer resetNoMoreData];
+                    [self.bookListTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             

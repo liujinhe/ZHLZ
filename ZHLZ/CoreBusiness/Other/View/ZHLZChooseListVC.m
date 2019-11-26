@@ -124,6 +124,9 @@
             if (self.chooseListTableview.mj_header.isRefreshing) {
                 [self.chooseListTableview.mj_header endRefreshing];
             }
+            if ([self.chooseListTableview.mj_footer isRefreshing]) {
+                [self.chooseListTableview.mj_footer endRefreshing];
+            }
         
             if (self.pageNum == 1) {
                 self.homeSafeModelArray = homeSafeModelArray.mutableCopy;
@@ -131,7 +134,7 @@
                 if (homeSafeModelArray.count > 0) {
                     [self.homeSafeModelArray addObjectsFromArray:homeSafeModelArray];
                 } else {
-                    [self.chooseListTableview.mj_footer resetNoMoreData];
+                    [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             self.pageNum ++;
@@ -147,6 +150,9 @@
             if (self.chooseListTableview.mj_header.isRefreshing) {
                 [self.chooseListTableview.mj_header endRefreshing];
             }
+            if ([self.chooseListTableview.mj_footer isRefreshing]) {
+                [self.chooseListTableview.mj_footer endRefreshing];
+            }
             
 
             if (self.selectIndex == 0) {
@@ -157,7 +163,7 @@
                     if (roadWorkListArray.count > 0) {
                         [self.roadWorkModelArray addObjectsFromArray:roadWorkListArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                 
@@ -170,7 +176,7 @@
                     if (examineListArray.count > 0) {
                         [self.examineModelArray addObjectsFromArray:examineListArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
 
@@ -184,7 +190,7 @@
                     if (constructionModelArray.count > 0) {
                         [self.constructionModelArray addObjectsFromArray:constructionModelArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                 
@@ -198,7 +204,7 @@
                     if (cityManagementListModelArray.count > 0) {
                         [self.cityManagementListModelArray addObjectsFromArray:cityManagementListModelArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                 
@@ -211,7 +217,7 @@
                     if (areaManagementListModelArray.count > 0) {
                         [self.areaManagementListModelArray addObjectsFromArray:areaManagementListModelArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                 
@@ -224,7 +230,7 @@
                     if (specialListModelArray.count > 0) {
                         [self.specialListModelArray addObjectsFromArray:specialListModelArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                             
@@ -237,7 +243,7 @@
                     if (MonadModelArray.count > 0) {
                         [self.MonadModelArray addObjectsFromArray:MonadModelArray];
                     } else {
-                        [self.chooseListTableview.mj_footer resetNoMoreData];
+                        [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
                 

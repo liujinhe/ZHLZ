@@ -59,7 +59,13 @@
     }];
 }
 
-
+- (NSURLSessionTask *)submitSupervisorWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemSaveAPIURLConst withRequestArgument:parms];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
 
 
 - (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{

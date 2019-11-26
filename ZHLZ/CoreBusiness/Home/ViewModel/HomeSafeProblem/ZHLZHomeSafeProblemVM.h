@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///保存/修改
 - (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeSafeProblemSUbmitModel *)safeProblemSUbmitModel withBlock:(dispatch_block_t)block;
 
+///新增督导措施
+- (NSURLSessionTask *)submitSupervisorWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
 
 //获取督导列表
 - (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block;

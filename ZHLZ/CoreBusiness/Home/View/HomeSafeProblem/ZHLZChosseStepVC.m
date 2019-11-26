@@ -26,6 +26,8 @@
     
     self.title = @"选择措施";
     
+    [self addRightBarButtonItemWithTitle:@"确定" action:@selector(addAction)];
+    
     self.stepTableView.dataSource = self;
     self.stepTableView.delegate = self;
     self.stepTableView.backgroundColor = kHexRGB(0xf7f7f7);
@@ -56,6 +58,45 @@
     NSArray  *array = [NSArray modelArrayWithClass:[ZHLZChosseStepModel class] json:aarr];
     
     self.stepModelArray = array.mutableCopy;
+}
+
+- (void) addAction {
+    
+    ZHLZChosseStepModel *step1 = self.stepModelArray[0];
+    
+    NSMutableString *allString = [NSMutableString new];
+    NSMutableString *allCode = [NSMutableString new];
+    for (int i = 0 ; i <step1.children.count ; i ++) {
+        ZHLZChosseChildrenModel *childrenModel = step1.children[i];
+        if (childrenModel.isSelect) {
+            [allString appendFormat:@"%@，",childrenModel.name];
+            [allCode appendFormat:@"%ldn",childrenModel.value];
+        }
+    }
+    
+    for (int i = 0 ; i < self.stepModelArray.count ; i ++) {
+        ZHLZChosseStepModel *stepModel = self.stepModelArray[i];
+        if (stepModel.isSelect) {
+            [allString appendFormat:@"%@，",stepModel.name];
+            [allCode appendFormat:@"%ldn",stepModel.value];
+        }
+    }
+    
+    if (![allString isNotBlank]) {
+        [GRToast makeText:@"请选择措施"];
+        return;
+    }
+    NSRange allStringRange = {[allString length] - 1, 1};
+    [allString deleteCharactersInRange:allStringRange];
+    
+    NSRange allCodeRange = {[allCode length] - 1, 1};
+    [allCode deleteCharactersInRange:allCodeRange];
+    
+    if (self.chooseStepBlock) {
+        self.chooseStepBlock(allCode, allString);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 #pragma mark --UITableView 代理
@@ -156,7 +197,7 @@
     childrenModel.isSelect = !childrenModel.isSelect;
     [childrenArray replaceObjectAtIndex:indexPath.row withObject:childrenModel];
     
-    chosseStepModel.children = childrenArray.mutableCopy;
+    [chosseStepModel.children replaceObjectAtIndex:indexPath.row withObject:childrenModel];
     
     [self.stepModelArray replaceObjectAtIndex:indexPath.section withObject:chosseStepModel];
     

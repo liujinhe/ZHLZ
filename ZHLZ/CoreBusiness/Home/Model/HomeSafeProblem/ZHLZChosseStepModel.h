@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *name;
 @property (nonatomic , assign) NSInteger value;
-@property (nonatomic , copy) NSArray <ZHLZChosseChildrenModel *> *children;
+@property (nonatomic , copy) NSMutableArray <ZHLZChosseChildrenModel *> *children;
 @property (nonatomic , assign) BOOL isSelect;
 @end
 

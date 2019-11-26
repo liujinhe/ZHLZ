@@ -14,8 +14,8 @@
 
 @implementation ZHLZChosseStepModel
 
-- (void)setChildren:(NSArray<ZHLZChosseChildrenModel *> *)children {
-    _children = [NSArray modelArrayWithClass:[ZHLZChosseChildrenModel class] json:children];
+- (void)setChildren:(NSMutableArray<ZHLZChosseChildrenModel *> *)children {
+    _children = [NSArray modelArrayWithClass:[ZHLZChosseChildrenModel class] json:children].mutableCopy;
 }
 
 @end
