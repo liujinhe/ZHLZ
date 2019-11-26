@@ -22,6 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.maskView.hidden = YES;
+    self.filterTopView.hidden = YES;
+    self.filterView.hidden = YES;
+    self.filterBottomView.hidden = YES;
+    
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(hideFilterView)]];
 }

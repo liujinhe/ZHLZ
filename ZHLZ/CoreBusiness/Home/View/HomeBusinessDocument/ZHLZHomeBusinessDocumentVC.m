@@ -50,10 +50,6 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
     
     self.businessDocumentTableView.dataSource = self;
     self.businessDocumentTableView.delegate = self;
-    self.businessDocumentTableView.backgroundColor = kHexRGB(0xf7f7f7);
-    
-    self.businessDocumentTableView.alwaysBounceVertical = YES;
-    self.businessDocumentTableView.showsHorizontalScrollIndicator = NO;
     
     [self.businessDocumentTableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     

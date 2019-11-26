@@ -66,7 +66,7 @@
 - (void)setIsDefaultArgument:(BOOL)isDefaultArgument {
     _isDefaultArgument = isDefaultArgument;
     
-    NSMutableDictionary *param = @{}.mutableCopy;
+    NSMutableDictionary *param = _requestParam ? (NSMutableDictionary *)_requestParam : @{}.mutableCopy;
     if (_isDefaultArgument) {
         if ([_requestParam objectForKey:@"page"]) {
             [param setObject:[_requestParam objectForKey:@"page"] forKey:@"page"];

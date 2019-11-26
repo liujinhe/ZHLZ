@@ -81,6 +81,9 @@ static NSString * const SelectDefaultValue = @"---请选择---";
         case 6: // 上级交办、舆情及应急处理
             codeName = @"whether";
             break;
+        case 7: // 问题类型
+            codeName = @"protype";
+            break;
     }
     if (![codeName isNotBlank]) {
         return nil;
