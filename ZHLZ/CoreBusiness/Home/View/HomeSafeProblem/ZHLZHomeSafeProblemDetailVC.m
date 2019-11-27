@@ -29,10 +29,20 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *problemSubmitButton;
 
+
+///督导措施
+@property (weak, nonatomic) IBOutlet UIButton *supervisorButton;
+@property (weak, nonatomic) IBOutlet UIView *supervisorView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *supervisorViewHeightConstraint;
+
+
+
 @property (nonatomic , strong) ZHLZHomeSafeProblemModel *homeSafeProblemModel;
 
 @property (nonatomic , strong) ZHLZHomeSafeProblemSUbmitModel *homeSafeProblemSUbmitModel;
 
+///督导措施
+@property (nonatomic , strong) NSMutableArray *supervisorStringArray;///督导字符串数组
 @property (nonatomic , strong) NSMutableArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray;
 
 @end
@@ -98,7 +108,11 @@
         
         [self.workUserButton setTitle:homeSafeProblem.promanagername forState:UIControlStateNormal];
         
-        
+        ///督导措施
+        if ([homeSafeProblem.ddssjtms isNotBlank]) {
+            self.supervisorStringArray = [self getArrayWithString:homeSafeProblem.ddssjtms];
+        }
+        [self createSupervisorView];
         
     }];
 }
@@ -127,6 +141,10 @@
         
     }
     
+    self.supervisorView.backgroundColor = [UIColor clearColor];
+    self.supervisorViewHeightConstraint.constant = 0;
+    
+    self.supervisorStringArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     
     self.homeSafeProblemSUbmitModel = [ZHLZHomeSafeProblemSUbmitModel new];
@@ -136,6 +154,7 @@
 }
 
 - (void)lookSetView {
+    self.supervisorButton.userInteractionEnabled = NO;
     self.problemSubmitButton.hidden = YES;
 }
 
@@ -220,6 +239,10 @@
         @strongify(self)
         if (supervisorSubmitModel) {
             [self.supervisorSubmitModelArray addObject:supervisorSubmitModel];
+            
+            [self.supervisorStringArray addObject:supervisorSubmitModel.meCustomize];
+            
+            [self createSupervisorView];
         }
     };
     [self.navigationController pushViewController:addCouncilorVC animated:YES];
@@ -263,5 +286,103 @@
     
     return ddssjtmsString;
 }
+
+
+- (NSMutableArray *)getArrayWithString:(NSString *)str {
+    NSArray *array = [str componentsSeparatedByString:@";"]; //字符串按照;分隔成数组
+    return array.mutableCopy;
+}
+
+- (void)createSupervisorView {
+
+    for (UIView *view in [self.supervisorView subviews]) {
+        [view removeFromSuperview];
+    }
+    self.supervisorViewHeightConstraint.constant = 0;
+    
+    CGFloat allHeight = 0;
+    for (int i = 0 ; i < self.supervisorStringArray.count ; i ++) {
+        UIView *listView = [UIView new];
+        listView.backgroundColor = [UIColor whiteColor];
+        listView.layer.cornerRadius = 5.0f;
+        [self.supervisorView addSubview:listView];
+        
+        CGFloat rightMargin = 0;
+        if (self.detailType == 2) {
+            rightMargin = 5;
+        } else {
+            rightMargin = 10 + 30 + 5;
+        }
+        
+        CGFloat height = [self getString:self.supervisorStringArray[i] lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
+        
+        if (height < 50) {
+            height = 60;
+        } else {
+            height = height + 10;
+        }
+        
+        [listView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.supervisorView).offset(allHeight);
+            make.left.right.equalTo(self.supervisorView);
+            make.height.offset(height);
+        }];
+        
+        allHeight = allHeight + height + 10;
+        
+        if (self.detailType == 3) {
+            UIButton *deteteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            deteteButton.backgroundColor = [UIColor clearColor];
+            [deteteButton setImage:[UIImage imageNamed:@"icon_delete_black"] forState:UIControlStateNormal];
+            deteteButton.tag = i;
+            [deteteButton addTarget:self action:@selector(deteteAction:) forControlEvents:UIControlEventTouchUpInside];
+            [listView addSubview:deteteButton];
+            [deteteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(listView.mas_right).offset(-10);
+                make.centerY.offset(listView.centerY);
+                make.height.width.offset(30);
+            }];
+        }
+        
+        UILabel *textLable = [UILabel new];
+        textLable.font = kFont(14);
+        textLable.lineBreakMode = NSLineBreakByWordWrapping;
+        textLable.numberOfLines = 0;
+        textLable.textColor = kHexRGB(0x999999);
+        textLable.text = self.supervisorStringArray[i];
+        [listView addSubview:textLable];
+        [textLable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(listView.mas_left).offset(5);
+            make.top.equalTo(listView.mas_top).offset(5);
+            make.bottom.equalTo(listView.mas_bottom).offset(-5);
+            if (self.detailType == 2) {
+                make.right.equalTo(listView.mas_right).offset(-5);
+            } else {
+                make.right.equalTo(listView.mas_right).offset(-45);
+            }
+        }];
+    }
+    
+    self.supervisorViewHeightConstraint.constant = allHeight;
+}
+
+- (CGFloat)getString:(NSString *)string lineSpacing:(CGFloat)lineSpacing font:(UIFont*)font width:(CGFloat)width {
+    NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
+    paraStyle.lineSpacing = lineSpacing;
+    NSDictionary *dic = @{ NSFontAttributeName:font, NSParagraphStyleAttributeName:paraStyle };
+    CGSize size = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    return  ceilf(size.height);
+}
+
+- (void)deteteAction:(UIButton *)btn {
+    NSInteger index = btn.tag;
+    @weakify(self);
+    [self popActionWithTip:@"是否删除此措施？" withBlock:^{
+        @strongify(self);
+        [self.supervisorStringArray removeObjectAtIndex:index];
+        [self createSupervisorView];
+    }];
+}
+
 
 @end

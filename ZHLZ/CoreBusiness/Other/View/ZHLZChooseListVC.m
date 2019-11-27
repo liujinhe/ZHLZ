@@ -119,8 +119,13 @@
     [self.chooseListTableview registerNib:[UINib nibWithNibName:@"ZHLZChooseListCell" bundle:nil] forCellReuseIdentifier:@"ZHLZChooseListCell"];
     
     self.chooseListTableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListHeader)];
-    self.chooseListTableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListData)];
+    self.chooseListTableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListFooter)];
     
+}
+
+- (void)loadAddressListFooter {
+    self.pageNum = 1;
+    [self loadAddressListData];
 }
 
 - (void)loadAddressListData{

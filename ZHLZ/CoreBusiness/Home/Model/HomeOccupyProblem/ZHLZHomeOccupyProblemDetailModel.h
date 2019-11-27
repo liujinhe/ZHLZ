@@ -10,6 +10,58 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ data": {
+     "areaName": "芳村片",
+     "areaid": "4",
+     "belong": "14",
+     "belongname": "市管城市道路",
+     "coordinatesX": null,
+     "coordinatesY": null,
+     "ddssjtms": "跟进",
+     "endDate": null,
+     "imgurl": "/photo/20191113/17187184905730478.JPG",
+     "isSolveFalse": null,
+     "isSolveTrue": null,
+     "isexport": null,
+     "label": null,
+     "mapMeasuresList": null,
+     "meCustomize": null,
+     "measure": "跟进",
+     "measureqk": null,
+     "mename": null,
+     "menameValue": null,
+     "orgName": "二大队",
+     "orgid": "b91d217f5f",
+     "patrolid": null,
+     "phonename": null,
+     "photoNo": null,
+     "photono": null,
+     "pjbelong": null,
+     "position": "内环高架及放射线",
+     "prodate": "2019-11-13 00:00:00",
+     "prodescription": "内环路广佛放射线保洁养护作业正常",
+     "profulfildate": "2019-11-13 00:00:00",
+     "profulfiltype": "",
+     "profultext": "该问题于2019-11-13完成整改",
+     "proid": "16720",
+     "projectid": "10214",
+     "projectname": "内环路高架及放射线维护保洁服务采购项目（2017-2019年度）",
+     "projid": null,
+     "promanager": "114",
+     "promanagername": "苏茹",
+     "prostatus": "1",
+     "prostatusname": "已关闭",
+     "protype": "1",
+     "protypename": "正常",
+     "responsibleUnit": "IMG_6605",
+     "startDate": null,
+     "uploadId": "3FE789C3152B72DDC239C59B5FDFABE9",
+     "uuid": null
+ }
+ 
+ */
+
 @interface ZHLZHomeOccupyProblemDetailModel : ZHLZBaseModel
 
 @property (nonatomic, strong) NSString *areaName;

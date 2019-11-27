@@ -39,6 +39,7 @@ PODS:
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
+  - ZWPlaceHolder (0.0.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - SDWebImage (~> 5.2.3)
   - SVProgressHUD (~> 2.2.5)
   - YYKit (~> 1.0.9)
+  - ZWPlaceHolder
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -74,6 +76,7 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - YYKit
+    - ZWPlaceHolder
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -92,7 +95,8 @@ SPEC CHECKSUMS:
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: 80d6e1a1922cc9b6de2ba3f19fef7c01b0a729ab
+PODFILE CHECKSUM: 8616b997800f7203f8260e96960fd70a8c641832
 
 COCOAPODS: 1.8.4

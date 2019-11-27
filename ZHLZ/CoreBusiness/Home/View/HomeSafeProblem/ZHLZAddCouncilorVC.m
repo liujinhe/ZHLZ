@@ -36,6 +36,8 @@
     
     self.title = @"新增督导措施";
     
+    self.supervisorDetailTextView.placeholder = @"请选择督导措施";
+    
     [self.supervisorDetailTextView setEditable:NO];
     
     self.supervisorSubmitModel = [ZHLZSupervisorSubmitModel new];

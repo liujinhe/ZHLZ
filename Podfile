@@ -20,6 +20,7 @@ target 'ZHLZ' do
   pod 'JXCategoryView', '~> 1.5.2'
   pod 'FDFullscreenPopGesture', '~> 1.1'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
+  pod 'ZWPlaceHolder'
   
   pod 'AMapSearch'
   pod 'AMapLocation'

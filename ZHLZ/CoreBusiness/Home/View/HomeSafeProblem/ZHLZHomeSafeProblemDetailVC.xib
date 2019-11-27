@@ -16,6 +16,9 @@
                 <outlet property="problemMarkTextView" destination="hkc-iq-63S" id="obA-k9-nYQ"/>
                 <outlet property="problemSubmitButton" destination="s5a-C0-kU8" id="iS9-i2-idN"/>
                 <outlet property="problemTimeButton" destination="GdB-Bz-a5R" id="dUu-DE-Fw5"/>
+                <outlet property="supervisorButton" destination="tUv-wd-6yl" id="wis-Re-tKz"/>
+                <outlet property="supervisorView" destination="uue-ph-B6V" id="3MU-9O-XMg"/>
+                <outlet property="supervisorViewHeightConstraint" destination="NsT-aq-FUJ" id="AnH-bM-sgx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workUserButton" destination="KaQ-nA-XvF" id="aH6-p7-z4D"/>
             </connections>

@@ -10,7 +10,7 @@
 #import "ZHLZHomeOccupyProblemSearchModel.h"
 #import "ZHLZHomeOccupyProblemModel.h"
 #import "ZHLZHomeOccupyProblemDetailModel.h"
-
+#import "ZHLZHomeOccupyProblemSubmitModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block;
+
+
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitModel:(ZHLZHomeOccupyProblemSubmitModel *)occupyProblemSubmitModel withBlock:(dispatch_block_t)block;
 
 @end
 
