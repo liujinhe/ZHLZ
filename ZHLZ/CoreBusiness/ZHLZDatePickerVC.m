@@ -45,4 +45,22 @@
     }];
 }
 
+- (void)setCurrentDate:(NSString *)currentDate {
+    _currentDate = currentDate;
+    
+    self.datePicker.date = [NSDate formatterDateWithDateString:_currentDate];
+}
+
+- (void)setMinDate:(NSString *)minDate {
+    _minDate = minDate;
+    
+    self.datePicker.minimumDate = [NSDate formatterDateWithDateString:_minDate];
+}
+
+- (void)setMaxDate:(NSString *)maxDate {
+    _maxDate = maxDate;
+    
+    self.datePicker.maximumDate = [NSDate formatterDateWithDateString:_maxDate];
+}
+
 @end

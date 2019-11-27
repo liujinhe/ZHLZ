@@ -50,10 +50,10 @@
     [self.searchButton addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.searchButton];
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
         make.left.equalTo(self).offset(10);
         make.right.equalTo(self).offset(-10);
-        make.height.offset(32);
+        make.height.offset(30);
+        make.centerY.equalTo(self.openOrCloseSwitch.mas_centerY);
     }];
 }
 

@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZDatePickerVC : ZHLZBaseVC
 
+@property (nonatomic, strong) NSString *currentDate;
+
+@property (nonatomic, strong) NSString *minDate;
+
+@property (nonatomic, strong) NSString *maxDate;
+
 @property (nonatomic, copy) void (^selectDatePickerBlock)(NSString *date);
 
 @end

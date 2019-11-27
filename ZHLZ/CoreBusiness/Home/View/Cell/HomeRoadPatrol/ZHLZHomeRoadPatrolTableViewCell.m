@@ -39,7 +39,12 @@
     self.closedLoopLabel.text = _homeRoadPatrolModel.closenum?:@"";
     self.findLabel.text = _homeRoadPatrolModel.findnum?:@"";
     self.timeLabel.text = _homeRoadPatrolModel.createdate?:@"";
-    self.remarkLabel.text = _homeRoadPatrolModel.remark?:@"";
+    
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.lineSpacing = 3.f;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_homeRoadPatrolModel.remark?:@""];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+    self.remarkLabel.attributedText = attributedString;
 }
 
 @end

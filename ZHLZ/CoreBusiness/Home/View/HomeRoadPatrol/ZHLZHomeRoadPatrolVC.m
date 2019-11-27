@@ -30,14 +30,25 @@
 @implementation ZHLZHomeRoadPatrolVC
 
 - (void)viewDidLoad {
+    @weakify(self);
     [super viewDidLoad];
     
     self.array = @[].mutableCopy;
     
-    self.dateSearchView.currentVC = self;
-    
     _startDate = [NSString formatterBeforeOrAfterDateWithDate:[NSDate date] withMonth:-1];
     _endDate = [NSString formatterWithDate:[NSDate date]];
+    
+    self.dateSearchView.currentVC = self;
+    self.dateSearchView.startDate = _startDate;
+    self.dateSearchView.endDate = _endDate;
+    self.dateSearchView.searchWithDateBlock = ^(NSString * _Nonnull startDate, NSString * _Nonnull endDate) {
+        @strongify(self);
+        
+        self->_startDate = startDate;
+        self->_endDate = endDate;
+
+        [self loadData];
+    };
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -79,19 +90,13 @@
         
         self.heightArray = @[].mutableCopy;
         for (ZHLZHomeRoadPatrolModel *model in self.array) {
-            CGFloat height = [model.remark sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 10.f * 2 - 10.f * 2 - 38.f - 5.f, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
-            height = height > 0 ? 100.f + height : 100.f;
+            CGFloat height = [model.remark sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 10.f * 2 - 10.f * 2 - 38.f - 5.f, MAXFLOAT) mode:NSLineBreakByCharWrapping].height;
+            height = height > 0 ? 110.f + height : 110.f;
             [self.heightArray addObject:@(height)];
         }
         
         [self.tableView reloadData];
     }];
-}
-
-#pragma mark - Action
-
-- (void)searchAction {
-    
 }
 
 #pragma mark - UITableViewDataSource
@@ -112,7 +117,7 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.heightArray.count;
+    return [self.heightArray[indexPath.row] floatValue];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

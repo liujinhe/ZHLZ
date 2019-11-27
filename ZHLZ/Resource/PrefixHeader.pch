@@ -47,7 +47,8 @@
 
 #import "UIViewController+modalPresentationStyle.h"
 #import "NSString+DateFormatter.h"
-#import "UITextView+ZWPlaceHolder.h"
+#import "NSDate+StringFormatter.h"
 
+#import "UITextView+ZWPlaceHolder.h"
 
 #endif /* PrefixHeader_pch */

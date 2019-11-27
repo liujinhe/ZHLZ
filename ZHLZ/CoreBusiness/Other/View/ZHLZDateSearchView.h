@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIViewController *currentVC;
 
+@property (nonatomic, strong) NSString *startDate;
+
+@property (nonatomic, strong) NSString *endDate;
+
 @property (nonatomic, copy) void (^searchWithDateBlock)(NSString *startDate, NSString *endDate);
 
 @end
