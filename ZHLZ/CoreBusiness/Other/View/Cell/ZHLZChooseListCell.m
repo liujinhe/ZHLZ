@@ -25,8 +25,8 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.listView.layer.cornerRadius = 5.0f;
     self.chooseButton.layer.cornerRadius = 5.0f;
-    self.chooseButton.layer.borderColor = kHexRGB(0x666666).CGColor;
-    self.chooseButton.layer.borderWidth = 1.0f;
+//    self.chooseButton.layer.borderColor = kHexRGB(0x666666).CGColor;
+//    self.chooseButton.layer.borderWidth = 1.0f;
     self.chooseButton.userInteractionEnabled = NO;
 }
 
@@ -130,6 +130,14 @@
         self.nameLabel.text = homeSafeModel.orgName;
     }
     
+}
+
+- (void)setHomeBuildProjectModel:(ZHLZHomeBuildProjectModel *)homeBuildProjectModel {
+    if ([homeBuildProjectModel.name isNotBlank]) {
+        self.nameLabel.text = homeBuildProjectModel.name;
+    }
+
+    self.contentNameLabel.text = [NSString stringWithFormat:@"%@  %@",homeBuildProjectModel.bidName,homeBuildProjectModel.projectno];
 }
 
 

@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
  break;
  case 7:
 @"选择台账id";
+  case 8:
+ @"在建项目";
  */
 @property (nonatomic , assign) NSInteger selectIndex;
 

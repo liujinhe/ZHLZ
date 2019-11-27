@@ -122,6 +122,7 @@
     if (model) {
         ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
         homeOccupyProblemDetailVC.detailId = model.objectID;
+        homeOccupyProblemDetailVC.type = 2;
         [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
     }
 }

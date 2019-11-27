@@ -9,6 +9,8 @@
 #import "ZHLZBaseVM.h"
 #import "ZHLZHomeOccupyProblemSearchModel.h"
 #import "ZHLZHomeOccupyProblemModel.h"
+#import "ZHLZHomeOccupyProblemDetailModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 - (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array))block;
+
+
+- (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block;
 
 @end
 

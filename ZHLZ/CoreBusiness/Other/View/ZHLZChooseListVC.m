@@ -18,6 +18,7 @@
 #import "ZHLZConstructionModel.h"
 #import "ZHLZExamineModel.h"
 #import "ZHLZRoadWorkModel.h"
+#import "ZHLZHomeBuildProjectVM.h"
 
 
 #import "ZHLZRoadWorkVC.h"//施工单位
@@ -41,6 +42,8 @@
 @property (nonatomic , strong) NSMutableArray <ExamineList *>*examineModelArray;//审批单位
 @property (nonatomic , strong) NSMutableArray <RoadWorkList *>*roadWorkModelArray;//施工单位
 @property (nonatomic , strong) NSMutableArray <ZHLZHomeSafeModel *> *homeSafeModelArray;//台账id
+@property (nonatomic , strong) NSMutableArray <ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray;//在建项目
+
 
 @property (nonatomic , assign) NSInteger pageNum;
 
@@ -87,6 +90,9 @@
         case 7:
             self.title = @"选择台账id";
         break;
+        case 8:
+            self.title = @"选择项目";
+        break;
             
         default:
             break;
@@ -101,7 +107,7 @@
     self.specialListModelArray = [NSMutableArray <SpecialList *> new];
     self.MonadModelArray = [NSMutableArray <MonadModelList *> new];
     self.homeSafeModelArray = [NSMutableArray <ZHLZHomeSafeModel *> new];
-    
+    self.homeBuildProjectModelArray = [NSMutableArray <ZHLZHomeBuildProjectModel *> new];
     
     
     self.chooseListTableview.dataSource = self;
@@ -142,6 +148,36 @@
             [self.chooseListTableview reloadData];
         }];
     }
+    
+    else if (self.selectIndex == 8 ){
+        @weakify(self)
+        self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+            @strongify(self)
+            
+            if (self.chooseListTableview.mj_header.isRefreshing) {
+                [self.chooseListTableview.mj_header endRefreshing];
+            }
+            if ([self.chooseListTableview.mj_footer isRefreshing]) {
+                [self.chooseListTableview.mj_footer endRefreshing];
+            }
+            
+            if (self.pageNum == 1) {
+                self.homeBuildProjectModelArray = homeBuildProjectModelArray.mutableCopy;
+            } else {
+                if (homeBuildProjectModelArray.count > 0) {
+                    [self.homeBuildProjectModelArray addObjectsFromArray:homeBuildProjectModelArray];
+                } else {
+                    [self.chooseListTableview.mj_footer endRefreshingWithNoMoreData];
+                }
+            }
+            
+            [self.chooseListTableview reloadData];
+        }];
+        
+        
+    }
+    
+    
     
     else {
     
@@ -266,6 +302,9 @@
     [self.specialListModelArray removeAllObjects];
     [self.MonadModelArray removeAllObjects];
     [self.homeSafeModelArray removeAllObjects];
+    [self.homeBuildProjectModelArray removeAllObjects];
+    
+    
     
     self.pageNum = 1;
 }
@@ -291,7 +330,10 @@
         return self.MonadModelArray.count;
     }else if(self.selectIndex == 7){
         return self.homeSafeModelArray.count;
+    }else if(self.selectIndex == 8){
+        return self.homeBuildProjectModelArray.count;
     }
+    
     else {
         return 0;
     }
@@ -324,6 +366,8 @@
         cell.monadList = self.MonadModelArray[indexPath.row];
     }else if(self.selectIndex == 7){
         cell.homeSafeModel = self.homeSafeModelArray[indexPath.row];
+    }else if(self.selectIndex == 8){
+        cell.homeBuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];
     }
     
     return cell;
@@ -376,6 +420,11 @@
         ZHLZHomeSafeModel *ZHLZHomeSafeModel = self.homeSafeModelArray[indexPath.row];
         name =  ZHLZHomeSafeModel.orgName;
         codeId =  ZHLZHomeSafeModel.orgId;
+        
+    }else if(self.selectIndex == 8){
+        ZHLZHomeBuildProjectModel *BuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];
+        name =  BuildProjectModel.name;
+        codeId =  BuildProjectModel.objectID;
     }
     
     if (self.selectListBlock) {
