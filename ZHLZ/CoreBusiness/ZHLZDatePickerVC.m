@@ -39,10 +39,8 @@
     @weakify(self);
     [self dismissViewControllerAnimated:NO completion:^{
         @strongify(self);
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd";
         if (self.selectDatePickerBlock) {
-            self.selectDatePickerBlock([dateFormatter stringFromDate:self.datePicker.date]);
+            self.selectDatePickerBlock([NSString formatterWithDate:self.datePicker.date]);
         }
     }];
 }

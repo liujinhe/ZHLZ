@@ -43,5 +43,6 @@
 #import "ZHLZUserManager.h"
 
 #import "UIViewController+modalPresentationStyle.h"
+#import "NSString+DateFormatter.h"
 
 #endif /* PrefixHeader_pch */

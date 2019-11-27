@@ -227,6 +227,9 @@
 		A5AD7051238E06360053B9B9 /* ZHLZHomeMunicipalProblemSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7050238E06360053B9B9 /* ZHLZHomeMunicipalProblemSearchModel.m */; };
 		A5AD705A238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7058238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.m */; };
 		A5AD705B238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5AD7059238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.xib */; };
+		A5AD7067238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7064238E1E2F0053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m */; };
+		A5AD7068238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5AD7065238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib */; };
+		A5AD706B238E1E3D0053B9B9 /* NSString+DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7069238E1E3C0053B9B9 /* NSString+DateFormatter.m */; };
 		A5B1944F238574FF00FF5080 /* dianli_yellow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19425238574FC00FF5080 /* dianli_yellow_1.png */; };
 		A5B19450238574FF00FF5080 /* guidaojiaotong_red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */; };
 		A5B19451238574FF00FF5080 /* shuiwu_yellow_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */; };
@@ -683,6 +686,11 @@
 		A5AD7057238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeMunicipalProblemTableViewCell.h; sourceTree = "<group>"; };
 		A5AD7058238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeMunicipalProblemTableViewCell.m; sourceTree = "<group>"; };
 		A5AD7059238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeMunicipalProblemTableViewCell.xib; sourceTree = "<group>"; };
+		A5AD7064238E1E2F0053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeRoadPatrolTableViewCell.m; sourceTree = "<group>"; };
+		A5AD7065238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeRoadPatrolTableViewCell.xib; sourceTree = "<group>"; };
+		A5AD7066238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeRoadPatrolTableViewCell.h; sourceTree = "<group>"; };
+		A5AD7069238E1E3C0053B9B9 /* NSString+DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateFormatter.m"; sourceTree = "<group>"; };
+		A5AD706A238E1E3D0053B9B9 /* NSString+DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DateFormatter.h"; sourceTree = "<group>"; };
 		A5B19425238574FC00FF5080 /* dianli_yellow_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dianli_yellow_1.png; sourceTree = "<group>"; };
 		A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guidaojiaotong_red_2.png; sourceTree = "<group>"; };
 		A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuiwu_yellow_2.png; sourceTree = "<group>"; };
@@ -1328,6 +1336,9 @@
 		A5574F4123828DBD00B24FC4 /* HomeRoadPatrol */ = {
 			isa = PBXGroup;
 			children = (
+				A5AD7066238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.h */,
+				A5AD7064238E1E2F0053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m */,
+				A5AD7065238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib */,
 			);
 			path = HomeRoadPatrol;
 			sourceTree = "<group>";
@@ -1870,6 +1881,8 @@
 		A5B1947E2385A29200FF5080 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				A5AD706A238E1E3D0053B9B9 /* NSString+DateFormatter.h */,
+				A5AD7069238E1E3C0053B9B9 /* NSString+DateFormatter.m */,
 				A5B194802385A2BD00FF5080 /* UIViewController+modalPresentationStyle.h */,
 				A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */,
 			);
@@ -2083,6 +2096,7 @@
 				A5B19455238574FF00FF5080 /* shuiwu_red_1.png in Resources */,
 				A5B19467238574FF00FF5080 /* guidaojiaotong_yellow_1.png in Resources */,
 				A5B19457238574FF00FF5080 /* dianli_red_2.png in Resources */,
+				A5AD7068238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib in Resources */,
 				A5B1946C238574FF00FF5080 /* yuanlinlvhua_green_2.png in Resources */,
 				A5B19462238574FF00FF5080 /* luqiao_yellow_2.png in Resources */,
 				A5B19473238574FF00FF5080 /* yuanlinlvhua_yellow_1.png in Resources */,
@@ -2259,6 +2273,7 @@
 				A557506B23828DBD00B24FC4 /* ZHLZTabBarController.m in Sources */,
 				A557501823828DBD00B24FC4 /* ZHLZHomeMunicipalProblemModel.m in Sources */,
 				A557503823828DBD00B24FC4 /* ZHLZHomeVC.m in Sources */,
+				A5AD706B238E1E3D0053B9B9 /* NSString+DateFormatter.m in Sources */,
 				A557501B23828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.m in Sources */,
 				A557504923828DBD00B24FC4 /* ZHLZAddressBookVM.m in Sources */,
 				A557505123828DBD00B24FC4 /* ZHLZAddressBookVC.m in Sources */,
@@ -2352,6 +2367,7 @@
 				187662F2238D1E96000809AD /* ZHLZSupervisorSubmitModel.m in Sources */,
 				A5AD7036238D19430053B9B9 /* ZHLZHomeOccupyProblemTableViewCell.m in Sources */,
 				18254FFC2382E67100C8CC14 /* ZHLZHomeSafeCell.m in Sources */,
+				A5AD7067238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m in Sources */,
 				A5574FF323828DBD00B24FC4 /* GRNetworkConfig.m in Sources */,
 				A557507223828DBD00B24FC4 /* ZHLZUserManager.m in Sources */,
 				A5574FFA23828DBD00B24FC4 /* AppDelegate.m in Sources */,
