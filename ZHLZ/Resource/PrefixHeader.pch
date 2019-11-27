@@ -40,6 +40,9 @@
 #import "ZHLZTextField.h"
 #import "ZHLZTextView.h"
 
+#import "ZHLZSearchView.h"
+#import "ZHLZDateSearchView.h"
+
 #import "ZHLZUserManager.h"
 
 #import "UIViewController+modalPresentationStyle.h"

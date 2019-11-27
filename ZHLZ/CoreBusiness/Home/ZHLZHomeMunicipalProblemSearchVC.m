@@ -219,9 +219,9 @@
 
 - (IBAction)determineAction {
     ZHLZHomeMunicipalProblemSearchModel *model = [ZHLZHomeMunicipalProblemSearchModel new];
-    model.objectID = self.projectIdTextField.text;
-    model.problemDet = self.projectDescTextField.text;
-    model.siteDet = self.roadSectionTextField.text;
+    model.objectID = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
+    model.problemDet = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
+    model.siteDet = [self.roadSectionTextField.text isNotBlank] ? self.roadSectionTextField.text : nil;
     model.problemType = _problemType;
     model.orgid = _brigadeType;
     model.rangeleg = _searchRange;

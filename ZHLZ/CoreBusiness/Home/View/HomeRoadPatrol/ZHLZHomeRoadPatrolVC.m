@@ -18,9 +18,12 @@
     NSString *_endDate;
 }
 
+@property (weak, nonatomic) IBOutlet ZHLZDateSearchView *dateSearchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray<ZHLZHomeRoadPatrolModel *> *array;
+
+@property (nonatomic, strong) NSMutableArray *heightArray;
 
 @end
 
@@ -30,6 +33,8 @@
     [super viewDidLoad];
     
     self.array = @[].mutableCopy;
+    
+    self.dateSearchView.currentVC = self;
     
     _startDate = [NSString formatterBeforeOrAfterDateWithDate:[NSDate date] withMonth:-1];
     _endDate = [NSString formatterWithDate:[NSDate date]];
@@ -72,6 +77,13 @@
             }
         }
         
+        self.heightArray = @[].mutableCopy;
+        for (ZHLZHomeRoadPatrolModel *model in self.array) {
+            CGFloat height = [model.remark sizeForFont:kFont(12) size:CGSizeMake(kScreenWidth - 10.f * 2 - 10.f * 2 - 38.f - 5.f, MAXFLOAT) mode:NSLineBreakByWordWrapping].height;
+            height = height > 0 ? 100.f + height : 100.f;
+            [self.heightArray addObject:@(height)];
+        }
+        
         [self.tableView reloadData];
     }];
 }
@@ -100,7 +112,7 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    return self.heightArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -184,10 +184,10 @@
 
 - (IBAction)determineAction {
     ZHLZHomeOccupyProblemSearchModel *model = [ZHLZHomeOccupyProblemSearchModel new];
-    model.projectid = self.projectIdTextField.text;
-    model.projectname = self.projectNameTextField.text;
-    model.prodescription = self.projectDescTextField.text;
-    model.position = self.locationTextField.text;
+    model.projectid = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
+    model.projectname = [self.projectNameTextField.text isNotBlank] ? self.projectNameTextField.text : nil;
+    model.prodescription = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
+    model.position = [self.locationTextField.text isNotBlank] ? self.locationTextField.text : nil;
     model.protype = _problemType;
     model.rangeleg = _searchRange;
     model.startDate = _startDateFind;

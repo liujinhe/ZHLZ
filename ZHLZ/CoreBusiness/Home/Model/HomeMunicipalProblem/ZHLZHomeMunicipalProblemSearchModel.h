@@ -14,29 +14,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 当前问题ID
 // 问题描述
-@property (nonatomic, strong) NSString *problemDet;
+@property (nonatomic, strong, nullable) NSString *problemDet;
 // 路段
-@property (nonatomic, strong) NSString *siteDet;
+@property (nonatomic, strong, nullable) NSString *siteDet;
 // 发现时间-开始
-@property (nonatomic, strong) NSString *startDate;
+@property (nonatomic, strong, nullable) NSString *startDate;
 // 发现时间-结束
-@property (nonatomic, strong) NSString *endDate;
+@property (nonatomic, strong, nullable) NSString *endDate;
 // 关闭时间-开始
-@property (nonatomic, strong) NSString *cstartdate;
+@property (nonatomic, strong, nullable) NSString *cstartdate;
 // 关闭时间-结束
-@property (nonatomic, strong) NSString *cenddate;
+@property (nonatomic, strong, nullable) NSString *cenddate;
 // 所属大队
-@property (nonatomic, strong) NSString *orgid;
+@property (nonatomic, strong, nullable) NSString *orgid;
 // 问题类型
-@property (nonatomic, strong) NSString *problemType;
+@property (nonatomic, strong, nullable) NSString *problemType;
 // 搜索范围
-@property (nonatomic, strong) NSString *rangeleg;
+@property (nonatomic, strong, nullable) NSString *rangeleg;
 // 当前经度
-@property (nonatomic, strong) NSString *lng;
+@property (nonatomic, strong, nullable) NSString *lng;
 // 当前维度
-@property (nonatomic, strong) NSString *lat;
+@property (nonatomic, strong, nullable) NSString *lat;
 // 是否开启范围扫描（1-开启 其他-关闭）
-@property (nonatomic, strong) NSString *isrange;
+@property (nonatomic, assign, nullable) NSString *isrange;
 
 @end
 

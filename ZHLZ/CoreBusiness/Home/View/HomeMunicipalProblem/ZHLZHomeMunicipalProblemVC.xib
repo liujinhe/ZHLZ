@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeMunicipalProblemVC">
             <connections>
+                <outlet property="searchView" destination="lEz-jo-rHj" id="XRN-dW-2oc"/>
                 <outlet property="tableView" destination="a1R-Jx-611" id="ktl-Ge-4nj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,17 +20,27 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEz-jo-rHj" customClass="ZHLZSearchView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ccs-kF-EEU"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a1R-Jx-611">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="84" width="414" height="812"/>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="a1R-Jx-611" firstAttribute="top" secondItem="lEz-jo-rHj" secondAttribute="bottom" id="1ih-bS-W0w"/>
+                <constraint firstItem="lEz-jo-rHj" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="BOo-z6-vbw"/>
                 <constraint firstItem="a1R-Jx-611" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="JEK-bT-hRZ"/>
                 <constraint firstItem="a1R-Jx-611" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="RBS-GL-HyO"/>
-                <constraint firstItem="a1R-Jx-611" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RiE-Mc-0sM"/>
+                <constraint firstItem="lEz-jo-rHj" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="VGT-rb-v6N"/>
                 <constraint firstAttribute="bottom" secondItem="a1R-Jx-611" secondAttribute="bottom" id="aiR-cK-x0Q"/>
+                <constraint firstItem="lEz-jo-rHj" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="p0Q-FE-gxV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="139" y="154"/>

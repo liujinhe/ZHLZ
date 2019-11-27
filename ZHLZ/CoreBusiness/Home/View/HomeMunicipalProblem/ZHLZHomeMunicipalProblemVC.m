@@ -16,6 +16,7 @@
 
 @interface ZHLZHomeMunicipalProblemVC () <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) ZHLZHomeMunicipalProblemSearchVC *homeMunicipalProblemSearchVC;
@@ -32,11 +33,35 @@
     @weakify(self);
     [super viewDidLoad];
     
-    self.array = @[].mutableCopy;
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
     
+    self.array = @[].mutableCopy;
     self.homeMunicipalProblemSearchModel = [ZHLZHomeMunicipalProblemSearchModel new];
     
-    [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
+    self.searchView.isExistRangeSearchSwitch = YES;
+    self.searchView.searchBlock = ^{
+        @strongify(self);
+        [self searchAction];
+    };
+    self.searchView.openOrCloseBlock = ^(NSInteger status) {
+        @strongify(self);
+        if (status == 1) {
+            self.homeMunicipalProblemSearchModel.isrange = @"1";
+            ZHLZUserModel *userModel = [ZHLZUserModel new];
+            if (userModel) {
+                self.homeMunicipalProblemSearchModel.lng = userModel.longitude;
+                self.homeMunicipalProblemSearchModel.lat = userModel.latitude;
+            }
+        } else {
+            self.homeMunicipalProblemSearchModel.isrange = nil;
+            self.homeMunicipalProblemSearchModel.lng = nil;
+            self.homeMunicipalProblemSearchModel.lat = nil;
+        }
+        
+        [self loadData];
+    };
     
     self.homeMunicipalProblemSearchVC = [ZHLZHomeMunicipalProblemSearchVC new];
     self.homeMunicipalProblemSearchVC.selectSearchBlock = ^(ZHLZHomeMunicipalProblemSearchModel * _Nonnull homeMunicipalProblemSearchModel) {
@@ -89,6 +114,10 @@
 }
 
 #pragma mark - Action
+
+- (void)addAction {
+    
+}
 
 - (void)searchAction {
     [self presentViewController:self.homeMunicipalProblemSearchVC animated:NO completion:^{

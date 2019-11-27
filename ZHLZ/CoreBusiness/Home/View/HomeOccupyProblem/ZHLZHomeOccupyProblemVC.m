@@ -16,6 +16,7 @@
 
 @interface ZHLZHomeOccupyProblemVC () <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) ZHLZHomeOccupyProblemSearchVC *homeOccupyProblemSearchVC;
@@ -32,11 +33,35 @@
     @weakify(self);
     [super viewDidLoad];
     
-    self.array = @[].mutableCopy;
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
     
+    self.array = @[].mutableCopy;
     self.homeOccupyProblemSearchModel = [ZHLZHomeOccupyProblemSearchModel new];
     
-    [self addRightBarButtonItemWithImageName:@"icon_search_light" action:@selector(searchAction)];
+    self.searchView.isExistRangeSearchSwitch = YES;
+    self.searchView.searchBlock = ^{
+         @strongify(self);
+         [self searchAction];
+     };
+    self.searchView.openOrCloseBlock = ^(NSInteger status) {
+         @strongify(self);
+         if (status == 1) {
+             self.homeOccupyProblemSearchModel.isrange = @"1";
+             ZHLZUserModel *userModel = [ZHLZUserModel new];
+             if (userModel) {
+                 self.homeOccupyProblemSearchModel.lng = userModel.longitude;
+                 self.homeOccupyProblemSearchModel.lat = userModel.latitude;
+             }
+         } else {
+             self.homeOccupyProblemSearchModel.isrange = nil;
+             self.homeOccupyProblemSearchModel.lng = nil;
+             self.homeOccupyProblemSearchModel.lat = nil;
+         }
+         
+         [self loadData];
+     };
     
     self.homeOccupyProblemSearchVC = [ZHLZHomeOccupyProblemSearchVC new];
     self.homeOccupyProblemSearchVC.selectSearchBlock = ^(ZHLZHomeOccupyProblemSearchModel * _Nonnull homeOccupyProblemSearchModel) {
@@ -89,6 +114,10 @@
 }
 
 #pragma mark - Action
+
+- (void)addAction {
+    
+}
 
 - (void)searchAction {
     [self presentViewController:self.homeOccupyProblemSearchVC animated:NO completion:^{
