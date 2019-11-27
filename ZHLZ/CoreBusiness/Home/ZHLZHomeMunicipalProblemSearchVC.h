@@ -7,10 +7,13 @@
 //
 
 #import "ZHLZBaseVC.h"
+#import "ZHLZHomeMunicipalProblemSearchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeMunicipalProblemSearchVC : ZHLZBaseVC
+
+@property (nonatomic, copy) void (^selectSearchBlock)(ZHLZHomeMunicipalProblemSearchModel *homeMunicipalProblemSearchModel);
 
 - (void)showFilterView;
 

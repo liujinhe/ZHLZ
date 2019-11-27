@@ -58,14 +58,15 @@
     self.colorTopLayoutConstraint.constant = 0;
     self.colorHeightLayoutConstraint.constant = 0;
     
-    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
-    if ([userModel.userId isEqualToString:@"1"]) {
+    if ([[ZHLZUserManager sharedInstance] isSuperAdmin]) {
         self.bigTeamButton.userInteractionEnabled = YES;
         
         self.bigTeamButton.selected = NO;
         
         [self.bigTeamButton setImage:[UIImage imageNamed:@"arrow_right"] forState:UIControlStateNormal];
     } else {
+        ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+        
         self.bigTeamButton.userInteractionEnabled = NO;
         
         self.bigTeamButton.selected = YES;

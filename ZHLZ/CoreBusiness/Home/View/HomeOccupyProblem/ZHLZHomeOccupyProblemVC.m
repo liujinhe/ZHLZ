@@ -10,6 +10,7 @@
 #import "ZHLZHomeOccupyProblemVM.h"
 #import "ZHLZHomeOccupyProblemSearchVC.h"
 #import "ZHLZHomeOccupyProblemTableViewCell.h"
+#import "ZHLZHomeOccupyProblemDetailVC.h"
 
 #define ZHLZHomeOccupyProblemReuseIdentifier NSStringFromClass([ZHLZHomeOccupyProblemTableViewCell class])
 
@@ -119,7 +120,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHLZHomeOccupyProblemModel *model = self.array[indexPath.row];
     if (model) {
-        
+        ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
+        homeOccupyProblemDetailVC.detailId = model.objectID;
+        [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
     }
 }
 

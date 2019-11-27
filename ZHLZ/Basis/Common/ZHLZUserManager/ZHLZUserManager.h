@@ -43,6 +43,9 @@ typedef void (^LogoutBlock)(void);
 /// 持久化数据
 - (BOOL)synchronousUserDataToStore;
 
+/// 是否是超级管理员
+- (BOOL)isSuperAdmin;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -107,4 +107,10 @@ static ZHLZUserManager *_userManager = nil;
     }
 }
 
+- (BOOL)isSuperAdmin {
+    id user = [ZHLZStoreUtility fetchByRootDirectory:kZHLZUserManagerKey];
+    ZHLZUserModel *userModel = [ZHLZUserModel modelWithJSON:user];
+    return (userModel && [userModel.userId isNotBlank] && userModel.userId.integerValue == 1);
+}
+
 @end
