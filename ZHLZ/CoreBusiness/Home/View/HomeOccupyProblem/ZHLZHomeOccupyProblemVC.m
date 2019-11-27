@@ -150,7 +150,7 @@
     ZHLZHomeOccupyProblemModel *model = self.array[indexPath.row];
     if (model) {
         ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
-        homeOccupyProblemDetailVC.detailId = model.objectID;
+        homeOccupyProblemDetailVC.detailId = model.proid;
         homeOccupyProblemDetailVC.type = 2;
         [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
     }

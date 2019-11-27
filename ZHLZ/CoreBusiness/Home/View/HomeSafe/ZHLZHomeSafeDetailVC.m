@@ -50,6 +50,11 @@
         
         self.safeDetailModel = homeSafeModel;
         
+        //查看显示数据的大队
+        if (self.type == 2) {
+            [self.bigGrouponButton setTitle:self.safeDetailModel.orgName forState:UIControlStateNormal];
+        }
+        
         self.locationTextFile.text = self.safeDetailModel.currentPlace;
         [self.dutyUnitButton setTitle:self.safeDetailModel.unitName forState:UIControlStateNormal];
        
@@ -59,13 +64,15 @@
         self.photoNumTextFile.text = self.safeDetailModel.photoNumber;
         
         ///回选值
-        self.safeSubmitModel.unitId = self.safeDetailModel.unitId;
-        self.safeSubmitModel.currentPlace = self.safeDetailModel.currentPlace;
-        self.safeSubmitModel.prodescription = self.safeDetailModel.prodescription;
-        self.safeSubmitModel.workRecord = self.safeDetailModel.workRecord;
-        self.safeSubmitModel.photoNumber = self.safeDetailModel.photoNumber;
-        self.safeSubmitModel.workMeasures = self.safeDetailModel.workMeasures;
-        
+        if (self.type == 3) {
+            self.safeSubmitModel.unitId = self.safeDetailModel.unitId;
+            self.safeSubmitModel.currentPlace = self.safeDetailModel.currentPlace;
+            self.safeSubmitModel.prodescription = self.safeDetailModel.prodescription;
+            self.safeSubmitModel.workRecord = self.safeDetailModel.workRecord;
+            self.safeSubmitModel.photoNumber = self.safeDetailModel.photoNumber;
+            self.safeSubmitModel.workMeasures = self.safeDetailModel.workMeasures;
+            self.safeSubmitModel.id = self.safeDetailModel.objectID;
+        }
         
     }];
 }
@@ -97,14 +104,24 @@
         [self loadDetailData];
     }
     
+    
+    self.problemTextView.placeholder = @"请输入问题描述";
+    self.lookHistoryTextView.placeholder = @"请输入责任单位采取的工作措施";
+    self.workTypeTextView.placeholder = @"请输入巡查监管工作记录";
+    
+    
     self.safeSubmitModel = [ZHLZSafeSubmitModel new];
     
     self.bigGrouponButton.userInteractionEnabled = NO;
     self.bigGrouponButton.backgroundColor = [UIColor whiteColor];
-    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
-    [self.bigGrouponButton setTitle:userModel.orgname forState:UIControlStateNormal];
-    //初始值
-    self.safeSubmitModel.orgName  = userModel.orgId;
+    
+    //编辑和新增默认选中当前用户所在大队
+    if (self.type == 1 || self.type == 3) {
+        ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+        [self.bigGrouponButton setTitle:userModel.orgname forState:UIControlStateNormal];
+        //初始值
+        self.safeSubmitModel.orgId  = userModel.orgId;
+    }
 }
 
 - (void)isLookControl{

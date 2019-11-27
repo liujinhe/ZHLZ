@@ -55,6 +55,7 @@
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block();
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
+        
     }];
 }
 

@@ -112,7 +112,7 @@
         if ([homeSafeProblem.ddssjtms isNotBlank]) {
             self.supervisorStringArray = [self getArrayWithString:homeSafeProblem.ddssjtms];
         }
-        [self createSupervisorView];
+        [self safeProbleCreateSupervisorView];
         
     }];
 }
@@ -242,7 +242,7 @@
             
             [self.supervisorStringArray addObject:supervisorSubmitModel.meCustomize];
             
-            [self createSupervisorView];
+            [self safeProbleCreateSupervisorView];
         }
     };
     [self.navigationController pushViewController:addCouncilorVC animated:YES];
@@ -293,7 +293,7 @@
     return array.mutableCopy;
 }
 
-- (void)createSupervisorView {
+- (void)safeProbleCreateSupervisorView {
 
     for (UIView *view in [self.supervisorView subviews]) {
         [view removeFromSuperview];
@@ -330,7 +330,7 @@
         
         allHeight = allHeight + height + 10;
         
-        if (self.detailType == 3) {
+        if (self.detailType != 2 ) {
             UIButton *deteteButton = [UIButton buttonWithType:UIButtonTypeCustom];
             deteteButton.backgroundColor = [UIColor clearColor];
             [deteteButton setImage:[UIImage imageNamed:@"icon_delete_black"] forState:UIControlStateNormal];
@@ -380,7 +380,7 @@
     [self popActionWithTip:@"是否删除此措施？" withBlock:^{
         @strongify(self);
         [self.supervisorStringArray removeObjectAtIndex:index];
-        [self createSupervisorView];
+        [self safeProbleCreateSupervisorView];
     }];
 }
 

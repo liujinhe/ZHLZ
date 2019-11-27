@@ -124,7 +124,7 @@
 }
 
 - (void)loadAddressListFooter {
-    self.pageNum = 1;
+    self.pageNum ++;
     [self loadAddressListData];
 }
 
@@ -289,7 +289,6 @@
                 }
                 
             }
-            self.pageNum ++;
             
             [self.chooseListTableview reloadData];
             
@@ -309,9 +308,8 @@
     [self.homeSafeModelArray removeAllObjects];
     [self.homeBuildProjectModelArray removeAllObjects];
     
-    
-    
     self.pageNum = 1;
+    [self loadAddressListData];
 }
 
 

@@ -94,11 +94,17 @@
         [self loadDetailData];
     }
     
+    self.projectSubmitModel = [ZHLZHomeBuildProjectSubmitModel new];
+    
+    self.remarkTextView.placeholder = @"备注";
+    
     self.brigadeButton.userInteractionEnabled = NO;
     self.brigadeButton.backgroundColor = [UIColor whiteColor];
-    [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
     
-    self.projectSubmitModel = [ZHLZHomeBuildProjectSubmitModel new];
+    if (self.detailType == 1 || self.detailType == 3) {
+        [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
+        self.projectSubmitModel.bid = [ZHLZUserManager sharedInstance].user.orgId;
+    }
 }
 
 - (void)setViewToLookDetail {
@@ -148,6 +154,10 @@
 
 - (void)loadDetailData {
     self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataId:self.detailId WithBlock:^(ZHLZHomeBuildProjectModel * _Nonnull homeBuildProjectModel) {
+        
+        if (self.detailType == 2) {
+            [self.brigadeButton setTitle:homeBuildProjectModel.bidName forState:UIControlStateNormal];
+        }
         
         self.projectNameTextFile.text = homeBuildProjectModel.name;
         
@@ -224,10 +234,27 @@
             [self.emphasisProjectButton setTitle:@"非重点 " forState:UIControlStateNormal];
         }
         
-        
         self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",homeBuildProjectModel.coordinatesX];
         self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",homeBuildProjectModel.coordinatesY];
         self.locationLabel.text = [NSString stringWithFormat:@"当前位置：%@",homeBuildProjectModel.position];
+        
+        self.remarkTextView.text = homeBuildProjectModel.remark;
+        
+        
+        ///修改初始默认值
+        if (self.detailType == 3) {
+            self.projectSubmitModel.projecttypeId = homeBuildProjectModel.projecttypeId;
+            self.projectSubmitModel.constructorId = homeBuildProjectModel.constructorId;
+            self.projectSubmitModel.builderId = homeBuildProjectModel.builderId;
+            self.projectSubmitModel.createdate = self.licenceStartButton.titleLabel.text;
+            self.projectSubmitModel.finishdate = self.licenceEndButton.titleLabel.text;
+            self.projectSubmitModel.frequency = homeBuildProjectModel.frequency;
+            self.projectSubmitModel.projectstatusId = homeBuildProjectModel.projectstatusId;
+            self.projectSubmitModel.areaid = homeBuildProjectModel.areaid;
+            self.projectSubmitModel.belong = homeBuildProjectModel.belong;
+            self.projectSubmitModel.focuson = homeBuildProjectModel.focuson;
+            self.projectSubmitModel.id = homeBuildProjectModel.objectID;
+        }
         
         
     }];
@@ -429,8 +456,8 @@
     self.projectSubmitModel.area = self.acreageTextFile.text;
     self.projectSubmitModel.licenseId = self.licenceNumTextFile.text;
     self.projectSubmitModel.projectno = self.projectNumTextFile.text;
-    self.projectSubmitModel.coordinatesX = self.locationXLabel.text;
-    self.projectSubmitModel.coordinatesY = self.locationYLabel.text;
+    self.projectSubmitModel.coordinatesX = @"113";
+    self.projectSubmitModel.coordinatesY = @"23";
     self.projectSubmitModel.remark = self.remarkTextView.text;
     
     @weakify(self)

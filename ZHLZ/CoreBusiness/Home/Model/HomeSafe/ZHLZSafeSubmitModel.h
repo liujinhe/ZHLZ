@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZSafeSubmitModel : ZHLZBaseModel
 
-@property (nonatomic , copy) NSString *orgName;
+@property (nonatomic , copy) NSString *orgId;
 
 @property (nonatomic , copy) NSString *currentPlace;
 
@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *workMeasures;
 
 @property (nonatomic , copy) NSString *uploadId;
+
+@property (nonatomic , copy) NSString *id;
 
 @end
 

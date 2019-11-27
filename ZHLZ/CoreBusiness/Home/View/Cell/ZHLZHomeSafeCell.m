@@ -32,13 +32,19 @@
     
     if ([homeSafeModel.orgName isNotBlank]) {
         self.nameLable.text = homeSafeModel.orgName;
+    } else {
+        self.nameLable.text = @"";
     }
     if ([homeSafeModel.prodescription isNotBlank]) {
         self.contentLabel.text = homeSafeModel.prodescription;
+    } else {
+        self.contentLabel.text = @"";
     }
     
     if ([homeSafeModel.currentPlace isNotBlank]) {
         self.locationLabel.text = homeSafeModel.currentPlace;
+    } else {
+        self.locationLabel.text = @"";
     }
     
 }

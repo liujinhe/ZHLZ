@@ -12,47 +12,50 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBuildProjectSubmitModel : ZHLZBaseModel
 
-@property (nonatomic , copy) NSString *name;
+@property (nonatomic , strong) NSString *name;
 
-@property (nonatomic , copy) NSString *projecttypeId;
+@property (nonatomic , strong) NSString *projecttypeId;
 
-@property (nonatomic , copy) NSString *position;
+@property (nonatomic , strong) NSString *position;
 
-@property (nonatomic , copy) NSString *constructorId;
+@property (nonatomic , strong) NSString *constructorId;
 
-@property (nonatomic , copy) NSString *builderId;
+@property (nonatomic , strong) NSString *builderId;
 
-@property (nonatomic , copy) NSString *approverId;
+@property (nonatomic , strong) NSString *approverId;
 
-@property (nonatomic , copy) NSString *createdate;
+@property (nonatomic , strong) NSString *createdate;
 
-@property (nonatomic , copy) NSString *finishdate;
+@property (nonatomic , strong) NSString *finishdate;
 
-@property (nonatomic , copy) NSString *frequency;
+@property (nonatomic , strong) NSString *frequency;
 
-@property (nonatomic , copy) NSString *projectstatusId;
+@property (nonatomic , strong) NSString *projectstatusId;
 
-@property (nonatomic , copy) NSString *practicaldate;
+@property (nonatomic , strong) NSString *practicaldate;
 
-@property (nonatomic , copy) NSString *bid;
+@property (nonatomic , strong) NSString *bid;
 
-@property (nonatomic , copy) NSString *areaid;
+@property (nonatomic , strong) NSString *areaid;
 
-@property (nonatomic , copy) NSString *belong;
+@property (nonatomic , strong) NSString *belong;
 
-@property (nonatomic , copy) NSString *area;
+@property (nonatomic , strong) NSString *area;
 
-@property (nonatomic , copy) NSString *licenseId;
+@property (nonatomic , strong) NSString *licenseId;
 
-@property (nonatomic , copy) NSString *projectno;
+@property (nonatomic , strong) NSString *projectno;
 
-@property (nonatomic , copy) NSString *focuson;
+@property (nonatomic , strong) NSString *focuson;
 
-@property (nonatomic , copy) NSString *coordinatesX;
+@property (nonatomic , strong) NSString *coordinatesX;
 
-@property (nonatomic , copy) NSString *coordinatesY;
+@property (nonatomic , strong) NSString *coordinatesY;
 
-@property (nonatomic , copy) NSString *remark;
+@property (nonatomic , strong) NSString *remark;
+
+@property (nonatomic , strong) NSString *id;
+
 
 
 @end

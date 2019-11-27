@@ -41,6 +41,13 @@
     [self.supervisorDetailTextView setEditable:NO];
     
     self.supervisorSubmitModel = [ZHLZSupervisorSubmitModel new];
+    
+    NSString *dateString = [NSString formatterWithDate:[NSDate date]];
+    [self.supervisorTimeButton setTitle:dateString forState:UIControlStateNormal];
+    self.stepTimeString = dateString;
+    
+    [self.isPutOutButton setTitle:@"是" forState:UIControlStateNormal];
+    self.isPutOutString = @"1";
 }
 
 - (IBAction)supervisorTimeAction:(UIButton *)sender {
