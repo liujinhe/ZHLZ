@@ -20,6 +20,7 @@
 		182550022382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182550002382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.xib */; };
 		1833FB1A238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833FB19238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m */; };
 		1864EFB3238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864EFB2238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m */; };
+		18657BE0238E15DA00EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18657BDF238E15DA00EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.m */; };
 		187662EA238CCFEE000809AD /* ZHLZChosseStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 187662E9238CCFEE000809AD /* ZHLZChosseStepModel.m */; };
 		187662EE238CD043000809AD /* ZHLZChooseStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187662EB238CD041000809AD /* ZHLZChooseStepCell.m */; };
 		187662EF238CD043000809AD /* ZHLZChooseStepCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187662EC238CD041000809AD /* ZHLZChooseStepCell.xib */; };
@@ -317,6 +318,8 @@
 		1833FB19238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeSafeProblemSUbmitModel.m; sourceTree = "<group>"; };
 		1864EFB1238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeBuildProjectSubmitModel.h; sourceTree = "<group>"; };
 		1864EFB2238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeBuildProjectSubmitModel.m; sourceTree = "<group>"; };
+		18657BDE238E15D900EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeOccupyProblemDetailModel.h; sourceTree = "<group>"; };
+		18657BDF238E15DA00EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeOccupyProblemDetailModel.m; sourceTree = "<group>"; };
 		187662E8238CCFED000809AD /* ZHLZChosseStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZChosseStepModel.h; sourceTree = "<group>"; };
 		187662E9238CCFEE000809AD /* ZHLZChosseStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZChosseStepModel.m; sourceTree = "<group>"; };
 		187662EB238CD041000809AD /* ZHLZChooseStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZHLZChooseStepCell.m; path = ZHLZ/CoreBusiness/Home/View/Cell/ZHLZChooseStepCell.m; sourceTree = SOURCE_ROOT; };
@@ -1035,6 +1038,8 @@
 		A5574EF123828DBD00B24FC4 /* HomeOccupyProblem */ = {
 			isa = PBXGroup;
 			children = (
+				18657BDE238E15D900EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.h */,
+				18657BDF238E15DA00EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.m */,
 				A5574EF223828DBD00B24FC4 /* ZHLZHomeOccupyProblemModel.h */,
 				A5574EF323828DBD00B24FC4 /* ZHLZHomeOccupyProblemModel.m */,
 				A5AD7030238D19270053B9B9 /* ZHLZHomeOccupyProblemSearchModel.h */,
@@ -2236,6 +2241,7 @@
 				18766300238D2F5A000809AD /* ZHLZBuildProjectSearchVC.m in Sources */,
 				A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */,
 				A54C72402382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.m in Sources */,
+				18657BE0238E15DA00EBFDF0 /* ZHLZHomeOccupyProblemDetailModel.m in Sources */,
 				A557507723828DBD00B24FC4 /* ZHLZBaseBatchVM.m in Sources */,
 				A5574FF723828DBD00B24FC4 /* GRNetworkUtils.m in Sources */,
 				A557506C23828DBD00B24FC4 /* ZHLZBaseVC.m in Sources */,

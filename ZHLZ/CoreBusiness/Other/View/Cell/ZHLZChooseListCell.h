@@ -16,6 +16,7 @@
 #import "ZHLZExamineModel.h"
 #import "ZHLZRoadWorkModel.h"
 #import "ZHLZHomeSafeModel.h"
+#import "ZHLZHomeBuildProjectModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) ExamineList *examineList;
 @property (nonatomic , strong) RoadWorkList *roadWorkList;
 @property (nonatomic , strong) ZHLZHomeSafeModel *homeSafeModel;
-
+@property (nonatomic , strong) ZHLZHomeBuildProjectModel *homeBuildProjectModel;
 
 @end
 
