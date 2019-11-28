@@ -222,11 +222,14 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                                                                   withReuseIdentifier:ZHLZHomeCRVHeaderReuseIdentifier
                                                                          forIndexPath:indexPath];
         if (homeCRV) {
-            homeCRV.selectedLatestMessageTypeBlock = ^(NSInteger type) {
+            homeCRV.currentIndexPath = indexPath;
+            homeCRV.selectedLatestMessageTypeBlock = ^(NSInteger type, NSIndexPath * _Nonnull currentIndexPath) {
                 @strongify(self);
                 self->_showLatestMessageType = type;
                 
-                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.collectionView reloadData];
+                });
             };
         }
         return homeCRV;

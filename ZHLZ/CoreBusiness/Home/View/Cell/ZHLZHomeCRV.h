@@ -11,9 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // 选择最新消息类型（0:占道施工问题 1:市政设施问题）
-typedef void(^SelectedLatestMessageTypeBlock)(NSInteger type);
+typedef void(^SelectedLatestMessageTypeBlock)(NSInteger type, NSIndexPath *currentIndexPath);
 
 @interface ZHLZHomeCRV : UICollectionReusableView
+
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @property (nonatomic, copy) SelectedLatestMessageTypeBlock selectedLatestMessageTypeBlock;
 

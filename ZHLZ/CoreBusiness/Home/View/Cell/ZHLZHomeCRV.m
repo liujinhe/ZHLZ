@@ -83,7 +83,7 @@
     }
     button.selected = YES;
     if (self.selectedLatestMessageTypeBlock) {
-        self.selectedLatestMessageTypeBlock(button.tag);
+        self.selectedLatestMessageTypeBlock(button.tag, self.currentIndexPath);
     }
 }
 
