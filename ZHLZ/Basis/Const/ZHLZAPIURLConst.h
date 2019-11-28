@@ -91,6 +91,8 @@ extern NSString * const OccupyProblemOpenAPIURLConst;
 extern NSString * const CheckInPunchAPIURLConst;
 // 路巡小结
 extern NSString * const RoadPatrolSummaryAPIURLConst;
+// 路巡统计
+extern NSString * const RoadPatrolSummaryStatisticsAPIURLConst;
 // 扫码用车
 extern NSString * const ScanCodeUseCarAPIURLConst;
 // 小结统计

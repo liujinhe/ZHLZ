@@ -36,7 +36,7 @@
     }
     
     self.fileNameLabel.text = homeBusinessDocumentModel.fileName;
-    self.fileSizeLabel.text = [NSString stringWithFormat:@"%@ KB",homeBusinessDocumentModel.fileSize];
+    self.fileSizeLabel.text = [NSString stringWithFormat:@"%.2fKB", homeBusinessDocumentModel.fileSize.doubleValue / 1000.f];
 }
 - (void)setIsHasDownLoad:(BOOL)isHasDownLoad {
     _isHasDownLoad = isHasDownLoad;

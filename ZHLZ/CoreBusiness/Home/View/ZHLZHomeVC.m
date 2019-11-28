@@ -27,7 +27,7 @@
 #import "ZHLZHomeSafeProblemVC.h"
 #import "ZHLZHomeRoadPatrolVC.h"
 #import "ZHLZHomeCheckInVC.h"
-#import "ZHLZHomeRoadPatrolStatisticsVC.h"
+#import "ZHLZWebViewVC.h"
 #import "ZHLZHomeBusinessDocumentVC.h"
 #import "ZHLZHomeScanCodeUseCarVC.h"
 #import "ZHLZHomeInfoStatisticsVC.h"
@@ -354,9 +354,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 break;
             case 8:
             {
-                ZHLZHomeRoadPatrolStatisticsVC *homeRoadPatrolStatisticsVC = [ZHLZHomeRoadPatrolStatisticsVC new];
-                homeRoadPatrolStatisticsVC.navTitle = navTitle;
-                [self.navigationController pushViewController:homeRoadPatrolStatisticsVC
+                ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
+                webViewVC.navTitle = navTitle;
+                webViewVC.url = [BaseAPIURLConst stringByAppendingString:RoadPatrolSummaryStatisticsAPIURLConst];
+                [self.navigationController pushViewController:webViewVC
                                                      animated:YES];
             }
                 break;
