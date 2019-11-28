@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeBuildProjectVC">
             <connections>
                 <outlet property="hmeBuildProjectTableView" destination="tkG-hz-GET" id="6FS-c6-81I"/>
+                <outlet property="searchView" destination="gmG-Sg-c0O" id="aDe-aF-e3H"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,54 +20,30 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osy-0t-4Db">
-                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
-                    <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="🔍请输入搜索内容" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qEp-HV-WN1" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="10" width="334" height="40"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQH-dJ-Xfi">
-                            <rect key="frame" x="364" y="0.0" width="30" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="CaB-T1-zzu"/>
-                            </constraints>
-                            <state key="normal" image="icon_search"/>
-                        </button>
-                    </subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-Sg-c0O" customClass="ZHLZSearchView">
+                    <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="qEp-HV-WN1" firstAttribute="leading" secondItem="osy-0t-4Db" secondAttribute="leading" constant="20" id="4Ib-FB-Aqw"/>
-                        <constraint firstAttribute="bottom" secondItem="SQH-dJ-Xfi" secondAttribute="bottom" id="FLl-iO-1b0"/>
-                        <constraint firstAttribute="height" constant="60" id="NpL-mT-acz"/>
-                        <constraint firstItem="qEp-HV-WN1" firstAttribute="top" secondItem="osy-0t-4Db" secondAttribute="top" constant="10" id="PSD-9p-h3P"/>
-                        <constraint firstAttribute="bottom" secondItem="qEp-HV-WN1" secondAttribute="bottom" constant="10" id="SQc-QC-YMH"/>
-                        <constraint firstItem="SQH-dJ-Xfi" firstAttribute="top" secondItem="osy-0t-4Db" secondAttribute="top" id="cQX-T7-MsH"/>
-                        <constraint firstAttribute="trailing" secondItem="SQH-dJ-Xfi" secondAttribute="trailing" constant="20" id="ohJ-JA-qEL"/>
-                        <constraint firstItem="SQH-dJ-Xfi" firstAttribute="leading" secondItem="qEp-HV-WN1" secondAttribute="trailing" constant="10" id="y3a-Oo-tJM"/>
+                        <constraint firstAttribute="height" constant="40" id="Kh5-O8-BOq"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tkG-hz-GET">
-                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <rect key="frame" x="0.0" y="84" width="414" height="812"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="osy-0t-4Db" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ub6-4e-hxu"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="tkG-hz-GET" secondAttribute="bottom" id="Zh1-b5-P5y"/>
+                <constraint firstAttribute="bottom" secondItem="tkG-hz-GET" secondAttribute="bottom" id="60z-A8-LrH"/>
+                <constraint firstItem="gmG-Sg-c0O" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="7Z5-Nb-hw6"/>
+                <constraint firstItem="gmG-Sg-c0O" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="K8i-CA-V23"/>
+                <constraint firstItem="tkG-hz-GET" firstAttribute="top" secondItem="gmG-Sg-c0O" secondAttribute="bottom" id="Vx1-3L-223"/>
                 <constraint firstItem="tkG-hz-GET" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="f9T-fJ-eyY"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="tkG-hz-GET" secondAttribute="trailing" id="sLN-kf-jix"/>
-                <constraint firstItem="osy-0t-4Db" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="uGH-7W-Jw2"/>
-                <constraint firstItem="tkG-hz-GET" firstAttribute="top" secondItem="osy-0t-4Db" secondAttribute="bottom" id="xMM-AJ-q8X"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="osy-0t-4Db" secondAttribute="trailing" id="xYJ-wJ-7F3"/>
+                <constraint firstItem="gmG-Sg-c0O" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="yMc-fD-iQj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="139" y="94"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_search" width="16" height="16"/>
-    </resources>
 </document>

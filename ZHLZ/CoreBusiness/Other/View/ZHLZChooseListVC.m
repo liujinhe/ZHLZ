@@ -156,7 +156,7 @@
     
     else if (self.selectIndex == 8 ){
         @weakify(self)
-        self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+        self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNo withModel:nil withBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
             @strongify(self)
             
             if (self.chooseListTableview.mj_header.isRefreshing) {

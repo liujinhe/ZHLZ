@@ -9,7 +9,7 @@
 #import "ZHLZBaseVM.h"
 #import "ZHLZHomeBuildProjectModel.h"
 #import "ZHLZHomeBuildProjectSubmitModel.h"
-
+#import "ZHLZBuildProjectSearchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadHomeBuildProjectDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray))block;
+- (NSURLSessionTask *)loadHomeBuildProjectDataWithPageNum:(NSInteger)pageNum withModel:(nullable ZHLZBuildProjectSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray))block;
 
 - (NSURLSessionTask *)loadHomeBuildProjectDataId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeBuildProjectModel *homeBuildProjectModel))block;
 

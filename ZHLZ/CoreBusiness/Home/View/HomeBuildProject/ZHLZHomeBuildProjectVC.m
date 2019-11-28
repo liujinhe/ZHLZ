@@ -9,17 +9,21 @@
 #import "ZHLZHomeBuildProjectVC.h"
 #import "ZHLZHomeBuildProjectCell.h"
 #import "ZHLZHomeBuildProjectVM.h"
+#import "ZHLZBuildProjectSearchVC.h"
 #import "ZHLZHomeBuildProjectDetailVC.h"
 
+#define ZHLZHomeBuildProjectReuseIdentifier NSStringFromClass([ZHLZHomeBuildProjectCell class])
 
+@interface ZHLZHomeBuildProjectVC () <UITableViewDataSource, UITableViewDelegate>
 
-@interface ZHLZHomeBuildProjectVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *hmeBuildProjectTableView;
 
-@property (nonatomic , assign) NSInteger pageNum;
+@property (nonatomic, strong) ZHLZBuildProjectSearchVC *buildProjectSearchVC;
 
-@property (nonatomic , strong) NSMutableArray <ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray;
+@property (nonatomic, strong) ZHLZBuildProjectSearchModel *buildProjectSearchModel;
+
+@property (nonatomic, strong) NSMutableArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray;
 
 @end
 
@@ -28,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
     
     [self loadHomeProjectBuildView];
     
@@ -36,15 +42,26 @@
 }
 
 - (void)addAction {
-    
     ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
     homeBuildProjectDetailVC.detailType = 1;
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 }
 
-- (void)loadHomeProjectBuildData{
+- (void)searchAction {
+    [self presentViewController:self.buildProjectSearchVC animated:NO completion:^{
+        [self.buildProjectSearchVC showFilterView];
+    }];
+}
+
+- (void)loadHomeProjectBuildData {
     @weakify(self)
-    self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+    if (self.hmeBuildProjectTableView.mj_footer.isRefreshing) {
+        self.pageNo++;
+    } else {
+        self.pageNo = 1;
+        [self.hmeBuildProjectTableView.mj_footer resetNoMoreData];
+    }
+    self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNo withModel:self.buildProjectSearchModel withBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
         @strongify(self)
         
         if (self.hmeBuildProjectTableView.mj_header.isRefreshing) {
@@ -54,7 +71,7 @@
             [self.hmeBuildProjectTableView.mj_footer endRefreshing];
         }
         
-        if (self.pageNum == 1) {
+        if (self.pageNo == 1) {
             self.homeBuildProjectModelArray = homeBuildProjectModelArray.mutableCopy;
         } else {
             if (homeBuildProjectModelArray.count > 0) {
@@ -68,9 +85,22 @@
     }];
 }
 
-- (void)loadHomeProjectBuildView{
+- (void)loadHomeProjectBuildView {
+    @weakify(self);
+    self.searchView.searchBlock = ^{
+        @strongify(self);
+        [self searchAction];
+    };
     
-    self.pageNum = 1;
+    self.buildProjectSearchVC = [ZHLZBuildProjectSearchVC new];
+    self.buildProjectSearchVC.selectSearchBlock = ^(ZHLZBuildProjectSearchModel * _Nonnull buildProjectSearchModel) {
+        @strongify(self);
+        self.buildProjectSearchModel = buildProjectSearchModel;
+        
+        [self loadHomeProjectBuildData];
+    };
+    
+    self.buildProjectSearchModel = [ZHLZBuildProjectSearchModel new];
     
     self.homeBuildProjectModelArray = [NSMutableArray <ZHLZHomeBuildProjectModel *> new];
     
@@ -80,59 +110,42 @@
     
     self.hmeBuildProjectTableView.showsVerticalScrollIndicator = NO;
     
-    [self.hmeBuildProjectTableView registerNib:[UINib nibWithNibName:@"ZHLZHomeBuildProjectCell" bundle:nil] forCellReuseIdentifier:@"ZHLZHomeBuildProjectCell"];
+    [self.hmeBuildProjectTableView registerNib:[UINib nibWithNibName:ZHLZHomeBuildProjectReuseIdentifier bundle:nil]
+                        forCellReuseIdentifier:ZHLZHomeBuildProjectReuseIdentifier];
     
-    self.hmeBuildProjectTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeBuildProjectHeader)];
-    self.hmeBuildProjectTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeBuildProjectHeaderFooter)];
+    self.hmeBuildProjectTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeProjectBuildData)];
+    self.hmeBuildProjectTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeProjectBuildData)];
 }
 
-- (void)loadHomeBuildProjectHeader{
-    self.pageNum = 1;
-    
-    [self loadHomeProjectBuildData];
-}
+#pragma mark - UITableViewDataSource
 
-- (void)loadHomeBuildProjectHeaderFooter{
-    self.pageNum ++;
-    
-    [self loadHomeProjectBuildData];
-}
-
-#pragma mark --UITableView 代理
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.homeBuildProjectModelArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    static NSString *cellID = @"ZHLZHomeBuildProjectCell";
-
-    ZHLZHomeBuildProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ZHLZHomeBuildProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:ZHLZHomeBuildProjectReuseIdentifier];
     if (cell == nil) {
-        cell = [[ZHLZHomeBuildProjectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[ZHLZHomeBuildProjectCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZHLZHomeBuildProjectReuseIdentifier];
     }
-    
     cell.homeBuildProjectModel  = self.homeBuildProjectModelArray[indexPath.row];
     
     return cell;
- }
+}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHLZHomeBuildProjectModel *homeBuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];
     
     ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
     homeBuildProjectDetailVC.detailType = 2;
     homeBuildProjectDetailVC.detailId = [NSString stringWithFormat:@"%@",homeBuildProjectModel.objectID];
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
-
 }
-
-
 
 @end
