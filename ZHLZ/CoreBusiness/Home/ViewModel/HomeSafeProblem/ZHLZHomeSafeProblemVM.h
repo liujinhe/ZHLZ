@@ -9,7 +9,7 @@
 #import "ZHLZBaseVM.h"
 #import "ZHLZHomeSafeProblemModel.h"
 #import "ZHLZHomeSafeProblemSUbmitModel.h"
-
+#import "ZHLZSupervisorSubmitModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemVM : ZHLZBaseVM
@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionTask *)loadHomeSafeProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block;
 
 ///保存/修改
-- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeSafeProblemSUbmitModel *)safeProblemSUbmitModel withBlock:(dispatch_block_t)block;
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitArray:(NSArray *)submitArray withBlock:(dispatch_block_t)block;
 
 
 //获取督导列表
-- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block;
+- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block;
 
 @end
 

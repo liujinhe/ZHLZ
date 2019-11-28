@@ -243,6 +243,15 @@
     self.homeOccupyProblemSubmitModel.prodescription = self.problemTextView.text;
     self.homeOccupyProblemSubmitModel.responsibleUnit = self.markTextView.text;
     
+    NSDictionary *dic = @{@"promanagername":@"超级管理员",@"projectname":@"广州交投集团取消高速公路省界收费站工程（南沙港快速路段）ETC门架系统及附属工程",@"belong":@"15",@"uploadId":@"8EC0D3C053B7E9CEBC600A251C618525",@"uploadid":@"8EC0D3C053B7E9CEBC600A251C618525",@"upload":@"",@"promanager":@"1",@"profulfildate":@"2019-11-12",@"@orgid":@"865c51b28c",@"protype":@"3",@"prodescription":@"督导问题描述",@"areaid":@"5",@"prodate":@"2019-11-26",@"proid":@"",@"ddssjtms":@"于2019-11-26对该问题进行\"召集会议,责令改正,微信/电话督办\"的措施;于2019-11-26对该问题进行\"召集会议,移交/告知/通知（其他职能部门）\"的措施",@"responsibleUnit":@"督导备注",@"$protype":@"擅自占用挖掘",@"projectid":@"10233",@"$belong":@"市管快速路"};
+    
+    
+    
+    
+    self.task = [[ZHLZHomeOccupyProblemVM sharedInstance] submitHomeSafeProblemWithSubmitArray:@[dic,self.supervisorSubmitModelArray] withBlock:^{
+        
+    }];
+    
 }
 
 - (NSMutableArray *)getArrayWithString:(NSString *)str {

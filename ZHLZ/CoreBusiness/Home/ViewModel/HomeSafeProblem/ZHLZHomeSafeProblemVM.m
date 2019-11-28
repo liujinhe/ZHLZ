@@ -46,25 +46,26 @@
     }];
 }
 
-- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitModel:(ZHLZHomeSafeProblemSUbmitModel *)safeProblemSUbmitModel withBlock:(dispatch_block_t)block {
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitType:(NSInteger)submitType andSubmitArray:(NSArray *)submitArray withBlock:(dispatch_block_t)block {
     
     NSString *urlString  = SafeFloodPreventionProblemSaveAPIURLConst;
     if (submitType == 3) {
         urlString  = SafeFloodPreventionProblemUpdateAPIURLConst;
     }
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:[safeProblemSUbmitModel modelToJSONObject]];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:[submitArray modelToJSONObject]];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block();
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
     }];
 }
 
-- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemGetMeasuresAPIURLConst];
+- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemGetMeasuresAPIURLConst withRequestArgument:@{@"id":Id}];
+    baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response.data) {
-            ZHLZHomeSafeProblemModel *detailModel = [ZHLZHomeSafeProblemModel modelWithJSON:response.data];
-            block(detailModel);
+            NSArray *supervisorSubmitModelArray = [NSArray modelArrayWithClass:[ZHLZSupervisorSubmitModel class] json:response.data];
+            block(supervisorSubmitModelArray);
         }
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
         

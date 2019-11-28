@@ -42,7 +42,6 @@
 @property (nonatomic , strong) ZHLZHomeSafeProblemSUbmitModel *homeSafeProblemSUbmitModel;
 
 ///督导措施
-@property (nonatomic , strong) NSMutableArray *supervisorStringArray;///督导字符串数组
 @property (nonatomic , strong) NSMutableArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray;
 
 @end
@@ -60,6 +59,15 @@
     safeProblemDetailVC.detailType = 3;
     safeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@",self.homeSafeProblemModel.objectID];
     [self.navigationController pushViewController:safeProblemDetailVC animated:YES];
+}
+
+
+- (void)loadHomeSafeFloodPreventionProblemGetMeasures {
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
+        [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
+        
+        [self safeProbleCreateSupervisorView];
+    }];
 }
 
 - (void)getProblemDetailData{
@@ -108,12 +116,14 @@
         
         [self.workUserButton setTitle:homeSafeProblem.promanagername forState:UIControlStateNormal];
         
-        ///督导措施
-        if ([homeSafeProblem.ddssjtms isNotBlank]) {
-            self.supervisorStringArray = [self getArrayWithString:homeSafeProblem.ddssjtms];
-        }
-        [self safeProbleCreateSupervisorView];
+        self.problemDetailTextView.text = homeSafeProblem.remark;
+        self.problemMarkTextView.text = homeSafeProblem.prodescription;
         
+        self.homeSafeProblemSUbmitModel.risksid = homeSafeProblem.risksid;
+        self.homeSafeProblemSUbmitModel.areaid = homeSafeProblem.areaid;
+        self.homeSafeProblemSUbmitModel.belong = homeSafeProblem.belong;
+        self.homeSafeProblemSUbmitModel.finddate = homeSafeProblem.finddate;
+        self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
     }];
 }
 
@@ -130,6 +140,8 @@
         
         [self getProblemDetailData];
         
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+        
         [self lookSetView];
         
     } else {
@@ -139,23 +151,38 @@
         
         [self getProblemDetailData];
         
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+        
     }
+
+    self.problemDetailTextView.placeholder = @"请输入问题描述";
+    self.problemMarkTextView.placeholder = @"请输入备注";
     
     self.supervisorView.backgroundColor = [UIColor clearColor];
     self.supervisorViewHeightConstraint.constant = 0;
     
-    self.supervisorStringArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     
     self.homeSafeProblemSUbmitModel = [ZHLZHomeSafeProblemSUbmitModel new];
     [self.workUserButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
     
-    self.homeSafeProblemSUbmitModel.promanager = [ZHLZUserManager sharedInstance].user.fullname;
+    self.homeSafeProblemSUbmitModel.promanager = [ZHLZUserManager sharedInstance].user.userId;
+    self.homeSafeProblemSUbmitModel.orgid = [ZHLZUserManager sharedInstance].user.orgId;
+    
 }
 
 - (void)lookSetView {
+    self.homeSafeButton.userInteractionEnabled = NO;
+    self.areaNameButton.userInteractionEnabled = NO;
+    self.dutyAreaButton.userInteractionEnabled = NO;
+    self.problemTimeButton.userInteractionEnabled = NO;
+    self.workUserButton.userInteractionEnabled = NO;
+
     self.supervisorButton.userInteractionEnabled = NO;
     self.problemSubmitButton.hidden = YES;
+    
+    [self.problemDetailTextView setEditable:NO];
+    [self.problemMarkTextView setEditable:NO];
 }
 
 
@@ -240,8 +267,6 @@
         if (supervisorSubmitModel) {
             [self.supervisorSubmitModelArray addObject:supervisorSubmitModel];
             
-            [self.supervisorStringArray addObject:supervisorSubmitModel.meCustomize];
-            
             [self safeProbleCreateSupervisorView];
         }
     };
@@ -250,19 +275,22 @@
 
 - (IBAction)problemSubmitAction:(ZHLZButton *)sender {
     
-    self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
     self.homeSafeProblemSUbmitModel.prodescription = self.problemDetailTextView.text;
     self.homeSafeProblemSUbmitModel.remark = self.problemMarkTextView.text;
-    self.homeSafeProblemSUbmitModel.uploadId = @"123";
+    self.homeSafeProblemSUbmitModel.uploadid = @"";
+    ///默认值回选
+    if (self.detailType == 1) {
+        self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
+        self.homeSafeProblemSUbmitModel.id = @"";
+    } else {
+        self.homeSafeProblemSUbmitModel.id = self.detailId;
+    }
     
-    NSArray *safeProblemArr = @[self.homeSafeProblemSUbmitModel];
     
-    NSArray *safeProblemSubmitArr = @[safeProblemArr,self.supervisorSubmitModelArray];
-    
+    NSArray *safeProblemSubmitArr = @[self.homeSafeProblemSUbmitModel,self.supervisorSubmitModelArray];
     
     @weakify(self)
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.detailType andSubmitModel:self.homeSafeProblemSUbmitModel withBlock:^{
-        
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.detailType andSubmitArray:safeProblemSubmitArr withBlock:^{
         @strongify(self)
         if (self.detailType == 1) {
             [GRToast makeText:@"新增成功"];
@@ -281,16 +309,11 @@
         ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
         [ddssjtmsString appendFormat:@"%@；",supervisorSubmitModel.meCustomize];
     }
-    NSRange ddssjtmsStringRange = {[ddssjtmsString length] - 1, 1};
-    [ddssjtmsString deleteCharactersInRange:ddssjtmsStringRange];
-    
+    if ([ddssjtmsString isNotBlank]) {
+        NSRange ddssjtmsStringRange = {[ddssjtmsString length] - 1, 1};
+        [ddssjtmsString deleteCharactersInRange:ddssjtmsStringRange];
+    }
     return ddssjtmsString;
-}
-
-
-- (NSMutableArray *)getArrayWithString:(NSString *)str {
-    NSArray *array = [str componentsSeparatedByString:@";"]; //字符串按照;分隔成数组
-    return array.mutableCopy;
 }
 
 - (void)safeProbleCreateSupervisorView {
@@ -301,7 +324,10 @@
     self.supervisorViewHeightConstraint.constant = 0;
     
     CGFloat allHeight = 0;
-    for (int i = 0 ; i < self.supervisorStringArray.count ; i ++) {
+    for (int i = 0 ; i < self.supervisorSubmitModelArray.count ; i ++) {
+        
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
+        
         UIView *listView = [UIView new];
         listView.backgroundColor = [UIColor whiteColor];
         listView.layer.cornerRadius = 5.0f;
@@ -314,7 +340,7 @@
             rightMargin = 10 + 30 + 5;
         }
         
-        CGFloat height = [self getString:self.supervisorStringArray[i] lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
+        CGFloat height = [self getString:supervisorSubmitModel.meCustomize lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
         
         if (height < 50) {
             height = 60;
@@ -349,7 +375,7 @@
         textLable.lineBreakMode = NSLineBreakByWordWrapping;
         textLable.numberOfLines = 0;
         textLable.textColor = kHexRGB(0x999999);
-        textLable.text = self.supervisorStringArray[i];
+        textLable.text = supervisorSubmitModel.meCustomize;
         [listView addSubview:textLable];
         [textLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(listView.mas_left).offset(5);
@@ -379,7 +405,7 @@
     @weakify(self);
     [self popActionWithTip:@"是否删除此措施？" withBlock:^{
         @strongify(self);
-        [self.supervisorStringArray removeObjectAtIndex:index];
+        [self.supervisorSubmitModelArray removeObjectAtIndex:index];
         [self safeProbleCreateSupervisorView];
     }];
 }

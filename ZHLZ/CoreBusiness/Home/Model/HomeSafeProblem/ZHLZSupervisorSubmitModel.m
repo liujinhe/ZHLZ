@@ -10,5 +10,13 @@
 
 @implementation ZHLZSupervisorSubmitModel
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _book = @"";
+    }
+    return self;
+}
+
 
 @end

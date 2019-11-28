@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *finddate;///问题发现时间
 
-@property (nonatomic , copy) NSString *promanager;///经办人
+@property (nonatomic , copy) NSString *promanager;///经办人id
+
+@property (nonatomic , copy) NSString *orgid;///大队
 
 @property (nonatomic , copy) NSString *ddssjtms;///督导措施导出具体描述
 
@@ -28,7 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *remark;///备注
 
-@property (nonatomic , copy) NSString *uploadId;///图片上传id
+@property (nonatomic , copy) NSString *uploadid;///图片上传id
+
+@property (nonatomic , copy) NSString *id;
 
 @end
 

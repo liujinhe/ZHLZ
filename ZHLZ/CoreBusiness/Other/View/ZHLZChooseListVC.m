@@ -421,8 +421,8 @@
         
     }else if(self.selectIndex == 7){
         ZHLZHomeSafeModel *ZHLZHomeSafeModel = self.homeSafeModelArray[indexPath.row];
-        name =  ZHLZHomeSafeModel.orgName;
-        codeId =  ZHLZHomeSafeModel.orgId;
+        name =  ZHLZHomeSafeModel.objectID;
+        codeId =  ZHLZHomeSafeModel.objectID;
         
     }else if(self.selectIndex == 8){
         ZHLZHomeBuildProjectModel *BuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];

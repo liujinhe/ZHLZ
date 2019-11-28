@@ -47,8 +47,8 @@
     }];
 }
 
-- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitModel:(ZHLZHomeOccupyProblemSubmitModel *)occupyProblemSubmitModel withBlock:(dispatch_block_t)block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemUpdateAPIURLConst withRequestArgument:[occupyProblemSubmitModel modelToJSONObject]];
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitArray:(NSArray *)submitArray withBlock:(dispatch_block_t)block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemSaveAPIURLConst withRequestArgument:[submitArray modelToJSONObject]];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         block();
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
