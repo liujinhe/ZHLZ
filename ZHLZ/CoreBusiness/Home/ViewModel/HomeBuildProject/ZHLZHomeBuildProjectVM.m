@@ -20,7 +20,7 @@
 }
 
 - (NSURLSessionTask *)loadHomeBuildProjectDataWithPageNum:(NSInteger)pageNum withModel:(nullable ZHLZBuildProjectSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeBuildProjectModel *> *homeBuildProjectModelArray))block {
-    NSDictionary *requestArgument = model ? [model modelToJSONObject] : @{};
+    NSMutableDictionary *requestArgument = model ? [model modelToJSONObject] : @{}.mutableCopy;
     [requestArgument setValue:@(pageNum) forKey:@"page"];
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ProjectBuildeListAPIURLConst withRequestArgument:requestArgument];
     baseVM.isDefaultArgument = YES;

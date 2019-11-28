@@ -60,7 +60,7 @@
 }
 
 - (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemGetMeasuresAPIURLConst withRequestArgument:@{@"id":Id}];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemGetMeasuresAPIURLConst withRequestArgument:@{@"id":Id}];
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response.data) {

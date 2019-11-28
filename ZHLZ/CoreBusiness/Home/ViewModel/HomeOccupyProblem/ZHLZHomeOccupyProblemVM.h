@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block;
 
 
-- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitArray:(NSArray *)submitArray withBlock:(dispatch_block_t)block;
+- (NSURLSessionTask *)submitHomeSafeProblemWithSubmitArray:(NSArray *)submitArray andSubmitType:(NSInteger)type withBlock:(dispatch_block_t)block;
 
 @end
 

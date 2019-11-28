@@ -14,6 +14,7 @@
 #import "ZHLZAddCouncilorVC.h"
 #import "ZHLZSupervisorSubmitModel.h"
 #import "ZHLZHomeOccupyProblemSubmitModel.h"
+#import "ZHLZHomeSafeProblemVM.h"
 
 
 @interface ZHLZHomeOccupyProblemDetailVC ()
@@ -34,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIView *supervisorView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *supervisorViewHeightConstraint;
 
-@property (nonatomic , strong) NSMutableArray *supervisorStringArray;///督导字符串数组
 @property (nonatomic , strong) NSMutableArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray;///督导数组
 
 @property (nonatomic , strong) ZHLZHomeOccupyProblemSubmitModel *homeOccupyProblemSubmitModel;
@@ -77,25 +77,58 @@
     self.supervisorView.backgroundColor = [UIColor clearColor];
     self.supervisorViewHeightConstraint.constant = 0;
     
-    self.supervisorStringArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     self.homeOccupyProblemSubmitModel = [ZHLZHomeOccupyProblemSubmitModel new];
     
-    if (self.type == 2) {
+    ///新增和编辑经办人
+    if (self.type != 2) {
+        [self.workPoeopleButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
+        self.homeOccupyProblemSubmitModel.promanager = [ZHLZUserManager sharedInstance].user.userId;
+        self.homeOccupyProblemSubmitModel.orgid = [ZHLZUserManager sharedInstance].user.orgId;
+    }
+    
+    
+    
+    if (self.type == 1) {
+        self.navTitle = @"新增占道施工";
+        [self.submitButton setTitle:@"确认保存" forState:UIControlStateNormal];
+    }
+    
+    else if (self.type == 2) {
         self.navTitle = @"占道施工详情";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
         
         self.submitButton.hidden = YES;
         
+        ///设置不可编辑
         [self lookoccupyProblemDetail];
         
-    } else if (self.type == 3) {
-        self.navTitle = @"编辑占道施工详情";
-        [self.submitButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        [self loadOccupyProblemDetail];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
     }
     
-    [self loadOccupyProblemDetail];
+    else if (self.type == 3) {
+        self.navTitle = @"编辑占道施工详情";
+        [self.submitButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        
+        [self loadOccupyProblemDetail];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+    }
+    
+    
+    
 }
+
+- (void)loadHomeSafeFloodPreventionProblemGetMeasures {
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
+        [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
+        
+        [self createSupervisorView];
+    }];
+}
+
 
 - (void)loadOccupyProblemDetail {
     self.task = [[ZHLZHomeOccupyProblemVM sharedInstance] loadHomeOccupyProblemDetailWithId:self.detailId WithBlock:^(ZHLZHomeOccupyProblemDetailModel * _Nonnull occupyProblemDetailModel) {
@@ -108,11 +141,7 @@
         
         [self.problemTimeButtotn setTitle:occupyProblemDetailModel.prodate forState:UIControlStateNormal];
         
-        if (self.type == 2) {
-             [self.workPoeopleButton setTitle:occupyProblemDetailModel.promanagername forState:UIControlStateNormal];
-        } else {
-            [self.workPoeopleButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
-        }
+        [self.workPoeopleButton setTitle:occupyProblemDetailModel.promanagername forState:UIControlStateNormal];
         
         self.problemTextView.text = occupyProblemDetailModel.prodescription;
         
@@ -123,24 +152,27 @@
             self.homeOccupyProblemSubmitModel.projectid = occupyProblemDetailModel.projectid;
             self.homeOccupyProblemSubmitModel.projectname = occupyProblemDetailModel.protypename;
             
-            self.homeOccupyProblemSubmitModel.protype = occupyProblemDetailModel.protypename;
+            self.homeOccupyProblemSubmitModel.protype = occupyProblemDetailModel.protype;
             self.homeOccupyProblemSubmitModel.proid = occupyProblemDetailModel.proid;
             
             self.homeOccupyProblemSubmitModel.belong = occupyProblemDetailModel.belong;
             
-            self.homeOccupyProblemSubmitModel.prodate = occupyProblemDetailModel.profulfildate;
+            self.homeOccupyProblemSubmitModel.areaid = occupyProblemDetailModel.areaid;
+            
+            self.homeOccupyProblemSubmitModel.prodate = occupyProblemDetailModel.prodate;
             
             self.homeOccupyProblemSubmitModel.promanager = [ZHLZUserManager sharedInstance].user.userId;
+            
+            self.homeOccupyProblemSubmitModel.ddssjtms = occupyProblemDetailModel.ddssjtms;
+            
+            self.homeOccupyProblemSubmitModel.label = occupyProblemDetailModel.label;
+            
+            self.homeOccupyProblemSubmitModel.uploadid = occupyProblemDetailModel.uploadId;
             
             self.homeOccupyProblemSubmitModel.prodescription = occupyProblemDetailModel.prodescription;
             self.homeOccupyProblemSubmitModel.responsibleUnit = occupyProblemDetailModel.responsibleUnit;
         }
-        
-        if ([occupyProblemDetailModel.ddssjtms isNotBlank]) {
-            self.supervisorStringArray = [self getArrayWithString:occupyProblemDetailModel.ddssjtms];
-        }
-        
-        [self createSupervisorView];
+
         
     }];
 }
@@ -156,11 +188,13 @@
     ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
     chooseListVC.selectIndex = 8;
     @weakify(self)
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        @strongify(self)
+    chooseListVC.selectBuildProjectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name, NSString * _Nonnull areaid) {
         
+       @strongify(self)
         self.homeOccupyProblemSubmitModel.projectid = code;
         self.homeOccupyProblemSubmitModel.projectname = name;
+        
+        self.homeOccupyProblemSubmitModel.areaid = areaid;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.projectNameButton setTitle:name forState:UIControlStateNormal];
@@ -176,9 +210,8 @@
     @weakify(self)
     problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
-        self.homeOccupyProblemSubmitModel.protype = name;
-        self.homeOccupyProblemSubmitModel.proid = code;
-        
+        self.homeOccupyProblemSubmitModel.protype = code;
+
         dispatch_async(dispatch_get_main_queue(), ^{
             self.problemTypeButton.selected = YES;
             [self.problemTypeButton setTitle:name forState:UIControlStateSelected];
@@ -228,9 +261,7 @@
         @strongify(self)
         if (supervisorSubmitModel) {
             [self.supervisorSubmitModelArray addObject:supervisorSubmitModel];
-            
-            [self.supervisorStringArray addObject:supervisorSubmitModel.meCustomize];
-            
+
             [self createSupervisorView];
         }
     };
@@ -242,25 +273,42 @@
     
     self.homeOccupyProblemSubmitModel.prodescription = self.problemTextView.text;
     self.homeOccupyProblemSubmitModel.responsibleUnit = self.markTextView.text;
+    self.homeOccupyProblemSubmitModel.uploadid = @"";
+    self.homeOccupyProblemSubmitModel.label = @"";
+    if (self.type == 1) {
+        self.homeOccupyProblemSubmitModel.ddssjtms = [self setddssjtms];
+        self.homeOccupyProblemSubmitModel.proid  = @"";
+    }
     
-    NSDictionary *dic = @{@"promanagername":@"超级管理员",@"projectname":@"广州交投集团取消高速公路省界收费站工程（南沙港快速路段）ETC门架系统及附属工程",@"belong":@"15",@"uploadId":@"8EC0D3C053B7E9CEBC600A251C618525",@"uploadid":@"8EC0D3C053B7E9CEBC600A251C618525",@"upload":@"",@"promanager":@"1",@"profulfildate":@"2019-11-12",@"@orgid":@"865c51b28c",@"protype":@"3",@"prodescription":@"督导问题描述",@"areaid":@"5",@"prodate":@"2019-11-26",@"proid":@"",@"ddssjtms":@"于2019-11-26对该问题进行\"召集会议,责令改正,微信/电话督办\"的措施;于2019-11-26对该问题进行\"召集会议,移交/告知/通知（其他职能部门）\"的措施",@"responsibleUnit":@"督导备注",@"$protype":@"擅自占用挖掘",@"projectid":@"10233",@"$belong":@"市管快速路"};
     
     
-    
-    
-    self.task = [[ZHLZHomeOccupyProblemVM sharedInstance] submitHomeSafeProblemWithSubmitArray:@[dic,self.supervisorSubmitModelArray] withBlock:^{
-        
+    @weakify(self)
+    self.task = [[ZHLZHomeOccupyProblemVM sharedInstance]submitHomeSafeProblemWithSubmitArray:@[self.homeOccupyProblemSubmitModel , self.supervisorSubmitModelArray] andSubmitType:self.type withBlock:^{
+        @strongify(self)
+        if (self.type == 1) {
+            [GRToast makeText:@"新增成功"];
+        } else {
+            [GRToast makeText:@"修改成功"];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }];
-    
 }
 
-- (NSMutableArray *)getArrayWithString:(NSString *)str {
-    NSArray *array = [str componentsSeparatedByString:@";"]; //字符串按照;分隔成数组
-    return array.mutableCopy;
+- (NSString *)setddssjtms {
+    
+    NSMutableString *ddssjtmsString = [NSMutableString new];
+    for (int i = 0 ; i < self.supervisorSubmitModelArray.count; i ++) {
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
+        [ddssjtmsString appendFormat:@"%@；",supervisorSubmitModel.meCustomize];
+    }
+    if ([ddssjtmsString isNotBlank]) {
+        NSRange ddssjtmsStringRange = {[ddssjtmsString length] - 1, 1};
+        [ddssjtmsString deleteCharactersInRange:ddssjtmsStringRange];
+    }
+    return ddssjtmsString;
 }
 
 - (void)createSupervisorView {
-
 
     for (UIView *view in [self.supervisorView subviews]) {
         [view removeFromSuperview];
@@ -268,7 +316,8 @@
     self.supervisorViewHeightConstraint.constant = 0;
     
     CGFloat allHeight = 0;
-    for (int i = 0 ; i < self.supervisorStringArray.count ; i ++) {
+    for (int i = 0 ; i < self.supervisorSubmitModelArray.count ; i ++) {
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
         UIView *listView = [UIView new];
         listView.backgroundColor = [UIColor whiteColor];
         listView.layer.cornerRadius = 5.0f;
@@ -281,7 +330,7 @@
             rightMargin = 10 + 30 + 5;
         }
         
-        CGFloat height = [self getString:self.supervisorStringArray[i] lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
+        CGFloat height = [self getString:supervisorSubmitModel.meCustomize lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
         
         if (height < 50) {
             height = 60;
@@ -297,7 +346,7 @@
         
         allHeight = allHeight + height + 10;
         
-        if (self.type == 3) {
+        if (self.type == 3 || self.type == 1) {
             UIButton *deteteButton = [UIButton buttonWithType:UIButtonTypeCustom];
             deteteButton.backgroundColor = [UIColor clearColor];
             [deteteButton setImage:[UIImage imageNamed:@"icon_delete_black"] forState:UIControlStateNormal];
@@ -316,7 +365,7 @@
         textLable.lineBreakMode = NSLineBreakByWordWrapping;
         textLable.numberOfLines = 0;
         textLable.textColor = kHexRGB(0x999999);
-        textLable.text = self.supervisorStringArray[i];
+        textLable.text = supervisorSubmitModel.meCustomize;
         [listView addSubview:textLable];
         [textLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(listView.mas_left).offset(5);
@@ -346,7 +395,7 @@
     @weakify(self);
     [self popActionWithTip:@"是否删除此措施？" withBlock:^{
         @strongify(self);
-        [self.supervisorStringArray removeObjectAtIndex:index];
+        [self.supervisorSubmitModelArray removeObjectAtIndex:index];
         [self createSupervisorView];
     }];
 }

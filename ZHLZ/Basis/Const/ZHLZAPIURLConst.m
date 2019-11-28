@@ -77,6 +77,7 @@ NSString * const OccupyProblemAPIURLConst = @"/app/mapproblem/list";
 NSString * const OccupyProblemInfoAPIURLConst = @"/app/mapproblem/info";
 NSString * const OccupyProblemSaveAPIURLConst = @"/app/mapproblem/save";
 NSString * const OccupyProblemUpdateAPIURLConst = @"/app/mapproblem/updateByPro";
+NSString * const OccupyProblemGetMeasuresAPIURLConst = @"/app/mapproblem/getMeasures";///占道督导
 NSString * const OccupyProblemDeleteAPIURLConst = @"/app/mapproblem/delete";
 NSString * const OccupyProblemCloseAPIURLConst = @"/app/mapproblem/closepro";
 NSString * const OccupyProblemOpenAPIURLConst = @"/app/mapproblem/openpro";

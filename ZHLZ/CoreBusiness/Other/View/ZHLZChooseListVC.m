@@ -156,7 +156,7 @@
     
     else if (self.selectIndex == 8 ){
         @weakify(self)
-        self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNo withModel:nil withBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
+        self.task = [[ZHLZHomeBuildProjectVM sharedInstance] loadHomeBuildProjectDataWithPageNum:self.pageNum withModel:nil withBlock:^(NSArray<ZHLZHomeBuildProjectModel *> * _Nonnull homeBuildProjectModelArray) {
             @strongify(self)
             
             if (self.chooseListTableview.mj_header.isRefreshing) {
@@ -425,9 +425,15 @@
         codeId =  ZHLZHomeSafeModel.objectID;
         
     }else if(self.selectIndex == 8){
+        
         ZHLZHomeBuildProjectModel *BuildProjectModel = self.homeBuildProjectModelArray[indexPath.row];
-        name =  BuildProjectModel.name;
-        codeId =  BuildProjectModel.objectID;
+        
+        if (self.selectBuildProjectListBlock) {
+            self.selectBuildProjectListBlock(BuildProjectModel.objectID , BuildProjectModel.name, BuildProjectModel.areaid);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        return;
     }
     
     if (self.selectListBlock) {

@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^selectListBlock)(NSString *code, NSString *name);
 
+@property (nonatomic, copy) void (^selectBuildProjectListBlock)(NSString *code, NSString *name ,NSString *areaid);
+
 @end
 
 NS_ASSUME_NONNULL_END

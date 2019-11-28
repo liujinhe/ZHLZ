@@ -83,6 +83,7 @@ extern NSString * const OccupyProblemAPIURLConst;
 extern NSString * const OccupyProblemInfoAPIURLConst;
 extern NSString * const OccupyProblemSaveAPIURLConst;
 extern NSString * const OccupyProblemUpdateAPIURLConst;
+extern NSString * const OccupyProblemGetMeasuresAPIURLConst;
 extern NSString * const OccupyProblemDeleteAPIURLConst;
 extern NSString * const OccupyProblemCloseAPIURLConst;
 extern NSString * const OccupyProblemOpenAPIURLConst;
