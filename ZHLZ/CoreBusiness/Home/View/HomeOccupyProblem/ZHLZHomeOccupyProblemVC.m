@@ -116,7 +116,9 @@
 #pragma mark - Action
 
 - (void)addAction {
-    
+    ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
+    homeOccupyProblemDetailVC.type = 1;
+    [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
 }
 
 - (void)searchAction {

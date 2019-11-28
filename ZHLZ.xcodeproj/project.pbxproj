@@ -235,6 +235,7 @@
 		A5AD7071238E46210053B9B9 /* ZHLZSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7070238E46210053B9B9 /* ZHLZSearchView.m */; };
 		A5AD7074238E46410053B9B9 /* ZHLZDateSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7073238E46410053B9B9 /* ZHLZDateSearchView.m */; };
 		A5AD707A238E7ED70053B9B9 /* NSDate+StringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD7079238E7ED70053B9B9 /* NSDate+StringFormatter.m */; };
+		A5AD707E238F9BCA0053B9B9 /* ZHLZWebViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */; };
 		A5B1944F238574FF00FF5080 /* dianli_yellow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19425238574FC00FF5080 /* dianli_yellow_1.png */; };
 		A5B19450238574FF00FF5080 /* guidaojiaotong_red_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */; };
 		A5B19451238574FF00FF5080 /* shuiwu_yellow_2.png in Resources */ = {isa = PBXBuildFile; fileRef = A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */; };
@@ -706,6 +707,8 @@
 		A5AD7073238E46410053B9B9 /* ZHLZDateSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZDateSearchView.m; sourceTree = "<group>"; };
 		A5AD7078238E7ED70053B9B9 /* NSDate+StringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringFormatter.h"; sourceTree = "<group>"; };
 		A5AD7079238E7ED70053B9B9 /* NSDate+StringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringFormatter.m"; sourceTree = "<group>"; };
+		A5AD707B238F9BCA0053B9B9 /* ZHLZWebViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZWebViewVC.h; sourceTree = "<group>"; };
+		A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZWebViewVC.m; sourceTree = "<group>"; };
 		A5B19425238574FC00FF5080 /* dianli_yellow_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dianli_yellow_1.png; sourceTree = "<group>"; };
 		A5B19426238574FC00FF5080 /* guidaojiaotong_red_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guidaojiaotong_red_2.png; sourceTree = "<group>"; };
 		A5B19427238574FC00FF5080 /* shuiwu_yellow_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuiwu_yellow_2.png; sourceTree = "<group>"; };
@@ -1552,6 +1555,8 @@
 				A5AD7070238E46210053B9B9 /* ZHLZSearchView.m */,
 				A5AD7072238E46410053B9B9 /* ZHLZDateSearchView.h */,
 				A5AD7073238E46410053B9B9 /* ZHLZDateSearchView.m */,
+				A5AD707B238F9BCA0053B9B9 /* ZHLZWebViewVC.h */,
+				A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2302,6 +2307,7 @@
 				A5AD706B238E1E3D0053B9B9 /* NSString+DateFormatter.m in Sources */,
 				A557501B23828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.m in Sources */,
 				A557504923828DBD00B24FC4 /* ZHLZAddressBookVM.m in Sources */,
+				A5AD707E238F9BCA0053B9B9 /* ZHLZWebViewVC.m in Sources */,
 				A557505123828DBD00B24FC4 /* ZHLZAddressBookVC.m in Sources */,
 				A557500823828DBD00B24FC4 /* ZHLZHomeVM.m in Sources */,
 				A557501623828DBD00B24FC4 /* ZHLZHomeRoadPatrolStatisticsModel.m in Sources */,

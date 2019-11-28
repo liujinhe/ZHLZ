@@ -9,6 +9,7 @@
 #import "ZHLZHomeRoadPatrolVC.h"
 #import "ZHLZHomeRoadPatrolVM.h"
 #import "ZHLZHomeRoadPatrolTableViewCell.h"
+#import "ZHLZWebViewVC.h"
 
 #define ZHLZHomeRoadPatrolReuseIdentifier NSStringFromClass([ZHLZHomeRoadPatrolTableViewCell class])
 
@@ -123,7 +124,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHLZHomeRoadPatrolModel *model = self.array[indexPath.row];
     if (model) {
-        
+        ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
+        webViewVC.url = @"/summary.html?type=1";
+        [self.navigationController pushViewController:webViewVC animated:YES];
     }
 }
 
