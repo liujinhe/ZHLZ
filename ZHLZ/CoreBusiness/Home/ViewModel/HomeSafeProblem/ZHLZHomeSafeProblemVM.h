@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 //获取督导列表
-- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block;
+- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id withType:(NSInteger)type Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block;
 
 @end
 

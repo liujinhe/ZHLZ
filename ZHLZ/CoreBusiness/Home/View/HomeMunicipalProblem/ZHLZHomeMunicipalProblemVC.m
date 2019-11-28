@@ -153,6 +153,7 @@
     if (model) {
         ZHLZHomeMunicipalProblemDetailVC *homeMunicipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
         homeMunicipalProblemDetailVC.detailId = model.objectID;
+        homeMunicipalProblemDetailVC.type = 2;
         [self.navigationController pushViewController:homeMunicipalProblemDetailVC animated:YES];
     }
 }

@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURLSessionTask *)loadHomeMunicipalProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeMunicipalProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeMunicipalProblemModel *> *array))block;
 
+- (NSURLSessionTask *)loadHomeMunicipalProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeMunicipalProblemModel *municipalProblemModel))block;
+
+
+- (NSURLSessionTask *)submitHomeMunicipalProblemWithSubmitArray:(NSArray *)submitArray andSubmitType:(NSInteger)type withBlock:(dispatch_block_t)block;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

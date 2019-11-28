@@ -122,7 +122,7 @@
 }
 
 - (void)loadHomeSafeFloodPreventionProblemGetMeasures {
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId withType:1 Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
         [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
         
         [self createSupervisorView];
@@ -213,7 +213,6 @@
         self.homeOccupyProblemSubmitModel.protype = code;
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.problemTypeButton.selected = YES;
             [self.problemTypeButton setTitle:name forState:UIControlStateSelected];
         });
     };

@@ -59,8 +59,21 @@
     }];
 }
 
-- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block{
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemGetMeasuresAPIURLConst withRequestArgument:@{@"id":Id}];
+- (NSURLSessionTask *)loadHomeSafeFloodPreventionProblemGetMeasuresWithId:(NSString *)Id withType:(NSInteger)type Block:(void (^)(NSArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray))block{
+    
+    NSString *urlString = @"";
+    if (type == 1) {
+        urlString = OccupyProblemGetMeasuresAPIURLConst;
+    }
+    else if (type == 2){
+        urlString = OccupyProblemGetMeasuresAPIURLConst;
+    }
+    
+    else if (type == 3) {
+        urlString = SafeFloodPreventionProblemGetMeasuresAPIURLConst;
+    }
+    
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:urlString withRequestArgument:@{@"id":Id}];
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response.data) {

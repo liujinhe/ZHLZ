@@ -63,7 +63,7 @@
 
 
 - (void)loadHomeSafeFloodPreventionProblemGetMeasures {
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId withType:3 Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
         [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
         
         [self safeProbleCreateSupervisorView];

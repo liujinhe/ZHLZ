@@ -9,7 +9,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeMunicipalProblemDetailVC">
             <connections>
+                <outlet property="areaButton" destination="paP-t0-F1i" id="fIf-hN-LGu"/>
+                <outlet property="conentPhoneTextFile" destination="3Wc-rs-j0z" id="VMe-zh-tbZ"/>
+                <outlet property="dutyAreaButton" destination="UKD-Tv-RL5" id="iYf-mb-ged"/>
+                <outlet property="dutyUnitButton" destination="3eK-n5-gTL" id="NXm-we-3at"/>
+                <outlet property="fineMoneyTextFule" destination="GDQ-vr-OUx" id="fON-Y3-Fh2"/>
+                <outlet property="orgButton" destination="1Un-wp-5vH" id="qfM-SH-R0z"/>
+                <outlet property="problemClassifyButton" destination="59t-tl-i4l" id="Tdq-05-0Uk"/>
+                <outlet property="problemDescTextView" destination="ONu-gZ-8Rc" id="LUZ-Ca-rYP"/>
+                <outlet property="problemTagTextFile" destination="acT-c3-eDN" id="3c5-AF-uu6"/>
+                <outlet property="problemTimeButton" destination="hnH-2T-owX" id="gz1-GP-1V2"/>
+                <outlet property="problemTypeButton" destination="pTO-qc-zHt" id="gau-Qk-We1"/>
+                <outlet property="submitButton" destination="4Lc-KT-akj" id="bvX-Z4-NCZ"/>
+                <outlet property="superiorButton" destination="Vyp-W8-k5Y" id="LDc-st-9WD"/>
+                <outlet property="supervisorButton" destination="Vdk-5w-Abs" id="cD9-N0-npS"/>
+                <outlet property="supervisorView" destination="ONu-gZ-8Rc" id="cti-tC-azs"/>
+                <outlet property="supervisorViewHeightConstraint" destination="4UL-Yr-grA" id="egd-gG-IkD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="workPeopleButton" destination="V7D-FC-XSl" id="z0G-o6-rg5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -81,6 +98,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="problemClassifyAction:" destination="-1" eventType="touchUpInside" id="cDe-Vv-0kn"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -118,6 +138,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="dutyAreaAction:" destination="-1" eventType="touchUpInside" id="txo-O3-wEJ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -155,6 +178,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="areaAction:" destination="-1" eventType="touchUpInside" id="ZAA-gg-E3q"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -192,6 +218,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="problemTimeAction:" destination="-1" eventType="touchUpInside" id="eO9-dz-7r0"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -267,6 +296,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="dutyUnitAction:" destination="-1" eventType="touchUpInside" id="E7L-rz-h4L"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -304,6 +336,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="problemTypeAction:" destination="-1" eventType="touchUpInside" id="Yv4-gh-Yag"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -393,6 +428,9 @@
                                     <state key="normal" title="请选择">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="superiorAction:" destination="-1" eventType="touchUpInside" id="RQO-Ye-5di"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -457,6 +495,9 @@
                                     <state key="normal">
                                         <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="supervisorAction:" destination="-1" eventType="touchUpInside" id="esH-s5-zJV"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPm-sq-e2V">
                                     <rect key="frame" x="10" y="10" width="5" height="15"/>
@@ -652,6 +693,9 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="确定"/>
+                            <connections>
+                                <action selector="submitAction:" destination="-1" eventType="touchUpInside" id="3CY-qE-mPD"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
