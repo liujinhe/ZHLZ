@@ -63,4 +63,12 @@
     self.datePicker.maximumDate = [NSDate formatterDateWithDateString:_maxDate];
 }
 
+- (void)setIsLimitMaxDate:(BOOL)isLimitMaxDate {
+    _isLimitMaxDate = isLimitMaxDate;
+    
+    if (_isLimitMaxDate) {
+        self.datePicker.maximumDate = [NSDate date];
+    }
+}
+
 @end

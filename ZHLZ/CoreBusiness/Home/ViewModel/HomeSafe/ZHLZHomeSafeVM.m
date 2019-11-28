@@ -19,17 +19,19 @@
     return homeSafe;
 }
 
-- (NSURLSessionTask *)loadHomeSafeDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeModel *> *homeSafeModelArray))block {
-    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionInfoAPIURLConst withRequestArgument:@{@"page":@(pageNum)}];
+- (NSURLSessionTask *)loadHomeSafeDataWithPageNum:(NSInteger)pageNum withModel:(nullable ZHLZHomeSafeSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeSafeModel *> *homeSafeModelArray))block {
+    NSMutableDictionary *requestArgument = model ? [model modelToJSONObject] : @{}.mutableCopy;
+    [requestArgument setValue:@(pageNum) forKey:@"page"];
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionInfoAPIURLConst withRequestArgument:requestArgument];
     baseVM.isDefaultArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         NSArray *homeSafeModelArray = nil;
-        if (response.data) {
+        if (response && response.data) {
             homeSafeModelArray = [NSArray modelArrayWithClass:[ZHLZHomeSafeModel class] json:[response.data objectForKey:@"list"]];
         }
         block(homeSafeModelArray);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        
+        block(nil);
     }];
 }
 

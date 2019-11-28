@@ -94,7 +94,9 @@
         paramStr = [paramStr stringByAppendingFormat:@"%@=%@&", key, [param objectForKey:key]];
     }
     if ([paramStr isNotBlank]) {
-        _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+        paramStr = [paramStr substringToIndex:(paramStr.length - 1)];
+        paramStr = [paramStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        _url = [_url stringByAppendingFormat:@"?%@", paramStr];
         _requestParam = nil;
     }
 }
@@ -108,7 +110,9 @@
             paramStr = [paramStr stringByAppendingFormat:@"%@=%@&", key, [_requestParam objectForKey:key]];
         }
         if ([paramStr isNotBlank]) {
-            _url = [_url stringByAppendingFormat:@"?%@", [paramStr substringToIndex:(paramStr.length - 1)]];
+            paramStr = [paramStr substringToIndex:(paramStr.length - 1)];
+            paramStr = [paramStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+            _url = [_url stringByAppendingFormat:@"?%@", paramStr];
             _requestParam = nil;
         }
     }
@@ -118,7 +122,8 @@
     _isRequestArgumentSlash = isRequestArgumentSlash;
     
     if (_isRequestArgumentSlash && [_requestParam isNotBlank]) {
-        _url = [_url stringByAppendingFormat:@"/%@", _requestParam];
+        NSString *paramStr = [_requestParam stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        _url = [_url stringByAppendingFormat:@"/%@", paramStr];
         _requestParam = nil;
     }
 }

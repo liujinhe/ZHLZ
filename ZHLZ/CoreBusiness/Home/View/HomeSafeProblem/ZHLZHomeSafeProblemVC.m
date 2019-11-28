@@ -10,14 +10,20 @@
 #import "ZHLZHomeSafeProblemCell.h"
 #import "ZHLZHomeSafeProblemVM.h"
 #import "ZHLZHomeSafeProblemDetailVC.h"
+#import "ZHLZHomeSafeProblemSearchVC.h"
 
-@interface ZHLZHomeSafeProblemVC ()<UITableViewDataSource , UITableViewDelegate>
+#define ZHLZHomeSafeProblemReuseIdentifier NSStringFromClass([ZHLZHomeSafeProblemCell class])
 
+@interface ZHLZHomeSafeProblemVC () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *homeSafeProblemTableView;
 
-@property (nonatomic , assign) NSInteger pageNum;
+@property (nonatomic, strong) ZHLZHomeSafeProblemSearchVC *homeSafeProblemSearchVC;
 
-@property (nonatomic , strong) NSMutableArray <ZHLZHomeSafeProblemModel *> *homeSafeProblemModelArray;
+@property (nonatomic, strong) ZHLZHomeSafeProblemSearchModel *homeSafeProblemSearchModel;
+
+@property (nonatomic, strong) NSMutableArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemModelArray;
 
 @end
 
@@ -26,7 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
     
     [self loadHomeSafeProblemView];
     
@@ -39,9 +47,21 @@
     [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
 
-- (void)loadHomeSafeProblemData{
+- (void)searchAction {
+    [self presentViewController:self.homeSafeProblemSearchVC animated:NO completion:^{
+        [self.homeSafeProblemSearchVC showFilterView];
+    }];
+}
+
+- (void)loadHomeSafeProblemData {
     @weakify(self)
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeProblemDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeProblemModel *> * _Nonnull homeSafeProblemArray) {
+    if (self.homeSafeProblemTableView.mj_footer.isRefreshing) {
+        self.pageNo++;
+    } else {
+        self.pageNo = 1;
+        [self.homeSafeProblemTableView.mj_footer resetNoMoreData];
+    }
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeProblemDataWithPageNum:self.pageNo withModel:self.homeSafeProblemSearchModel withBlock:^(NSArray<ZHLZHomeSafeProblemModel *> * _Nonnull homeSafeProblemArray) {
         @strongify(self)
         
         if (self.homeSafeProblemTableView.mj_header.isRefreshing) {
@@ -51,7 +71,7 @@
             [self.homeSafeProblemTableView.mj_footer endRefreshing];
         }
         
-        if (self.pageNum == 1) {
+        if (self.pageNo == 1) {
             self.homeSafeProblemModelArray = homeSafeProblemArray.mutableCopy;
         } else {
             if (homeSafeProblemArray.count > 0) {
@@ -65,68 +85,59 @@
     }];
 }
 
-- (void)loadHomeSafeProblemView{
+- (void)loadHomeSafeProblemView {
+    @weakify(self);
+    self.searchView.searchBlock = ^{
+        @strongify(self);
+        [self searchAction];
+    };
     
-    self.pageNum = 1;
+    self.homeSafeProblemSearchVC = [ZHLZHomeSafeProblemSearchVC new];
+    self.homeSafeProblemSearchVC.selectSearchBlock = ^(ZHLZHomeSafeProblemSearchModel * _Nonnull homeSafeProblemSearchModel) {
+        @strongify(self);
+        self.homeSafeProblemSearchModel = homeSafeProblemSearchModel;
+        
+        [self loadHomeSafeProblemData];
+    };
     
     self.homeSafeProblemModelArray = [NSMutableArray <ZHLZHomeSafeProblemModel *> new];
     
     self.homeSafeProblemTableView.dataSource = self;
     self.homeSafeProblemTableView.delegate = self;
-    self.homeSafeProblemTableView.backgroundColor = kHexRGB(0xf7f7f7);
     
-    self.homeSafeProblemTableView.showsVerticalScrollIndicator = NO;
+    [self.homeSafeProblemTableView registerNib:[UINib nibWithNibName:ZHLZHomeSafeProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     
-    [self.homeSafeProblemTableView registerNib:[UINib nibWithNibName:@"ZHLZHomeSafeProblemCell" bundle:nil] forCellReuseIdentifier:@"ZHLZHomeSafeProblemCell"];
-    
-    self.homeSafeProblemTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemHeader)];
-    self.homeSafeProblemTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemFooter)];
+    self.homeSafeProblemTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemData)];
+    self.homeSafeProblemTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemData)];
 }
 
-- (void)loadHomeSafeProblemHeader{
-    self.pageNum = 1;
-    [self loadHomeSafeProblemData];
-}
+#pragma mark - UITableViewDelegate
 
-- (void)loadHomeSafeProblemFooter{
-    self.pageNum ++;
-    [self loadHomeSafeProblemData];
-}
-
-#pragma mark --UITableView 代理
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.homeSafeProblemModelArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    static NSString *cellID = @"ZHLZHomeSafeProblemCell";
-    
-    ZHLZHomeSafeProblemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ZHLZHomeSafeProblemCell *cell = [tableView dequeueReusableCellWithIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     if (cell == nil) {
-        cell = [[ZHLZHomeSafeProblemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[ZHLZHomeSafeProblemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     }
     cell.homeSafeProblemModel = self.homeSafeProblemModelArray[indexPath.row];
-
     return cell;
- }
+}
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHLZHomeSafeProblemModel *safeProblemModel = self.homeSafeProblemModelArray[indexPath.row];
     ZHLZHomeSafeProblemDetailVC *homeSafeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
     homeSafeProblemDetailVC.detailType = 2;
-    homeSafeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@",safeProblemModel.objectID];
+    homeSafeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@", safeProblemModel.objectID];
     [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
-
-
-
 
 @end

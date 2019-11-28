@@ -10,13 +10,15 @@
 #import "ZHLZHomeSafeProblemModel.h"
 #import "ZHLZHomeSafeProblemSUbmitModel.h"
 #import "ZHLZSupervisorSubmitModel.h"
+#import "ZHLZHomeSafeProblemSearchModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemVM : ZHLZBaseVM
 
 + (instancetype)sharedInstance;
 ///列表
-- (NSURLSessionTask *)loadHomeSafeProblemDataWithPageNum:(NSInteger)pageNum WithBlock:(void (^)(NSArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemArray))block;
+- (NSURLSessionTask *)loadHomeSafeProblemDataWithPageNum:(NSInteger)pageNum withModel:(ZHLZHomeSafeProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemArray))block;
 
 ///详情
 - (NSURLSessionTask *)loadHomeSafeProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block;

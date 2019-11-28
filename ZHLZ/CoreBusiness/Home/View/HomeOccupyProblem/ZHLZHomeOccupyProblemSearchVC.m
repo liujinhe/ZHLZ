@@ -138,21 +138,30 @@
 
 #pragma mark - Action
 
-- (IBAction)startDateAction {
-    [self presentViewController:self.startDateFindDatePickerVC animated:NO completion:nil];
+- (IBAction)startDateFindAction {
+    [self presentViewController:self.startDateFindDatePickerVC animated:NO completion:^{
+        self.startDateFindDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)endDateFindAction {
-    [self presentViewController:self.endDateFindDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.endDateFindDatePickerVC animated:NO completion:^{
+        self.endDateFindDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)startDateClosedAction {
-    [self presentViewController:self.startDateClosedDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.startDateClosedDatePickerVC animated:NO completion:^{
+        self.startDateClosedDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)endDateClosedAction {
-    [self presentViewController:self.endDateClosedDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.endDateClosedDatePickerVC animated:NO completion:^{
+        self.endDateClosedDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
+
 
 - (IBAction)problemTypeAction {
     [self presentViewController:self.problemTypeListPickerViewVC animated:NO completion:nil];

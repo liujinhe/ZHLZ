@@ -131,7 +131,7 @@
 - (void)loadAddressListData{
     
     if (self.selectIndex == 7) {
-        self.task = [[ZHLZHomeSafeVM sharedInstance] loadHomeSafeDataWithPageNum:self.pageNum WithBlock:^(NSArray<ZHLZHomeSafeModel *> * _Nonnull homeSafeModelArray) {
+        self.task = [[ZHLZHomeSafeVM sharedInstance] loadHomeSafeDataWithPageNum:self.pageNum withModel:nil withBlock:^(NSArray<ZHLZHomeSafeModel *> * _Nonnull homeSafeModelArray) {
             if (self.chooseListTableview.mj_header.isRefreshing) {
                 [self.chooseListTableview.mj_header endRefreshing];
             }

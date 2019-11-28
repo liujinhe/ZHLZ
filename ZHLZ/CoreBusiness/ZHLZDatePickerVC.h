@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZDatePickerVC : ZHLZBaseVC
 
+@property (nonatomic, assign) BOOL isLimitMaxDate;
+
 @property (nonatomic, strong) NSString *currentDate;
 
 @property (nonatomic, strong) NSString *minDate;

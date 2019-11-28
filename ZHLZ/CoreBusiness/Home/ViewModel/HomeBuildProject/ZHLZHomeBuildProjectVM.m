@@ -25,12 +25,13 @@
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ProjectBuildeListAPIURLConst withRequestArgument:requestArgument];
     baseVM.isDefaultArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        if (response.data) {
-            NSArray *homeBuildProjectModelArray = [NSArray modelArrayWithClass:[ZHLZHomeBuildProjectModel class] json:[response.data objectForKey:@"list"]];
-            block(homeBuildProjectModelArray);
+        NSArray *homeBuildProjectModelArray = nil;
+        if (response && response.data) {
+            homeBuildProjectModelArray = [NSArray modelArrayWithClass:[ZHLZHomeBuildProjectModel class] json:[response.data objectForKey:@"list"]];
         }
+        block(homeBuildProjectModelArray);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        
+        block(nil);
     }];
 }
 

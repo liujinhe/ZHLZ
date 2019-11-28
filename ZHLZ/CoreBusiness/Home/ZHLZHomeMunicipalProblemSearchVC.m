@@ -85,6 +85,7 @@
     
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(hideFilterView)]];
+    
     self.startDateFindDatePickerVC = [ZHLZDatePickerVC new];
     self.startDateFindDatePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
         @strongify(self);
@@ -168,20 +169,28 @@
 
 #pragma mark - Action
 
-- (IBAction)startDateAction {
-    [self presentViewController:self.startDateFindDatePickerVC animated:NO completion:nil];
+- (IBAction)startDateFindAction {
+    [self presentViewController:self.startDateFindDatePickerVC animated:NO completion:^{
+        self.startDateFindDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)endDateFindAction {
-    [self presentViewController:self.endDateFindDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.endDateFindDatePickerVC animated:NO completion:^{
+        self.endDateFindDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)startDateClosedAction {
-    [self presentViewController:self.startDateClosedDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.startDateClosedDatePickerVC animated:NO completion:^{
+        self.startDateClosedDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)endDateClosedAction {
-    [self presentViewController:self.endDateClosedDatePickerVC animated:NO completion:nil];
+    [self presentViewController:self.endDateClosedDatePickerVC animated:NO completion:^{
+        self.endDateClosedDatePickerVC.isLimitMaxDate = YES;
+    }];
 }
 
 - (IBAction)brigadeAction {

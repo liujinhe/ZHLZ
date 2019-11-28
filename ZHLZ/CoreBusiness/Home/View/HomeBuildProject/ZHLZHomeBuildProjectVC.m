@@ -106,9 +106,6 @@
     
     self.hmeBuildProjectTableView.dataSource = self;
     self.hmeBuildProjectTableView.delegate = self;
-    self.hmeBuildProjectTableView.backgroundColor = kHexRGB(0xf7f7f7);
-    
-    self.hmeBuildProjectTableView.showsVerticalScrollIndicator = NO;
     
     [self.hmeBuildProjectTableView registerNib:[UINib nibWithNibName:ZHLZHomeBuildProjectReuseIdentifier bundle:nil]
                         forCellReuseIdentifier:ZHLZHomeBuildProjectReuseIdentifier];
