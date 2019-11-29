@@ -201,6 +201,10 @@
 		A55D26ED23876A3700E2BA81 /* ZHLZCodeValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */; };
 		A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */; };
 		A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */; };
+		A57F5C682390AFF100695A63 /* problem_type_content.json in Resources */ = {isa = PBXBuildFile; fileRef = A57F5C672390AFF100695A63 /* problem_type_content.json */; };
+		A57F5C6C2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */; };
+		A57F5C6D2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57F5C6B2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib */; };
+		A57F5C702390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A57F5C6F2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m */; };
 		A5825456238FB18900B5F3E3 /* ZHLZBuildProjectSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5825455238FB18900B5F3E3 /* ZHLZBuildProjectSearchModel.m */; };
 		A582545A238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5825458238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.m */; };
 		A582545B238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5825459238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.xib */; };
@@ -648,6 +652,12 @@
 		A55D26EE238781E100E2BA81 /* ZHLZPickerViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZPickerViewVC.h; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.h; sourceTree = SOURCE_ROOT; };
 		A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZPickerViewVC.m; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.m; sourceTree = SOURCE_ROOT; };
 		A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZPickerViewVC.xib; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.xib; sourceTree = SOURCE_ROOT; };
+		A57F5C672390AFF100695A63 /* problem_type_content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = problem_type_content.json; sourceTree = "<group>"; };
+		A57F5C692390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZRoadMaintenancePickerViewVC.h; sourceTree = "<group>"; };
+		A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZRoadMaintenancePickerViewVC.m; sourceTree = "<group>"; };
+		A57F5C6B2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZRoadMaintenancePickerViewVC.xib; sourceTree = "<group>"; };
+		A57F5C6E2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZRoadMaintenancePickerViewModel.h; sourceTree = "<group>"; };
+		A57F5C6F2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZRoadMaintenancePickerViewModel.m; sourceTree = "<group>"; };
 		A5825454238FB18900B5F3E3 /* ZHLZBuildProjectSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZBuildProjectSearchModel.h; path = ZHLZ/CoreBusiness/Home/ZHLZBuildProjectSearchModel.h; sourceTree = SOURCE_ROOT; };
 		A5825455238FB18900B5F3E3 /* ZHLZBuildProjectSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZBuildProjectSearchModel.m; path = ZHLZ/CoreBusiness/Home/ZHLZBuildProjectSearchModel.m; sourceTree = SOURCE_ROOT; };
 		A5825457238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZBuildProjectSearchVC.h; sourceTree = "<group>"; };
@@ -1458,6 +1468,8 @@
 				A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */,
 				A5574F6B23828DBD00B24FC4 /* ZHLZLoginModel.h */,
 				A5574F6C23828DBD00B24FC4 /* ZHLZLoginModel.m */,
+				A57F5C6E2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.h */,
+				A57F5C6F2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1493,6 +1505,9 @@
 				A5AD7070238E46210053B9B9 /* ZHLZSearchView.m */,
 				A5AD707B238F9BCA0053B9B9 /* ZHLZWebViewVC.h */,
 				A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */,
+				A57F5C692390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.h */,
+				A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */,
+				A57F5C6B2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1646,12 +1661,13 @@
 		A5574FBF23828DBD00B24FC4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				A5AD7045238D85EB0053B9B9 /* MapProblem */,
-				A5B19424238574D200FF5080 /* MapProjectType */,
 				A5574FC023828DBD00B24FC4 /* Assets.xcassets */,
 				A5574FC323828DBD00B24FC4 /* Info.plist */,
 				A5574FC123828DBD00B24FC4 /* main.m */,
+				A5AD7045238D85EB0053B9B9 /* MapProblem */,
+				A5B19424238574D200FF5080 /* MapProjectType */,
 				A5574FC223828DBD00B24FC4 /* PrefixHeader.pch */,
+				A57F5C672390AFF100695A63 /* problem_type_content.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2094,6 +2110,7 @@
 				A5B19457238574FF00FF5080 /* dianli_red_2.png in Resources */,
 				A5AD7068238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.xib in Resources */,
 				A5B1946C238574FF00FF5080 /* yuanlinlvhua_green_2.png in Resources */,
+				A57F5C682390AFF100695A63 /* problem_type_content.json in Resources */,
 				A5B19462238574FF00FF5080 /* luqiao_yellow_2.png in Resources */,
 				A5B19473238574FF00FF5080 /* yuanlinlvhua_yellow_1.png in Resources */,
 				A582545B238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.xib in Resources */,
@@ -2118,6 +2135,7 @@
 				A5B1945D238574FF00FF5080 /* shuiwu_green_2.png in Resources */,
 				1811C7C92386968C00CEBDB1 /* ZHLZAddCouncilorVC.xib in Resources */,
 				18254FF82382E0FF00C8CC14 /* ZHLZHomeBuildProjectCell.xib in Resources */,
+				A57F5C6D2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib in Resources */,
 				A557506723828DBD00B24FC4 /* Assets.xcassets in Resources */,
 				A5B1945E238574FF00FF5080 /* guidaojiaotong_yellow_2.png in Resources */,
 				187662FC238D2F2C000809AD /* ZHLZHomeSafeSearchVC.xib in Resources */,
@@ -2377,6 +2395,7 @@
 				182550012382EAD100C8CC14 /* ZHLZHomeSafeProblemCell.m in Sources */,
 				A5AD707A238E7ED70053B9B9 /* NSDate+StringFormatter.m in Sources */,
 				A5574FEC23828DBD00B24FC4 /* GRChainRequest+RequestAccessory.m in Sources */,
+				A57F5C6C2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m in Sources */,
 				A557501023828DBD00B24FC4 /* ZHLZHomeBulletinModel.m in Sources */,
 				A5AD7026238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m in Sources */,
 				A557502B23828DBD00B24FC4 /* ZHLZHomeRoadConstructionCVC.m in Sources */,
@@ -2395,6 +2414,7 @@
 				A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */,
 				A557507323828DBD00B24FC4 /* ZHLZStoreUtility.m in Sources */,
 				A557504B23828DBD00B24FC4 /* ZHLZConstructionModel.m in Sources */,
+				A57F5C702390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m in Sources */,
 				189DAA49238635410049B5FF /* ZHLZHomeSafeDetailVC.m in Sources */,
 				187662EA238CCFEE000809AD /* ZHLZChosseStepModel.m in Sources */,
 				A557507423828DBD00B24FC4 /* ZHLZUserModel.m in Sources */,
