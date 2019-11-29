@@ -95,6 +95,8 @@ extern NSString * const RoadPatrolSummaryAPIURLConst;
 extern NSString * const RoadPatrolSummaryStatisticsAPIURLConst;
 // 扫码用车
 extern NSString * const ScanCodeUseCarAPIURLConst;
+// 扫码还车
+extern NSString * const ScanCodeRepayCarAPIURLConst;
 // 信息统计
 extern NSString * const SummaryStatisticsAPIURLConst;
 

@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeScanCodeUseCarVM : ZHLZBaseVM
 
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)scanCodeUseCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+
+- (NSURLSessionTask *)scanCodeRepayCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+
 @end
 
 NS_ASSUME_NONNULL_END

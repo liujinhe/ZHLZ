@@ -29,6 +29,8 @@
 		189DAA4523862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DAA4323862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib */; };
 		189DAA49238635410049B5FF /* ZHLZHomeSafeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189DAA47238635410049B5FF /* ZHLZHomeSafeDetailVC.m */; };
 		189DAA4A238635410049B5FF /* ZHLZHomeSafeDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DAA48238635410049B5FF /* ZHLZHomeSafeDetailVC.xib */; };
+		18AD81462391199000DEDCD5 /* ZHLZHomeRichScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD81442391199000DEDCD5 /* ZHLZHomeRichScanVC.m */; };
+		18AD81472391199000DEDCD5 /* ZHLZHomeRichScanVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */; };
 		18C24B86238B869A00C9EBC2 /* ZHLZChooseListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */; };
 		18C24B87238B869A00C9EBC2 /* ZHLZChooseListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */; };
 		18C24B8C238B86EC00C9EBC2 /* ZHLZChooseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */; };
@@ -346,6 +348,9 @@
 		189DAA46238635410049B5FF /* ZHLZHomeSafeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeSafeDetailVC.h; sourceTree = "<group>"; };
 		189DAA47238635410049B5FF /* ZHLZHomeSafeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeSafeDetailVC.m; sourceTree = "<group>"; };
 		189DAA48238635410049B5FF /* ZHLZHomeSafeDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeSafeDetailVC.xib; sourceTree = "<group>"; };
+		18AD81432391199000DEDCD5 /* ZHLZHomeRichScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeRichScanVC.h; sourceTree = "<group>"; };
+		18AD81442391199000DEDCD5 /* ZHLZHomeRichScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeRichScanVC.m; sourceTree = "<group>"; };
+		18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeRichScanVC.xib; sourceTree = "<group>"; };
 		18C24B83238B869900C9EBC2 /* ZHLZChooseListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChooseListVC.h; sourceTree = "<group>"; };
 		18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChooseListVC.m; sourceTree = "<group>"; };
 		18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChooseListVC.xib; sourceTree = "<group>"; };
@@ -1386,6 +1391,9 @@
 				A5574F5123828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVC.h */,
 				A5574F5223828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVC.m */,
 				A5574F5323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVC.xib */,
+				18AD81432391199000DEDCD5 /* ZHLZHomeRichScanVC.h */,
+				18AD81442391199000DEDCD5 /* ZHLZHomeRichScanVC.m */,
+				18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */,
 			);
 			path = HomeScanCodeUseCar;
 			sourceTree = "<group>";
@@ -2140,6 +2148,7 @@
 				A57F5C6D2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib in Resources */,
 				A557506723828DBD00B24FC4 /* Assets.xcassets in Resources */,
 				A5B1945E238574FF00FF5080 /* guidaojiaotong_yellow_2.png in Resources */,
+				18AD81472391199000DEDCD5 /* ZHLZHomeRichScanVC.xib in Resources */,
 				187662FC238D2F2C000809AD /* ZHLZHomeSafeSearchVC.xib in Resources */,
 				A557502F23828DBD00B24FC4 /* ZHLZHomeVC.xib in Resources */,
 				A57F5C8F2390F2C300695A63 /* ZHLZHomeSafeCell.xib in Resources */,
@@ -2386,6 +2395,7 @@
 				187662F2238D1E96000809AD /* ZHLZSupervisorSubmitModel.m in Sources */,
 				A5AD7036238D19430053B9B9 /* ZHLZHomeOccupyProblemTableViewCell.m in Sources */,
 				A5AD7067238E1E300053B9B9 /* ZHLZHomeRoadPatrolTableViewCell.m in Sources */,
+				18AD81462391199000DEDCD5 /* ZHLZHomeRichScanVC.m in Sources */,
 				A57F5C8E2390F2C300695A63 /* ZHLZHomeSafeCell.m in Sources */,
 				A5AD7074238E46410053B9B9 /* ZHLZDateSearchView.m in Sources */,
 				A5574FF323828DBD00B24FC4 /* GRNetworkConfig.m in Sources */,

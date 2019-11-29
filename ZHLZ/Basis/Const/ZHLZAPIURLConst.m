@@ -90,6 +90,8 @@ NSString * const RoadPatrolSummaryStatisticsAPIURLConst = @"/summary.html?type=2
 
 NSString * const ScanCodeUseCarAPIURLConst = @"/app/wxcar/wx";
 
+NSString * const ScanCodeRepayCarAPIURLConst = @"/app/wxcar/wxh";
+
 NSString * const SummaryStatisticsAPIURLConst = @"/app/mapprtrolentry/statisticsBydate";
 
 #pragma mark - API URL for AddressBook
