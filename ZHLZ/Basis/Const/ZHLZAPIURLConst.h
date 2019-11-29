@@ -95,7 +95,7 @@ extern NSString * const RoadPatrolSummaryAPIURLConst;
 extern NSString * const RoadPatrolSummaryStatisticsAPIURLConst;
 // 扫码用车
 extern NSString * const ScanCodeUseCarAPIURLConst;
-// 小结统计
+// 信息统计
 extern NSString * const SummaryStatisticsAPIURLConst;
 
 #pragma mark - API URL for AddressBook

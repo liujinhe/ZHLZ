@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeInfoStatisticsVM : ZHLZBaseVM
 
++ (instancetype)sharedInstance;
+
+- (NSURLSessionTask *)loadHomeInfoStatisticsDataWithPageNo:(NSInteger)pageNo withType:(NSInteger)type;
+
 @end
 
 NS_ASSUME_NONNULL_END
