@@ -10,6 +10,66 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ "data": {
+     "areaid": "3",
+     "areaname": "南北片",
+     "belong": "3",
+     "belongname": null,
+     "contactNumber": "",
+     "contentDet": "IMG_66571IMG_6609",
+     "createdate": "2019-11-13 11:53:26",
+     "createuser": "114",
+     "ddssjtms": "于2019-11-13对该问题进行\"微信/电话督办\"的措施",
+     "ddssjtmsNew": null,
+     "deviceNo": null,
+     "faxNumber": null,
+     "finddate": "2019-11-13 00:00:00",
+     "fine": "",
+     "fullname": "苏茹",
+     "id": "15779",
+     "imgurl": "/photo/20191113/17167487914796154.jpg,/photo/20191113/17167543936847280.JPG",
+     "isdelete": "1",
+     "islyrical": "0",
+     "islyricalname": "否",
+     "ismail": null,
+     "ismailname": null,
+     "isnotice": null,
+     "isnoticename": null,
+     "isnoticesend": "0",
+     "isnoticesendname": null,
+     "jw": null,
+     "latX": "",
+     "licensingIssue": null,
+     "licensingMatter": null,
+     "lonY": "",
+     "mailTime": null,
+     "noticeType": null,
+     "orgid": "b91d217f5f",
+     "orgname": "二大队",
+     "phonename": null,
+     "problemAttr": null,
+     "problemCon": null,
+     "problemDet": "人行天桥工程围蔽警示桩折断",
+     "problemStatus": "1",
+     "problemType": "道路养护及附属设施维护",
+     "problemattrname": null,
+     "problemstatusname": null,
+     "problemtypename": null,
+     "profulfildate": null,
+     "profulfiltype": null,
+     "rectificationUnit": null,
+     "responsibleUnit": "136",
+     "responsibleUnitName": "广州市中心区交通项目管理中心",
+     "rodeid": null,
+     "rodename": null,
+     "siteDet": "芳村大道西路东往西方向，广佛放射线桥底",
+     "uploadId": "F91D1D6409EAA14081B474AE47B56E0B",
+     "username": null
+ }
+ 
+ */
+
 @interface ZHLZHomeMunicipalProblemModel : ZHLZBaseModel
 
 @property (nonatomic, copy) NSString *areaid;

@@ -16,6 +16,7 @@
 #import "ZHLZListPickerViewVC.h"
 #import "ZHLZDatePickerVC.h"
 #import "ZHLZChooseListVC.h"
+#import "ZHLZRoadMaintenancePickerViewVC.h"
 
 
 @interface ZHLZHomeMunicipalProblemDetailVC ()
@@ -32,18 +33,35 @@
 @property (weak, nonatomic) IBOutlet UITextField *fineMoneyTextFule;
 @property (weak, nonatomic) IBOutlet UIButton *superiorButton;
 @property (weak, nonatomic) IBOutlet UITextField *problemTagTextFile;
+
+
 @property (weak, nonatomic) IBOutlet ZHLZTextView *problemDescTextView;
 
+@property (weak, nonatomic) IBOutlet UILabel *locationX;
+@property (weak, nonatomic) IBOutlet UILabel *locationY;
+@property (weak, nonatomic) IBOutlet UILabel *locationString;
+
+@property (weak, nonatomic) IBOutlet ZHLZTextView *locationTextView;
+@property (weak, nonatomic) IBOutlet ZHLZTextView *markTextView;
 
 
+@property (weak, nonatomic) IBOutlet UIView *classifyView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *classifyViewHeightConstraint;
+
+///问题分类
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *problemClassifyViewHeight;
 
 
 ///督导
-@property (weak, nonatomic) IBOutlet ZHLZTextView *supervisorView;
 @property (weak, nonatomic) IBOutlet UIButton *supervisorButton;
+@property (weak, nonatomic) IBOutlet UIView *supervisorView;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *supervisorViewHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
+
+///描述分类
+@property (nonatomic , strong) NSMutableArray  *problemClassifyArray;
 
 ///督导措施
 @property (nonatomic , strong) NSMutableArray <ZHLZSupervisorSubmitModel *> *supervisorSubmitModelArray;
@@ -67,26 +85,76 @@
     [self.navigationController pushViewController:municipalProblemDetailVC animated:YES];
 }
 
-- (void)initMunicipalProblemDetailView {
+- (void)municipalProblemLook {
     
+    self.orgButton.userInteractionEnabled = NO;
+    self.areaButton.userInteractionEnabled = NO;
+    self.dutyAreaButton.userInteractionEnabled = NO;
+    self.problemTypeButton.userInteractionEnabled = NO;
+    self.problemClassifyButton.userInteractionEnabled = NO;
+    self.problemTimeButton.userInteractionEnabled = NO;
+    self.dutyUnitButton.userInteractionEnabled = NO;
+    self.workPeopleButton.userInteractionEnabled = NO;
+    self.conentPhoneTextFile.userInteractionEnabled = NO;
+    self.superiorButton.userInteractionEnabled = NO;
+    self.problemTagTextFile.userInteractionEnabled = NO;
+    self.fineMoneyTextFule.userInteractionEnabled = NO;
+    
+    [self.problemDescTextView setEditable:NO];
+    [self.locationTextView setEditable:NO];
+    [self.markTextView setEditable:NO];
+}
+
+- (void)initMunicipalProblemDetailView {
+    self.problemClassifyArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     self.municipalProblemSubmitModel = [ZHLZHomeMunicipalProblemSubmitModel new];
     
+    self.classifyView.backgroundColor = [UIColor clearColor];
+    self.classifyViewHeightConstraint.constant = 0;
+    
+    self.supervisorView.backgroundColor = [UIColor clearColor];
+    self.supervisorViewHeightConstraint.constant = 0;
+    
+    
+    self.problemDescTextView.placeholder = @"请输入问题描述";
+    self.locationTextView.placeholder = @"请输入地点描述";
+    self.markTextView.placeholder = @"请输入备注";
+
     if (self.type == 1) {
         self.navTitle = @"新增市政设施";
+        [self.submitButton setTitle:@"确认新增" forState:UIControlStateNormal];
+        
     }
     
     else if (self.type == 2) {
         self.navTitle = @"市政设施详情";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
+        self.submitButton.hidden = YES;
+        
+        [self municipalProblemLook];
         
         [self loadMunicipalProblemDetailData];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
     }
     
     else if (self.type == 3) {
         self.navTitle = @"编辑市政设施";
+        [self.submitButton setTitle:@"确认保存" forState:UIControlStateNormal];
         
         [self loadMunicipalProblemDetailData];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+    }
+    
+    if (self.type != 2) {
+        [self.orgButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
+        self.municipalProblemSubmitModel.orgid = [ZHLZUserManager sharedInstance].user.orgId;
+        
+        self.municipalProblemSubmitModel.createuser = [ZHLZUserManager sharedInstance].user.userId;
+        
+        [self.workPeopleButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
     }
     
 }
@@ -97,11 +165,59 @@
         
         @strongify(self)
         ///赋值
+        [self.orgButton setTitle:municipalProblemModel.orgname forState:UIControlStateNormal];
         
         
+        //片区名称
+        [self.areaButton setTitle:municipalProblemModel.areaname forState:UIControlStateNormal];
+        
+        ///责任区县
+        [self.dutyAreaButton setTitle:municipalProblemModel.belongname forState:UIControlStateNormal];
+        
+        ///选择问题类型
+        [self.problemTypeButton setTitle:municipalProblemModel.problemType forState:UIControlStateNormal];
+        
+        ///问题时间
+        [self.problemTimeButton setTitle:municipalProblemModel.finddate forState:UIControlStateNormal];
+        
+        ///责任单位
+        [self.dutyUnitButton setTitle:municipalProblemModel.responsibleUnitName forState:UIControlStateNormal];
+        
+        ///经办人
+        [self.workPeopleButton setTitle:municipalProblemModel.fullname forState:UIControlStateNormal];
+        
+        self.conentPhoneTextFile.text = municipalProblemModel.contactNumber;
+        
+        self.fineMoneyTextFule.text =municipalProblemModel.fine;
+        
+        ///舆情
+        [self.superiorButton setTitle:municipalProblemModel.islyricalname forState:UIControlStateNormal];
+        
+        ///问题标签
+//        self.problemTagTextFile.text = municipalProblemModel.problemDet
+        
+        ///问题描述
+        self.problemDescTextView.text = municipalProblemModel.problemDet;
+        
+        self.locationX.text = municipalProblemModel.latX;
+        self.locationY.text = municipalProblemModel.lonY;
+        
+        self.locationTextView.text = municipalProblemModel.siteDet;
+        self.markTextView.text = municipalProblemModel.contentDet;
         
         
         ///初始值赋值
+        if (self.type == 3) {
+            self.municipalProblemSubmitModel.areaid = municipalProblemModel.areaid;
+            self.municipalProblemSubmitModel.belong = municipalProblemModel.belong;
+            self.municipalProblemSubmitModel.problemType = municipalProblemModel.problemType;
+            
+            self.municipalProblemSubmitModel.finddate = municipalProblemModel.finddate;
+            self.municipalProblemSubmitModel.responsibleUnit = municipalProblemModel.responsibleUnit;
+            self.municipalProblemSubmitModel.islyrical = municipalProblemModel.islyrical;
+            self.municipalProblemSubmitModel.id = municipalProblemModel.objectID;
+            self.municipalProblemSubmitModel.ddssjtms = municipalProblemModel.ddssjtms;
+        }
         
     }];
 }
@@ -110,7 +226,7 @@
     self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId withType:2 Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
         [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
         
-        [self municipalProblemCreateSupervisorView];
+        [self municipalProblemCreateSupervisorViewWithType:1];
     }];
 }
 
@@ -130,17 +246,17 @@
         pickerVC.titleArray = @[@"广圆快速路"];
     }
     pickerVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
-//        [self.areaNameButton setTitle:name forState:UIControlStateNormal];
+        [self.areaButton setTitle:name forState:UIControlStateNormal];
         
         if ([orgnameString isEqualToString:@"五大队"]) {
             if (index == 0) {
-//                self.homeSafeProblemSUbmitModel.areaid = @"4";
+                self.municipalProblemSubmitModel.areaid = @"4";
             }
         } else {
             if (index == 0) {
-//                self.homeSafeProblemSUbmitModel.areaid = @"3";
+                self.municipalProblemSubmitModel.areaid = @"3";
             } else if (index == 1) {
-//                self.homeSafeProblemSUbmitModel.areaid = @"4";
+                self.municipalProblemSubmitModel.areaid = @"4";
             }
         }
     };
@@ -155,7 +271,7 @@
         projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
             @strongify(self);
             
-//            self.homeSafeProblemSUbmitModel.belong = code;
+            self.municipalProblemSubmitModel.belong = code;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
             });
@@ -166,15 +282,14 @@
 ///问题类型
 - (IBAction)problemTypeAction:(UIButton *)sender {
     ZHLZListPickerViewVC *problemTypeListPickerViewVC = [ZHLZListPickerViewVC new];
-    problemTypeListPickerViewVC.type = 7;
+    problemTypeListPickerViewVC.type = 8;
     @weakify(self)
     problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
-//        self.homeOccupyProblemSubmitModel.protype = code;
+        self.municipalProblemSubmitModel.problemType = code;
 
         dispatch_async(dispatch_get_main_queue(), ^{
-//            self.problemTypeButton.selected = YES;
-//            [self.problemTypeButton setTitle:name forState:UIControlStateSelected];
+            [self.problemTypeButton setTitle:name forState:UIControlStateNormal];
         });
     };
     [self presentViewController:problemTypeListPickerViewVC animated:NO completion:nil];
@@ -183,6 +298,32 @@
 ///问题分类内容
 - (IBAction)problemClassifyAction:(UIButton *)sender {
     
+    if (![self.municipalProblemSubmitModel.problemType isNotBlank]) {
+        [GRToast makeText:@"请先选择问题类型"];
+        return;
+    }
+    
+    if ([self.municipalProblemSubmitModel.problemType isEqualToString:@"道路养护及附属设施维护"]) {
+        
+        ZHLZRoadMaintenancePickerViewVC *roadMaintenancePickerViewVC = [ZHLZRoadMaintenancePickerViewVC new];
+        roadMaintenancePickerViewVC.selectPickerBlock = ^(NSArray * _Nonnull valueArray, NSArray * _Nonnull nameArray) {
+            NSLog(@"%@", valueArray);
+            NSLog(@"%@", nameArray);
+            
+            NSMutableString *string = [NSMutableString new];
+            for (int i = 0 ; i < nameArray.count ; i++) {
+                [string appendFormat:@"%@/",nameArray[i]];
+            }
+            [self.problemClassifyArray addObject:string];
+        
+            [self municipalProblemCreateSupervisorViewWithType:2];
+        };
+        [self presentViewController:roadMaintenancePickerViewVC animated:NO completion:nil];
+        
+    } else {
+        [GRToast makeText:@"没有选项"];
+        return;
+    }
 }
 
 ///发现问题时间
@@ -190,8 +331,8 @@
     ZHLZDatePickerVC *datePickerVC = [ZHLZDatePickerVC new];
     datePickerVC.selectDatePickerBlock = ^(NSString * _Nonnull date) {
         if (date) {
-//            self.homeSafeProblemSUbmitModel.finddate = date;
-//            [self.problemTimeButton setTitle:date forState:UIControlStateNormal];
+            self.municipalProblemSubmitModel.finddate = date;
+            [self.problemTimeButton setTitle:date forState:UIControlStateNormal];
         }
     };
     [self presentViewController:datePickerVC animated:NO completion:nil];
@@ -205,10 +346,10 @@
     chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self)
         
-//        self.safeSubmitModel.unitId = code;
+        self.municipalProblemSubmitModel.responsibleUnit = code;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
+            [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
         });
     };
     [self.navigationController pushViewController:chooseListVC animated:YES];
@@ -221,11 +362,10 @@
     @weakify(self)
     problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
-    //        self.homeOccupyProblemSubmitModel.protype = code;
+            self.municipalProblemSubmitModel.islyrical = code;
 
         dispatch_async(dispatch_get_main_queue(), ^{
-    //            self.problemTypeButton.selected = YES;
-    //            [self.problemTypeButton setTitle:name forState:UIControlStateSelected];
+            [self.superiorButton setTitle:name forState:UIControlStateNormal];
         });
     };
     [self presentViewController:problemTypeListPickerViewVC animated:NO completion:nil];
@@ -241,7 +381,7 @@
         if (supervisorSubmitModel) {
             [self.supervisorSubmitModelArray addObject:supervisorSubmitModel];
             
-            [self municipalProblemCreateSupervisorView];
+            [self municipalProblemCreateSupervisorViewWithType:1];
         }
     };
     [self.navigationController pushViewController:addCouncilorVC animated:YES];
@@ -250,34 +390,89 @@
 
 ///提交
 - (IBAction)submitAction:(ZHLZButton *)sender {
+    
+    self.municipalProblemSubmitModel.problemDet = self.problemDescTextView.text;
+    self.municipalProblemSubmitModel.siteDet = self.locationTextView.text;
+    self.municipalProblemSubmitModel.contentDet = self.markTextView.text;
+    
+    self.municipalProblemSubmitModel.contactNumber = self.conentPhoneTextFile.text;
+    self.municipalProblemSubmitModel.label = self.problemTagTextFile.text;
+    
+    self.municipalProblemSubmitModel.classAndContent = @"";
+    self.municipalProblemSubmitModel.fine = self.fineMoneyTextFule.text;
+    self.municipalProblemSubmitModel.latX = @"112";
+    self.municipalProblemSubmitModel.lonY = @"23";
+    self.municipalProblemSubmitModel.uploadid = @"";
+    if (self.type == 1) {
+        self.municipalProblemSubmitModel.id = @"";
+        self.municipalProblemSubmitModel.ddssjtms = [self setddssjtms];
+    }
+    
+    
     @weakify(self)
-    self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] submitHomeMunicipalProblemWithSubmitArray:@[] andSubmitType:self.type withBlock:^{
-        
+    self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] submitHomeMunicipalProblemWithSubmitArray:@[self.municipalProblemSubmitModel , self.supervisorSubmitModelArray] andSubmitType:self.type withBlock:^{
         @strongify(self)
-        
-        
-        
+        if (self.type == 1) {
+            [GRToast makeText:@"新增成功"];
+        } else {
+            [GRToast makeText:@"修改成功"];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
 }
 
-
-- (void)municipalProblemCreateSupervisorView {
-
-    for (UIView *view in [self.supervisorView subviews]) {
-        [view removeFromSuperview];
+- (NSString *)setddssjtms {
+    
+    NSMutableString *ddssjtmsString = [NSMutableString new];
+    for (int i = 0 ; i < self.supervisorSubmitModelArray.count; i ++) {
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
+        [ddssjtmsString appendFormat:@"%@；",supervisorSubmitModel.meCustomize];
     }
-    self.supervisorViewHeightConstraint.constant = 0;
+    if ([ddssjtmsString isNotBlank]) {
+        NSRange ddssjtmsStringRange = {[ddssjtmsString length] - 1, 1};
+        [ddssjtmsString deleteCharactersInRange:ddssjtmsStringRange];
+    }
+    return ddssjtmsString;
+}
+
+- (void)municipalProblemCreateSupervisorViewWithType:(NSInteger)viewType {
+    
+    if (viewType == 1) {
+        for (UIView *view in [self.supervisorView subviews]) {
+            [view removeFromSuperview];
+        }
+        self.supervisorViewHeightConstraint.constant = 0;
+    } else {
+        for (UIView *view in [self.classifyView subviews]) {
+            [view removeFromSuperview];
+        }
+        self.classifyViewHeightConstraint.constant = 0;
+    }
     
     CGFloat allHeight = 0;
-    for (int i = 0 ; i < self.supervisorSubmitModelArray.count ; i ++) {
+    NSInteger arrayCount = 0;
+    if (viewType == 1) {
+        arrayCount = self.supervisorSubmitModelArray.count;
+    } else {
+        arrayCount = self.problemClassifyArray.count;
+    }
+    for (int i = 0 ; i < arrayCount ; i ++) {
+        ZHLZSupervisorSubmitModel *supervisorSubmitModel = [ZHLZSupervisorSubmitModel new];
+        if (viewType == 1) {
+            supervisorSubmitModel = self.supervisorSubmitModelArray[i];
+        }
         
-        ZHLZSupervisorSubmitModel *supervisorSubmitModel = self.supervisorSubmitModelArray[i];
         
         UIView *listView = [UIView new];
         listView.backgroundColor = [UIColor whiteColor];
         listView.layer.cornerRadius = 5.0f;
-        [self.supervisorView addSubview:listView];
+        if (viewType == 1) {
+            [self.supervisorView addSubview:listView];
+        } else {
+            [self.classifyView addSubview:listView];
+        }
+        
         
         CGFloat rightMargin = 0;
         if (self.type == 2) {
@@ -286,7 +481,14 @@
             rightMargin = 10 + 30 + 5;
         }
         
-        CGFloat height = [self getString:supervisorSubmitModel.meCustomize lineSpacing:5 font:kFont(14) width:kScreenWidth - 20 - 5 - rightMargin];
+        NSString *contentString = @"";
+        if (viewType == 1) {
+            contentString = supervisorSubmitModel.meCustomize;
+        } else {
+            contentString = self.problemClassifyArray[i];
+        }
+        
+        CGFloat height = [self getString:contentString lineSpacing:5 font:kFont(14) width:kScreenWidth - 40 - 5 - rightMargin];
         
         if (height < 50) {
             height = 60;
@@ -294,11 +496,20 @@
             height = height + 10;
         }
         
-        [listView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.supervisorView).offset(allHeight);
-            make.left.right.equalTo(self.supervisorView);
-            make.height.offset(height);
-        }];
+        if (viewType == 1) {
+            [listView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.supervisorView).offset(allHeight);
+                make.left.right.equalTo(self.supervisorView);
+                make.height.offset(height);
+            }];
+        } else {
+            [listView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.classifyView).offset(allHeight);
+                make.left.right.equalTo(self.classifyView);
+                make.height.offset(height);
+            }];
+        }
+        
         
         allHeight = allHeight + height + 10;
         
@@ -307,7 +518,11 @@
             deteteButton.backgroundColor = [UIColor clearColor];
             [deteteButton setImage:[UIImage imageNamed:@"icon_delete_black"] forState:UIControlStateNormal];
             deteteButton.tag = i;
-            [deteteButton addTarget:self action:@selector(deteteAction:) forControlEvents:UIControlEventTouchUpInside];
+            if (viewType == 1) {
+                [deteteButton addTarget:self action:@selector(deteteAction:) forControlEvents:UIControlEventTouchUpInside];
+            } else {
+                [deteteButton addTarget:self action:@selector(deteteclassifyViewAction:) forControlEvents:UIControlEventTouchUpInside];
+            }
             [listView addSubview:deteteButton];
             [deteteButton mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(listView.mas_right).offset(-10);
@@ -321,7 +536,13 @@
         textLable.lineBreakMode = NSLineBreakByWordWrapping;
         textLable.numberOfLines = 0;
         textLable.textColor = kHexRGB(0x999999);
-        textLable.text = supervisorSubmitModel.meCustomize;
+        
+        if (viewType == 1) {
+            textLable.text = supervisorSubmitModel.meCustomize;
+        } else {
+            textLable.text = self.problemClassifyArray[i];
+        }
+        
         [listView addSubview:textLable];
         [textLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(listView.mas_left).offset(5);
@@ -334,8 +555,12 @@
             }
         }];
     }
+    if (viewType == 1) {
+        self.supervisorViewHeightConstraint.constant = allHeight;
+    } else {
+        self.classifyViewHeightConstraint.constant = allHeight;
+    }
     
-    self.supervisorViewHeightConstraint.constant = allHeight;
 }
 
 - (CGFloat)getString:(NSString *)string lineSpacing:(CGFloat)lineSpacing font:(UIFont*)font width:(CGFloat)width {
@@ -352,9 +577,20 @@
     [self popActionWithTip:@"是否删除此措施？" withBlock:^{
         @strongify(self);
         [self.supervisorSubmitModelArray removeObjectAtIndex:index];
-        [self municipalProblemCreateSupervisorView];
+        [self municipalProblemCreateSupervisorViewWithType:1];
     }];
 }
+
+- (void)deteteclassifyViewAction:(UIButton *)btn {
+    NSInteger index = btn.tag;
+    @weakify(self);
+    [self popActionWithTip:@"是否删除此问题分类及内容？" withBlock:^{
+        @strongify(self);
+        [self.problemClassifyArray removeObjectAtIndex:index];
+        [self municipalProblemCreateSupervisorViewWithType:2];
+    }];
+}
+
 
 
 

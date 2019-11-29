@@ -84,6 +84,9 @@ static NSString * const SelectDefaultValue = @"---请选择---";
         case 7: // 问题类型
             codeName = @"protype";
             break;
+        case 8: // 市政问题类型
+            codeName = @"instype";
+        break;
     }
     if (![codeName isNotBlank]) {
         return nil;

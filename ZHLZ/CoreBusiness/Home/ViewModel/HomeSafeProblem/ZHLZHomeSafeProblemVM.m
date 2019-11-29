@@ -67,8 +67,9 @@
     if (type == 1) {
         urlString = OccupyProblemGetMeasuresAPIURLConst;
     }
+    
     else if (type == 2){
-        urlString = OccupyProblemGetMeasuresAPIURLConst;
+        urlString = MunicipalProblemGetMeasuresAPIURLConst;
     }
     
     else if (type == 3) {

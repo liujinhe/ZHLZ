@@ -110,21 +110,21 @@
 - (void)setViewToLookDetail {
     
     //设置UIButton背景颜色
-    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
-    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
-    self.developmentUnitButton.backgroundColor = [UIColor whiteColor];
-    self.roadWorkButton.backgroundColor = [UIColor whiteColor];
-    self.approvalAuthorityButton.backgroundColor = [UIColor whiteColor];
-    
-    self.licenceStartButton.backgroundColor = [UIColor whiteColor];
-    self.licenceEndButton.backgroundColor = [UIColor whiteColor];
-    self.demandTimeButton.backgroundColor = [UIColor whiteColor];
-    self.roadWorkTypeButton.backgroundColor = [UIColor whiteColor];
-    self.brigadeButton.backgroundColor = [UIColor whiteColor];
-    
-    self.areaButton.backgroundColor = [UIColor whiteColor];
-    self.dutyAreaButton.backgroundColor = [UIColor whiteColor];
-    self.emphasisProjectButton.backgroundColor = [UIColor whiteColor];
+//    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
+//    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
+//    self.developmentUnitButton.backgroundColor = [UIColor whiteColor];
+//    self.roadWorkButton.backgroundColor = [UIColor whiteColor];
+//    self.approvalAuthorityButton.backgroundColor = [UIColor whiteColor];
+//    
+//    self.licenceStartButton.backgroundColor = [UIColor whiteColor];
+//    self.licenceEndButton.backgroundColor = [UIColor whiteColor];
+//    self.demandTimeButton.backgroundColor = [UIColor whiteColor];
+//    self.roadWorkTypeButton.backgroundColor = [UIColor whiteColor];
+//    self.brigadeButton.backgroundColor = [UIColor whiteColor];
+//    
+//    self.areaButton.backgroundColor = [UIColor whiteColor];
+//    self.dutyAreaButton.backgroundColor = [UIColor whiteColor];
+//    self.emphasisProjectButton.backgroundColor = [UIColor whiteColor];
     
     
     //设置按钮不可编辑

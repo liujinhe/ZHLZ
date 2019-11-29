@@ -137,7 +137,7 @@
         
         [self.problemTypeButton setTitle:occupyProblemDetailModel.protypename forState:UIControlStateNormal];
         
-        [self.areaButton setTitle:occupyProblemDetailModel.areaName forState:UIControlStateNormal];
+        [self.areaButton setTitle:occupyProblemDetailModel.belongname forState:UIControlStateNormal];
         
         [self.problemTimeButtotn setTitle:occupyProblemDetailModel.prodate forState:UIControlStateNormal];
         
@@ -213,7 +213,7 @@
         self.homeOccupyProblemSubmitModel.protype = code;
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.problemTypeButton setTitle:name forState:UIControlStateSelected];
+            [self.problemTypeButton setTitle:name forState:UIControlStateNormal];
         });
     };
     [self presentViewController:problemTypeListPickerViewVC animated:NO completion:nil];
