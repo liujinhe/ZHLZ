@@ -106,7 +106,7 @@
     [self.homeSafeTableView registerNib:[UINib nibWithNibName:ZHLZHomeSafeReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeSafeReuseIdentifier];
     
     self.homeSafeTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeList)];
-    self.homeSafeTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeList)];
+    self.homeSafeTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeList)];
 }
 
 #pragma mark - UITableViewDataSource

@@ -70,7 +70,9 @@
 }
 
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    return [ZHLZHomeInfoStatisticsListVC new];
+    ZHLZHomeInfoStatisticsListVC *homeInfoStatisticsListVC = [ZHLZHomeInfoStatisticsListVC new];
+    homeInfoStatisticsListVC.type = index;
+    return homeInfoStatisticsListVC;
 }
 
 #pragma mark - setter and getter

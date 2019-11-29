@@ -8,17 +8,34 @@
 
 #import "ZHLZHomeInfoStatisticsTableViewCell.h"
 
+@interface ZHLZHomeInfoStatisticsTableViewCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *brigadeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *queryKilometersCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *queryPeopleCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *findProblemCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *closedProblemCountLabel;
+
+@end
+
 @implementation ZHLZHomeInfoStatisticsTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setHomeInfoStatisticsModel:(ZHLZHomeInfoStatisticsModel *)homeInfoStatisticsModel {
+    _homeInfoStatisticsModel = homeInfoStatisticsModel;
+    
+    self.brigadeLabel.text = _homeInfoStatisticsModel.orgname?:@"";
+    self.queryKilometersCountLabel.text = _homeInfoStatisticsModel.mapMileage?:@"";
+    self.queryPeopleCountLabel.text = _homeInfoStatisticsModel.foundnum?:@"";
+    self.findProblemCountLabel.text = _homeInfoStatisticsModel.findnum?:@"";
+    self.closedProblemCountLabel.text = _homeInfoStatisticsModel.closenum?:@"";
 }
 
 @end

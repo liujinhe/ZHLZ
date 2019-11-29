@@ -54,7 +54,7 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
     [self.businessDocumentTableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
     self.businessDocumentTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(homeBusinessDocumentData)];
-    self.businessDocumentTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(homeBusinessDocumentData)];
+    self.businessDocumentTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(homeBusinessDocumentData)];
 }
 
 - (void)homeBusinessDocumentData {

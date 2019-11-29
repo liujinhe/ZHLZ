@@ -7,6 +7,7 @@
 //
 
 #import "ZHLZBaseVM.h"
+#import "ZHLZHomeInfoStatisticsModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadHomeInfoStatisticsDataWithPageNo:(NSInteger)pageNo withType:(NSInteger)type;
+- (NSURLSessionTask *)loadHomeInfoStatisticsDataWithType:(NSInteger)type withBlock:(void (^)(NSArray<ZHLZHomeInfoStatisticsModel *> *array))block;
 
 @end
 

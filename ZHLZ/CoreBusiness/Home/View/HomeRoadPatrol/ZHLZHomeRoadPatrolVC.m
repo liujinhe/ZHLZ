@@ -57,7 +57,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeRoadPatrolReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeRoadPatrolReuseIdentifier];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     [self loadData];
 }

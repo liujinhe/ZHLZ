@@ -108,7 +108,7 @@
     [self.homeSafeProblemTableView registerNib:[UINib nibWithNibName:ZHLZHomeSafeProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     
     self.homeSafeProblemTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemData)];
-    self.homeSafeProblemTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemData)];
+    self.homeSafeProblemTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadHomeSafeProblemData)];
 }
 
 #pragma mark - UITableViewDelegate

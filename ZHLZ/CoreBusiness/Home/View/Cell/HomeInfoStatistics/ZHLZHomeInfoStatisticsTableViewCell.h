@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ZHLZHomeInfoStatisticsModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeInfoStatisticsTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) ZHLZHomeInfoStatisticsModel *homeInfoStatisticsModel;
 
 @end
 

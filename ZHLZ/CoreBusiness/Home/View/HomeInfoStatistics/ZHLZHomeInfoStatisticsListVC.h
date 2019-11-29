@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeInfoStatisticsListVC : ZHLZBaseVC <JXCategoryListContentViewDelegate>
 
+// 选择类型（0-日 1-周 2-月 3-季度）
+@property (nonatomic, assign) NSInteger type;
+
 @end
 
 NS_ASSUME_NONNULL_END

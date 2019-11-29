@@ -77,7 +77,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeMunicipalProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeMunicipalProblemReuseIdentifier];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     [self loadData];
 }
