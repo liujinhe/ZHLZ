@@ -14,6 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 记住密码
 extern NSString * const LoginRememberPwdConst;
+// 人员签到
+extern NSString * const PeopleCheckInDateConst;
+// 车辆签到
+extern NSString * const CarCheckInDateConst;
+// 当前位置（地址）
+extern NSString * const CurrentLocationAddressConst;
+// 当前位置（坐标）
+extern NSString * const CurrentLocationCoordinateConst;
 
 @end
 

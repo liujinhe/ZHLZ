@@ -12,4 +12,12 @@
 
 NSString * const LoginRememberPwdConst = @"LoginRememberPwd";
 
+NSString * const PeopleCheckInDateConst = @"PeopleCheckInDateConst";
+ 
+NSString * const CarCheckInDateConst = @"CarCheckInDateConst";
+
+NSString * const CurrentLocationAddressConst = @"CurrentLocationAddressConst";
+
+NSString * const CurrentLocationCoordinateConst = @"CurrentLocationCoordinateConst";
+
 @end

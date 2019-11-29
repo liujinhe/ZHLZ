@@ -22,6 +22,12 @@
     return [dateFormatter stringFromDate:date];
 }
 
++ (NSString *)formatterWithTimeInterval:(NSTimeInterval)timeInterval {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm:ss";
+    return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:timeInterval]];
+}
+
 + (NSString *)formatterBeforeOrAfterDateWithDate:(NSDate *)date withMonth:(NSInteger)month {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:month];

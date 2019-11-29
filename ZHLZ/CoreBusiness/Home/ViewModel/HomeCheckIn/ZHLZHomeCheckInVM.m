@@ -19,12 +19,12 @@
     return homeCheckInVM;
 }
 
-- (NSURLSessionTask *)checkInDataWithType:(NSString *)type withAddress:(NSString *)address WithBlock:(void (^)(void))block {
+- (NSURLSessionTask *)checkInDataWithType:(NSInteger)type withAddress:(NSString *)address withBlock:(dispatch_block_t)block {
     NSString *userId = [ZHLZUserManager sharedInstance].user.userId;
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CheckInPunchAPIURLConst
-                                            withRequestArgument:@{@"userid":userId, @"type":type, @"address":address}];
+                                            withRequestArgument:@{@"userid":userId, @"type":@(type), @"address":address}];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        
+        block();
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
         
     }];
