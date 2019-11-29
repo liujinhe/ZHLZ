@@ -140,6 +140,10 @@ NSString * const SpecialOwnerUnitDeleteAPIURLConst = @"/app/addressbooksowner/de
 
 NSString * const ChangeUserPwdAPIURLConst = @"/app/sys/user/password";
 
+NSString * const AboutAPIURLConst = @"/about.html";
+
+NSString * const HelpAPIURLConst = @"/help.html";
+
 #pragma mark - API URL for Other
 
 NSString * const BrigadeAPIURLConst = @"/organize/select";

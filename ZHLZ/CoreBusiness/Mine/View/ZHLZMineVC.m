@@ -8,13 +8,13 @@
 
 #import "ZHLZMineVC.h"
 #import "ZHLZChangePasswordVC.h"
-#import "ZHLZHelpVC.h"
-#import "ZHLZAboutVC.h"
 #import "ZHLZUserManager.h"
 #import "ZHLZLoginVC.h"
 
 #import "ZHLZMineCell.h"
 #import "ZHLZMineVM.h"
+
+#import "ZHLZWebViewVC.h"
 
 #import <UINavigationController+FDFullscreenPopGesture.h>
 
@@ -130,10 +130,12 @@
             ZHLZChangePasswordVC *changePasswordVC = [ZHLZChangePasswordVC new];
             [self.navigationController pushViewController:changePasswordVC animated:YES];
         } else if (indexPath.row == 1) {
-            ZHLZAboutVC *aboutVC = [ZHLZAboutVC new];
+            ZHLZWebViewVC *aboutVC = [ZHLZWebViewVC new];
+            aboutVC.url = AboutAPIURLConst;
             [self.navigationController pushViewController:aboutVC animated:YES];
         } else if (indexPath.row == 2) {
-            ZHLZHelpVC *helpVC = [ZHLZHelpVC new];
+            ZHLZWebViewVC *helpVC = [ZHLZWebViewVC new];
+            helpVC.url = HelpAPIURLConst;
             [self.navigationController pushViewController:helpVC animated:YES];
         }
     } else {

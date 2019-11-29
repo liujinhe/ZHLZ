@@ -16,6 +16,12 @@
     return [dateFormatter stringFromDate:date];
 }
 
++ (NSString *)formatterWithTime:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm:ss";
+    return [dateFormatter stringFromDate:date];
+}
+
 + (NSString *)formatterBeforeOrAfterDateWithDate:(NSDate *)date withMonth:(NSInteger)month {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:month];

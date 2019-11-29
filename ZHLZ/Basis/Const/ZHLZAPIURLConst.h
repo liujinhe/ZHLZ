@@ -148,6 +148,10 @@ extern NSString * const SpecialOwnerUnitDeleteAPIURLConst;
 // 修改用户密码
 extern NSString * const ChangeUserPwdAPIURLConst;
 
+extern NSString * const AboutAPIURLConst;
+
+extern NSString * const HelpAPIURLConst;
+
 #pragma mark - API URL for Other
 
 // 所有大队

@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param date NSDate
 + (NSString *)formatterWithDate:(NSDate *)date;
 
+/// 格式化时间
+/// @param date NSDate
++ (NSString *)formatterWithTime:(NSDate *)date;
+
 /// 格式化日期（获取前或后 month 个月的日期）
 /// @param date NSDate
 /// @param month 加减月份

@@ -130,15 +130,11 @@
 		A557503C23828DBD00B24FC4 /* ZHLZLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7023828DBD00B24FC4 /* ZHLZLoginVC.m */; };
 		A557503D23828DBD00B24FC4 /* ZHLZMineVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7423828DBD00B24FC4 /* ZHLZMineVM.m */; };
 		A557503E23828DBD00B24FC4 /* ZHLZMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7723828DBD00B24FC4 /* ZHLZMineModel.m */; };
-		A557503F23828DBD00B24FC4 /* ZHLZHelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7923828DBD00B24FC4 /* ZHLZHelpVC.m */; };
 		A557504023828DBD00B24FC4 /* ZHLZChangePasswordVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574F7A23828DBD00B24FC4 /* ZHLZChangePasswordVC.xib */; };
 		A557504123828DBD00B24FC4 /* ZHLZChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7B23828DBD00B24FC4 /* ZHLZChangePasswordVC.m */; };
-		A557504223828DBD00B24FC4 /* ZHLZAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F7D23828DBD00B24FC4 /* ZHLZAboutVC.m */; };
-		A557504323828DBD00B24FC4 /* ZHLZAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574F7E23828DBD00B24FC4 /* ZHLZAboutVC.xib */; };
 		A557504423828DBD00B24FC4 /* ZHLZMineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574F7F23828DBD00B24FC4 /* ZHLZMineVC.xib */; };
 		A557504523828DBD00B24FC4 /* ZHLZMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F8223828DBD00B24FC4 /* ZHLZMineCell.m */; };
 		A557504623828DBD00B24FC4 /* ZHLZMineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574F8323828DBD00B24FC4 /* ZHLZMineCell.xib */; };
-		A557504723828DBD00B24FC4 /* ZHLZHelpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5574F8523828DBD00B24FC4 /* ZHLZHelpVC.xib */; };
 		A557504823828DBD00B24FC4 /* ZHLZMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F8723828DBD00B24FC4 /* ZHLZMineVC.m */; };
 		A557504923828DBD00B24FC4 /* ZHLZAddressBookVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F8B23828DBD00B24FC4 /* ZHLZAddressBookVM.m */; };
 		A557504A23828DBD00B24FC4 /* ZHLZCityManagementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5574F8F23828DBD00B24FC4 /* ZHLZCityManagementModel.m */; };
@@ -533,21 +529,15 @@
 		A5574F7423828DBD00B24FC4 /* ZHLZMineVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZMineVM.m; sourceTree = "<group>"; };
 		A5574F7623828DBD00B24FC4 /* ZHLZMineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZMineModel.h; sourceTree = "<group>"; };
 		A5574F7723828DBD00B24FC4 /* ZHLZMineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZMineModel.m; sourceTree = "<group>"; };
-		A5574F7923828DBD00B24FC4 /* ZHLZHelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHelpVC.m; sourceTree = "<group>"; };
 		A5574F7A23828DBD00B24FC4 /* ZHLZChangePasswordVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZChangePasswordVC.xib; sourceTree = "<group>"; };
 		A5574F7B23828DBD00B24FC4 /* ZHLZChangePasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZChangePasswordVC.m; sourceTree = "<group>"; };
 		A5574F7C23828DBD00B24FC4 /* ZHLZMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZMineVC.h; sourceTree = "<group>"; };
-		A5574F7D23828DBD00B24FC4 /* ZHLZAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZAboutVC.m; sourceTree = "<group>"; };
-		A5574F7E23828DBD00B24FC4 /* ZHLZAboutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZAboutVC.xib; sourceTree = "<group>"; };
 		A5574F7F23828DBD00B24FC4 /* ZHLZMineVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZMineVC.xib; sourceTree = "<group>"; };
-		A5574F8023828DBD00B24FC4 /* ZHLZHelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHelpVC.h; sourceTree = "<group>"; };
 		A5574F8223828DBD00B24FC4 /* ZHLZMineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZMineCell.m; sourceTree = "<group>"; };
 		A5574F8323828DBD00B24FC4 /* ZHLZMineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZMineCell.xib; sourceTree = "<group>"; };
 		A5574F8423828DBD00B24FC4 /* ZHLZMineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZMineCell.h; sourceTree = "<group>"; };
-		A5574F8523828DBD00B24FC4 /* ZHLZHelpVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHelpVC.xib; sourceTree = "<group>"; };
 		A5574F8623828DBD00B24FC4 /* ZHLZChangePasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZChangePasswordVC.h; sourceTree = "<group>"; };
 		A5574F8723828DBD00B24FC4 /* ZHLZMineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZMineVC.m; sourceTree = "<group>"; };
-		A5574F8823828DBD00B24FC4 /* ZHLZAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZAboutVC.h; sourceTree = "<group>"; };
 		A5574F8B23828DBD00B24FC4 /* ZHLZAddressBookVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZAddressBookVM.m; sourceTree = "<group>"; };
 		A5574F8C23828DBD00B24FC4 /* ZHLZAddressBookVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZAddressBookVM.h; sourceTree = "<group>"; };
 		A5574F8E23828DBD00B24FC4 /* ZHLZAreaManagementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZAreaManagementModel.h; sourceTree = "<group>"; };
@@ -1553,15 +1543,9 @@
 			isa = PBXGroup;
 			children = (
 				A5574F8123828DBD00B24FC4 /* Cell */,
-				A5574F8823828DBD00B24FC4 /* ZHLZAboutVC.h */,
-				A5574F7D23828DBD00B24FC4 /* ZHLZAboutVC.m */,
-				A5574F7E23828DBD00B24FC4 /* ZHLZAboutVC.xib */,
 				A5574F8623828DBD00B24FC4 /* ZHLZChangePasswordVC.h */,
 				A5574F7B23828DBD00B24FC4 /* ZHLZChangePasswordVC.m */,
 				A5574F7A23828DBD00B24FC4 /* ZHLZChangePasswordVC.xib */,
-				A5574F8023828DBD00B24FC4 /* ZHLZHelpVC.h */,
-				A5574F7923828DBD00B24FC4 /* ZHLZHelpVC.m */,
-				A5574F8523828DBD00B24FC4 /* ZHLZHelpVC.xib */,
 				A5574F7C23828DBD00B24FC4 /* ZHLZMineVC.h */,
 				A5574F8723828DBD00B24FC4 /* ZHLZMineVC.m */,
 				A5574F7F23828DBD00B24FC4 /* ZHLZMineVC.xib */,
@@ -2082,7 +2066,6 @@
 				A5B19452238574FF00FF5080 /* ranqi_red_1.png in Resources */,
 				A5B19456238574FF00FF5080 /* luqiao_yellow_1.png in Resources */,
 				A5B19465238574FF00FF5080 /* guidaojiaotong_green_1.png in Resources */,
-				A557504723828DBD00B24FC4 /* ZHLZHelpVC.xib in Resources */,
 				A557505D23828DBD00B24FC4 /* ZHLZBookListCell.xib in Resources */,
 				A557503223828DBD00B24FC4 /* ZHLZHomeBuildProjectVC.xib in Resources */,
 				A5B19460238574FF00FF5080 /* luqiao_red_2.png in Resources */,
@@ -2149,7 +2132,6 @@
 				A5AD705B238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.xib in Resources */,
 				18C24B8D238B86EC00C9EBC2 /* ZHLZChooseListCell.xib in Resources */,
 				A557506623828DBD00B24FC4 /* ZHLZMonadVC.xib in Resources */,
-				A557504323828DBD00B24FC4 /* ZHLZAboutVC.xib in Resources */,
 				A5B1946B238574FF00FF5080 /* luqiao_green_1.png in Resources */,
 				A557505523828DBD00B24FC4 /* ZHLZSpecialVC.xib in Resources */,
 				A5B19476238574FF00FF5080 /* yanghu_red_2.png in Resources */,
@@ -2278,7 +2260,6 @@
 				A557500C23828DBD00B24FC4 /* ZHLZHomeBusinessDocumentModel.m in Sources */,
 				A538B5302386991F002E30CC /* ZHLZBrigadePickerViewVC.m in Sources */,
 				A57F5C992390F2CF00695A63 /* ZHLZChooseStepCell.m in Sources */,
-				A557504223828DBD00B24FC4 /* ZHLZAboutVC.m in Sources */,
 				A5574FFE23828DBD00B24FC4 /* ZHLZHomeRoadPatrolVM.m in Sources */,
 				A57F5C7A2390F20400695A63 /* ZHLZHomeInfoStatisticsTableViewCell.m in Sources */,
 				A557505B23828DBD00B24FC4 /* ZHLZSpecialVC.m in Sources */,
@@ -2395,7 +2376,6 @@
 				A557505E23828DBD00B24FC4 /* ZHLZBookListCell.m in Sources */,
 				A5AD701D238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.m in Sources */,
 				A5574FF423828DBD00B24FC4 /* GRChainRequest.m in Sources */,
-				A557503F23828DBD00B24FC4 /* ZHLZHelpVC.m in Sources */,
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
 				A5825472238FDB7E00B5F3E3 /* ZHLZHomeInfoStatisticsVC.m in Sources */,
 				A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */,
