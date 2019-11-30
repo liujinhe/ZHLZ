@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeScanCodeUseCarVC">
             <connections>
+                <outlet property="carUserStatusLabel" destination="IsB-SJ-UsD" id="jfM-om-qxs"/>
                 <outlet property="currentLocation" destination="3f1-PY-xmV" id="smJ-5v-DSB"/>
                 <outlet property="currentTime" destination="UFM-Wp-0lE" id="jUf-el-XN0"/>
                 <outlet property="currentUserNameLabel" destination="LCz-PC-uxB" id="UCU-ZI-Y6N"/>
@@ -40,8 +41,8 @@
                                 <constraint firstAttribute="height" constant="69" id="jwb-bl-qax"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前用户：超级管理员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCz-PC-uxB">
-                            <rect key="frame" x="85" y="26.5" width="143" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCz-PC-uxB">
+                            <rect key="frame" x="85" y="26.5" width="13" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.199973762" green="0.2000150383" blue="0.19997116919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

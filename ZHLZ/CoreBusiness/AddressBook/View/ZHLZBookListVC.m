@@ -199,7 +199,17 @@
 
 #pragma mark --初始化视图
 
+- (void)addAction {
+    [self clickAddActionwithType:1];
+}
+
 - (void)initBookListView{
+    
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
+    
+    
     
     self.pageNum = 1;
     
@@ -213,17 +223,6 @@
     self.cityManagementListModelArray = [NSMutableArray <CityManagementList *> new];
     self.specialListModelArray = [NSMutableArray <SpecialList *> new];
     self.MonadModelArray = [NSMutableArray <MonadModelList *> new];
-    
-    UIButton *areaManagementButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [areaManagementButton setTitle:@"添加" forState:UIControlStateNormal];
-    [areaManagementButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [areaManagementButton sizeToFit];
-    @weakify(self);
-    [areaManagementButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id _Nonnull sender) {
-        @strongify(self);
-        [self clickAddActionwithType:1];
-    }];
-    self.navigationItem.rightBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:areaManagementButton]];
     
     
     
@@ -377,6 +376,34 @@
         cell.monadList = self.MonadModelArray[indexPath.row];
     }
     
+    cell.selectIndex = indexPath.row;
+    
+    @weakify(self)
+    cell.clickPhoneButton = ^(NSInteger selectIndex) {
+        @strongify(self)
+        
+        
+        NSString *phoneString = @"";
+        if (self.selectIndex == 0) {
+            phoneString = self.roadWorkModelArray[indexPath.row].phone;
+        } else if(self.selectIndex == 1){
+//            phoneString = self.examineModelArray[indexPath.row];
+        } else if(self.selectIndex == 2){
+            phoneString = self.constructionModelArray[indexPath.row].phone;
+        } else if(self.selectIndex == 3){
+            phoneString = self.cityManagementListModelArray[indexPath.row].phone;
+        } else if(self.selectIndex == 4){
+            phoneString = self.areaManagementListModelArray[indexPath.row].phone;
+        } else if(self.selectIndex == 5){
+            phoneString = self.specialListModelArray[indexPath.row].phone;
+        } else if(self.selectIndex == 6){
+            phoneString = self.MonadModelArray[indexPath.row].phone;
+        }
+        
+        [self callPhoneWithPhoneString:phoneString];
+    };
+    
+    
     return cell;
  }
 
@@ -388,5 +415,26 @@
     self.clickIndex = indexPath.row;
     [self clickAddActionwithType:2];
 }
+
+- (void)callPhoneWithPhoneString:(NSString *)phoneString {
+    if ([phoneString isNotBlank]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneString]];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                } else {
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            });
+        }
+    }
+    
+    else {
+        [GRToast makeText:@"暂无联系方式"];
+    }
+    
+}
+
 
 @end

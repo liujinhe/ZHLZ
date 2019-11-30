@@ -236,19 +236,27 @@
         NSString *userid = [ZHLZUserManager sharedInstance].user.userId;
         NSString *carId = [[metadataObjects firstObject] stringValue];
         
-        ///借车
-        if( 1 == 1){
-            @weakify(self)
-            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeUseCarWithParms:@{@"username":userName,@"carId":carId,@"userid":userid} withBlock:^{
-                @strongify(self)
-                
-            }];
-        } else {
+        
+        ///获取是否存在carid
+        NSString *carCheckInStr = [[NSUserDefaults standardUserDefaults] objectForKey:CarCheckInDateConst];
+        
+        if ([carCheckInStr isNotBlank]){ //还车
             ///还车
             @weakify(self)
             self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeRepayCarWithParms:@{@"carId":carId} withBlock:^{
                 @strongify(self)
-                
+                [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:CarCheckInDateConst];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+        }
+        
+        else { ///借车
+            @weakify(self)
+            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeUseCarWithParms:@{@"username":userName,@"carId":carId,@"userid":userid} withBlock:^{
+                @strongify(self)
+                [[NSUserDefaults standardUserDefaults] setValue:carId forKey:CarCheckInDateConst];
+                [self.navigationController popViewControllerAnimated:YES];
             }];
         }
 

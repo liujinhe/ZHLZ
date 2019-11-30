@@ -73,26 +73,26 @@
 
 - (IBAction)constructionAction:(ZHLZButton *)sender {
     if (![self.nameTextFIle.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位"];
+        [GRToast makeText:@"请输入建设单位"];
         return;
     }
     if (![self.chargerTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人"];
+        [GRToast makeText:@"请输入建设单位联系人"];
         return;
     }
     if (![self.phoneTextFIle.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人手机"];
+        [GRToast makeText:@"请输入建设单位联系人手机"];
         return;
     }
     
     if (self.setType == 1) { //添加
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:BuildUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:BuildUnitSaveAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"changer":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text} withCompletionBlock:^{
             [GRToast makeText:@"添加成功"];
             self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];
         }];
     } else {//编辑
-        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:BuildUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"charger":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text,@"id":self.constructionModel.objectID} withCompletionBlock:^{
+        self.task = [[ZHLZAddressBookVM sharedInstance] operationWithUrl:BuildUnitUpdateAPIURLConst andParms:@{@"name":self.nameTextFIle.text,@"changer":self.chargerTextFile.text,@"phone":self.phoneTextFIle.text,@"id":self.constructionModel.objectID} withCompletionBlock:^{
             [GRToast makeText:@"修改成功"];
             self.reloadDataBlock();
             [self.navigationController popViewControllerAnimated:YES];

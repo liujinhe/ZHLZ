@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZBookListCell : UITableViewCell
 
+@property (nonatomic , assign) NSInteger selectIndex;
+
 @property (nonatomic , strong) MonadModelList *monadList;
 @property (nonatomic , strong) SpecialList *specialList;
 @property (nonatomic , strong) CityManagementList *cityManagementList;
@@ -27,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , strong) ConstructionList *constructionList;
 @property (nonatomic , strong) ExamineList *examineList;
 @property (nonatomic , strong) RoadWorkList *roadWorkList;
+
+@property (nonatomic, copy) void (^clickPhoneButton)(NSInteger selectIndex);
 
 @end
 

@@ -119,28 +119,14 @@
 }
 
 
-
-
-
-
-
-
-
-
-
+- (void)setSelectIndex:(NSInteger)selectIndex {
+    self.callButton.tag = selectIndex;
+}
 
 
 - (IBAction)callPhoneAction:(UIButton *)sender {
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", @""]];
-    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (@available(iOS 10.0, *)) {
-                [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-            } else {
-                [[UIApplication sharedApplication] openURL:url];
-            }
-        });
+    if (self.clickPhoneButton) {
+        self.clickPhoneButton(sender.tag);
     }
 }
 
