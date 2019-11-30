@@ -99,7 +99,6 @@
     self.remarkTextView.placeholder = @"备注";
     
     self.brigadeButton.userInteractionEnabled = NO;
-    self.brigadeButton.backgroundColor = [UIColor whiteColor];
     
     if (self.detailType == 1 || self.detailType == 3) {
         [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];

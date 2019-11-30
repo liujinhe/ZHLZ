@@ -57,12 +57,12 @@
     self.workPoeopleButton.userInteractionEnabled = NO;
     self.supervisorButton.userInteractionEnabled = NO;
     
-    self.projectNameButton.backgroundColor = [UIColor whiteColor];
-    self.problemTypeButton.backgroundColor = [UIColor whiteColor];
-    self.areaButton.backgroundColor = [UIColor whiteColor];
-    self.problemTimeButtotn.backgroundColor = [UIColor whiteColor];
-    self.workPoeopleButton.backgroundColor = [UIColor whiteColor];
-    self.supervisorButton.backgroundColor = [UIColor whiteColor];
+//    self.projectNameButton.backgroundColor = [UIColor whiteColor];
+//    self.problemTypeButton.backgroundColor = [UIColor whiteColor];
+//    self.areaButton.backgroundColor = [UIColor whiteColor];
+//    self.problemTimeButtotn.backgroundColor = [UIColor whiteColor];
+//    self.workPoeopleButton.backgroundColor = [UIColor whiteColor];
+//    self.supervisorButton.backgroundColor = [UIColor whiteColor];
     
     [self.problemTextView setEditable:NO];
     [self.markTextView setEditable:NO];

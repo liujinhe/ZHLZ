@@ -99,6 +99,8 @@
     self.superiorButton.userInteractionEnabled = NO;
     self.problemTagTextFile.userInteractionEnabled = NO;
     self.fineMoneyTextFule.userInteractionEnabled = NO;
+    self.supervisorButton.userInteractionEnabled = NO;
+    
     
     [self.problemDescTextView setEditable:NO];
     [self.locationTextView setEditable:NO];
@@ -540,7 +542,13 @@
         if (viewType == 1) {
             textLable.text = supervisorSubmitModel.meCustomize;
         } else {
-            textLable.text = self.problemClassifyArray[i];
+            NSMutableString *itemString = [NSMutableString new];
+            itemString = self.problemClassifyArray[i];
+            if ([itemString isNotBlank]) {
+                NSRange itemStringRange = {[itemString length] - 1, 1};
+                [itemString deleteCharactersInRange:itemStringRange];
+            }
+            textLable.text = itemString;
         }
         
         [listView addSubview:textLable];

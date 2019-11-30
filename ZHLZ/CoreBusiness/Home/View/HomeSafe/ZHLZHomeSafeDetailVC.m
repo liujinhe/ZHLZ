@@ -113,7 +113,6 @@
     self.safeSubmitModel = [ZHLZSafeSubmitModel new];
     
     self.bigGrouponButton.userInteractionEnabled = NO;
-    self.bigGrouponButton.backgroundColor = [UIColor whiteColor];
     
     //编辑和新增默认选中当前用户所在大队
     if (self.type == 1 || self.type == 3) {
@@ -129,27 +128,18 @@
     self.locationTextFile.userInteractionEnabled = NO;
     
     self.dutyUnitButton.userInteractionEnabled = NO;
-    self.dutyUnitButton.backgroundColor = [UIColor whiteColor];
     
     [self.problemTextView setEditable:NO];
     [self.lookHistoryTextView setEditable:NO];
     [self.workTypeTextView setEditable:NO];
+    
     self.photoNumTextFile.userInteractionEnabled = NO;
     
 }
 
 
 - (IBAction)bigGrouponAction:(UIButton *)sender {
-//    ZHLZBrigadePickerViewVC *brigadePickerViewVC = [ZHLZBrigadePickerViewVC new];
-//    @weakify(self)
-//    brigadePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull brigadeType, NSString * _Nonnull brigadeName) {
-//        @strongify(self);
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.bigGrouponButton setTitle:brigadeName forState:UIControlStateNormal];
-//        });
-//    };
-//    [self presentViewController:brigadePickerViewVC animated:NO completion:nil];
+    ///大队不能选择
 }
 
 - (IBAction)dutyUnitAction:(UIButton *)sender {

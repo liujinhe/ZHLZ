@@ -130,6 +130,8 @@
         self.nameLabel.text = homeSafeModel.orgName;
     }
     
+    self.contentNameLabel.text = [NSString stringWithFormat:@"%@",homeSafeModel.currentPlace];
+    
 }
 
 - (void)setHomeBuildProjectModel:(ZHLZHomeBuildProjectModel *)homeBuildProjectModel {

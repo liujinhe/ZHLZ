@@ -25,6 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *headerUserNameLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
+
+
 
 @property (weak, nonatomic) IBOutlet UITableView *mineTableView;
 
@@ -77,12 +81,19 @@
     
     self.mineTableView.dataSource = self;
     self.mineTableView.delegate = self;
+    self.mineTableView.scrollEnabled = NO;
     self.mineTableView.backgroundColor = kHexRGB(0xf7f7f7);
     self.footerView.backgroundColor = kHexRGB(0xf7f7f7);
     
     self.mineTableView.showsVerticalScrollIndicator = NO;
     
     [self.mineTableView registerNib:[UINib nibWithNibName:@"ZHLZMineCell" bundle:nil] forCellReuseIdentifier:@"ZHLZMineCell"];
+    
+    
+    ///版本号
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appCurVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    self.versionLabel.text = [NSString stringWithFormat:@"当前版本v%@",appCurVersion];
     
 }
 
