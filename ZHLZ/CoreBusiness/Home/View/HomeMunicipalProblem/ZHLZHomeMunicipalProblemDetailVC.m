@@ -119,6 +119,8 @@
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
+    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];

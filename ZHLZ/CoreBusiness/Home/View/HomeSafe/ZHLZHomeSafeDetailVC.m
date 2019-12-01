@@ -96,6 +96,8 @@
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
+    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    
     if (self.type == 1) {
         self.title = @"新增安全(三防)台账";
         [self.submitButton setTitle:@"确认添加" forState:UIControlStateNormal];

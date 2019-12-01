@@ -140,6 +140,8 @@
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
+    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    
     if (self.detailType == 1) {
         self.title = @"新增安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定添加" forState:UIControlStateNormal];
