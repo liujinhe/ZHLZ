@@ -38,6 +38,9 @@
 		1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */; };
 		3FD30E97395257877EF708DD /* libPods-ZHLZTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */; };
 		A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */; };
+		A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */; };
+		A508043323940AA800CBEC83 /* GRUploadPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043023940AA800CBEC83 /* GRUploadPhotoView.m */; };
+		A508043423940AA800CBEC83 /* GRUploadPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */; };
 		A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A538B51823869913002E30CC /* ZHLZBrigadeModel.m */; };
 		A538B52023869913002E30CC /* ZHLZAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A538B51A23869913002E30CC /* ZHLZAreaModel.m */; };
 		A538B52E2386991F002E30CC /* ZHLZAreaPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A538B5222386991E002E30CC /* ZHLZAreaPickerViewVC.xib */; };
@@ -363,6 +366,12 @@
 		8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZHLZTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A506A8D12382B42E004081FC /* ZHLZNotificationConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZNotificationConst.m; sourceTree = "<group>"; };
 		A506A8D22382B42E004081FC /* ZHLZNotificationConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZNotificationConst.h; sourceTree = "<group>"; };
+		A508042C23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadPhotoGridViewFlowLayout.h; sourceTree = "<group>"; };
+		A508042D23940AA800CBEC83 /* GRUploadPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadPhotoView.h; sourceTree = "<group>"; };
+		A508042E23940AA800CBEC83 /* GRUploadPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRUploadPhotoCell.h; sourceTree = "<group>"; };
+		A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoGridViewFlowLayout.m; sourceTree = "<group>"; };
+		A508043023940AA800CBEC83 /* GRUploadPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoView.m; sourceTree = "<group>"; };
+		A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoCell.m; sourceTree = "<group>"; };
 		A538B51723869913002E30CC /* ZHLZAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZAreaModel.h; sourceTree = "<group>"; };
 		A538B51823869913002E30CC /* ZHLZBrigadeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZBrigadeModel.m; sourceTree = "<group>"; };
 		A538B51A23869913002E30CC /* ZHLZAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZAreaModel.m; sourceTree = "<group>"; };
@@ -820,6 +829,19 @@
 				18C24B8B238B86EC00C9EBC2 /* ZHLZChooseListCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A508042B23940AA800CBEC83 /* GRUploadPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				A508042E23940AA800CBEC83 /* GRUploadPhotoCell.h */,
+				A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */,
+				A508042C23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.h */,
+				A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */,
+				A508042D23940AA800CBEC83 /* GRUploadPhotoView.h */,
+				A508043023940AA800CBEC83 /* GRUploadPhotoView.m */,
+			);
+			path = GRUploadPhoto;
 			sourceTree = "<group>";
 		};
 		A5574E9A23828DBC00B24FC4 /* ZHLZ */ = {
@@ -1700,6 +1722,7 @@
 		A5574FC623828DBD00B24FC4 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				A508042B23940AA800CBEC83 /* GRUploadPhoto */,
 				A5574FC823828DBD00B24FC4 /* GRToast.h */,
 				A5574FC723828DBD00B24FC4 /* GRToast.m */,
 			);
@@ -2387,10 +2410,12 @@
 				A5574FF423828DBD00B24FC4 /* GRChainRequest.m in Sources */,
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
 				A5825472238FDB7E00B5F3E3 /* ZHLZHomeInfoStatisticsVC.m in Sources */,
+				A508043323940AA800CBEC83 /* GRUploadPhotoView.m in Sources */,
 				A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */,
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,
 				A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */,
+				A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */,
 				A557506E23828DBD00B24FC4 /* ZHLZNavigationController.m in Sources */,
 				187662F2238D1E96000809AD /* ZHLZSupervisorSubmitModel.m in Sources */,
 				A5AD7036238D19430053B9B9 /* ZHLZHomeOccupyProblemTableViewCell.m in Sources */,
@@ -2408,6 +2433,7 @@
 				A5574FEC23828DBD00B24FC4 /* GRChainRequest+RequestAccessory.m in Sources */,
 				A57F5C6C2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m in Sources */,
 				A557501023828DBD00B24FC4 /* ZHLZHomeBulletinModel.m in Sources */,
+				A508043423940AA800CBEC83 /* GRUploadPhotoCell.m in Sources */,
 				A5AD7026238CC2BD0053B9B9 /* ZHLZHomeOccupyProblemSearchVC.m in Sources */,
 				A557502B23828DBD00B24FC4 /* ZHLZHomeRoadConstructionCVC.m in Sources */,
 				A557505323828DBD00B24FC4 /* ZHLZRoadWorkVC.m in Sources */,

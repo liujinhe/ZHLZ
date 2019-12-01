@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,6 +19,8 @@
                 <outlet property="supervisorButton" destination="tUv-wd-6yl" id="wis-Re-tKz"/>
                 <outlet property="supervisorView" destination="uue-ph-B6V" id="3MU-9O-XMg"/>
                 <outlet property="supervisorViewHeightConstraint" destination="NsT-aq-FUJ" id="AnH-bM-sgx"/>
+                <outlet property="uploadPicView" destination="djh-QK-Y6k" id="PXO-bO-u0p"/>
+                <outlet property="uploadPicViewHeight" destination="gEb-R7-LLu" id="1go-2G-fid"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workUserButton" destination="KaQ-nA-XvF" id="aH6-p7-z4D"/>
             </connections>
@@ -330,14 +332,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djh-QK-Y6k">
-                            <rect key="frame" x="10" y="790" width="394" height="120"/>
+                            <rect key="frame" x="10" y="790" width="394" height="135"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="120" id="gEb-R7-LLu"/>
+                                <constraint firstAttribute="height" constant="135" id="gEb-R7-LLu"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5a-C0-kU8" customClass="ZHLZButton">
-                            <rect key="frame" x="10" y="950" width="394" height="50"/>
+                            <rect key="frame" x="10" y="965" width="394" height="50"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="pDO-d7-XRg"/>

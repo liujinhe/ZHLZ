@@ -36,6 +36,7 @@ PODS:
     - SDWebImage/Core (= 5.2.5)
   - SDWebImage/Core (5.2.5)
   - SVProgressHUD (2.2.5)
+  - TZImagePickerController (3.2.6)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - SDCycleScrollView (~> 1.80)
   - SDWebImage (~> 5.2.3)
   - SVProgressHUD (~> 2.2.5)
+  - TZImagePickerController
   - YYKit (~> 1.0.9)
   - ZWPlaceHolder
 
@@ -75,6 +77,7 @@ SPEC REPOS:
     - SDCycleScrollView
     - SDWebImage
     - SVProgressHUD
+    - TZImagePickerController
     - YYKit
     - ZWPlaceHolder
 
@@ -94,9 +97,10 @@ SPEC CHECKSUMS:
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TZImagePickerController: 3900e8d68428ff3a88817efce82ae9e7d9ffebc9
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: 8616b997800f7203f8260e96960fd70a8c641832
+PODFILE CHECKSUM: ae7d450706f3d8094e4b68433f48989a3c926a0a
 
 COCOAPODS: 1.8.4

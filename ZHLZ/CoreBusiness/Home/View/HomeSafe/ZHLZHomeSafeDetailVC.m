@@ -12,7 +12,13 @@
 #import "ZHLZSafeSubmitModel.h"
 #import "ZHLZChooseListVC.h"
 
-@interface ZHLZHomeSafeDetailVC ()
+#import "GRUploadPhotoView.h"
+
+@interface ZHLZHomeSafeDetailVC () <GRUploadPhotoViewDelegate>
+{
+    NSArray<NSString *> *_photoArray;
+    NSArray<NSString *> *_imgExtArray;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *bigGrouponButton;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextFile;
@@ -26,6 +32,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *photoNumTextFile;
 
+@property (weak, nonatomic) IBOutlet UIView *uploadPicView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *uploadPicViewHeight;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
@@ -85,6 +93,9 @@
 }
 
 - (void)initHomeSafeDetailView {
+    _photoArray = @[].mutableCopy;
+    _imgExtArray = @[].mutableCopy;
+    
     if (self.type == 1) {
         self.title = @"新增安全(三防)台账";
         [self.submitButton setTitle:@"确认添加" forState:UIControlStateNormal];
@@ -104,6 +115,9 @@
         [self loadDetailData];
     }
     
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
     
     self.problemTextView.placeholder = @"请输入问题描述";
     self.lookHistoryTextView.placeholder = @"请输入责任单位采取的工作措施";
@@ -194,6 +208,18 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
     
+}
+
+#pragma mark - GRUploadPhotoViewDelegate
+
+- (void)selectedWithPhotoArray:(NSArray<NSString *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+    _photoArray = photoArray;
+    _imgExtArray = imgExtArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.uploadPicViewHeight.constant = CGRectGetHeight(parentView.frame);
+        [self updateViewConstraints];
+    });
 }
 
 @end

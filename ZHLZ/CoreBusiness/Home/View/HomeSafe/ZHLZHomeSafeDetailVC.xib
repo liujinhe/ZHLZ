@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,6 +16,8 @@
                 <outlet property="photoNumTextFile" destination="O0X-FD-5wB" id="tTF-yu-nMp"/>
                 <outlet property="problemTextView" destination="EuY-sz-u5s" id="AS9-fS-rJo"/>
                 <outlet property="submitButton" destination="Kz5-mO-2h5" id="U2K-ah-yqw"/>
+                <outlet property="uploadPicView" destination="OxY-Do-Ron" id="qjd-U6-FhF"/>
+                <outlet property="uploadPicViewHeight" destination="k9a-eI-ZxU" id="QCd-e0-EO5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workTypeTextView" destination="FbY-Vf-aLH" id="WVi-wH-3qR"/>
             </connections>
@@ -268,7 +270,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kz5-mO-2h5" customClass="ZHLZButton">
-                            <rect key="frame" x="10" y="930" width="394" height="50"/>
+                            <rect key="frame" x="10" y="945" width="394" height="50"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="提交"/>
@@ -304,10 +306,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OxY-Do-Ron">
-                            <rect key="frame" x="10" y="750" width="394" height="120"/>
+                            <rect key="frame" x="10" y="750" width="394" height="135"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="120" id="xyI-ag-Nsy"/>
+                                <constraint firstAttribute="height" constant="135" id="k9a-eI-ZxU"/>
                             </constraints>
                         </view>
                     </subviews>

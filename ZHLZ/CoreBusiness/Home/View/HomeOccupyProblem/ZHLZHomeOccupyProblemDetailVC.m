@@ -16,8 +16,13 @@
 #import "ZHLZHomeOccupyProblemSubmitModel.h"
 #import "ZHLZHomeSafeProblemVM.h"
 
+#import "GRUploadPhotoView.h"
 
-@interface ZHLZHomeOccupyProblemDetailVC ()
+@interface ZHLZHomeOccupyProblemDetailVC () <GRUploadPhotoViewDelegate>
+{
+    NSArray<NSString *> *_photoArray;
+    NSArray<NSString *> *_imgExtArray;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *projectNameButton;
 @property (weak, nonatomic) IBOutlet UIButton *problemTypeButton;
@@ -28,6 +33,9 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZTextView *problemTextView;
 @property (weak, nonatomic) IBOutlet ZHLZTextView *markTextView;
+
+@property (weak, nonatomic) IBOutlet UIView *uploadPicView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *uploadPicViewHeight;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
@@ -70,6 +78,12 @@
 }
 
 - (void)occupyProblemDetailView {
+    _photoArray = @[].mutableCopy;
+    _imgExtArray = @[].mutableCopy;
+    
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
     
     self.problemTextView.placeholder = @"请输入问题描述";
     self.markTextView.placeholder = @"请输入备注";
@@ -399,5 +413,16 @@
     }];
 }
 
+#pragma mark - GRUploadPhotoViewDelegate
+
+- (void)selectedWithPhotoArray:(NSArray<NSString *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+    _photoArray = photoArray;
+    _imgExtArray = imgExtArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.uploadPicViewHeight.constant = CGRectGetHeight(parentView.frame);
+        [self updateViewConstraints];
+    });
+}
 
 @end

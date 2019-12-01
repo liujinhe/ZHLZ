@@ -15,7 +15,13 @@
 #import "ZHLZListPickerViewVC.h"
 #import "ZHLZSupervisorSubmitModel.h"
 
-@interface ZHLZHomeSafeProblemDetailVC ()
+#import "GRUploadPhotoView.h"
+
+@interface ZHLZHomeSafeProblemDetailVC () <GRUploadPhotoViewDelegate>
+{
+    NSArray<NSString *> *_photoArray;
+    NSArray<NSString *> *_imgExtArray;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *homeSafeButton;
 @property (weak, nonatomic) IBOutlet UIButton *areaNameButton;
@@ -25,6 +31,9 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZTextView *problemDetailTextView;
 @property (weak, nonatomic) IBOutlet ZHLZTextView *problemMarkTextView;
+
+@property (weak, nonatomic) IBOutlet UIView *uploadPicView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *uploadPicViewHeight;
 
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *problemSubmitButton;
@@ -75,7 +84,7 @@
         self.homeSafeProblemModel = homeSafeProblem;
         
         [self.homeSafeButton setTitle:homeSafeProblem.risksid forState:UIControlStateNormal];
-       
+        
         //片区名称
         NSString *orgnameString = [ZHLZUserManager sharedInstance].user.orgname;
         NSInteger areaid = [homeSafeProblem.areaid integerValue];
@@ -128,13 +137,13 @@
 }
 
 - (void)initSafeProblemDetailView {
+    _photoArray = @[].mutableCopy;
+    _imgExtArray = @[].mutableCopy;
     
     if (self.detailType == 1) {
         self.title = @"新增安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定添加" forState:UIControlStateNormal];
-        
-        
-    } else if (self.detailType == 2){
+    } else if (self.detailType == 2) {
         self.title = @"查看安全(三防)问题";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
         
@@ -143,18 +152,19 @@
         [self loadHomeSafeFloodPreventionProblemGetMeasures];
         
         [self lookSetView];
-        
     } else {
-        
         self.title = @"编辑安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定修改" forState:UIControlStateNormal];
         
         [self getProblemDetailData];
         
         [self loadHomeSafeFloodPreventionProblemGetMeasures];
-        
     }
-
+    
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
+    
     self.problemDetailTextView.placeholder = @"请输入问题描述";
     self.problemMarkTextView.placeholder = @"请输入备注";
     
@@ -177,7 +187,7 @@
     self.dutyAreaButton.userInteractionEnabled = NO;
     self.problemTimeButton.userInteractionEnabled = NO;
     self.workUserButton.userInteractionEnabled = NO;
-
+    
     self.supervisorButton.userInteractionEnabled = NO;
     self.problemSubmitButton.hidden = YES;
     
@@ -232,18 +242,18 @@
 ///责任区县
 - (IBAction)dutyAreaAction:(UIButton *)sender {
     ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
-        projectTypePickerViewVC.type = 5;
-        @weakify(self)
-        projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-            @strongify(self);
-            
-            self.homeSafeProblemSUbmitModel.belong = code;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
-            });
-        };
+    projectTypePickerViewVC.type = 5;
+    @weakify(self)
+    projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        @strongify(self);
+        
+        self.homeSafeProblemSUbmitModel.belong = code;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
+        });
+    };
     [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
-
+    
 }
 
 ///发现问题时间
@@ -317,7 +327,7 @@
 }
 
 - (void)safeProbleCreateSupervisorView {
-
+    
     for (UIView *view in [self.supervisorView subviews]) {
         [view removeFromSuperview];
     }
@@ -410,5 +420,16 @@
     }];
 }
 
+#pragma mark - GRUploadPhotoViewDelegate
+
+- (void)selectedWithPhotoArray:(NSArray<NSString *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+    _photoArray = photoArray;
+    _imgExtArray = imgExtArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.uploadPicViewHeight.constant = CGRectGetHeight(parentView.frame);
+        [self updateViewConstraints];
+    });
+}
 
 @end

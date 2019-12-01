@@ -18,8 +18,13 @@
 #import "ZHLZChooseListVC.h"
 #import "ZHLZRoadMaintenancePickerViewVC.h"
 
+#import "GRUploadPhotoView.h"
 
-@interface ZHLZHomeMunicipalProblemDetailVC ()
+@interface ZHLZHomeMunicipalProblemDetailVC () <GRUploadPhotoViewDelegate>
+{
+    NSArray<NSString *> *_photoArray;
+    NSArray<NSString *> *_imgExtArray;
+}
 
 @property (weak, nonatomic) IBOutlet UIButton *orgButton;
 @property (weak, nonatomic) IBOutlet UIButton *areaButton;
@@ -57,6 +62,9 @@
 @property (weak, nonatomic) IBOutlet UIView *supervisorView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *supervisorViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *uploadPicView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *uploadPicViewHeight;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
@@ -108,6 +116,13 @@
 }
 
 - (void)initMunicipalProblemDetailView {
+    _photoArray = @[].mutableCopy;
+    _imgExtArray = @[].mutableCopy;
+    
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
+    
     self.problemClassifyArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     self.municipalProblemSubmitModel = [ZHLZHomeMunicipalProblemSubmitModel new];
@@ -599,7 +614,16 @@
     }];
 }
 
+#pragma mark - GRUploadPhotoViewDelegate
 
-
+- (void)selectedWithPhotoArray:(NSArray<NSString *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+    _photoArray = photoArray;
+    _imgExtArray = imgExtArray;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.uploadPicViewHeight.constant = CGRectGetHeight(parentView.frame);
+        [self updateViewConstraints];
+    });
+}
 
 @end
