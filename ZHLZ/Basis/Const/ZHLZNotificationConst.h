@@ -18,6 +18,10 @@ extern NSString * const LoginNotificationConst;
 extern NSString * const LoadDataNotificationConst;
 // 打开文件
 extern NSString * const OpenDocNotificationConst;
+// 重新获取定位
+extern NSString * const RegetLocationNotificationConst;
+// 刷新当前位置信息定位
+extern NSString * const ReloadCurrentLocationInfoConst;
 
 @end
 

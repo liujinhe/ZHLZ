@@ -16,4 +16,8 @@ NSString * const LoadDataNotificationConst = @"LoadDataNotificationConst";
 
 NSString * const OpenDocNotificationConst =  @"OpenDocNotificationConst";
 
+NSString * const RegetLocationNotificationConst = @"RegetLocationNotificationConst";
+
+NSString * const ReloadCurrentLocationInfoConst = @"ReloadCurrentLocationInfoConst";
+
 @end

@@ -13,6 +13,10 @@
 NSString * const LoginRememberPwdConst = @"LoginRememberPwd";
 
 NSString * const PeopleCheckInDateConst = @"PeopleCheckInDateConst";
+
+NSString * const PeopleCheckInDateOnWorkConst = @"PeopleCheckInDateOnWorkConst";
+
+NSString * const PeopleCheckInDateOffWorkConst = @"PeopleCheckInDateOffWorkConst";
  
 NSString * const CarCheckInDateConst = @"CarCheckInDateConst";
 

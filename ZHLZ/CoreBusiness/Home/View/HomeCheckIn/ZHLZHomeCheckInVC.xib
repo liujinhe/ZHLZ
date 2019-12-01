@@ -14,6 +14,7 @@
                 <outlet property="currentTimeLabel" destination="0tr-pn-sUO" id="mrs-ew-yGT"/>
                 <outlet property="currentTypeLabel" destination="57q-S8-dN6" id="NPj-M3-hhN"/>
                 <outlet property="currentUserNameLabel" destination="kQ5-Q0-iqe" id="ODf-O4-pza"/>
+                <outlet property="regetLocationButton" destination="HOw-ox-pcs" id="MjA-s0-7Ed"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workerInView" destination="jud-Bk-I6y" id="i29-nK-f72"/>
             </connections>
@@ -54,7 +55,7 @@
                         <constraint firstItem="kQ5-Q0-iqe" firstAttribute="centerY" secondItem="JhA-HB-A0y" secondAttribute="centerY" id="wmQ-hu-H3W"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jud-Bk-I6y">
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jud-Bk-I6y">
                     <rect key="frame" x="147" y="264" width="120" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57q-S8-dN6">
@@ -81,11 +82,25 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3Z-fG-Uek">
-                    <rect key="frame" x="10" y="394" width="394" height="0.0"/>
+                    <rect key="frame" x="10" y="384" width="394" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="Unu-0O-WBc"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOw-ox-pcs">
+                    <rect key="frame" x="10" y="384" width="394" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="定位失败，点击重新获取定位">
+                        <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="regetLocationAction" destination="-1" eventType="touchUpInside" id="aSV-VN-Ghw"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -94,9 +109,13 @@
                 <constraint firstItem="JhA-HB-A0y" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="BS9-mu-PCE"/>
                 <constraint firstItem="JhA-HB-A0y" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="Dgz-Jq-bMh"/>
                 <constraint firstItem="jud-Bk-I6y" firstAttribute="top" secondItem="JhA-HB-A0y" secondAttribute="bottom" constant="120" id="DlA-Dl-XfX"/>
+                <constraint firstItem="HOw-ox-pcs" firstAttribute="top" secondItem="N3Z-fG-Uek" secondAttribute="top" id="K9m-FJ-kms"/>
                 <constraint firstItem="JhA-HB-A0y" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="KrD-tZ-A3Q"/>
-                <constraint firstItem="N3Z-fG-Uek" firstAttribute="top" secondItem="jud-Bk-I6y" secondAttribute="bottom" constant="10" id="aqK-Qn-oUW"/>
+                <constraint firstItem="HOw-ox-pcs" firstAttribute="trailing" secondItem="N3Z-fG-Uek" secondAttribute="trailing" id="MkW-qf-hUl"/>
+                <constraint firstItem="HOw-ox-pcs" firstAttribute="bottom" secondItem="N3Z-fG-Uek" secondAttribute="bottom" id="Zka-X0-MuV"/>
+                <constraint firstItem="N3Z-fG-Uek" firstAttribute="top" secondItem="jud-Bk-I6y" secondAttribute="bottom" id="aqK-Qn-oUW"/>
                 <constraint firstItem="N3Z-fG-Uek" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="u3A-jO-uSu"/>
+                <constraint firstItem="HOw-ox-pcs" firstAttribute="leading" secondItem="N3Z-fG-Uek" secondAttribute="leading" id="y6B-Pw-2w9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="132" y="108"/>
