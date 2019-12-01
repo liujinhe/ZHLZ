@@ -27,12 +27,13 @@
     self.backgroundColor = UIColor.whiteColor;
     
     self.openOrCloseSwitch = [UISwitch new];
+    self.openOrCloseSwitch.hidden = YES;
     self.openOrCloseSwitch.on = NO;
     self.openOrCloseSwitch.onTintColor = kThemeColor;
-    [self.openOrCloseSwitch addTarget:self action:@selector(openOrCloseAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.openOrCloseSwitch addTarget:self action:@selector(onOrOffAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.openOrCloseSwitch];
     [self.openOrCloseSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
+        make.top.equalTo(self).offset(5);
         make.right.equalTo(self).offset(-15);
     }];
     
@@ -50,17 +51,21 @@
     [self.searchButton addTarget:self action:@selector(searchAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.searchButton];
     [self.searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.openOrCloseSwitch.mas_top);
         make.left.equalTo(self).offset(10);
         make.right.equalTo(self).offset(-10);
         make.height.offset(30);
-        make.centerY.equalTo(self.openOrCloseSwitch.mas_centerY);
     }];
 }
 
-- (void)openOrCloseAction:(UISwitch *)sender {
-    if (self.openOrCloseBlock) {
-        self.openOrCloseBlock(sender.isOn);
+- (void)onOrOffAction:(UISwitch *)sender {
+    if (self.onOrOffBlock) {
+        self.onOrOffBlock(sender.isOn);
     }
+}
+
+- (void)setIsOnSwitch:(BOOL)isOnSwitch {
+    self.openOrCloseSwitch.on = isOnSwitch;
 }
 
 - (void)searchAction {
@@ -73,6 +78,7 @@
     _isExistRangeSearchSwitch = isExistRangeSearchSwitch;
     
     if (_isExistRangeSearchSwitch) {
+        self.openOrCloseSwitch.hidden = NO;
         CGFloat rightMargin = CGRectGetWidth(self.openOrCloseSwitch.frame) + 10.f + 15.f;
         [self.searchButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-rightMargin);

@@ -18,8 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array))block;
-
+- (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array, NSError *error))block;
 
 - (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block;
 

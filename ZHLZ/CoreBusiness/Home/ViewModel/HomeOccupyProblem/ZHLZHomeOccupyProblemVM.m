@@ -19,7 +19,7 @@
     return homeOccupyProblemVM;
 }
 
-- (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array))block {
+- (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array, NSError *error))block {
     NSDictionary *requestArgument = [model modelToJSONObject];
     [requestArgument setValue:@(pageNo) forKey:@"page"];
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemAPIURLConst withRequestArgument:requestArgument];
@@ -29,9 +29,9 @@
         if (response && response.data) {
             array = [NSArray modelArrayWithClass:[ZHLZHomeOccupyProblemModel class] json:[response.data objectForKey:@"list"]];
         }
-        block(array);
+        block(array, response.error);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
-        block(nil);
+        block(nil, response.error);
     }];
 }
 

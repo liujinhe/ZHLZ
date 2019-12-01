@@ -45,14 +45,15 @@
         @strongify(self);
         [self searchAction];
     };
-    self.searchView.openOrCloseBlock = ^(NSInteger status) {
+    self.searchView.onOrOffBlock = ^(BOOL isOn) {
         @strongify(self);
-        if (status == 1) {
+        if (isOn) {
             self.homeMunicipalProblemSearchModel.isrange = @"1";
-            ZHLZUserModel *userModel = [ZHLZUserModel new];
-            if (userModel) {
-                self.homeMunicipalProblemSearchModel.lng = userModel.longitude;
-                self.homeMunicipalProblemSearchModel.lat = userModel.latitude;
+            
+            NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+            if (coordinate) {
+                self.homeMunicipalProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
+                self.homeMunicipalProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
             }
         } else {
             self.homeMunicipalProblemSearchModel.isrange = nil;
@@ -90,13 +91,18 @@
         self.pageNo = 1;
         [self.tableView.mj_footer resetNoMoreData];
     }
-    self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] loadHomeMunicipalProblemDataWithPageNo:self.pageNo withModel:self.homeMunicipalProblemSearchModel withBlock:^(NSArray<ZHLZHomeMunicipalProblemModel *> * _Nonnull array) {
+    self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] loadHomeMunicipalProblemDataWithPageNo:self.pageNo withModel:self.homeMunicipalProblemSearchModel withBlock:^(NSArray<ZHLZHomeMunicipalProblemModel *> * _Nonnull array, NSError * _Nonnull error) {
         @strongify(self);
         if (self.tableView.mj_header.isRefreshing) {
             [self.tableView.mj_header endRefreshing];
         }
         if (self.tableView.mj_footer.isRefreshing) {
             [self.tableView.mj_footer endRefreshing];
+        }
+        
+        if (error) {
+            self.searchView.isOnSwitch = NO;
+            return;
         }
         
         if (self.pageNo == 1) {

@@ -52,10 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *username;
 
-@property (nonatomic, strong) NSString *longitude;  // 当前经度
-
-@property (nonatomic, strong) NSString *latitude;   // 当前纬度
-
 @end
 
 NS_ASSUME_NONNULL_END

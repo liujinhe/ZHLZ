@@ -16,13 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)loadHomeMunicipalProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeMunicipalProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeMunicipalProblemModel *> *array))block;
+- (NSURLSessionTask *)loadHomeMunicipalProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeMunicipalProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeMunicipalProblemModel *> *array, NSError *error))block;
 
 - (NSURLSessionTask *)loadHomeMunicipalProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeMunicipalProblemModel *municipalProblemModel))block;
 
-
 - (NSURLSessionTask *)submitHomeMunicipalProblemWithSubmitArray:(NSArray *)submitArray andSubmitType:(NSInteger)type withBlock:(dispatch_block_t)block;
-
 
 @end
 

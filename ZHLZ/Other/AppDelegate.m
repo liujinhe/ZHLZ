@@ -67,11 +67,15 @@
                     NSString *district = [placemark.addressDictionary objectForKey:@"SubLocality"];
                     NSString *street = [placemark.addressDictionary objectForKey:@"Street"];
                     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@%@%@%@", province, city, district, street] forKey:CurrentLocationAddressConst];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:ReloadCurrentLocationInfoConst object:nil];
                     
                     // 当前位置坐标
                     CLLocationCoordinate2D coordinate = location.coordinate;
-                    [[NSUserDefaults standardUserDefaults] setObject:@{@"longitude":@(coordinate.longitude), @"latitude":@(coordinate.latitude)} forKey:CurrentLocationCoordinateConst];
+                    NSString *longitude = [NSString stringWithFormat:@"%.6f", coordinate.longitude];
+                    NSString *latitude = [NSString stringWithFormat:@"%.6f", coordinate.latitude];
+                    [[NSUserDefaults standardUserDefaults] setObject:@{@"longitude":longitude, @"latitude":latitude} forKey:CurrentLocationCoordinateConst];
+                    
+                    // 刷新当前位置信息后通知执行其他业务
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ReloadCurrentLocationInfoConst object:nil];
                     return;
                 }
             }

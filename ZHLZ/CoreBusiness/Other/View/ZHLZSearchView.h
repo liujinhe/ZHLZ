@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZSearchView : UIView
 
-@property (nonatomic, copy) void (^openOrCloseBlock)(NSInteger status);
+@property (nonatomic, copy) void (^onOrOffBlock)(BOOL isOn);
+
+@property (nonatomic, assign) BOOL isOnSwitch;
 
 @property (nonatomic, copy) dispatch_block_t searchBlock;
 

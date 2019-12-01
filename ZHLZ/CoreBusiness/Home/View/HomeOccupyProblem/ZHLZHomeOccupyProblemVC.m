@@ -45,14 +45,15 @@
          @strongify(self);
          [self searchAction];
      };
-    self.searchView.openOrCloseBlock = ^(NSInteger status) {
+    self.searchView.onOrOffBlock = ^(BOOL isOn) {
          @strongify(self);
-         if (status == 1) {
+         if (isOn) {
              self.homeOccupyProblemSearchModel.isrange = @"1";
-             ZHLZUserModel *userModel = [ZHLZUserModel new];
-             if (userModel) {
-                 self.homeOccupyProblemSearchModel.lng = userModel.longitude;
-                 self.homeOccupyProblemSearchModel.lat = userModel.latitude;
+             
+             NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+             if (coordinate) {
+                 self.homeOccupyProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
+                 self.homeOccupyProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
              }
          } else {
              self.homeOccupyProblemSearchModel.isrange = nil;
@@ -90,13 +91,18 @@
         self.pageNo = 1;
         [self.tableView.mj_footer resetNoMoreData];
     }
-    self.task = [[ZHLZHomeOccupyProblemVM sharedInstance] loadHomeOccupyProblemDataWithPageNo:self.pageNo withModel:self.homeOccupyProblemSearchModel withBlock:^(NSArray<ZHLZHomeOccupyProblemModel *> * _Nonnull array) {
+    self.task = [[ZHLZHomeOccupyProblemVM sharedInstance] loadHomeOccupyProblemDataWithPageNo:self.pageNo withModel:self.homeOccupyProblemSearchModel withBlock:^(NSArray<ZHLZHomeOccupyProblemModel *> * _Nonnull array, NSError * _Nonnull error) {
         @strongify(self);
         if (self.tableView.mj_header.isRefreshing) {
             [self.tableView.mj_header endRefreshing];
         }
         if (self.tableView.mj_footer.isRefreshing) {
             [self.tableView.mj_footer endRefreshing];
+        }
+        
+        if (error) {
+            self.searchView.isOnSwitch = NO;
+            return;
         }
         
         if (self.pageNo == 1) {

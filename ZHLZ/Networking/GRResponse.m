@@ -17,7 +17,13 @@
         _message = [request.responseObject objectForKey:@"msg"]?:@"";
         _status = [[request.responseObject objectForKey:@"code"] integerValue];
     }
-    _error = request.error;
+    if (request.error) {
+        _error = request.error;
+    }
+    
+    if (_status != 0) {
+        _error = [NSError errorWithDomain:BaseAPIURLConst code:_status userInfo:nil];
+    }
 }
 
 @end
