@@ -20,7 +20,7 @@
 
 @interface ZHLZHomeOccupyProblemDetailVC () <GRUploadPhotoViewDelegate>
 {
-    NSArray<NSString *> *_photoArray;
+    NSArray<NSData *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
 }
 
@@ -417,7 +417,7 @@
 
 #pragma mark - GRUploadPhotoViewDelegate
 
-- (void)selectedWithPhotoArray:(NSArray<NSString *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+- (void)selectedWithPhotoArray:(NSArray<NSData *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
     _photoArray = photoArray;
     _imgExtArray = imgExtArray;
     

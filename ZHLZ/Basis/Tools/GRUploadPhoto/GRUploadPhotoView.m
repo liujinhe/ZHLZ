@@ -213,17 +213,16 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     }
 }
 
-- (NSString *)base64WithImage:(UIImage *)image {
+- (NSData *)dataWithImage:(UIImage *)image {
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     if (imageData && ![imageData isEqual:[NSNull null]]) {
-        return [imageData base64EncodedString];
+        return imageData;
     } else {
         imageData = UIImagePNGRepresentation(image);
         if (imageData && ![imageData isEqual:[NSNull null]]) {
-            return [imageData base64EncodedString];
+            return imageData;
         }
     }
-    
     return nil;
 }
 
@@ -242,16 +241,16 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)showImage {
-    NSMutableArray<NSString *> *photoArray = @[].mutableCopy;
+    NSMutableArray<NSData *> *photoArray = @[].mutableCopy;
     NSMutableArray<NSString *> *imgExtArray = @[].mutableCopy;
     
     if (_selectedPhotos && _selectedPhotos.count > 0) {
         if ([self.delegate respondsToSelector:@selector(selectedWithPhotoArray:withImgExtArray:withParentView:)]) {
             for (UIImage *image in _selectedPhotos) {
-                NSString *img = [self base64WithImage:image];
+                NSData *imgData = [self dataWithImage:image];
                 NSString *imgExt = [self imageExtWithImage:image];
-                if (img && [img isNotBlank] && imgExt && [imgExt isNotBlank]) {
-                    [photoArray addObject:img];
+                if (imgData && imgExt && [imgExt isNotBlank]) {
+                    [photoArray addObject:imgData];
                     [imgExtArray addObject:imgExt];
                 }
             }
