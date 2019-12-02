@@ -82,7 +82,7 @@
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
-    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    self.uploadPicView.backgroundColor = [UIColor clearColor];
     
     self.problemTextView.placeholder = @"请输入问题描述";
     self.markTextView.placeholder = @"请输入备注";
@@ -201,6 +201,12 @@
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
+    
+    if (self.type == 2 && photoURLArray.count == 0) {
+        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+    } else {
+        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    }
 }
 
 - (void)editAction {

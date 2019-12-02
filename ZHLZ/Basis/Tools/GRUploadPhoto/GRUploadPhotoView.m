@@ -80,7 +80,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [self changeViewHeight];
         
         _fullScreenPreviewImageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _fullScreenPreviewImageView.backgroundColor = UIColor.whiteColor;
+        _fullScreenPreviewImageView.backgroundColor = UIColor.clearColor;
         _fullScreenPreviewImageView.contentMode = UIViewContentModeScaleAspectFit;
         _fullScreenPreviewImageView.autoresizesSubviews = YES;
         _fullScreenPreviewImageView.userInteractionEnabled = YES;
@@ -145,7 +145,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
     _collectionView.bounces = NO;
-    _collectionView.backgroundColor = UIColor.whiteColor;
+    _collectionView.backgroundColor = UIColor.clearColor;
     _collectionView.contentInset = UIEdgeInsetsZero;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;

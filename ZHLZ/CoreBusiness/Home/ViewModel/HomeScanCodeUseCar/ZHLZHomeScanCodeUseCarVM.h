@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (NSURLSessionTask *)scanCodeUseCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+- (NSURLSessionTask *)scanCodeUseCarWithParms:(NSDictionary *)parms withBlock:(void(^)(NSInteger status))block;
 
-- (NSURLSessionTask *)scanCodeRepayCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+- (NSURLSessionTask *)scanCodeRepayCarWithParms:(NSDictionary *)parms withBlock:(void(^)(NSInteger status))block;
 
 @end
 

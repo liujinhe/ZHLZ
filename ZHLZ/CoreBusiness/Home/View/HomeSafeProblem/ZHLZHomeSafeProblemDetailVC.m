@@ -148,13 +148,19 @@
     uploadPhotoView.optionType = self.detailType;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
+    
+    if (self.detailType == 2 && photoURLArray.count == 0) {
+        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+    } else {
+        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    }
 }
 
 - (void)initSafeProblemDetailView {
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
-    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    self.uploadPicView.backgroundColor = [UIColor clearColor];
     
     if (self.detailType == 1) {
         self.title = @"新增安全(三防)问题";
