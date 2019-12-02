@@ -16,10 +16,11 @@
 #import "ZHLZSupervisorSubmitModel.h"
 
 #import "GRUploadPhotoView.h"
+#import "ZHLZUploadVM.h"
 
 @interface ZHLZHomeSafeProblemDetailVC () <GRUploadPhotoViewDelegate>
 {
-    NSArray<NSData *> *_photoArray;
+    NSArray<UIImage *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
 }
 
@@ -133,7 +134,20 @@
         self.homeSafeProblemSUbmitModel.belong = homeSafeProblem.belong;
         self.homeSafeProblemSUbmitModel.finddate = homeSafeProblem.finddate;
         self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
+        
+        NSArray *array = [homeSafeProblem.imgurl componentsSeparatedByString:@","];
+        [self addUploadPicActionWithPhotoURLArray:array];
     }];
+}
+
+- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
+                                                                    withViewController:self
+                                                                    withMaxImagesCount:9
+                                                                     withPhotoURLArray:photoURLArray];
+    uploadPhotoView.optionType = self.detailType;
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
 }
 
 - (void)initSafeProblemDetailView {
@@ -145,6 +159,8 @@
     if (self.detailType == 1) {
         self.title = @"新增安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定添加" forState:UIControlStateNormal];
+        
+        [self addUploadPicActionWithPhotoURLArray:nil];
     } else if (self.detailType == 2) {
         self.title = @"查看安全(三防)问题";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
@@ -162,10 +178,6 @@
         
         [self loadHomeSafeFloodPreventionProblemGetMeasures];
     }
-    
-    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
-    uploadPhotoView.delegate = self;
-    [self.uploadPicView addSubview:uploadPhotoView];
     
     self.problemDetailTextView.placeholder = @"请输入问题描述";
     self.problemMarkTextView.placeholder = @"请输入备注";
@@ -298,11 +310,21 @@
         self.homeSafeProblemSUbmitModel.id = self.detailId;
     }
     
-    
-    NSArray *safeProblemSubmitArr = @[self.homeSafeProblemSUbmitModel,self.supervisorSubmitModelArray];
-    
+    if (_photoArray.count > 0) {
+        @weakify(self)
+        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^(NSString * _Nonnull uploadIdStr) {
+            self.homeSafeProblemSUbmitModel.uploadid = uploadIdStr;
+            @strongify(self)
+            [self submitAction];
+        }];
+    } else {
+        [self submitAction];
+    }
+}
+
+- (void)submitAction {
     @weakify(self)
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.detailType andSubmitArray:safeProblemSubmitArr withBlock:^{
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.detailType andSubmitArray:@[self.homeSafeProblemSUbmitModel, self.supervisorSubmitModelArray] withBlock:^{
         @strongify(self)
         if (self.detailType == 1) {
             [GRToast makeText:@"新增成功"];
@@ -424,7 +446,7 @@
 
 #pragma mark - GRUploadPhotoViewDelegate
 
-- (void)selectedWithPhotoArray:(NSArray<NSData *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+- (void)selectedWithPhotoArray:(NSArray<UIImage *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
     _photoArray = photoArray;
     _imgExtArray = imgExtArray;
     

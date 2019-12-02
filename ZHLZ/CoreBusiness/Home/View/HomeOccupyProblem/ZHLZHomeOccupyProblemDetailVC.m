@@ -17,10 +17,11 @@
 #import "ZHLZHomeSafeProblemVM.h"
 
 #import "GRUploadPhotoView.h"
+#import "ZHLZUploadVM.h"
 
 @interface ZHLZHomeOccupyProblemDetailVC () <GRUploadPhotoViewDelegate>
 {
-    NSArray<NSData *> *_photoArray;
+    NSArray<UIImage *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
 }
 
@@ -83,10 +84,6 @@
     
     self.uploadPicViewHeight.constant = kAutoFitReal(105);
     
-    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
-    uploadPhotoView.delegate = self;
-    [self.uploadPicView addSubview:uploadPhotoView];
-    
     self.problemTextView.placeholder = @"请输入问题描述";
     self.markTextView.placeholder = @"请输入备注";
     
@@ -108,6 +105,8 @@
     if (self.type == 1) {
         self.navTitle = @"新增占道施工";
         [self.submitButton setTitle:@"确认保存" forState:UIControlStateNormal];
+        
+        [self addUploadPicActionWithPhotoURLArray:nil];
     }
     
     else if (self.type == 2) {
@@ -188,9 +187,20 @@
             self.homeOccupyProblemSubmitModel.prodescription = occupyProblemDetailModel.prodescription;
             self.homeOccupyProblemSubmitModel.responsibleUnit = occupyProblemDetailModel.responsibleUnit;
         }
-
         
+        NSArray *array = [occupyProblemDetailModel.imgurl componentsSeparatedByString:@","];
+        [self addUploadPicActionWithPhotoURLArray:array];
     }];
+}
+
+- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
+                                                                    withViewController:self
+                                                                    withMaxImagesCount:9
+                                                                     withPhotoURLArray:photoURLArray];
+    uploadPhotoView.optionType = self.type;
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
 }
 
 - (void)editAction {
@@ -285,7 +295,6 @@
 
 ///修改提交
 - (IBAction)submitAction:(ZHLZButton *)sender {
-    
     self.homeOccupyProblemSubmitModel.prodescription = self.problemTextView.text;
     self.homeOccupyProblemSubmitModel.responsibleUnit = self.markTextView.text;
     self.homeOccupyProblemSubmitModel.uploadid = @"";
@@ -295,8 +304,19 @@
         self.homeOccupyProblemSubmitModel.proid  = @"";
     }
     
-    
-    
+    if (_photoArray.count > 0) {
+        @weakify(self)
+        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^(NSString * _Nonnull uploadIdStr) {
+            self.homeOccupyProblemSubmitModel.uploadid = uploadIdStr;
+            @strongify(self)
+            [self submitAction];
+        }];
+    } else {
+        [self submitAction];
+    }
+}
+
+- (void)submitAction {
     @weakify(self)
     self.task = [[ZHLZHomeOccupyProblemVM sharedInstance]submitHomeSafeProblemWithSubmitArray:@[self.homeOccupyProblemSubmitModel , self.supervisorSubmitModelArray] andSubmitType:self.type withBlock:^{
         @strongify(self)
@@ -417,7 +437,7 @@
 
 #pragma mark - GRUploadPhotoViewDelegate
 
-- (void)selectedWithPhotoArray:(NSArray<NSData *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+- (void)selectedWithPhotoArray:(NSArray<UIImage *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
     _photoArray = photoArray;
     _imgExtArray = imgExtArray;
     

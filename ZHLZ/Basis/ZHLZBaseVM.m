@@ -15,6 +15,8 @@
     NSString *_url;
     GRRequestMethod _method;
     id _requestParam;
+    UIImage *_image;
+    NSString *_imageName;
 }
 
 - (NSString *)baseUrl {
@@ -31,6 +33,19 @@
 
 - (id)requestArgument {
     return _requestParam;
+}
+
+- (AFConstructingBlock)constructingBodyBlock {
+    if (self->_image) {
+        return ^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(self->_image, 0.9)
+                                        name:@"file"
+                                    fileName:[self->_imageName stringByAppendingString:@".png"]
+                                    mimeType:@"image/png"];
+        };
+    } else {
+        return nil;
+    }
 }
 
 - (NSDictionary<NSString *, NSString *> *)requestHeaderFieldValueDictionary {
@@ -58,6 +73,21 @@
     if (self) {
         _url = requestUrl;
         _method = requestMethod;
+        _requestParam = requestArgument;
+    }
+    return self;
+}
+
+- (instancetype)initWithRequestUrl:(NSString *)requestUrl
+                   withUploadImage:(UIImage *)uploadImage
+               withUploadImageName:(NSString *)uploadImageName
+               withRequestArgument:(id)requestArgument {
+    self = [self init];
+    if (self) {
+        _url = requestUrl;
+        _method = GRRequestMethodPOST;
+        _image = uploadImage;
+        _imageName = uploadImageName;
         _requestParam = requestArgument;
     }
     return self;

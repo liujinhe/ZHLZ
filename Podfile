@@ -23,9 +23,8 @@ target 'ZHLZ' do
   pod 'ZWPlaceHolder'
   pod 'TZImagePickerController'
   
-  pod 'AMapSearch'
+  pod 'AMap3DMap'
   pod 'AMapLocation'
-  pod 'AMapNavi'
 
   target 'ZHLZTests' do
     inherit! :search_paths

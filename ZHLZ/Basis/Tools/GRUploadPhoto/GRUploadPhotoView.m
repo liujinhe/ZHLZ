@@ -24,6 +24,8 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 @interface GRUploadPhotoView () <TZImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     UIViewController *_vc;
+    NSArray *_photoURLArray;
+    NSMutableArray<NSDictionary *> *_photosArray;
     NSMutableArray<UIImage *> *_selectedPhotos;
     NSMutableArray *_selectedAssets;
     NSInteger _maxImagesCount;
@@ -48,15 +50,24 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 #pragma mark - lifecycle
 
-- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount {
+- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount withPhotoURLArray:(nonnull NSArray *)photoURLArray {
     self = [super init];
     if (self) {
         _vc = vc;
         
         _maxImagesCount = maxImagesCount;
         
+        _photoURLArray = photoURLArray;
+        _photosArray = @[].mutableCopy;
+        
         _selectedPhotos = @[].mutableCopy;
         _selectedAssets = @[].mutableCopy;
+        
+        if (_photoURLArray && _photoURLArray.count > 0) {
+            for (NSString *photoURL in _photoURLArray) {
+                [self downloadAction:photoURL];
+            }
+        }
         
         _width = kScreenWidth - CGRectGetMinX(parentView.frame) * 2;
         
@@ -76,6 +87,45 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [_fullScreenPreviewImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction:)]];
     }
     return self;
+}
+
+- (void)downloadAction:(NSString *)photoURL {
+    @weakify(self);
+    NSString *url = [BaseAPIURLConst stringByAppendingString:photoURL];
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        @strongify(self);
+        if (error) {
+            [self->_photosArray addObject:@{url: error}];
+        } else {
+            [self->_photosArray addObject:@{url: image}];
+        }
+        if (self->_photosArray.count == self->_photoURLArray.count) {
+            [self allDownloaderCompleted];
+        }
+    }];
+}
+
+- (void)allDownloaderCompleted {
+    @weakify(self);
+    for (NSString *url in self->_photoURLArray) {
+        for (NSDictionary *dic in self->_photosArray) {
+            if ([[BaseAPIURLConst stringByAppendingString:url] isEqualToString:[dic.allKeys firstObject]]) {
+                id value = [dic.allValues firstObject];
+                if ([value isKindOfClass:[UIImage class]]) {
+                    [[TZImageManager manager] savePhotoWithImage:(UIImage *)value meta:nil location:self.location completion:^(PHAsset *asset, NSError *error) {
+                        @strongify(self);
+                        if (error) {
+                            NSLog(@"图片保存失败 %@", error);
+                        } else {
+                            TZAssetModel *assetModel = [[TZImageManager manager] createModelWithAsset:asset];
+                            [self refreshCollectionViewWithAddedAsset:assetModel.asset image:(UIImage *)value];
+                        }
+                    }];
+                }
+                break;
+            }
+        }
+    }
 }
 
 #pragma mark - init
@@ -213,19 +263,6 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     }
 }
 
-- (NSData *)dataWithImage:(UIImage *)image {
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-    if (imageData && ![imageData isEqual:[NSNull null]]) {
-        return imageData;
-    } else {
-        imageData = UIImagePNGRepresentation(image);
-        if (imageData && ![imageData isEqual:[NSNull null]]) {
-            return imageData;
-        }
-    }
-    return nil;
-}
-
 - (NSString *)imageExtWithImage:(UIImage *)image {
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     if (imageData && ![imageData isEqual:[NSNull null]]) {
@@ -241,23 +278,19 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)showImage {
-    NSMutableArray<NSData *> *photoArray = @[].mutableCopy;
     NSMutableArray<NSString *> *imgExtArray = @[].mutableCopy;
-    
     if (_selectedPhotos && _selectedPhotos.count > 0) {
         if ([self.delegate respondsToSelector:@selector(selectedWithPhotoArray:withImgExtArray:withParentView:)]) {
             for (UIImage *image in _selectedPhotos) {
-                NSData *imgData = [self dataWithImage:image];
                 NSString *imgExt = [self imageExtWithImage:image];
-                if (imgData && imgExt && [imgExt isNotBlank]) {
-                    [photoArray addObject:imgData];
+                if (imgExt && [imgExt isNotBlank]) {
                     [imgExtArray addObject:imgExt];
                 }
             }
-            [self.delegate selectedWithPhotoArray:photoArray withImgExtArray:imgExtArray withParentView:self];
+            [self.delegate selectedWithPhotoArray:_selectedPhotos withImgExtArray:imgExtArray withParentView:self];
         }
     } else {
-        [self.delegate selectedWithPhotoArray:photoArray withImgExtArray:imgExtArray withParentView:self];
+        [self.delegate selectedWithPhotoArray:_selectedPhotos withImgExtArray:imgExtArray withParentView:self];
     }
     
     [self changeViewHeight];
@@ -327,7 +360,9 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_selectedPhotos.count >= _maxImagesCount) {
+    if (self.optionType == 2) {
+        return _selectedPhotos.count;
+    } else if (_selectedPhotos.count >= _maxImagesCount) {
         return _selectedPhotos.count;
     }
     return _selectedPhotos.count + 1;
@@ -335,7 +370,12 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GRUploadPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Cell forIndexPath:indexPath];
-    if (indexPath.item == _selectedPhotos.count) {
+    if (self.optionType == 2) {
+        cell.imageView.image = _selectedPhotos[indexPath.item];
+        cell.asset = _selectedAssets[indexPath.item];
+        cell.deleteBtn.hidden = YES;
+        [cell changeBorder];
+    } else if (indexPath.item == _selectedPhotos.count) {
         cell.imageView.image = [UIImage imageNamed:@"icon_upload_pics"];
         cell.deleteBtn.hidden = YES;
         [cell changeBorder];
@@ -354,7 +394,9 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     if (self.endEditingBlock) {
         self.endEditingBlock();
     }
-    if (indexPath.item == _selectedPhotos.count) {
+    if (self.optionType == 2) {
+        [self previewPhotoAction:indexPath.item];
+    } else if (indexPath.item == _selectedPhotos.count) {
         [self uploadPhotoAction];
     } else {
         [self previewPhotoAction:indexPath.item];

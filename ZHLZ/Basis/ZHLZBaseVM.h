@@ -8,6 +8,8 @@
 
 #import "GRRequest.h"
 
+#import <UIKit/UIKit.h>
+
 #import "ZHLZAPIURLConst.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -33,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithRequestUrl:(NSString *)requestUrl
                  withRequestMethod:(GRRequestMethod)requestMethod
                withRequestArgument:(nullable id)requestArgument;
+
+- (instancetype)initWithRequestUrl:(NSString *)requestUrl
+                   withUploadImage:(UIImage *)uploadImage
+               withUploadImageName:(NSString *)uploadImageName
+               withRequestArgument:(id)requestArgument;
 
 - (NSURLSessionTask *)requestCompletionWithSuccess:(GRResponseCompletionBlock)success
                                        withFailure:(GRResponseCompletionBlock)failure;

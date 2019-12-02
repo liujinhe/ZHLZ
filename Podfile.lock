@@ -19,11 +19,6 @@ PODS:
   - AMapFoundation (1.6.0)
   - AMapLocation (2.6.3):
     - AMapFoundation (~> 1.4)
-  - AMapNavi (7.1.0):
-    - AMap3DMap (~> 7.0)
-    - AMapFoundation (~> 1.5)
-  - AMapSearch (7.1.0):
-    - AMapFoundation (~> 1.4)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
   - IQKeyboardManager (6.5.3)
@@ -44,9 +39,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
+  - AMap3DMap
   - AMapLocation
-  - AMapNavi
-  - AMapSearch
   - DZNEmptyDataSet (~> 1.8.1)
   - FDFullscreenPopGesture (~> 1.1)
   - IQKeyboardManager (~> 6.5.0)
@@ -66,8 +60,6 @@ SPEC REPOS:
     - AMap3DMap
     - AMapFoundation
     - AMapLocation
-    - AMapNavi
-    - AMapSearch
     - DZNEmptyDataSet
     - FDFullscreenPopGesture
     - IQKeyboardManager
@@ -86,8 +78,6 @@ SPEC CHECKSUMS:
   AMap3DMap: ef26e2fb120ae9f1635b4b26b28df6d1379a05f0
   AMapFoundation: bc2f6e077b9279942734ba55f9624222fcf42848
   AMapLocation: dc2c4fde95d72087d73934338160fadc72104bb7
-  AMapNavi: 28a5c56377342428a7381ac6abab286ff33c6251
-  AMapSearch: 6bd6d361c5eb00110e0bffa4acf88b7bb9f7e059
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
@@ -101,6 +91,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: ae7d450706f3d8094e4b68433f48989a3c926a0a
+PODFILE CHECKSUM: 8da41048f20b6a647b992a29a7f3c773903861c8
 
 COCOAPODS: 1.8.4

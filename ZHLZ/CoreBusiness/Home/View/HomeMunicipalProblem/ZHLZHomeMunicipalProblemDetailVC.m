@@ -19,10 +19,11 @@
 #import "ZHLZRoadMaintenancePickerViewVC.h"
 
 #import "GRUploadPhotoView.h"
+#import "ZHLZUploadVM.h"
 
 @interface ZHLZHomeMunicipalProblemDetailVC () <GRUploadPhotoViewDelegate>
 {
-    NSArray<NSData *> *_photoArray;
+    NSArray<UIImage *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
 }
 
@@ -121,10 +122,6 @@
     
     self.uploadPicViewHeight.constant = kAutoFitReal(105);
     
-    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
-    uploadPhotoView.delegate = self;
-    [self.uploadPicView addSubview:uploadPhotoView];
-    
     self.problemClassifyArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     self.municipalProblemSubmitModel = [ZHLZHomeMunicipalProblemSubmitModel new];
@@ -144,6 +141,7 @@
         self.navTitle = @"新增市政设施";
         [self.submitButton setTitle:@"确认新增" forState:UIControlStateNormal];
         
+        [self addUploadPicActionWithPhotoURLArray:nil];
     }
     
     else if (self.type == 2) {
@@ -238,7 +236,19 @@
             self.municipalProblemSubmitModel.ddssjtms = municipalProblemModel.ddssjtms;
         }
         
+        NSArray *array = [municipalProblemModel.imgurl componentsSeparatedByString:@","];
+        [self addUploadPicActionWithPhotoURLArray:array];
     }];
+}
+
+- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
+                                                                    withViewController:self
+                                                                    withMaxImagesCount:9
+                                                                     withPhotoURLArray:photoURLArray];
+    uploadPhotoView.optionType = self.type;
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
 }
 
 - (void)loadHomeSafeFloodPreventionProblemGetMeasures {
@@ -427,7 +437,19 @@
         self.municipalProblemSubmitModel.ddssjtms = [self setddssjtms];
     }
     
-    
+    if (_photoArray.count > 0) {
+        @weakify(self)
+        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^(NSString * _Nonnull uploadIdStr) {
+            self.municipalProblemSubmitModel.uploadid = uploadIdStr;
+            @strongify(self)
+            [self submitAction];
+        }];
+    } else {
+        [self submitAction];
+    }
+}
+
+- (void)submitAction {
     @weakify(self)
     self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] submitHomeMunicipalProblemWithSubmitArray:@[self.municipalProblemSubmitModel , self.supervisorSubmitModelArray] andSubmitType:self.type withBlock:^{
         @strongify(self)
@@ -438,7 +460,6 @@
         }
         [self.navigationController popViewControllerAnimated:YES];
     }];
-    
 }
 
 - (NSString *)setddssjtms {
@@ -618,7 +639,7 @@
 
 #pragma mark - GRUploadPhotoViewDelegate
 
-- (void)selectedWithPhotoArray:(NSArray<NSData *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+- (void)selectedWithPhotoArray:(NSArray<UIImage *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
     _photoArray = photoArray;
     _imgExtArray = imgExtArray;
     

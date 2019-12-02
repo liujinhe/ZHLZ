@@ -17,7 +17,7 @@
 
 @interface ZHLZHomeSafeDetailVC () <GRUploadPhotoViewDelegate>
 {
-    NSArray<NSData *> *_photoArray;
+    NSArray<UIImage *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
 }
 
@@ -66,7 +66,7 @@
         
         self.locationTextFile.text = self.safeDetailModel.currentPlace;
         [self.dutyUnitButton setTitle:self.safeDetailModel.unitName forState:UIControlStateNormal];
-       
+        
         self.problemTextView.text = self.safeDetailModel.prodescription;
         self.lookHistoryTextView.text = self.safeDetailModel.workRecord;
         self.workTypeTextView.text = self.safeDetailModel.workMeasures;
@@ -83,7 +83,19 @@
             self.safeSubmitModel.id = self.safeDetailModel.objectID;
         }
         
+        NSArray *array = [self.safeDetailModel.imgurl componentsSeparatedByString:@","];
+        [self addUploadPicActionWithPhotoURLArray:array];
     }];
+}
+
+- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
+                                                                    withViewController:self
+                                                                    withMaxImagesCount:9
+                                                                     withPhotoURLArray:photoURLArray];
+    uploadPhotoView.optionType = self.type;
+    uploadPhotoView.delegate = self;
+    [self.uploadPicView addSubview:uploadPhotoView];
 }
 
 - (void)editAction {
@@ -102,6 +114,8 @@
     if (self.type == 1) {
         self.title = @"新增安全(三防)台账";
         [self.submitButton setTitle:@"确认添加" forState:UIControlStateNormal];
+        
+        [self addUploadPicActionWithPhotoURLArray:nil];
     } else if (self.type == 2){
         self.title = @"查看安全(三防)台账";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
@@ -117,10 +131,6 @@
         [self.submitButton setTitle:@"确认修改" forState:UIControlStateNormal];
         [self loadDetailData];
     }
-    
-    GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView withViewController:self withMaxImagesCount:9];
-    uploadPhotoView.delegate = self;
-    [self.uploadPicView addSubview:uploadPhotoView];
     
     self.problemTextView.placeholder = @"请输入问题描述";
     self.lookHistoryTextView.placeholder = @"请输入责任单位采取的工作措施";
@@ -176,56 +186,56 @@
 }
 
 - (IBAction)SubmitAction:(UIButton *)sender {
-    
     self.safeSubmitModel.currentPlace = self.locationTextFile.text;
     self.safeSubmitModel.prodescription = self.problemTextView.text;
     self.safeSubmitModel.workRecord = self.lookHistoryTextView.text;
     self.safeSubmitModel.photoNumber = self.photoNumTextFile.text;
     self.safeSubmitModel.workMeasures = self.workTypeTextView.text;
     
-
-//    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
-//        [GRToast makeText:@"请输入所在位置"];
-//        return;
-//    }
-//    if (![self.safeSubmitModel.unitId isNotBlank]) {
-//        [GRToast makeText:@"请选择责任单位"];
-//        return;
-//    }
-//    if (![self.safeSubmitModel.prodescription isNotBlank]) {
-//        [GRToast makeText:@"请输入问题描述"];
-//        return;
-//    }
-//    if (![self.safeSubmitModel.workRecord isNotBlank]) {
-//        [GRToast makeText:@"请输入巡查监管记录"];
-//        return;
-//    }
-//    if (![self.safeSubmitModel.workMeasures isNotBlank]) {
-//        [GRToast makeText:@"请输入工作措施"];
-//        return;
-//    }
+    //    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
+    //        [GRToast makeText:@"请输入所在位置"];
+    //        return;
+    //    }
+    //    if (![self.safeSubmitModel.unitId isNotBlank]) {
+    //        [GRToast makeText:@"请选择责任单位"];
+    //        return;
+    //    }
+    //    if (![self.safeSubmitModel.prodescription isNotBlank]) {
+    //        [GRToast makeText:@"请输入问题描述"];
+    //        return;
+    //    }
+    //    if (![self.safeSubmitModel.workRecord isNotBlank]) {
+    //        [GRToast makeText:@"请输入巡查监管记录"];
+    //        return;
+    //    }
+    //    if (![self.safeSubmitModel.workMeasures isNotBlank]) {
+    //        [GRToast makeText:@"请输入工作措施"];
+    //        return;
+    //    }
     
     if (_photoArray.count > 0) {
-        
-        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^{
-            
+        @weakify(self)
+        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^(NSString * _Nonnull uploadIdStr) {
+            self.safeSubmitModel.uploadId = uploadIdStr;
+            @strongify(self)
+            [self submitAction];
         }];
     } else {
-        
+        [self submitAction];
     }
-    
-    
-//    @weakify(self)
-//    self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
-//        @strongify(self)
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-    
+}
+
+- (void)submitAction {
+    @weakify(self)
+    self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
+        @strongify(self)
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark - GRUploadPhotoViewDelegate
 
-- (void)selectedWithPhotoArray:(NSArray<NSData *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
+- (void)selectedWithPhotoArray:(NSArray<UIImage *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView {
     _photoArray = photoArray;
     _imgExtArray = imgExtArray;
     
