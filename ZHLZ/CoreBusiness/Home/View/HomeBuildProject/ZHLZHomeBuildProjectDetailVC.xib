@@ -20,7 +20,6 @@
                 <outlet property="licenceEndButton" destination="a2W-oK-Xo6" id="yGb-Zg-Pg6"/>
                 <outlet property="licenceNumTextFile" destination="64E-r7-N5S" id="Ba1-S4-UfZ"/>
                 <outlet property="licenceStartButton" destination="52L-Ts-rYL" id="9Ef-nH-ToB"/>
-                <outlet property="locationLabel" destination="vfQ-qe-cV6" id="wFJ-g3-ti9"/>
                 <outlet property="locationXLabel" destination="djT-o9-hnD" id="T3J-5f-T24"/>
                 <outlet property="locationYLabel" destination="oqt-us-CmH" id="Ocy-sQ-WAF"/>
                 <outlet property="projectLocationTextFile" destination="8gO-Yj-lHP" id="ros-1t-EFy"/>
@@ -645,7 +644,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Baj-EV-gzG">
-                            <rect key="frame" x="10" y="1000" width="394" height="82"/>
+                            <rect key="frame" x="10" y="1000" width="394" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djT-o9-hnD">
                                     <rect key="frame" x="10" y="10" width="374" height="14"/>
@@ -657,18 +656,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="纬度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqt-us-CmH">
-                                    <rect key="frame" x="10" y="34" width="374" height="14"/>
+                                    <rect key="frame" x="10" y="36" width="374" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="jdY-Ut-Stg"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在位置：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfQ-qe-cV6">
-                                    <rect key="frame" x="10" y="58" width="374" height="14"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="14" id="4qx-eh-WD3"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -678,15 +668,12 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="oqt-us-CmH" firstAttribute="leading" secondItem="Baj-EV-gzG" secondAttribute="leading" constant="10" id="5D3-8r-t6u"/>
-                                <constraint firstItem="vfQ-qe-cV6" firstAttribute="leading" secondItem="Baj-EV-gzG" secondAttribute="leading" constant="10" id="7fA-xo-cKB"/>
                                 <constraint firstAttribute="trailing" secondItem="oqt-us-CmH" secondAttribute="trailing" constant="10" id="9hH-QT-lbz"/>
                                 <constraint firstItem="djT-o9-hnD" firstAttribute="top" secondItem="Baj-EV-gzG" secondAttribute="top" constant="10" id="RQ6-9O-FaM"/>
-                                <constraint firstAttribute="height" constant="82" id="aXx-Ng-icy"/>
-                                <constraint firstAttribute="trailing" secondItem="vfQ-qe-cV6" secondAttribute="trailing" constant="10" id="ces-zW-TLF"/>
-                                <constraint firstItem="vfQ-qe-cV6" firstAttribute="top" secondItem="oqt-us-CmH" secondAttribute="bottom" constant="10" id="dRQ-VY-L22"/>
+                                <constraint firstAttribute="height" constant="60" id="aXx-Ng-icy"/>
+                                <constraint firstAttribute="bottom" secondItem="oqt-us-CmH" secondAttribute="bottom" constant="10" id="bzI-Td-LsP"/>
                                 <constraint firstItem="djT-o9-hnD" firstAttribute="leading" secondItem="Baj-EV-gzG" secondAttribute="leading" constant="10" id="kOe-9n-bRD"/>
                                 <constraint firstAttribute="trailing" secondItem="djT-o9-hnD" secondAttribute="trailing" constant="10" id="sS0-VA-IQr"/>
-                                <constraint firstItem="oqt-us-CmH" firstAttribute="top" secondItem="djT-o9-hnD" secondAttribute="bottom" constant="10" id="yzp-Og-53h"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghQ-OC-eCg">
@@ -704,7 +691,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4E5-hN-L6t" customClass="ZHLZTextView">
-                            <rect key="frame" x="10" y="1092" width="394" height="120"/>
+                            <rect key="frame" x="10" y="1070" width="394" height="120"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="120" id="ScS-Ox-d1K"/>
@@ -714,7 +701,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mM6-Bh-llg" customClass="ZHLZButton">
-                            <rect key="frame" x="10" y="1252" width="394" height="50"/>
+                            <rect key="frame" x="10" y="1230" width="394" height="50"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="eKc-9p-OX3"/>

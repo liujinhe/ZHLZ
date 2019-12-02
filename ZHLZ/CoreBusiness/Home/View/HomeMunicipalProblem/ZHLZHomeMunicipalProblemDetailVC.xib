@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,6 @@
                 <outlet property="dutyAreaButton" destination="UKD-Tv-RL5" id="iYf-mb-ged"/>
                 <outlet property="dutyUnitButton" destination="3eK-n5-gTL" id="NXm-we-3at"/>
                 <outlet property="fineMoneyTextFule" destination="GDQ-vr-OUx" id="fON-Y3-Fh2"/>
-                <outlet property="locationString" destination="phj-56-2oV" id="cXl-F4-eLC"/>
                 <outlet property="locationTextView" destination="JKD-FL-UOo" id="zyM-KJ-1jN"/>
                 <outlet property="locationX" destination="7kL-Hr-poJ" id="9GZ-it-bKj"/>
                 <outlet property="locationY" destination="poS-3L-qf9" id="Z2c-Jt-WZJ"/>
@@ -633,10 +632,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffe-di-4aP">
-                            <rect key="frame" x="10" y="1415" width="394" height="82"/>
+                            <rect key="frame" x="10" y="1415" width="394" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kL-Hr-poJ">
-                                    <rect key="frame" x="10" y="10" width="71.5" height="14"/>
+                                    <rect key="frame" x="10" y="10" width="43" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="fDt-ie-i7C"/>
                                     </constraints>
@@ -645,18 +644,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="纬度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poS-3L-qf9">
-                                    <rect key="frame" x="10" y="34" width="71.5" height="14"/>
+                                    <rect key="frame" x="10" y="36" width="43" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="Ti4-cu-l7j"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在位置：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phj-56-2oV">
-                                    <rect key="frame" x="10" y="58" width="71.5" height="14"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="14" id="Cjo-fS-Kbv"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -665,19 +655,16 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstItem="7kL-Hr-poJ" firstAttribute="trailing" secondItem="phj-56-2oV" secondAttribute="trailing" id="AaS-dV-nOK"/>
                                 <constraint firstItem="7kL-Hr-poJ" firstAttribute="leading" secondItem="Ffe-di-4aP" secondAttribute="leading" constant="10" id="I0j-Or-lny"/>
-                                <constraint firstItem="poS-3L-qf9" firstAttribute="top" secondItem="7kL-Hr-poJ" secondAttribute="bottom" constant="10" id="Ma1-do-ldQ"/>
+                                <constraint firstAttribute="bottom" secondItem="poS-3L-qf9" secondAttribute="bottom" constant="10" id="OUe-EG-rMX"/>
                                 <constraint firstItem="7kL-Hr-poJ" firstAttribute="leading" secondItem="poS-3L-qf9" secondAttribute="leading" id="PMX-Pg-Kmt"/>
-                                <constraint firstItem="7kL-Hr-poJ" firstAttribute="leading" secondItem="phj-56-2oV" secondAttribute="leading" id="SNY-Nj-62B"/>
-                                <constraint firstAttribute="height" constant="82" id="Tqy-Fw-TXQ"/>
+                                <constraint firstAttribute="height" constant="60" id="Tqy-Fw-TXQ"/>
                                 <constraint firstItem="7kL-Hr-poJ" firstAttribute="top" secondItem="Ffe-di-4aP" secondAttribute="top" constant="10" id="Vvz-Ee-pHi"/>
                                 <constraint firstItem="7kL-Hr-poJ" firstAttribute="trailing" secondItem="poS-3L-qf9" secondAttribute="trailing" id="acR-Ti-pmZ"/>
-                                <constraint firstItem="phj-56-2oV" firstAttribute="top" secondItem="poS-3L-qf9" secondAttribute="bottom" constant="10" id="epC-bc-g0m"/>
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JKD-FL-UOo" customClass="ZHLZTextView">
-                            <rect key="frame" x="10" y="1537" width="394" height="100"/>
+                            <rect key="frame" x="10" y="1515" width="394" height="100"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="uG5-Pf-AM8"/>
@@ -687,7 +674,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="buC-z5-o0H" customClass="ZHLZTextView">
-                            <rect key="frame" x="10" y="1647" width="394" height="100"/>
+                            <rect key="frame" x="10" y="1625" width="394" height="100"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="NQF-FL-24i"/>
@@ -697,7 +684,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Lc-KT-akj" customClass="ZHLZButton">
-                            <rect key="frame" x="10" y="1797" width="394" height="50"/>
+                            <rect key="frame" x="10" y="1775" width="394" height="50"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="WGm-zE-ciZ"/>
@@ -723,7 +710,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Lh-qE-13k">
-                            <rect key="frame" x="10" y="1507" width="394" height="30"/>
+                            <rect key="frame" x="10" y="1485" width="394" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlJ-uH-GCp">
                                     <rect key="frame" x="0.0" y="4.5" width="8" height="21"/>

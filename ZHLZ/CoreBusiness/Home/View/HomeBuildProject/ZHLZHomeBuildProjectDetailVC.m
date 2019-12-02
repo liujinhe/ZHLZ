@@ -45,7 +45,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *locationXLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationYLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet ZHLZTextView *remarkTextView;
 
 
@@ -103,6 +102,13 @@
     if (self.detailType == 1 || self.detailType == 3) {
         [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
         self.projectSubmitModel.bid = [ZHLZUserManager sharedInstance].user.orgId;
+        
+        NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+        
+        if (coordinate) {
+            self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",[coordinate objectForKey:@"longitude"]];
+            self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",[coordinate objectForKey:@"latitude"]];
+        }
     }
 }
 
@@ -233,9 +239,10 @@
             [self.emphasisProjectButton setTitle:@"非重点 " forState:UIControlStateNormal];
         }
         
-        self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",homeBuildProjectModel.coordinatesX];
-        self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",homeBuildProjectModel.coordinatesY];
-        self.locationLabel.text = [NSString stringWithFormat:@"当前位置：%@",homeBuildProjectModel.position];
+        if (self.detailType == 2) {
+            self.locationXLabel.text = [NSString stringWithFormat:@"经度：%@",homeBuildProjectModel.coordinatesX];
+            self.locationYLabel.text = [NSString stringWithFormat:@"纬度：%@",homeBuildProjectModel.coordinatesY];
+        }
         
         self.remarkTextView.text = homeBuildProjectModel.remark;
         
@@ -455,8 +462,12 @@
     self.projectSubmitModel.area = self.acreageTextFile.text;
     self.projectSubmitModel.licenseId = self.licenceNumTextFile.text;
     self.projectSubmitModel.projectno = self.projectNumTextFile.text;
-    self.projectSubmitModel.coordinatesX = @"113";
-    self.projectSubmitModel.coordinatesY = @"23";
+    
+    NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+    if (coordinate) {
+        self.projectSubmitModel.coordinatesX = [coordinate objectForKey:@"longitude"];
+        self.projectSubmitModel.coordinatesY = [coordinate objectForKey:@"latitude"];
+    }
     self.projectSubmitModel.remark = self.remarkTextView.text;
     
     @weakify(self)

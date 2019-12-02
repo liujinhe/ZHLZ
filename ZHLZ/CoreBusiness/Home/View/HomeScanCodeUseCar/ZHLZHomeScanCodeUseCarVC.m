@@ -39,17 +39,24 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCurrentLocationInfoAction) name:ReloadCurrentLocationInfoConst object:nil];
     
-    [self scanCodeUseCarView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self scanCodeUseCarView];
 }
 
 -(void)userCarAction:(id)tap{
     ZHLZHomeRichScanVC *homeRichScanVC = [[ZHLZHomeRichScanVC alloc] init];
-    homeRichScanVC.scanType = 1;
+    NSString *carCheckInStr = [[NSUserDefaults standardUserDefaults] objectForKey:CarCheckInDateConst];
+    if ([carCheckInStr isNotBlank]) {
+        homeRichScanVC.scanType = 2;
+    } else {
+        homeRichScanVC.scanType = 1;
+    }
+    
     [self.navigationController pushViewController:homeRichScanVC animated:YES];
 }
 
@@ -73,6 +80,7 @@
         self.carUserStatusLabel.text = @"立即还车";
         
     } else {
+        self.userCardLabel.text = [NSString stringWithFormat:@"当前用车：无"];
         self.carUserStatusLabel.text = @"立即用车";
     }
     

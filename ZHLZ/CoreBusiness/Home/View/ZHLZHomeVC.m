@@ -395,12 +395,14 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     } else if (indexPath.section == 3) { // 最新消息
         if (_showLatestMessageType == 1) { // 市政设施问题
             ZHLZHomeMunicipalProblemDetailVC *homeMunicipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
+            homeMunicipalProblemDetailVC.type = 2;
             homeMunicipalProblemDetailVC.detailId = self.homeMunicipalFacilityArray[indexPath.row].objectID;
             [self.navigationController pushViewController:homeMunicipalProblemDetailVC
                                                  animated:YES];
         } else {
             ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
-            homeOccupyProblemDetailVC.detailId = self.homeRoadConstructionArray[indexPath.row].objectID;
+            homeOccupyProblemDetailVC.type = 2;
+            homeOccupyProblemDetailVC.detailId = self.homeRoadConstructionArray[indexPath.row].proid;
             [self.navigationController pushViewController:homeOccupyProblemDetailVC
                                                  animated:YES];
         }

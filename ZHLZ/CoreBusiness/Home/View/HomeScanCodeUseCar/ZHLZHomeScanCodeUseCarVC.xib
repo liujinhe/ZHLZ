@@ -103,8 +103,8 @@
                         <constraint firstItem="IsB-SJ-UsD" firstAttribute="centerX" secondItem="qag-Vh-oO3" secondAttribute="centerX" id="foA-W4-nXJ"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前位置：广州市黄埔区" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-PY-xmV">
-                    <rect key="frame" x="139.5" y="399" width="135" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前位置：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f1-PY-xmV">
+                    <rect key="frame" x="10" y="399" width="394" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -115,10 +115,12 @@
                 <constraint firstItem="qag-Vh-oO3" firstAttribute="top" secondItem="EpQ-1O-BCZ" secondAttribute="bottom" constant="120" id="KZJ-ID-v9Y"/>
                 <constraint firstItem="EpQ-1O-BCZ" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Kae-Ac-Nxm"/>
                 <constraint firstItem="qag-Vh-oO3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="N3B-Gu-w1V"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="3f1-PY-xmV" secondAttribute="trailing" constant="10" id="Z6L-dY-Gp8"/>
                 <constraint firstItem="3f1-PY-xmV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zzv-8f-h6s"/>
                 <constraint firstItem="EpQ-1O-BCZ" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="aST-y6-cfd"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="EpQ-1O-BCZ" secondAttribute="trailing" id="esH-9z-ODw"/>
                 <constraint firstItem="3f1-PY-xmV" firstAttribute="top" secondItem="qag-Vh-oO3" secondAttribute="bottom" constant="15" id="hTc-bc-GWM"/>
+                <constraint firstItem="3f1-PY-xmV" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="10" id="wwc-bY-1MH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="131.8840579710145" y="107.8125"/>
