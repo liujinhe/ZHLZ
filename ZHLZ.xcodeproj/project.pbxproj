@@ -12,6 +12,7 @@
 		1811C7C92386968C00CEBDB1 /* ZHLZAddCouncilorVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811C7C72386968B00CEBDB1 /* ZHLZAddCouncilorVC.xib */; };
 		1811C7CD238696D800CEBDB1 /* ZHLZChosseStepVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1811C7CB238696D800CEBDB1 /* ZHLZChosseStepVC.m */; };
 		1811C7CE238696D800CEBDB1 /* ZHLZChosseStepVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1811C7CC238696D800CEBDB1 /* ZHLZChosseStepVC.xib */; };
+		182EC2DD2394AC5E002DB9FF /* ZHLZUploadVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EC2DC2394AC5E002DB9FF /* ZHLZUploadVM.m */; };
 		1833FB1A238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833FB19238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m */; };
 		1864EFB3238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864EFB2238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.m */; };
 		18657BE6238E6C2200EBFDF0 /* ZHLZHomeOccupyProblemSubmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18657BE5238E6C2100EBFDF0 /* ZHLZHomeOccupyProblemSubmitModel.m */; };
@@ -322,6 +323,8 @@
 		1811C7CA238696D800CEBDB1 /* ZHLZChosseStepVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChosseStepVC.h; sourceTree = "<group>"; };
 		1811C7CB238696D800CEBDB1 /* ZHLZChosseStepVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChosseStepVC.m; sourceTree = "<group>"; };
 		1811C7CC238696D800CEBDB1 /* ZHLZChosseStepVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChosseStepVC.xib; sourceTree = "<group>"; };
+		182EC2DB2394AC5E002DB9FF /* ZHLZUploadVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZUploadVM.h; sourceTree = "<group>"; };
+		182EC2DC2394AC5E002DB9FF /* ZHLZUploadVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZUploadVM.m; sourceTree = "<group>"; };
 		1833FB18238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeSafeProblemSUbmitModel.h; sourceTree = "<group>"; };
 		1833FB19238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeSafeProblemSUbmitModel.m; sourceTree = "<group>"; };
 		1864EFB1238A76AF005CA27B /* ZHLZHomeBuildProjectSubmitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeBuildProjectSubmitModel.h; sourceTree = "<group>"; };
@@ -1482,6 +1485,8 @@
 				A5574F6923828DBD00B24FC4 /* ZHLZLoginVM.m */,
 				A538B53623869928002E30CC /* ZHLZOtherVM.h */,
 				A538B53723869928002E30CC /* ZHLZOtherVM.m */,
+				182EC2DB2394AC5E002DB9FF /* ZHLZUploadVM.h */,
+				182EC2DC2394AC5E002DB9FF /* ZHLZUploadVM.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2401,6 +2406,7 @@
 				A557506823828DBD00B24FC4 /* main.m in Sources */,
 				1833FB1A238A823D002AB327 /* ZHLZHomeSafeProblemSUbmitModel.m in Sources */,
 				A5574FEF23828DBD00B24FC4 /* GRChainRequestAgent.m in Sources */,
+				182EC2DD2394AC5E002DB9FF /* ZHLZUploadVM.m in Sources */,
 				A557500623828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVM.m in Sources */,
 				A5574FEB23828DBD00B24FC4 /* GRBatchRequest+RequestAccessory.m in Sources */,
 				A5AD704E238D86130053B9B9 /* ZHLZHomeMapProblemModel.m in Sources */,
@@ -2622,7 +2628,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2632,7 +2638,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2646,7 +2652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2656,7 +2662,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

@@ -13,6 +13,7 @@
 #import "ZHLZChooseListVC.h"
 
 #import "GRUploadPhotoView.h"
+#import "ZHLZUploadVM.h"
 
 @interface ZHLZHomeSafeDetailVC () <GRUploadPhotoViewDelegate>
 {
@@ -183,32 +184,42 @@
     self.safeSubmitModel.workMeasures = self.workTypeTextView.text;
     
 
-    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
-        [GRToast makeText:@"请输入所在位置"];
-        return;
-    }
-    if (![self.safeSubmitModel.unitId isNotBlank]) {
-        [GRToast makeText:@"请选择责任单位"];
-        return;
-    }
-    if (![self.safeSubmitModel.prodescription isNotBlank]) {
-        [GRToast makeText:@"请输入问题描述"];
-        return;
-    }
-    if (![self.safeSubmitModel.workRecord isNotBlank]) {
-        [GRToast makeText:@"请输入巡查监管记录"];
-        return;
-    }
-    if (![self.safeSubmitModel.workMeasures isNotBlank]) {
-        [GRToast makeText:@"请输入工作措施"];
-        return;
+//    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
+//        [GRToast makeText:@"请输入所在位置"];
+//        return;
+//    }
+//    if (![self.safeSubmitModel.unitId isNotBlank]) {
+//        [GRToast makeText:@"请选择责任单位"];
+//        return;
+//    }
+//    if (![self.safeSubmitModel.prodescription isNotBlank]) {
+//        [GRToast makeText:@"请输入问题描述"];
+//        return;
+//    }
+//    if (![self.safeSubmitModel.workRecord isNotBlank]) {
+//        [GRToast makeText:@"请输入巡查监管记录"];
+//        return;
+//    }
+//    if (![self.safeSubmitModel.workMeasures isNotBlank]) {
+//        [GRToast makeText:@"请输入工作措施"];
+//        return;
+//    }
+    
+    if (_photoArray.count > 0) {
+        
+        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^{
+            
+        }];
+    } else {
+        
     }
     
-    @weakify(self)
-    self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
-        @strongify(self)
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    
+//    @weakify(self)
+//    self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
+//        @strongify(self)
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }];
     
 }
 

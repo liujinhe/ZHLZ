@@ -15,6 +15,7 @@
     NSDate *_currentDate; // 当前时间
     NSTimeInterval _currentTimeInteger; // 当前时间戳
     YYTimer *_timer;
+    NSString *_address; // 当前位置
 }
 
 
@@ -36,18 +37,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCurrentLocationInfoAction) name:ReloadCurrentLocationInfoConst object:nil];
+    
     [self scanCodeUseCarView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    
 }
 
 -(void)userCarAction:(id)tap{
     ZHLZHomeRichScanVC *homeRichScanVC = [[ZHLZHomeRichScanVC alloc] init];
-    homeRichScanVC.scanType = 2;
+    homeRichScanVC.scanType = 1;
     [self.navigationController pushViewController:homeRichScanVC animated:YES];
 }
 
@@ -77,7 +79,20 @@
     _timer = [YYTimer timerWithTimeInterval:1 target:self selector:@selector(timingAction) repeats:YES];
     
     self.currentLocation.text = [NSString stringWithFormat:@"当前位置：%@", @""];
+    
+    [self reloadCurrentLocationInfoAction];
 }
+
+/// 刷新当前位置信息
+- (void)reloadCurrentLocationInfoAction {
+    _address = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationAddressConst];
+    if ([_address isNotBlank]) {
+        self.currentLocation.text = [NSString stringWithFormat:@"当前位置：%@", _address];
+    } else {
+        self.currentLocation.text = @"当前位置定位失败";
+    }
+}
+
 
 - (void)timingAction {
     _currentTimeInteger = _currentTimeInteger + 1;
