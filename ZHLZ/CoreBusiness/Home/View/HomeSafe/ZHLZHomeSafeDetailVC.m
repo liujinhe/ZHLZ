@@ -198,26 +198,26 @@
     self.safeSubmitModel.photoNumber = self.photoNumTextFile.text;
     self.safeSubmitModel.workMeasures = self.workTypeTextView.text;
     
-    //    if (![self.safeSubmitModel.currentPlace isNotBlank]) {
-    //        [GRToast makeText:@"请输入所在位置"];
-    //        return;
-    //    }
-    //    if (![self.safeSubmitModel.unitId isNotBlank]) {
-    //        [GRToast makeText:@"请选择责任单位"];
-    //        return;
-    //    }
-    //    if (![self.safeSubmitModel.prodescription isNotBlank]) {
-    //        [GRToast makeText:@"请输入问题描述"];
-    //        return;
-    //    }
-    //    if (![self.safeSubmitModel.workRecord isNotBlank]) {
-    //        [GRToast makeText:@"请输入巡查监管记录"];
-    //        return;
-    //    }
-    //    if (![self.safeSubmitModel.workMeasures isNotBlank]) {
-    //        [GRToast makeText:@"请输入工作措施"];
-    //        return;
-    //    }
+        if (![self.safeSubmitModel.currentPlace isNotBlank]) {
+            [GRToast makeText:@"请输入所在位置"];
+            return;
+        }
+        if (![self.safeSubmitModel.unitId isNotBlank]) {
+            [GRToast makeText:@"请选择责任单位"];
+            return;
+        }
+        if (![self.safeSubmitModel.prodescription isNotBlank]) {
+            [GRToast makeText:@"请输入问题描述"];
+            return;
+        }
+        if (![self.safeSubmitModel.workRecord isNotBlank]) {
+            [GRToast makeText:@"请输入巡查监管记录"];
+            return;
+        }
+        if (![self.safeSubmitModel.workMeasures isNotBlank]) {
+            [GRToast makeText:@"请输入工作措施"];
+            return;
+        }
     
     if (_photoArray.count > 0) {
         @weakify(self);

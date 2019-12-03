@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///列表
 - (NSURLSessionTask *)loadHomeSafeProblemDataWithPageNum:(NSInteger)pageNum withModel:(ZHLZHomeSafeProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeSafeProblemModel *> *homeSafeProblemArray))block;
 
+///关闭问题
+- (NSURLSessionTask *)closeProblemWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+///开启问题
+- (NSURLSessionTask *)openProblemWithId:(NSString *)problemId withBlock:(dispatch_block_t)block;
+
 ///详情
 - (NSURLSessionTask *)loadHomeSafeProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block;
 

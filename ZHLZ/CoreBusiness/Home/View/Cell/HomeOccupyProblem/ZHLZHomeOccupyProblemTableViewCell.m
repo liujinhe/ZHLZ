@@ -25,21 +25,32 @@
     
     self.layer.cornerRadius = 10.f;
     self.layer.masksToBounds = YES;
+    
+    self.openOrCloseButton.userInteractionEnabled = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
 
-- (void)setHomeOccupyProblemModel:(ZHLZHomeOccupyProblemModel *)homeOccupyProblemModel {
-    _homeOccupyProblemModel = homeOccupyProblemModel;
+- (void)homeOccupyProblem:(ZHLZHomeOccupyProblemModel *)homeOccupyProblemModel withIndex:(NSInteger)index {
     
-    self.titleLabel.text = _homeOccupyProblemModel.projectname?:@"";
-    self.openOrCloseButton.selected = !(_homeOccupyProblemModel.prostatus && [_homeOccupyProblemModel.prostatus integerValue] == 1);
+    self.titleLabel.text = homeOccupyProblemModel.projectname?:@"";
+    self.openOrCloseButton.selected = !(homeOccupyProblemModel.prostatus && [homeOccupyProblemModel.prostatus integerValue] == 1);
     self.openOrCloseButton.layer.borderColor = self.openOrCloseButton.isSelected ? UIColor.yellowColor.CGColor : UIColor.greenColor.CGColor;
-    self.numLabel.text = _homeOccupyProblemModel.proid?:@"";
-    self.resultLabel.text = _homeOccupyProblemModel.prodescription?:@"";
-    self.addressLabel.text = _homeOccupyProblemModel.position?:@"";
+    self.numLabel.text = homeOccupyProblemModel.proid?:@"";
+    self.resultLabel.text = homeOccupyProblemModel.prodescription?:@"";
+    self.addressLabel.text = homeOccupyProblemModel.position?:@"";
+    
+    self.openOrCloseButton.tag = index;
+    
 }
+
+- (IBAction)openOrCloseAction:(UIButton *)sender {
+    if (self.clickButton) {
+        self.clickButton(sender.tag);
+    }
+}
+
 
 @end

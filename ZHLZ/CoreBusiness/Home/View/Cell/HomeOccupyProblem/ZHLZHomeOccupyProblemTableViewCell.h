@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeOccupyProblemTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) ZHLZHomeOccupyProblemModel *homeOccupyProblemModel;
+- (void)homeOccupyProblem:(ZHLZHomeOccupyProblemModel *)homeOccupyProblemModel withIndex:(NSInteger)index;
+
+@property(nonatomic,copy) void (^clickButton)(NSInteger selectIndex);
 
 @end
 

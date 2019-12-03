@@ -122,7 +122,44 @@
     if (cell == nil) {
         cell = [[ZHLZHomeSafeProblemCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     }
-    cell.homeSafeProblemModel = self.homeSafeProblemModelArray[indexPath.row];
+    [cell homeSafeProblemCellWithModel:self.homeSafeProblemModelArray[indexPath.row] andIndex:indexPath.row];
+    
+    
+    cell.clickButton = ^(NSInteger selectIndex) {
+        ZHLZHomeSafeProblemModel *safeProblemModel = self.homeSafeProblemModelArray[selectIndex];
+        
+        if ([safeProblemModel.prostatus integerValue] == 1) {///开启
+            
+            @weakify(self);
+            [self popActionWithTip:@"是否开启问题？" withBlock:^{
+                @strongify(self);
+                self.task = [[ZHLZHomeSafeProblemVM sharedInstance] openProblemWithId:safeProblemModel.objectID withBlock:^{
+                    safeProblemModel.prostatus = @"0";
+                    [self.homeSafeProblemModelArray replaceObjectAtIndex:selectIndex withObject:safeProblemModel];
+                    
+                    [self.homeSafeProblemTableView reloadData];
+                    
+                    [GRToast makeText:@"开启成功"];
+                }];
+            }];
+            
+        } else {///关闭
+            
+            @weakify(self);
+            [self popActionWithTip:@"是否关闭问题？" withBlock:^{
+                @strongify(self);
+                self.task = [[ZHLZHomeSafeProblemVM sharedInstance] closeProblemWithParms:@{@"id":safeProblemModel.objectID,@"closeType":@""} withBlock:^{
+                    @strongify(self);
+                    safeProblemModel.prostatus = @"1";
+                    [self.homeSafeProblemModelArray replaceObjectAtIndex:selectIndex withObject:safeProblemModel];
+                    [self.homeSafeProblemTableView reloadData];
+                    [GRToast makeText:@"关闭成功"];
+                }];
+            }];
+        }
+        
+    };
+    
     return cell;
 }
 

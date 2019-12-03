@@ -46,12 +46,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEq-zM-DKy">
-                                <rect key="frame" x="304" y="10" width="80" height="30"/>
+                                <rect key="frame" x="324" y="10" width="60" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="UJZ-1e-tQi"/>
-                                    <constraint firstAttribute="height" constant="30" id="uc2-du-EDt"/>
+                                    <constraint firstAttribute="width" constant="60" id="UJZ-1e-tQi"/>
+                                    <constraint firstAttribute="height" constant="25" id="uc2-du-EDt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="关闭问题"/>
                                 <connections>
                                     <action selector="questionAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="W8X-sW-RRG"/>

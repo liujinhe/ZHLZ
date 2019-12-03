@@ -35,6 +35,25 @@
     }];
 }
 
+///关闭问题
+- (NSURLSessionTask *)closeMunicipalProblemWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MunicipalProblemCloseAPIURLConst withRequestArgument:parms];
+    baseVM.isRequestArgument = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+///开启问题
+- (NSURLSessionTask *)openMunicipalProblemWithId:(NSString *)problemId withBlock:(dispatch_block_t)block {
+
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MunicipalProblemOpenAPIURLConst withRequestArgument:[@[problemId] modelToJSONObject]];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
 
 - (NSURLSessionTask *)loadHomeMunicipalProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeMunicipalProblemModel *municipalProblemModel))block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:MunicipalProblemInfoAPIURLConst withRequestArgument:detailId];

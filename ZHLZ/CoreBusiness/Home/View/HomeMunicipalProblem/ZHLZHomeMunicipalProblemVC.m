@@ -144,7 +144,42 @@
     if (cell == nil) {
         cell = [[ZHLZHomeMunicipalProblemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZHLZHomeMunicipalProblemReuseIdentifier];
     }
-    cell.homeMunicipalProblemModel = self.array[indexPath.row];
+    [cell homeMunicipalProblemModel:self.array[indexPath.row] andWithIndex:indexPath.row];
+    
+    cell.clickButton = ^(NSInteger selectIndex) {
+        ZHLZHomeMunicipalProblemModel *municipalProblemModel = self.array[selectIndex];
+                
+                if ([municipalProblemModel.problemStatus integerValue] == 2) {///开启
+                    
+                    @weakify(self);
+                    [self popActionWithTip:@"是否开启问题？" withBlock:^{
+                        @strongify(self);
+                        self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] openMunicipalProblemWithId:municipalProblemModel.objectID withBlock:^{
+                            
+                            municipalProblemModel.problemStatus = @"0";
+                            [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
+        
+                            [self.tableView reloadData];
+                            [GRToast makeText:@"开启成功"];
+                        }];
+                    }];
+                    
+                } else {///关闭
+                    
+                    @weakify(self);
+                    [self popActionWithTip:@"是否关闭问题？" withBlock:^{
+                        @strongify(self);
+                        self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] closeMunicipalProblemWithParms:@{@"id":municipalProblemModel.objectID,@"closeType":@""} withBlock:^{
+                            @strongify(self);
+                            municipalProblemModel.problemStatus = @"2";
+                            [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
+                            [self.tableView reloadData];
+                            [GRToast makeText:@"关闭成功"];
+                        }];
+                    }];
+                }
+    };
+    
     return cell;
 }
 

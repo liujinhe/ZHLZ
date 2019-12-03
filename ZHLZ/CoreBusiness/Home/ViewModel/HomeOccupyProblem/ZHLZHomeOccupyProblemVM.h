@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURLSessionTask *)loadHomeOccupyProblemDataWithPageNo:(NSInteger)pageNo withModel:(ZHLZHomeOccupyProblemSearchModel *)model withBlock:(void (^)(NSArray<ZHLZHomeOccupyProblemModel *> *array, NSError *error))block;
 
+///关闭问题
+- (NSURLSessionTask *)closeOccupyProblemWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block;
+///开启问题
+- (NSURLSessionTask *)openOccupyProblemWithId:(NSString *)problemId withBlock:(dispatch_block_t)block;
+
 - (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block;
 
 

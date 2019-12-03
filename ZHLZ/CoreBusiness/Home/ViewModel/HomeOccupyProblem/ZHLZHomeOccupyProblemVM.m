@@ -35,6 +35,25 @@
     }];
 }
 
+- (NSURLSessionTask *)closeOccupyProblemWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemCloseAPIURLConst withRequestArgument:parms];
+    baseVM.isRequestArgument = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+- (NSURLSessionTask *)openOccupyProblemWithId:(NSString *)problemId withBlock:(dispatch_block_t)block {
+    
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemOpenAPIURLConst withRequestArgument:[@[problemId]modelToJSONObject]];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+
 - (NSURLSessionTask *)loadHomeOccupyProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeOccupyProblemDetailModel *occupyProblemDetailModel))block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:OccupyProblemInfoAPIURLConst withRequestArgument:detailId];
     baseVM.isRequestArgumentSlash = YES;

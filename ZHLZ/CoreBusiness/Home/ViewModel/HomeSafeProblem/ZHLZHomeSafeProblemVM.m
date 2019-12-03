@@ -35,6 +35,26 @@
     }];
 }
 
+
+- (NSURLSessionTask *)closeProblemWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemCloseAPIURLConst withRequestArgument:parms];
+    baseVM.isRequestArgument = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+- (NSURLSessionTask *)openProblemWithId:(NSString *)problemId withBlock:(dispatch_block_t)block {
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemOpenAPIURLConst withRequestArgument:@{@"id":problemId}];
+    baseVM.isRequestArgument = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+           block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
+
 - (NSURLSessionTask *)loadHomeSafeProblemDetailWithId:(NSString *)detailId WithBlock:(void (^)(ZHLZHomeSafeProblemModel *homeSafeProblem))block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:SafeFloodPreventionProblemDetailAPIURLConst withRequestArgument:detailId];
     baseVM.isRequestArgumentSlash = YES;
