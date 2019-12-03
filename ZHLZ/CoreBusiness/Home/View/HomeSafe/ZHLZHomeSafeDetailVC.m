@@ -81,6 +81,7 @@
             self.safeSubmitModel.photoNumber = self.safeDetailModel.photoNumber;
             self.safeSubmitModel.workMeasures = self.safeDetailModel.workMeasures;
             self.safeSubmitModel.id = self.safeDetailModel.objectID;
+            self.safeSubmitModel.uploadId = self.safeDetailModel.uploadId;
         }
         
         NSArray *array = [self.safeDetailModel.imgurl componentsSeparatedByString:@","];
@@ -222,9 +223,16 @@
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = [uploadVM random:16];
+        NSString *uploadId = @"";
+        if (self.type == 1) {
+            uploadId = [uploadVM random:16];
+        } else {
+            uploadId = self.safeSubmitModel.uploadId;
+        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.safeSubmitModel.uploadId = uploadId;
+            if (self.type == 1) {
+                self.safeSubmitModel.uploadId = uploadId;
+            }
             @strongify(self)
             [self submitAction];
         }];

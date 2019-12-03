@@ -129,11 +129,17 @@
         self.problemDetailTextView.text = homeSafeProblem.remark;
         self.problemMarkTextView.text = homeSafeProblem.prodescription;
         
-        self.homeSafeProblemSUbmitModel.risksid = homeSafeProblem.risksid;
-        self.homeSafeProblemSUbmitModel.areaid = homeSafeProblem.areaid;
-        self.homeSafeProblemSUbmitModel.belong = homeSafeProblem.belong;
-        self.homeSafeProblemSUbmitModel.finddate = homeSafeProblem.finddate;
-        self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
+        ///编辑回选
+        if (self.type == 3) {
+            self.homeSafeProblemSUbmitModel.risksid = homeSafeProblem.risksid;
+            self.homeSafeProblemSUbmitModel.areaid = homeSafeProblem.areaid;
+            self.homeSafeProblemSUbmitModel.belong = homeSafeProblem.belong;
+            self.homeSafeProblemSUbmitModel.finddate = homeSafeProblem.finddate;
+            self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
+            self.homeSafeProblemSUbmitModel.uploadid = homeSafeProblem.uploadId;
+            self.homeSafeProblemSUbmitModel.id = homeSafeProblem.objectID;
+            
+        }
         
         NSArray *array = [homeSafeProblem.imgurl componentsSeparatedByString:@","];
         [self addUploadPicActionWithPhotoURLArray:self.type == 2 ? array : nil];
@@ -312,16 +318,21 @@
     if (self.type == 1) {
         self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
         self.homeSafeProblemSUbmitModel.id = @"";
-    } else {
-        self.homeSafeProblemSUbmitModel.id = self.detailId;
     }
     
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = [uploadVM random:16];
+        NSString *uploadId = @"";
+        if (self.type == 1) {
+            uploadId = [uploadVM random:16];
+        } else {
+            uploadId = self.homeSafeProblemSUbmitModel.uploadid;
+        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.homeSafeProblemSUbmitModel.uploadid = uploadId;
+            if (self.type == 1) {
+                self.homeSafeProblemSUbmitModel.uploadid = uploadId;
+            }
             @strongify(self)
             [self submitAction];
         }];

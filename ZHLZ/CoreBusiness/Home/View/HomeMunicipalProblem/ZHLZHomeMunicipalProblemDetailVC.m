@@ -242,6 +242,7 @@
             self.municipalProblemSubmitModel.islyrical = municipalProblemModel.islyrical;
             self.municipalProblemSubmitModel.id = municipalProblemModel.objectID;
             self.municipalProblemSubmitModel.ddssjtms = municipalProblemModel.ddssjtms;
+            self.municipalProblemSubmitModel.uploadid = municipalProblemModel.uploadId;
         }
         
         NSArray *array = [municipalProblemModel.imgurl componentsSeparatedByString:@","];
@@ -459,9 +460,16 @@
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = [uploadVM random:16];
+        NSString *uploadId = @"";
+        if (self.type == 1) {
+            uploadId = [uploadVM random:16];
+        } else {
+            uploadId = self.municipalProblemSubmitModel.uploadid;
+        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.municipalProblemSubmitModel.uploadid = uploadId;
+            if (self.type == 1) {
+                self.municipalProblemSubmitModel.uploadid = uploadId;
+            }
             @strongify(self)
             [self submitAction];
         }];

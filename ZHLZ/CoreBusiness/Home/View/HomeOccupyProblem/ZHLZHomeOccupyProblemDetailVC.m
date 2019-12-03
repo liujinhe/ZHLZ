@@ -303,9 +303,9 @@
 - (IBAction)submitAction:(ZHLZButton *)sender {
     self.homeOccupyProblemSubmitModel.prodescription = self.problemTextView.text;
     self.homeOccupyProblemSubmitModel.responsibleUnit = self.markTextView.text;
-    self.homeOccupyProblemSubmitModel.uploadid = @"";
     self.homeOccupyProblemSubmitModel.label = @"";
     if (self.type == 1) {
+        self.homeOccupyProblemSubmitModel.uploadid = @"";
         self.homeOccupyProblemSubmitModel.ddssjtms = [self setddssjtms];
         self.homeOccupyProblemSubmitModel.proid  = @"";
     }
@@ -313,9 +313,16 @@
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = [uploadVM random:16];
+        NSString *uploadId = @"";
+        if (self.type == 1) {
+            uploadId = [uploadVM random:16];
+        } else {
+            uploadId = self.homeOccupyProblemSubmitModel.uploadid;
+        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.homeOccupyProblemSubmitModel.uploadid = uploadId;
+            if (self.type == 1) {
+                self.homeOccupyProblemSubmitModel.uploadid = uploadId;
+            }
             @strongify(self)
             [self submitAction];
         }];
