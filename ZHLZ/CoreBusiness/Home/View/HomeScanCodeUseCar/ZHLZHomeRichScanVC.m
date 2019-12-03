@@ -243,9 +243,14 @@
         if ([carCheckInStr isNotBlank]){ //还车
             ///还车
             @weakify(self)
-            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeRepayCarWithParms:@{@"carId":carId} withBlock:^{
+            
+            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeRepayCarWithParms:@{@"carId":carId} withBlock:^(NSInteger status) {
                 @strongify(self)
-                [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:CarCheckInDateConst];
+                if (status == 0) {
+                    [GRToast makeText:@"还车成功"];
+                    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:CarCheckInDateConst];
+                }
+                
                 [self.navigationController popViewControllerAnimated:YES];
             }];
             
@@ -253,9 +258,12 @@
         
         else { ///借车
             @weakify(self)
-            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeUseCarWithParms:@{@"username":userName,@"carId":carId,@"userid":userid} withBlock:^{
+            self.task = [[ZHLZHomeScanCodeUseCarVM sharedInstance] scanCodeUseCarWithParms:@{@"username":userName,@"carId":carId,@"userid":userid} withBlock:^(NSInteger status) {
                 @strongify(self)
-                [[NSUserDefaults standardUserDefaults] setValue:carId forKey:CarCheckInDateConst];
+                if (status == 0) {
+                    [GRToast makeText:@"用车成功"];
+                    [[NSUserDefaults standardUserDefaults] setValue:carId forKey:CarCheckInDateConst];
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         }

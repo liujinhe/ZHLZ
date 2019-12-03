@@ -19,22 +19,23 @@
     return scanCodeUseCarVM;
 }
 
-- (NSURLSessionTask *)scanCodeUseCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block {
+- (NSURLSessionTask *)scanCodeUseCarWithParms:(NSDictionary *)parms withBlock:(void(^)(NSInteger status))block {
     
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ScanCodeUseCarAPIURLConst withRequestArgument:parms];
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
+        block(response.status);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
     }];
 }
 
-- (NSURLSessionTask *)scanCodeRepayCarWithParms:(NSDictionary *)parms withBlock:(dispatch_block_t)block {
+- (NSURLSessionTask *)scanCodeRepayCarWithParms:(NSDictionary *)parms withBlock:(void(^)(NSInteger status))block
+{
 
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:ScanCodeRepayCarAPIURLConst withRequestArgument:parms];
     baseVM.isRequestArgument = YES;
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
+        block(response.status);
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
     }];
 }

@@ -96,6 +96,13 @@
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
+    
+    if (self.type == 2 && photoURLArray.count == 0) {
+        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+    } else {
+        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    }
+    
 }
 
 - (void)editAction {
@@ -108,9 +115,7 @@
 - (void)initHomeSafeDetailView {
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
-    
-    self.uploadPicViewHeight.constant = kAutoFitReal(105);
-    
+        
     if (self.type == 1) {
         self.title = @"新增安全(三防)台账";
         [self.submitButton setTitle:@"确认添加" forState:UIControlStateNormal];
@@ -136,6 +141,7 @@
     self.lookHistoryTextView.placeholder = @"请输入责任单位采取的工作措施";
     self.workTypeTextView.placeholder = @"请输入巡查监管工作记录";
     
+    self.uploadPicViewHeight.constant = kAutoFitReal(105);
     
     self.safeSubmitModel = [ZHLZSafeSubmitModel new];
     

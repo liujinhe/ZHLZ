@@ -45,7 +45,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *locationX;
 @property (weak, nonatomic) IBOutlet UILabel *locationY;
-@property (weak, nonatomic) IBOutlet UILabel *locationString;
 
 @property (weak, nonatomic) IBOutlet ZHLZTextView *locationTextView;
 @property (weak, nonatomic) IBOutlet ZHLZTextView *markTextView;
@@ -120,7 +119,7 @@
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
-    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    self.uploadPicView.backgroundColor = [UIColor clearColor];
     
     self.problemClassifyArray = [NSMutableArray new];
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
@@ -172,6 +171,13 @@
         self.municipalProblemSubmitModel.createuser = [ZHLZUserManager sharedInstance].user.userId;
         
         [self.workPeopleButton setTitle:[ZHLZUserManager sharedInstance].user.fullname forState:UIControlStateNormal];
+        
+        NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+        
+        if (coordinate) {
+            self.locationX.text = [NSString stringWithFormat:@"经度：%@",[coordinate objectForKey:@"longitude"]];
+            self.locationY.text = [NSString stringWithFormat:@"纬度：%@",[coordinate objectForKey:@"latitude"]];
+        }
     }
     
 }
@@ -216,8 +222,10 @@
         ///问题描述
         self.problemDescTextView.text = municipalProblemModel.problemDet;
         
-        self.locationX.text = municipalProblemModel.latX;
-        self.locationY.text = municipalProblemModel.lonY;
+        if (self.type == 2) {
+            self.locationX.text = [NSString stringWithFormat:@"经度：%@",municipalProblemModel.latX];
+            self.locationY.text = [NSString stringWithFormat:@"纬度：%@",municipalProblemModel.lonY];
+        }
         
         self.locationTextView.text = municipalProblemModel.siteDet;
         self.markTextView.text = municipalProblemModel.contentDet;
@@ -249,6 +257,13 @@
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
+    
+    if (self.type == 2 && photoURLArray.count == 0) {
+        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+    } else {
+        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    }
+    
 }
 
 - (void)loadHomeSafeFloodPreventionProblemGetMeasures {
@@ -429,8 +444,12 @@
     
     self.municipalProblemSubmitModel.classAndContent = @"";
     self.municipalProblemSubmitModel.fine = self.fineMoneyTextFule.text;
-    self.municipalProblemSubmitModel.latX = @"112";
-    self.municipalProblemSubmitModel.lonY = @"23";
+    
+    NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+    if (coordinate) {
+        self.municipalProblemSubmitModel.latX = [coordinate objectForKey:@"longitude"];
+        self.municipalProblemSubmitModel.lonY = [coordinate objectForKey:@"latitude"];
+    }
     self.municipalProblemSubmitModel.uploadid = @"";
     if (self.type == 1) {
         self.municipalProblemSubmitModel.id = @"";
