@@ -457,6 +457,39 @@
         self.municipalProblemSubmitModel.ddssjtms = [self setddssjtms];
     }
     
+    
+    
+    if (![self.municipalProblemSubmitModel.areaid isNotBlank]) {
+        [GRToast makeText:@"请选择片区"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.belong isNotBlank]) {
+        [GRToast makeText:@"请选择所属区县"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.problemType isNotBlank]) {
+        [GRToast makeText:@"请选择问题类型"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.responsibleUnit isNotBlank]) {
+        [GRToast makeText:@"请选择责任单位"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.finddate isNotBlank]) {
+        [GRToast makeText:@"请选择问题发现时间"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.problemDet isNotBlank]) {
+        [GRToast makeText:@"请输入问题描述"];
+        return;
+    }
+    if (![self.municipalProblemSubmitModel.siteDet isNotBlank]) {
+        [GRToast makeText:@"请输入地点描述"];
+        return;
+    }
+    
+    
+    
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];

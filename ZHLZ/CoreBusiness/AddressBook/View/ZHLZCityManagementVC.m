@@ -72,15 +72,15 @@
 
 - (IBAction)cityManagementAction:(ZHLZButton *)sender {
     if (![self.nameTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位"];
+        [GRToast makeText:@"请输单位名称"];
         return;
     }
     if (![self.chargerTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人"];
+        [GRToast makeText:@"请输入负责人名称"];
         return;
     }
     if (![self.phoneTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人手机"];
+        [GRToast makeText:@"请输入负责人联系电话"];
         return;
     }
     

@@ -68,7 +68,7 @@
 
 - (IBAction)examineAction:(UIButton *)sender {
     if (![self.examineDepartmentTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入正确的部门名称"];
+        [GRToast makeText:@"请输入部门名称"];
         return;
     }
     

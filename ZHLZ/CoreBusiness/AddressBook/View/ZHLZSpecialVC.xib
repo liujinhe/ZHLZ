@@ -108,7 +108,7 @@
                 <constraint firstItem="oRX-e6-aEW" firstAttribute="top" secondItem="XhB-5s-wdZ" secondAttribute="bottom" id="pr4-Kc-7c9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="139" y="105"/>
+            <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </view>
     </objects>
 </document>

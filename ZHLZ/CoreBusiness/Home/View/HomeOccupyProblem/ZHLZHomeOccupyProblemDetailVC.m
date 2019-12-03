@@ -310,6 +310,24 @@
         self.homeOccupyProblemSubmitModel.proid  = @"";
     }
     
+    if (![self.homeOccupyProblemSubmitModel.projectid isNotBlank]) {
+        [GRToast makeText:@"请选择项目"];
+        return;
+    }
+    if (![self.homeOccupyProblemSubmitModel.protype isNotBlank]) {
+        [GRToast makeText:@"请选择问题类型"];
+        return;
+    }
+    if (![self.homeOccupyProblemSubmitModel.belong isNotBlank]) {
+        [GRToast makeText:@"请选择责任区县"];
+        return;
+    }
+    if (![self.homeOccupyProblemSubmitModel.prodate isNotBlank]) {
+        [GRToast makeText:@"请选择问题发现时间"];
+        return;
+    }
+    
+    
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];

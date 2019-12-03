@@ -77,11 +77,11 @@
         return;
     }
     if (![self.chargerTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入建设单位联系人"];
+        [GRToast makeText:@"请输入建设单位联系人名称"];
         return;
     }
     if (![self.phoneTextFIle.text isNotBlank]) {
-        [GRToast makeText:@"请输入建设单位联系人手机"];
+        [GRToast makeText:@"请输入建设单位联系人电话"];
         return;
     }
     

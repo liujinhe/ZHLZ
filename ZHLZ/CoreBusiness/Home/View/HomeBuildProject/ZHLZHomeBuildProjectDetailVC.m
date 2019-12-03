@@ -470,6 +470,56 @@
     }
     self.projectSubmitModel.remark = self.remarkTextView.text;
     
+    if (![self.projectSubmitModel.name isNotBlank]) {
+        [GRToast makeText:@"请输入项目名称"];
+        return;
+    }
+    if (![self.projectSubmitModel.projecttypeId isNotBlank]) {
+        [GRToast makeText:@"请选择项目类型"];
+        return;
+    }
+    if (![self.projectSubmitModel.position isNotBlank]) {
+        [GRToast makeText:@"请输入工程地点"];
+        return;
+    }
+    if (![self.projectSubmitModel.constructorId isNotBlank]) {
+        [GRToast makeText:@"请选择建设单位"];
+        return;
+    }
+    if (![self.projectSubmitModel.projectstatusId isNotBlank]) {
+        [GRToast makeText:@"请选择施工单位"];
+        return;
+    }
+    if (![self.projectSubmitModel.projectno isNotBlank]) {
+        [GRToast makeText:@"请选择巡查频次"];
+        return;
+    }
+    if (![self.projectSubmitModel.projectno isNotBlank]) {
+        [GRToast makeText:@"请选择施工状态"];
+        return;
+    }
+    if (![self.projectSubmitModel.areaid isNotBlank]) {
+        [GRToast makeText:@"请选择片区"];
+        return;
+    }
+    if (![self.projectSubmitModel.belong isNotBlank]) {
+        [GRToast makeText:@"请选择责任区县"];
+        return;
+    }
+    if (![self.projectSubmitModel.area isNotBlank]) {
+        [GRToast makeText:@"请输入面积"];
+        return;
+    }
+    if (![self.projectSubmitModel.projectno isNotBlank]) {
+        [GRToast makeText:@"请输入项目编号"];
+        return;
+    }
+    if (![self.projectSubmitModel.focuson isNotBlank]) {
+        [GRToast makeText:@"请选择是否重点项目"];
+        return;
+    }
+    
+    
     @weakify(self)
     self.task = [[ZHLZHomeBuildProjectVM sharedInstance] submitHomeBuildProjectSubmitType:self.detailType andSubmitModel:self.projectSubmitModel withBlock:^{
         @strongify(self)

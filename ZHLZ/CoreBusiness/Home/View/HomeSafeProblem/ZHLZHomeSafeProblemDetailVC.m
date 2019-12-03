@@ -320,6 +320,24 @@
         self.homeSafeProblemSUbmitModel.id = @"";
     }
     
+    if (![self.homeSafeProblemSUbmitModel.risksid isNotBlank]) {
+        [GRToast makeText:@"请选择台账"];
+        return;
+    }
+    if (![self.homeSafeProblemSUbmitModel.belong isNotBlank]) {
+        [GRToast makeText:@"请选择所属区县"];
+        return;
+    }
+    if (![self.homeSafeProblemSUbmitModel.areaid isNotBlank]) {
+        [GRToast makeText:@"请选择片区"];
+        return;
+    }
+    if (![self.homeSafeProblemSUbmitModel.finddate isNotBlank]) {
+        [GRToast makeText:@"问题发现时间"];
+        return;
+    }
+    
+    
     if (_photoArray.count > 0) {
         @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];

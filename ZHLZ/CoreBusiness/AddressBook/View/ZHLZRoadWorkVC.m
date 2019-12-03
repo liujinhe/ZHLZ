@@ -80,15 +80,15 @@
 
 - (IBAction)roadWorkButtonAction:(ZHLZButton *)sender {
     if (![self.unitNameTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位"];
+        [GRToast makeText:@"请输入单位名称"];
         return;
     }
     if (![self.principalNameTextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人"];
+        [GRToast makeText:@"请输入单位联系人名称"];
         return;
     }
     if (![self.principalPhonetextFile.text isNotBlank]) {
-        [GRToast makeText:@"请输入施工单位联系人手机"];
+        [GRToast makeText:@"请输入单位负责人联系电话"];
         return;
     }
     
