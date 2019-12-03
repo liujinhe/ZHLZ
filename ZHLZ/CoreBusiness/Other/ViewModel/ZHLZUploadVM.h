@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
-- (void)uploadImageArray:(NSArray<UIImage *> *)uploadImageArray withBlock:(void(^)(NSString *uploadIdStr))block;
+- (void)uploadImageArray:(NSArray<UIImage *> *)uploadImageArray withUploadId:(NSString *)uploadId withBlock:(dispatch_block_t)block;
+
+- (NSString *)random:(int)len;
 
 @end
 

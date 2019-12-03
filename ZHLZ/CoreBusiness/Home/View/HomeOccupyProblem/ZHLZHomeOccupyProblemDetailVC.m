@@ -305,9 +305,11 @@
     }
     
     if (_photoArray.count > 0) {
-        @weakify(self)
-        [[ZHLZUploadVM sharedInstance] uploadImageArray:_photoArray withBlock:^(NSString * _Nonnull uploadIdStr) {
-            self.homeOccupyProblemSubmitModel.uploadid = uploadIdStr;
+        @weakify(self);
+        ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
+        NSString *uploadId = [uploadVM random:16];
+        [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
+            self.homeOccupyProblemSubmitModel.uploadid = uploadId;
             @strongify(self)
             [self submitAction];
         }];
