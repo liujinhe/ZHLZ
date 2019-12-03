@@ -66,7 +66,7 @@
 
 - (void)editAction {
     ZHLZHomeSafeProblemDetailVC *safeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
-    safeProblemDetailVC.detailType = 3;
+    safeProblemDetailVC.type = 3;
     safeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@",self.homeSafeProblemModel.objectID];
     [self.navigationController pushViewController:safeProblemDetailVC animated:YES];
 }
@@ -136,7 +136,7 @@
         self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
         
         NSArray *array = [homeSafeProblem.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:array];
+        [self addUploadPicActionWithPhotoURLArray:self.type == 2 ? array : nil];
     }];
 }
 
@@ -145,11 +145,11 @@
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
                                                                      withPhotoURLArray:photoURLArray];
-    uploadPhotoView.optionType = self.detailType;
+    uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
     
-    if (self.detailType == 2 && photoURLArray.count == 0) {
+    if (self.type == 2 && photoURLArray.count == 0) {
         self.uploadPicViewHeight.constant = kAutoFitReal(0);
     } else {
         self.uploadPicViewHeight.constant = kAutoFitReal(105);
@@ -162,12 +162,12 @@
     
     self.uploadPicView.backgroundColor = [UIColor clearColor];
     
-    if (self.detailType == 1) {
+    if (self.type == 1) {
         self.title = @"新增安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定添加" forState:UIControlStateNormal];
         
         [self addUploadPicActionWithPhotoURLArray:nil];
-    } else if (self.detailType == 2) {
+    } else if (self.type == 2) {
         self.title = @"查看安全(三防)问题";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
         
@@ -309,7 +309,7 @@
     self.homeSafeProblemSUbmitModel.remark = self.problemMarkTextView.text;
     self.homeSafeProblemSUbmitModel.uploadid = @"";
     ///默认值回选
-    if (self.detailType == 1) {
+    if (self.type == 1) {
         self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
         self.homeSafeProblemSUbmitModel.id = @"";
     } else {
@@ -332,9 +332,9 @@
 
 - (void)submitAction {
     @weakify(self)
-    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.detailType andSubmitArray:@[self.homeSafeProblemSUbmitModel, self.supervisorSubmitModelArray] withBlock:^{
+    self.task = [[ZHLZHomeSafeProblemVM sharedInstance] submitHomeSafeProblemWithSubmitType:self.type andSubmitArray:@[self.homeSafeProblemSUbmitModel, self.supervisorSubmitModelArray] withBlock:^{
         @strongify(self)
-        if (self.detailType == 1) {
+        if (self.type == 1) {
             [GRToast makeText:@"新增成功"];
         } else {
             [GRToast makeText:@"修改成功"];
@@ -376,7 +376,7 @@
         [self.supervisorView addSubview:listView];
         
         CGFloat rightMargin = 0;
-        if (self.detailType == 2) {
+        if (self.type == 2) {
             rightMargin = 5;
         } else {
             rightMargin = 10 + 30 + 5;
@@ -398,7 +398,7 @@
         
         allHeight = allHeight + height + 10;
         
-        if (self.detailType != 2 ) {
+        if (self.type != 2 ) {
             UIButton *deteteButton = [UIButton buttonWithType:UIButtonTypeCustom];
             deteteButton.backgroundColor = [UIColor clearColor];
             [deteteButton setImage:[UIImage imageNamed:@"icon_delete_black"] forState:UIControlStateNormal];
@@ -423,7 +423,7 @@
             make.left.equalTo(listView.mas_left).offset(5);
             make.top.equalTo(listView.mas_top).offset(5);
             make.bottom.equalTo(listView.mas_bottom).offset(-5);
-            if (self.detailType == 2) {
+            if (self.type == 2) {
                 make.right.equalTo(listView.mas_right).offset(-5);
             } else {
                 make.right.equalTo(listView.mas_right).offset(-45);

@@ -189,7 +189,7 @@
         }
         
         NSArray *array = [occupyProblemDetailModel.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:array];
+        [self addUploadPicActionWithPhotoURLArray:self.type == 2 ? array : nil];
     }];
 }
 

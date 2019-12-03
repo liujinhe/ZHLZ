@@ -80,7 +80,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [self changeViewHeight];
         
         _fullScreenPreviewImageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _fullScreenPreviewImageView.backgroundColor = UIColor.clearColor;
+        _fullScreenPreviewImageView.backgroundColor = kHexRGBAlpha(0x000000, 0.75);
         _fullScreenPreviewImageView.contentMode = UIViewContentModeScaleAspectFit;
         _fullScreenPreviewImageView.autoresizesSubviews = YES;
         _fullScreenPreviewImageView.userInteractionEnabled = YES;

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeSafeProblemDetailVC : ZHLZBaseVC
 
-@property (nonatomic , assign) NSInteger detailType;//1新增 2查看 3编辑
+@property (nonatomic , assign) NSInteger type;//1新增 2查看 3编辑
 
 @property (nonatomic ,strong) NSString *detailId;
 

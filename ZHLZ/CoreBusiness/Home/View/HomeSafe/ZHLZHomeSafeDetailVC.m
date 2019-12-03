@@ -84,7 +84,7 @@
         }
         
         NSArray *array = [self.safeDetailModel.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:array];
+        [self addUploadPicActionWithPhotoURLArray:self.type == 2 ? array : nil];
     }];
 }
 
