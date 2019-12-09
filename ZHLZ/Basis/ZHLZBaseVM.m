@@ -167,15 +167,13 @@
         if ([SVProgressHUD isVisible]) {
             [SVProgressHUD dismissWithDelay:0.25f];
         }
-        if (response.status == 401) { // 请先登录
+        if (response.status == 0) { // 成功
+            success(response);
+        } else if (response.status == 401) { // 请先登录
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
-            return;
         } else {
-            if (response.status != 0) {
-                [GRToast makeText:response.message];
-            }
+            [GRToast makeText:response.message];
         }
-        success(response);
     } failure:^(__kindof GRResponse * _Nonnull response) {
         failure(response);
         if (response.status != 0) {

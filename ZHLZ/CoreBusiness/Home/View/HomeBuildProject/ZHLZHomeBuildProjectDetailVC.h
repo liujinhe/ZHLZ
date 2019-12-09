@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeBuildProjectDetailVC : ZHLZBaseVC
 
-@property (nonatomic , assign) NSInteger detailType; //1：新增 2：查看 3：编辑
+@property (nonatomic, assign) NSInteger detailType; // 操作类型：1-新增 2-查看 3-编辑
 
-@property (nonatomic ,strong) NSString *detailId;
+@property (nonatomic, strong) NSString *detailId;
 
 @end
 

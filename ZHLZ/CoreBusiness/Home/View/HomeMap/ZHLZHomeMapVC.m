@@ -15,8 +15,16 @@
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
 #import "ZHLZHomeMapSearchVC.h"
+#import "ZHLZHomeBuildProjectDetailVC.h"
+#import "ZHLZHomeMunicipalProblemDetailVC.h"
+
+#import "ZHLZHomeMapCustomAnnotationView.h"
 
 static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
+
+static CGFloat const CalloutViewMargin = -10;
+
+#define ZHLZHomeMapCustomAnnotationViewReuseIndetifier NSStringFromClass([ZHLZHomeMapCustomAnnotationView class])
 
 @interface ZHLZHomeMapVC () <MAMapViewDelegate>
 {
@@ -37,7 +45,8 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 @property (nonatomic, strong) UIButton *gpsButton;
 
-@property (nonatomic, strong) NSArray<ZHLZHomeMapModel *> *homeMapArray;
+@property (nonatomic, strong) NSMutableArray<ZHLZHomeMapModel *> *homeMapArray;
+@property (nonatomic, strong) NSMutableArray<ZHLZHomeMapProblemModel *> *homeMapProblemArray;
 @property (nonatomic, strong) NSMutableArray<MAPointAnnotation *> *annotationArray;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *imgArray;
 
@@ -72,8 +81,6 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 
 - (void)configMapView {
     @weakify(self);
-    self.homeMapArray = @[];
-    
     ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
     if (userModel && [userModel.userId isNotBlank] && userModel.userId.integerValue != 1) {
         _bid = userModel.orgId;
@@ -156,6 +163,8 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
     @weakify(self);
     self.task = [[ZHLZHomeMapVM sharedInstance] loadHomeMapDataWithpicLayer:_picLayerIndex withName:_projectName withBid:_bid withProjecttypeId:_projecttypeId withBlock:^(NSArray<ZHLZHomeMapModel *> * _Nonnull homeMapArray, NSArray<ZHLZHomeMapProblemModel *> * _Nonnull homeMapProblemArray) {
         @strongify(self);
+        self.homeMapArray = @[].mutableCopy;
+        self.homeMapProblemArray = @[].mutableCopy;
         
         if (self.annotationArray && self.annotationArray.count > 0) {
             [self.mapView removeAnnotations:self.annotationArray];
@@ -167,11 +176,9 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
                 if (homeMapProblemModel.latX > 0 &&
                     homeMapProblemModel.lonY > 0 &&
                     (self->_colorIndex == 0 || (
-                    [homeMapProblemModel.problemStatus isNotBlank] && self->_colorIndex == homeMapProblemModel.problemStatus.integerValue))) {
+                                                [homeMapProblemModel.problemStatus isNotBlank] && self->_colorIndex == homeMapProblemModel.problemStatus.integerValue))) {
                     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
                     pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapProblemModel.lonY, homeMapProblemModel.latX);
-                    pointAnnotation.title = homeMapProblemModel.problemType?:@"";
-                    pointAnnotation.subtitle = homeMapProblemModel.problemDet?:@"";
                     [self.annotationArray addObject:pointAnnotation];
                     // 问题状态（1-正在处理 2-已解决 3-处理跟踪情况）
                     NSString *imgName;
@@ -183,6 +190,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
                         imgName = @"marker_red.png";
                     }
                     [self.imgArray addObject:[UIImage imageNamed:imgName]];
+                    [self.homeMapProblemArray addObject:homeMapProblemModel];
                 }
             }
         } else {
@@ -190,8 +198,6 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
                 if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
                     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
                     pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesY, homeMapModel.coordinatesX);
-                    pointAnnotation.title = homeMapModel.typeName?:@"";
-                    pointAnnotation.subtitle = homeMapModel.name?:@"";
                     [self.annotationArray addObject:pointAnnotation];
                     
                     NSString *imgName = [self getImageNameWithProjecttypeId:homeMapModel.projecttypeId
@@ -199,6 +205,7 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
                                                              withFinishdate:homeMapModel.finishdate.time
                                                                  withPronum:homeMapModel.pronum];
                     [self.imgArray addObject:[UIImage imageNamed:imgName]];
+                    [self.homeMapArray addObject:homeMapModel];
                 }
             }
         }
@@ -291,21 +298,64 @@ static NSString * const PointReuseIndetifier = @"pointReuseIndetifier";
 #pragma mark - MAMapViewDelegate
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
+    @weakify(self);
     if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
-        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:PointReuseIndetifier];
+        ZHLZHomeMapCustomAnnotationView *annotationView = (ZHLZHomeMapCustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:PointReuseIndetifier];
         if (annotationView == nil) {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
-                                                             reuseIdentifier:PointReuseIndetifier];
+            annotationView = [[ZHLZHomeMapCustomAnnotationView alloc] initWithAnnotation:annotation
+                                                                         reuseIdentifier:PointReuseIndetifier];
+            annotationView.canShowCallout = NO;
+            annotationView.draggable = YES;
+            // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
+            annotationView.centerOffset = CGPointMake(0, -7.5);
         }
-        annotationView.canShowCallout = YES;
-        annotationView.animatesDrop = YES;
         NSUInteger index = [self.annotationArray indexOfObject:annotation];
         annotationView.image = self.imgArray[index];
-        // 设置中心点偏移，使得标注底部中间点成为经纬度对应点
-        annotationView.centerOffset = CGPointMake(0, -7.5);
+        if (self->_picLayerIndex == 1) {
+            annotationView.homeMapProblemModel = self.homeMapProblemArray[index];
+            annotationView.selectHomeMapProblemBlock = ^(NSString * _Nonnull detailId) {
+                @strongify(self);
+                ZHLZHomeMunicipalProblemDetailVC *homeMunicipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
+                homeMunicipalProblemDetailVC.detailId = detailId;
+                homeMunicipalProblemDetailVC.type = 2;
+                [self.navigationController pushViewController:homeMunicipalProblemDetailVC animated:YES];
+            };
+        } else {
+            annotationView.homeMapModel = self.homeMapArray[index];
+            annotationView.selectHomeMapBlock = ^(NSString * _Nonnull detailId) {
+                @strongify(self);
+                ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
+                homeBuildProjectDetailVC.detailId = detailId;
+                homeBuildProjectDetailVC.detailType = 2;
+                [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
+            };
+        }
         return annotationView;
     }
     return nil;
+}
+
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+    if ([view isKindOfClass:[ZHLZHomeMapCustomAnnotationView class]]) {
+        ZHLZHomeMapCustomAnnotationView *annotationView = (ZHLZHomeMapCustomAnnotationView *)view;
+        CGRect rect = [annotationView convertRect:annotationView.calloutView.frame toView:self.mapView];
+        rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(CalloutViewMargin, CalloutViewMargin, CalloutViewMargin, CalloutViewMargin));
+        if (!CGRectContainsRect(self.mapView.frame, rect)) {
+            CGSize offset = [self offsetToContainRect:rect inRect:self.mapView.frame];
+            CGPoint theCenter = self.mapView.center;
+            theCenter = CGPointMake(theCenter.x - offset.width, theCenter.y - offset.height);
+            CLLocationCoordinate2D coordinate = [self.mapView convertPoint:theCenter toCoordinateFromView:self.mapView];
+            [self.mapView setCenterCoordinate:coordinate animated:YES];
+        }
+    }
+}
+
+- (CGSize)offsetToContainRect:(CGRect)innerRect inRect:(CGRect)outerRect {
+    CGFloat nudgeRight = fmaxf(0, CGRectGetMinX(outerRect) - (CGRectGetMinX(innerRect)));
+    CGFloat nudgeLeft = fminf(0, CGRectGetMaxX(outerRect) - (CGRectGetMaxX(innerRect)));
+    CGFloat nudgeTop = fmaxf(0, CGRectGetMinY(outerRect) - (CGRectGetMinY(innerRect)));
+    CGFloat nudgeBottom = fminf(0, CGRectGetMaxY(outerRect) - (CGRectGetMaxY(innerRect)));
+    return CGSizeMake(nudgeLeft ?: nudgeRight, nudgeTop ?: nudgeBottom);
 }
 
 @end

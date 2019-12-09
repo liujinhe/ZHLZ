@@ -191,6 +191,8 @@
 		A55D26ED23876A3700E2BA81 /* ZHLZCodeValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */; };
 		A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */; };
 		A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */; };
+		A57391D7239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A57391D5239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m */; };
+		A57391DA239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = A57391D9239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m */; };
 		A57F5C682390AFF100695A63 /* problem_type_content.json in Resources */ = {isa = PBXBuildFile; fileRef = A57F5C672390AFF100695A63 /* problem_type_content.json */; };
 		A57F5C6C2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */; };
 		A57F5C6D2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57F5C6B2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib */; };
@@ -644,6 +646,10 @@
 		A55D26EE238781E100E2BA81 /* ZHLZPickerViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZPickerViewVC.h; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.h; sourceTree = SOURCE_ROOT; };
 		A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZHLZPickerViewVC.m; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.m; sourceTree = SOURCE_ROOT; };
 		A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ZHLZPickerViewVC.xib; path = ZHLZ/CoreBusiness/ZHLZPickerViewVC.xib; sourceTree = SOURCE_ROOT; };
+		A57391D5239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeMapCustomAnnotationView.m; sourceTree = "<group>"; };
+		A57391D6239A999600521750 /* ZHLZHomeMapCustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeMapCustomAnnotationView.h; sourceTree = "<group>"; };
+		A57391D8239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeMapCustomCalloutView.h; sourceTree = "<group>"; };
+		A57391D9239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeMapCustomCalloutView.m; sourceTree = "<group>"; };
 		A57F5C672390AFF100695A63 /* problem_type_content.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = problem_type_content.json; sourceTree = "<group>"; };
 		A57F5C692390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZRoadMaintenancePickerViewVC.h; sourceTree = "<group>"; };
 		A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZRoadMaintenancePickerViewVC.m; sourceTree = "<group>"; };
@@ -1458,6 +1464,10 @@
 		A5574F6123828DBD00B24FC4 /* HomeMap */ = {
 			isa = PBXGroup;
 			children = (
+				A57391D8239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.h */,
+				A57391D9239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m */,
+				A57391D6239A999600521750 /* ZHLZHomeMapCustomAnnotationView.h */,
+				A57391D5239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m */,
 				A5574F6423828DBD00B24FC4 /* ZHLZHomeMapVC.h */,
 				A5574F6223828DBD00B24FC4 /* ZHLZHomeMapVC.m */,
 				A5574F6323828DBD00B24FC4 /* ZHLZHomeMapVC.xib */,
@@ -2304,6 +2314,7 @@
 				A5574FF123828DBD00B24FC4 /* GRNetworkAgent.m in Sources */,
 				A506A8D32382B42F004081FC /* ZHLZNotificationConst.m in Sources */,
 				A54C72402382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.m in Sources */,
+				A57391D7239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m in Sources */,
 				A557507723828DBD00B24FC4 /* ZHLZBaseBatchVM.m in Sources */,
 				A57F5C972390F2CF00695A63 /* ZHLZHomeSafeProblemCell.m in Sources */,
 				A5574FF723828DBD00B24FC4 /* GRNetworkUtils.m in Sources */,
@@ -2362,6 +2373,7 @@
 				A5AD705A238E0B9A0053B9B9 /* ZHLZHomeMunicipalProblemTableViewCell.m in Sources */,
 				A5B194812385A2BE00FF5080 /* UIViewController+modalPresentationStyle.m in Sources */,
 				A557504C23828DBD00B24FC4 /* ZHLZAreaManagementModel.m in Sources */,
+				A57391DA239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m in Sources */,
 				A55D26ED23876A3700E2BA81 /* ZHLZCodeValuesModel.m in Sources */,
 				A557502123828DBD00B24FC4 /* ZHLZHomeSafeVC.m in Sources */,
 				A557503E23828DBD00B24FC4 /* ZHLZMineModel.m in Sources */,
@@ -2628,7 +2640,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QMBLPMEGV;
+				DEVELOPMENT_TEAM = D32EHFNJUV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2638,7 +2650,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2652,7 +2664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8QMBLPMEGV;
+				DEVELOPMENT_TEAM = D32EHFNJUV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2662,7 +2674,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
