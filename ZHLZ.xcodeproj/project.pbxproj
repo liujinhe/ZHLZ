@@ -32,6 +32,10 @@
 		189DAA4A238635410049B5FF /* ZHLZHomeSafeDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DAA48238635410049B5FF /* ZHLZHomeSafeDetailVC.xib */; };
 		18AD81462391199000DEDCD5 /* ZHLZHomeRichScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AD81442391199000DEDCD5 /* ZHLZHomeRichScanVC.m */; };
 		18AD81472391199000DEDCD5 /* ZHLZHomeRichScanVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */; };
+		18BBFC34239E1C0900B9C27D /* ZHLZHomeToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBFC32239E1C0900B9C27D /* ZHLZHomeToolVC.m */; };
+		18BBFC35239E1C0900B9C27D /* ZHLZHomeToolVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BBFC33239E1C0900B9C27D /* ZHLZHomeToolVC.xib */; };
+		18BBFC39239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */; };
+		18BBFC3A239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */; };
 		18C24B86238B869A00C9EBC2 /* ZHLZChooseListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */; };
 		18C24B87238B869A00C9EBC2 /* ZHLZChooseListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */; };
 		18C24B8C238B86EC00C9EBC2 /* ZHLZChooseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */; };
@@ -359,6 +363,12 @@
 		18AD81432391199000DEDCD5 /* ZHLZHomeRichScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeRichScanVC.h; sourceTree = "<group>"; };
 		18AD81442391199000DEDCD5 /* ZHLZHomeRichScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeRichScanVC.m; sourceTree = "<group>"; };
 		18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeRichScanVC.xib; sourceTree = "<group>"; };
+		18BBFC31239E1C0900B9C27D /* ZHLZHomeToolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeToolVC.h; sourceTree = "<group>"; };
+		18BBFC32239E1C0900B9C27D /* ZHLZHomeToolVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeToolVC.m; sourceTree = "<group>"; };
+		18BBFC33239E1C0900B9C27D /* ZHLZHomeToolVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeToolVC.xib; sourceTree = "<group>"; };
+		18BBFC36239E1C2800B9C27D /* ZHLZHomeCarVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVC.h; sourceTree = "<group>"; };
+		18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVC.m; sourceTree = "<group>"; };
+		18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeCarVideoVC.xib; sourceTree = "<group>"; };
 		18C24B83238B869900C9EBC2 /* ZHLZChooseListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChooseListVC.h; sourceTree = "<group>"; };
 		18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChooseListVC.m; sourceTree = "<group>"; };
 		18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChooseListVC.xib; sourceTree = "<group>"; };
@@ -830,6 +840,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18BBFC2F239E1BDA00B9C27D /* HomeTool */ = {
+			isa = PBXGroup;
+			children = (
+				18BBFC31239E1C0900B9C27D /* ZHLZHomeToolVC.h */,
+				18BBFC32239E1C0900B9C27D /* ZHLZHomeToolVC.m */,
+				18BBFC33239E1C0900B9C27D /* ZHLZHomeToolVC.xib */,
+			);
+			path = HomeTool;
+			sourceTree = "<group>";
+		};
+		18BBFC30239E1BDA00B9C27D /* HomeCarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				18BBFC36239E1C2800B9C27D /* ZHLZHomeCarVideoVC.h */,
+				18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */,
+				18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */,
+			);
+			path = HomeCarVideo;
+			sourceTree = "<group>";
+		};
 		18C24B88238B86C400C9EBC2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1207,6 +1237,8 @@
 			isa = PBXGroup;
 			children = (
 				A5574F3C23828DBD00B24FC4 /* Cell */,
+				18BBFC30239E1BDA00B9C27D /* HomeCarVideo */,
+				18BBFC2F239E1BDA00B9C27D /* HomeTool */,
 				A5574F5923828DBD00B24FC4 /* HomeBuildProject */,
 				A5574F2323828DBD00B24FC4 /* HomeBusinessDocument */,
 				A5574F3823828DBD00B24FC4 /* HomeCheckIn */,
@@ -2160,9 +2192,11 @@
 				A57F5C682390AFF100695A63 /* problem_type_content.json in Resources */,
 				A5B19462238574FF00FF5080 /* luqiao_yellow_2.png in Resources */,
 				A5B19473238574FF00FF5080 /* yuanlinlvhua_yellow_1.png in Resources */,
+				18BBFC3A239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib in Resources */,
 				A582545B238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.xib in Resources */,
 				A5B19450238574FF00FF5080 /* guidaojiaotong_red_2.png in Resources */,
 				A5B19470238574FF00FF5080 /* yuanlinlvhua_green_1.png in Resources */,
+				18BBFC35239E1C0900B9C27D /* ZHLZHomeToolVC.xib in Resources */,
 				A557505C23828DBD00B24FC4 /* ZHLZAreaManagementVC.xib in Resources */,
 				A57F5C962390F2CF00695A63 /* ZHLZChooseStepCell.xib in Resources */,
 				A5B19477238574FF00FF5080 /* dianli_green_2.png in Resources */,
@@ -2337,6 +2371,7 @@
 				A5825477238FDB9400B5F3E3 /* ZHLZHomeInfoStatisticsVM.m in Sources */,
 				A557505923828DBD00B24FC4 /* ZHLZMonadVC.m in Sources */,
 				A557506B23828DBD00B24FC4 /* ZHLZTabBarController.m in Sources */,
+				18BBFC34239E1C0900B9C27D /* ZHLZHomeToolVC.m in Sources */,
 				A557501823828DBD00B24FC4 /* ZHLZHomeMunicipalProblemModel.m in Sources */,
 				A557503823828DBD00B24FC4 /* ZHLZHomeVC.m in Sources */,
 				A5AD706B238E1E3D0053B9B9 /* NSString+DateFormatter.m in Sources */,
@@ -2433,6 +2468,7 @@
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,
 				A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */,
+				18BBFC39239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m in Sources */,
 				A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */,
 				A557506E23828DBD00B24FC4 /* ZHLZNavigationController.m in Sources */,
 				187662F2238D1E96000809AD /* ZHLZSupervisorSubmitModel.m in Sources */,

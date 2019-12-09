@@ -31,6 +31,8 @@
 #import "ZHLZHomeBusinessDocumentVC.h"
 #import "ZHLZHomeScanCodeUseCarVC.h"
 #import "ZHLZHomeInfoStatisticsVC.h"
+#import "ZHLZHomeToolVC.h"
+#import "ZHLZHomeCarVideoVC.h"
 
 #import "ZHLZRoadMaintenancePickerViewVC.h"
 
@@ -73,6 +75,8 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     
     self.navTitle = @"智慧路政";
     
+    [self addRightBarButtonItemWithTitle:@"工具" action:@selector(toolAction)];
+    
     _showLatestMessageType = 0;
     
     self.moduleTitleArray = @[@"地图展示",
@@ -86,7 +90,9 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                               @"路巡统计",
                               @"业务文件",
                               @"扫码用车",
-                              @"信息统计"];
+                              @"信息统计",
+                              @"车载视频"];
+    
     self.moduleImageArray = @[@"icon_home_map",
                               @"icon_home_build_project",
                               @"icon_home_safe",
@@ -98,6 +104,7 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                               @"icon_home_road_patrol_statistics",
                               @"icon_home_business_document",
                               @"icon_home_scan_code_use_car",
+                              @"icon_home_info_statistics",
                               @"icon_home_info_statistics"];
     
     self.homeBannerArray = @[];
@@ -124,6 +131,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
             forCellWithReuseIdentifier:ZHLZHomeMunicipalFacilityCVCReuseIdentifier];
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+}
+
+- (void)toolAction {
+    [self.navigationController pushViewController:[ZHLZHomeToolVC new] animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -387,6 +398,14 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 ZHLZHomeInfoStatisticsVC *homeInfoStatisticsVC = [ZHLZHomeInfoStatisticsVC new];
                 homeInfoStatisticsVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeInfoStatisticsVC
+                                                     animated:YES];
+            }
+                break;
+            case 12:
+            {
+                ZHLZHomeCarVideoVC *homeCarVideoVC = [ZHLZHomeCarVideoVC new];
+                homeCarVideoVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeCarVideoVC
                                                      animated:YES];
             }
                 break;
