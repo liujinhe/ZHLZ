@@ -470,6 +470,9 @@
     if (coordinate) {
         self.projectSubmitModel.coordinatesX = [coordinate objectForKey:@"longitude"];
         self.projectSubmitModel.coordinatesY = [coordinate objectForKey:@"latitude"];
+    } else {
+        self.projectSubmitModel.coordinatesX = @"";
+        self.projectSubmitModel.coordinatesY = @"";
     }
     self.projectSubmitModel.remark = self.remarkTextView.text;
     

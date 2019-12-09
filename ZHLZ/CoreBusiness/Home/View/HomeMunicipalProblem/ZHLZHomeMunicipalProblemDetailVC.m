@@ -360,14 +360,23 @@
         
         ZHLZRoadMaintenancePickerViewVC *roadMaintenancePickerViewVC = [ZHLZRoadMaintenancePickerViewVC new];
         roadMaintenancePickerViewVC.selectPickerBlock = ^(NSArray * _Nonnull valueArray, NSArray * _Nonnull nameArray) {
-            NSLog(@"%@", valueArray);
-            NSLog(@"%@", nameArray);
             
             NSMutableString *string = [NSMutableString new];
             for (int i = 0 ; i < nameArray.count ; i++) {
                 [string appendFormat:@"%@/",nameArray[i]];
             }
             [self.problemClassifyArray addObject:string];
+            
+            NSMutableString *problemDescString = [NSMutableString new];
+            for (int i = 0; i < self.problemClassifyArray.count; i++) {
+                [problemDescString appendFormat:@"%@\n\n",self.problemClassifyArray[i]];
+                if ([problemDescString isNotBlank]) {
+                    NSRange itemStringRange = {[problemDescString length] - 1, 1};
+                    [problemDescString deleteCharactersInRange:itemStringRange];
+                }
+            }
+            self.problemDescTextView.text = problemDescString;
+            
         
             [self municipalProblemCreateSupervisorViewWithType:2];
         };
@@ -454,11 +463,19 @@
     self.municipalProblemSubmitModel.classAndContent = @"";
     self.municipalProblemSubmitModel.fine = self.fineMoneyTextFule.text;
     
+    if (![self.municipalProblemSubmitModel.islyrical isNotBlank]) {
+        self.municipalProblemSubmitModel.islyrical = @"0";
+    }
+    
     NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
     if (coordinate) {
         self.municipalProblemSubmitModel.latX = [coordinate objectForKey:@"longitude"];
         self.municipalProblemSubmitModel.lonY = [coordinate objectForKey:@"latitude"];
+    } else {
+        self.municipalProblemSubmitModel.latX = @"";
+        self.municipalProblemSubmitModel.lonY = @"";
     }
+    
     self.municipalProblemSubmitModel.uploadid = @"";
     if (self.type == 1) {
         self.municipalProblemSubmitModel.id = @"";
