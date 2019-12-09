@@ -68,6 +68,15 @@
     ZHLZHomeSafeProblemDetailVC *safeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
     safeProblemDetailVC.type = 3;
     safeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@",self.homeSafeProblemModel.objectID];
+    safeProblemDetailVC.reloadDataBlock = ^{
+        
+        [self.supervisorSubmitModelArray removeAllObjects];
+        
+        [self getProblemDetailData];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+        
+    };
     [self.navigationController pushViewController:safeProblemDetailVC animated:YES];
 }
 
@@ -368,7 +377,9 @@
         } else {
             [GRToast makeText:@"修改成功"];
         }
-        
+        if (self.reloadDataBlock) {
+            self.reloadDataBlock();
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

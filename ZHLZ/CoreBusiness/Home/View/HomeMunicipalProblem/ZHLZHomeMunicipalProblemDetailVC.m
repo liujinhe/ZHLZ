@@ -90,6 +90,14 @@
     ZHLZHomeMunicipalProblemDetailVC *municipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
     municipalProblemDetailVC.type = 3;
     municipalProblemDetailVC.detailId = self.detailId;
+    municipalProblemDetailVC.reloadDataBlock = ^{
+        
+        [self.supervisorSubmitModelArray removeAllObjects];
+        
+        [self loadMunicipalProblemDetailData];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+    };
     [self.navigationController pushViewController:municipalProblemDetailVC animated:YES];
 }
 
@@ -520,6 +528,11 @@
         } else {
             [GRToast makeText:@"修改成功"];
         }
+        
+        if (self.reloadDataBlock) {
+            self.reloadDataBlock();
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

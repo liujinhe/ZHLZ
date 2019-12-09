@@ -213,6 +213,15 @@
     ZHLZHomeOccupyProblemDetailVC *occupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
     occupyProblemDetailVC.detailId = self.detailId;
     occupyProblemDetailVC.type = 3;
+    occupyProblemDetailVC.reloadDataBlock = ^{
+        
+        [self.supervisorSubmitModelArray removeAllObjects];
+        
+        [self loadOccupyProblemDetail];
+        
+        [self loadHomeSafeFloodPreventionProblemGetMeasures];
+        
+    };
     [self.navigationController pushViewController:occupyProblemDetailVC animated:YES];
 }
 ///项目名称
@@ -358,6 +367,10 @@
         } else {
             [GRToast makeText:@"修改成功"];
         }
+        if (self.reloadDataBlock) {
+            self.reloadDataBlock();
+        }
+        
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

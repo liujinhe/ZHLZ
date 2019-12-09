@@ -65,6 +65,9 @@
 -(void)editAction {
     ZHLZHomeBuildProjectDetailVC *buildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
     buildProjectDetailVC.detailType = 3;
+    buildProjectDetailVC.reloadDataBlock = ^{
+        [self loadDetailData];
+    };
     buildProjectDetailVC.detailId = self.detailId;
     [self.navigationController pushViewController:buildProjectDetailVC animated:YES];
 }
@@ -528,6 +531,9 @@
             [GRToast makeText:@"新增成功"];
         } else {
             [GRToast makeText:@"保存成功"];
+        }
+        if (self.reloadDataBlock) {
+            self.reloadDataBlock();
         }
         [self.navigationController popViewControllerAnimated:YES];
     }];

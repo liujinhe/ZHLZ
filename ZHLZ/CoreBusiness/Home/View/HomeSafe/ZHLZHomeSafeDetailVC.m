@@ -110,6 +110,9 @@
     ZHLZHomeSafeDetailVC *safeDetailVC = [ZHLZHomeSafeDetailVC new];
     safeDetailVC.type = 3;
     safeDetailVC.detailId = [NSString stringWithFormat:@"%@",self.safeDetailModel.objectID];
+    safeDetailVC.reloadDataBlock = ^{
+        [self loadDetailData];
+    };
     [self.navigationController pushViewController:safeDetailVC animated:YES];
 }
 
@@ -245,6 +248,14 @@
     @weakify(self)
     self.task = [[ZHLZHomeSafeVM sharedInstance] submitHomeSafeWithSubmitType:self.type andSubmitModel:self.safeSubmitModel withBlock:^{
         @strongify(self)
+        if (self.type == 1) {
+            [GRToast makeText:@"新增成功"];
+        } else {
+            [GRToast makeText:@"保存成功"];
+        }
+        if (self.reloadDataBlock) {
+            self.reloadDataBlock();
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

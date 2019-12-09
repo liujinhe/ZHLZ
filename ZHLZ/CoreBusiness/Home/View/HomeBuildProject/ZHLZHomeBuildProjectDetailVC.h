@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *detailId;
 
+@property(nonatomic,copy) void (^reloadDataBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

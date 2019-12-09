@@ -2638,9 +2638,9 @@
 			baseConfigurationReference = AF90FDB87C4CF5A05C925C79 /* Pods-ZHLZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2650,9 +2650,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = iOS_Development_UAT;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2662,9 +2662,9 @@
 			baseConfigurationReference = D94327F5AE7200F239881115 /* Pods-ZHLZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2674,9 +2674,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rongjinsuo.pro-uat";
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = iOS_Development_UAT;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

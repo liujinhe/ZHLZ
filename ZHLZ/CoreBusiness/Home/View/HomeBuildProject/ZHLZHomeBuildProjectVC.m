@@ -44,6 +44,9 @@
 - (void)addAction {
     ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
     homeBuildProjectDetailVC.detailType = 1;
+    homeBuildProjectDetailVC.reloadDataBlock = ^{
+        [self.hmeBuildProjectTableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 }
 

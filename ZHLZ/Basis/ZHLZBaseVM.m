@@ -172,6 +172,9 @@
         } else if (response.status == 401) { // 请先登录
             [[NSNotificationCenter defaultCenter] postNotificationName:LoginNotificationConst object:nil];
         } else {
+            if (response.status == 500 || response.status == 501) {
+                success(response);
+            }
             [GRToast makeText:response.message];
         }
     } failure:^(__kindof GRResponse * _Nonnull response) {

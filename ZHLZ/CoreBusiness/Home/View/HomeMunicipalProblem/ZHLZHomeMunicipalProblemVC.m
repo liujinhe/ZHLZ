@@ -124,6 +124,9 @@
 - (void)addAction {
     ZHLZHomeMunicipalProblemDetailVC *homeMunicipalProblemDetailVC = [ZHLZHomeMunicipalProblemDetailVC new];
     homeMunicipalProblemDetailVC.type = 1;
+    homeMunicipalProblemDetailVC.reloadDataBlock = ^{
+        [self.tableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:homeMunicipalProblemDetailVC animated:YES];
 }
 

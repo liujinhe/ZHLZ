@@ -124,6 +124,9 @@
 - (void)addAction {
     ZHLZHomeOccupyProblemDetailVC *homeOccupyProblemDetailVC = [ZHLZHomeOccupyProblemDetailVC new];
     homeOccupyProblemDetailVC.type = 1;
+    homeOccupyProblemDetailVC.reloadDataBlock = ^{
+        [self.tableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
 }
 

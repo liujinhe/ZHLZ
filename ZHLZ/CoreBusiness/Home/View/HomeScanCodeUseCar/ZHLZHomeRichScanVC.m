@@ -263,6 +263,10 @@
                 if (status == 0) {
                     [GRToast makeText:@"用车成功"];
                     [[NSUserDefaults standardUserDefaults] setValue:carId forKey:CarCheckInDateConst];
+                } else if (status == 500){
+                    [GRToast makeText:@"车辆正在使用"];
+                } else if (status == 501){
+                    [GRToast makeText:@"车辆故障无法使用"];
                 }
                 [self.navigationController popViewControllerAnimated:YES];
             }];
