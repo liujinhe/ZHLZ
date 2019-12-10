@@ -178,12 +178,12 @@
             [GRToast makeText:response.message];
         }
     } failure:^(__kindof GRResponse * _Nonnull response) {
+        if ([SVProgressHUD isVisible]) {
+            [SVProgressHUD dismissWithDelay:0.25f];
+        }
         failure(response);
         if (response.status != 0) {
             [GRToast makeText:response.message];
-        }
-        if ([SVProgressHUD isVisible]) {
-            [SVProgressHUD dismissWithDelay:0.25f];
         }
     }];
     return self.requestTask;

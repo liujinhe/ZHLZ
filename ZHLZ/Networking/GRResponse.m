@@ -16,6 +16,8 @@
         _data = [request.responseObject objectForKey:@"data"]?:nil;
         _message = [request.responseObject objectForKey:@"msg"]?:@"";
         _status = [[request.responseObject objectForKey:@"code"] integerValue];
+        _resultStatus = [[request.responseObject objectForKey:@"result"] integerValue];
+        _result = request.responseObject;
     }
     if (request.error) {
         _error = request.error;

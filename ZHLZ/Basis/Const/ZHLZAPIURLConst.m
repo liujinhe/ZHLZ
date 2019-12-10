@@ -14,6 +14,10 @@
 
 NSString * const BaseAPIURLConst = @"http://www.yusuisoft.com:8080";
 
+NSString * const BaseAPICarVideoIPConst = @"http://183.6.134.126";
+
+int const BaseAPICarVideoPortConst = 88;
+
 #pragma mark - API URL for Other
 
 NSString * const LoginAPIURLConst = @"/sys/applogin";

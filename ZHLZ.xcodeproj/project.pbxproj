@@ -34,8 +34,6 @@
 		18AD81472391199000DEDCD5 /* ZHLZHomeRichScanVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AD81452391199000DEDCD5 /* ZHLZHomeRichScanVC.xib */; };
 		18BBFC34239E1C0900B9C27D /* ZHLZHomeToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBFC32239E1C0900B9C27D /* ZHLZHomeToolVC.m */; };
 		18BBFC35239E1C0900B9C27D /* ZHLZHomeToolVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BBFC33239E1C0900B9C27D /* ZHLZHomeToolVC.xib */; };
-		18BBFC39239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */; };
-		18BBFC3A239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */; };
 		18C24B86238B869A00C9EBC2 /* ZHLZChooseListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */; };
 		18C24B87238B869A00C9EBC2 /* ZHLZChooseListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */; };
 		18C24B8C238B86EC00C9EBC2 /* ZHLZChooseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C24B8A238B86EC00C9EBC2 /* ZHLZChooseListCell.m */; };
@@ -46,6 +44,18 @@
 		A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */; };
 		A508043323940AA800CBEC83 /* GRUploadPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043023940AA800CBEC83 /* GRUploadPhotoView.m */; };
 		A508043423940AA800CBEC83 /* GRUploadPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */; };
+		A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E49A239F2967007EEAB6 /* VideoToolbox.framework */; };
+		A530E49F239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */; };
+		A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A0239F35B1007EEAB6 /* libz.tbd */; };
+		A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A2239F35C6007EEAB6 /* libc++.tbd */; };
+		A530E4A5239F35D2007EEAB6 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A4239F35D2007EEAB6 /* libiconv.tbd */; };
+		A530E4A9239F3669007EEAB6 /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A8239F3669007EEAB6 /* TTXSDK.framework */; };
+		A530E4AD239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4AC239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m */; };
+		A530E4B2239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A530E4AF239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib */; };
+		A530E4B3239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4B0239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m */; };
+		A530E4B6239F742A007EEAB6 /* ZHLZDeviceStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4B5239F742A007EEAB6 /* ZHLZDeviceStatusModel.m */; };
+		A530E4BB239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4B9239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m */; };
+		A530E4BC239F7E45007EEAB6 /* ZHLZHomeCarVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A530E4BA239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.xib */; };
 		A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A538B51823869913002E30CC /* ZHLZBrigadeModel.m */; };
 		A538B52023869913002E30CC /* ZHLZAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A538B51A23869913002E30CC /* ZHLZAreaModel.m */; };
 		A538B52E2386991F002E30CC /* ZHLZAreaPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A538B5222386991E002E30CC /* ZHLZAreaPickerViewVC.xib */; };
@@ -366,9 +376,6 @@
 		18BBFC31239E1C0900B9C27D /* ZHLZHomeToolVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeToolVC.h; sourceTree = "<group>"; };
 		18BBFC32239E1C0900B9C27D /* ZHLZHomeToolVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeToolVC.m; sourceTree = "<group>"; };
 		18BBFC33239E1C0900B9C27D /* ZHLZHomeToolVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeToolVC.xib; sourceTree = "<group>"; };
-		18BBFC36239E1C2800B9C27D /* ZHLZHomeCarVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVC.h; sourceTree = "<group>"; };
-		18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVC.m; sourceTree = "<group>"; };
-		18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeCarVideoVC.xib; sourceTree = "<group>"; };
 		18C24B83238B869900C9EBC2 /* ZHLZChooseListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZChooseListVC.h; sourceTree = "<group>"; };
 		18C24B84238B869900C9EBC2 /* ZHLZChooseListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZChooseListVC.m; sourceTree = "<group>"; };
 		18C24B85238B869900C9EBC2 /* ZHLZChooseListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZChooseListVC.xib; sourceTree = "<group>"; };
@@ -387,6 +394,23 @@
 		A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoGridViewFlowLayout.m; sourceTree = "<group>"; };
 		A508043023940AA800CBEC83 /* GRUploadPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoView.m; sourceTree = "<group>"; };
 		A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoCell.m; sourceTree = "<group>"; };
+		A530E49A239F2967007EEAB6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		A530E49D239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVM.h; sourceTree = "<group>"; };
+		A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVM.m; sourceTree = "<group>"; };
+		A530E4A0239F35B1007EEAB6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A530E4A2239F35C6007EEAB6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A530E4A4239F35D2007EEAB6 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		A530E4A8239F3669007EEAB6 /* TTXSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TTXSDK.framework; sourceTree = "<group>"; };
+		A530E4AB239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZVehicleInfoModel.h; sourceTree = "<group>"; };
+		A530E4AC239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZVehicleInfoModel.m; sourceTree = "<group>"; };
+		A530E4AF239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeCarVideoVC.xib; sourceTree = "<group>"; };
+		A530E4B0239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVC.m; sourceTree = "<group>"; };
+		A530E4B1239F6815007EEAB6 /* ZHLZHomeCarVideoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVC.h; sourceTree = "<group>"; };
+		A530E4B4239F742A007EEAB6 /* ZHLZDeviceStatusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZDeviceStatusModel.h; sourceTree = "<group>"; };
+		A530E4B5239F742A007EEAB6 /* ZHLZDeviceStatusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZDeviceStatusModel.m; sourceTree = "<group>"; };
+		A530E4B8239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoTableViewCell.h; sourceTree = "<group>"; };
+		A530E4B9239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoTableViewCell.m; sourceTree = "<group>"; };
+		A530E4BA239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeCarVideoTableViewCell.xib; sourceTree = "<group>"; };
 		A538B51723869913002E30CC /* ZHLZAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZAreaModel.h; sourceTree = "<group>"; };
 		A538B51823869913002E30CC /* ZHLZBrigadeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZBrigadeModel.m; sourceTree = "<group>"; };
 		A538B51A23869913002E30CC /* ZHLZAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZAreaModel.m; sourceTree = "<group>"; };
@@ -817,7 +841,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A530E4A5239F35D2007EEAB6 /* libiconv.tbd in Frameworks */,
+				A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */,
+				A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */,
 				1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */,
+				A530E4A9239F3669007EEAB6 /* TTXSDK.framework in Frameworks */,
+				A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,16 +879,6 @@
 			path = HomeTool;
 			sourceTree = "<group>";
 		};
-		18BBFC30239E1BDA00B9C27D /* HomeCarVideo */ = {
-			isa = PBXGroup;
-			children = (
-				18BBFC36239E1C2800B9C27D /* ZHLZHomeCarVideoVC.h */,
-				18BBFC37239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m */,
-				18BBFC38239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib */,
-			);
-			path = HomeCarVideo;
-			sourceTree = "<group>";
-		};
 		18C24B88238B86C400C9EBC2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -881,6 +900,62 @@
 				A508043023940AA800CBEC83 /* GRUploadPhotoView.m */,
 			);
 			path = GRUploadPhoto;
+			sourceTree = "<group>";
+		};
+		A530E49C239F30A8007EEAB6 /* HomeCarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				A530E49D239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.h */,
+				A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */,
+			);
+			path = HomeCarVideo;
+			sourceTree = "<group>";
+		};
+		A530E4A6239F3669007EEAB6 /* ThirdPartyLib */ = {
+			isa = PBXGroup;
+			children = (
+				A530E4A7239F3669007EEAB6 /* CarVideo */,
+			);
+			path = ThirdPartyLib;
+			sourceTree = "<group>";
+		};
+		A530E4A7239F3669007EEAB6 /* CarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				A530E4A8239F3669007EEAB6 /* TTXSDK.framework */,
+			);
+			path = CarVideo;
+			sourceTree = "<group>";
+		};
+		A530E4AA239F3FBC007EEAB6 /* HomeCarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				A530E4AB239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.h */,
+				A530E4AC239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m */,
+				A530E4B4239F742A007EEAB6 /* ZHLZDeviceStatusModel.h */,
+				A530E4B5239F742A007EEAB6 /* ZHLZDeviceStatusModel.m */,
+			);
+			path = HomeCarVideo;
+			sourceTree = "<group>";
+		};
+		A530E4AE239F6815007EEAB6 /* HomeCarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				A530E4B1239F6815007EEAB6 /* ZHLZHomeCarVideoVC.h */,
+				A530E4B0239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m */,
+				A530E4AF239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib */,
+			);
+			path = HomeCarVideo;
+			sourceTree = "<group>";
+		};
+		A530E4B7239F7E2F007EEAB6 /* HomeCarVideo */ = {
+			isa = PBXGroup;
+			children = (
+				A530E4B8239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.h */,
+				A530E4B9239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m */,
+				A530E4BA239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.xib */,
+			);
+			path = HomeCarVideo;
 			sourceTree = "<group>";
 		};
 		A5574E9A23828DBC00B24FC4 /* ZHLZ */ = {
@@ -980,6 +1055,7 @@
 		A5574EC823828DBC00B24FC4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A530E49C239F30A8007EEAB6 /* HomeCarVideo */,
 				A5574EE523828DBD00B24FC4 /* HomeBuildProject */,
 				A5574ECC23828DBC00B24FC4 /* HomeBusinessDocument */,
 				A5574EDC23828DBC00B24FC4 /* HomeCheckIn */,
@@ -1090,6 +1166,7 @@
 		A5574EEF23828DBD00B24FC4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A530E4AA239F3FBC007EEAB6 /* HomeCarVideo */,
 				A5574F1323828DBD00B24FC4 /* HomeBuildProject */,
 				A5574EF523828DBD00B24FC4 /* HomeBusinessDocument */,
 				A5574F0723828DBD00B24FC4 /* HomeCheckIn */,
@@ -1237,10 +1314,9 @@
 			isa = PBXGroup;
 			children = (
 				A5574F3C23828DBD00B24FC4 /* Cell */,
-				18BBFC30239E1BDA00B9C27D /* HomeCarVideo */,
-				18BBFC2F239E1BDA00B9C27D /* HomeTool */,
 				A5574F5923828DBD00B24FC4 /* HomeBuildProject */,
 				A5574F2323828DBD00B24FC4 /* HomeBusinessDocument */,
+				A530E4AE239F6815007EEAB6 /* HomeCarVideo */,
 				A5574F3823828DBD00B24FC4 /* HomeCheckIn */,
 				A582546E238FDB7E00B5F3E3 /* HomeInfoStatistics */,
 				A5574F6123828DBD00B24FC4 /* HomeMap */,
@@ -1250,6 +1326,7 @@
 				A5574F2B23828DBD00B24FC4 /* HomeSafe */,
 				A5574F3323828DBD00B24FC4 /* HomeSafeProblem */,
 				A5574F5023828DBD00B24FC4 /* HomeScanCodeUseCar */,
+				18BBFC2F239E1BDA00B9C27D /* HomeTool */,
 				A5574F3723828DBD00B24FC4 /* ZHLZHomeVC.h */,
 				A5574F6523828DBD00B24FC4 /* ZHLZHomeVC.m */,
 				A5574F5423828DBD00B24FC4 /* ZHLZHomeVC.xib */,
@@ -1347,6 +1424,7 @@
 		A5574F3C23828DBD00B24FC4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				A530E4B7239F7E2F007EEAB6 /* HomeCarVideo */,
 				A5574F4B23828DBD00B24FC4 /* HomeBuildProject */,
 				A5574F3F23828DBD00B24FC4 /* HomeBusinessDocument */,
 				A57F5C762390F1EB00695A63 /* HomeInfoStatistics */,
@@ -1745,6 +1823,7 @@
 		A5574FC423828DBD00B24FC4 /* Basis */ = {
 			isa = PBXGroup;
 			children = (
+				A530E4A6239F3669007EEAB6 /* ThirdPartyLib */,
 				A5B1947E2385A29200FF5080 /* Category */,
 				A5574FD423828DBD00B24FC4 /* Common */,
 				A5574FCF23828DBD00B24FC4 /* Const */,
@@ -1986,6 +2065,10 @@
 		DA8B2E4CA14FEB35477B6916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A530E4A4239F35D2007EEAB6 /* libiconv.tbd */,
+				A530E4A2239F35C6007EEAB6 /* libc++.tbd */,
+				A530E4A0239F35B1007EEAB6 /* libz.tbd */,
+				A530E49A239F2967007EEAB6 /* VideoToolbox.framework */,
 				A598F07D237A419F00F1B6E9 /* libc++abi.tbd */,
 				42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */,
 				8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */,
@@ -2174,6 +2257,7 @@
 				A5B19464238574FF00FF5080 /* dianli_red_1.png in Resources */,
 				A5B19468238574FF00FF5080 /* shuiwu_yellow_1.png in Resources */,
 				A54C72412382D68700BE7A23 /* ZHLZHomeMunicipalProblemDetailVC.xib in Resources */,
+				A530E4BC239F7E45007EEAB6 /* ZHLZHomeCarVideoTableViewCell.xib in Resources */,
 				A5B1945F238574FF00FF5080 /* yuanlinlvhua_red_2.png in Resources */,
 				A5B19471238574FF00FF5080 /* shuiwu_green_1.png in Resources */,
 				A5452290238A1758001D7EF3 /* ZHLZHomeBannerCVC.xib in Resources */,
@@ -2192,7 +2276,7 @@
 				A57F5C682390AFF100695A63 /* problem_type_content.json in Resources */,
 				A5B19462238574FF00FF5080 /* luqiao_yellow_2.png in Resources */,
 				A5B19473238574FF00FF5080 /* yuanlinlvhua_yellow_1.png in Resources */,
-				18BBFC3A239E1C2800B9C27D /* ZHLZHomeCarVideoVC.xib in Resources */,
+				A530E4B2239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib in Resources */,
 				A582545B238FBB3200B5F3E3 /* ZHLZBuildProjectSearchVC.xib in Resources */,
 				A5B19450238574FF00FF5080 /* guidaojiaotong_red_2.png in Resources */,
 				A5B19470238574FF00FF5080 /* yuanlinlvhua_green_1.png in Resources */,
@@ -2358,6 +2442,7 @@
 				A557502823828DBD00B24FC4 /* ZHLZHomeCRV.m in Sources */,
 				A557507523828DBD00B24FC4 /* ZHLZButton.m in Sources */,
 				1811C7CD238696D800CEBDB1 /* ZHLZChosseStepVC.m in Sources */,
+				A530E4BB239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m in Sources */,
 				A557506523828DBD00B24FC4 /* ZHLZExamineVC.m in Sources */,
 				A5574FF523828DBD00B24FC4 /* GRBaseRequest.m in Sources */,
 				A557506F23828DBD00B24FC4 /* ZHLZBaseModel.m in Sources */,
@@ -2370,6 +2455,7 @@
 				A557501F23828DBD00B24FC4 /* ZHLZHomeRoadPatrolVC.m in Sources */,
 				A5825477238FDB9400B5F3E3 /* ZHLZHomeInfoStatisticsVM.m in Sources */,
 				A557505923828DBD00B24FC4 /* ZHLZMonadVC.m in Sources */,
+				A530E4AD239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m in Sources */,
 				A557506B23828DBD00B24FC4 /* ZHLZTabBarController.m in Sources */,
 				18BBFC34239E1C0900B9C27D /* ZHLZHomeToolVC.m in Sources */,
 				A557501823828DBD00B24FC4 /* ZHLZHomeMunicipalProblemModel.m in Sources */,
@@ -2382,6 +2468,7 @@
 				A557500823828DBD00B24FC4 /* ZHLZHomeVM.m in Sources */,
 				A557501923828DBD00B24FC4 /* ZHLZHomeMapModel.m in Sources */,
 				A557502423828DBD00B24FC4 /* ZHLZHomeSafeProblemVC.m in Sources */,
+				A530E4B6239F742A007EEAB6 /* ZHLZDeviceStatusModel.m in Sources */,
 				A557503423828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.m in Sources */,
 				A538B5352386991F002E30CC /* ZHLZAreaPickerViewVC.m in Sources */,
 				A557506123828DBD00B24FC4 /* ZHLZCityManagementVC.m in Sources */,
@@ -2394,6 +2481,7 @@
 				A57F5C822390F25A00695A63 /* ZHLZHomeBuildProjectCell.m in Sources */,
 				A538B53823869928002E30CC /* ZHLZOtherVM.m in Sources */,
 				A5574FE923828DBD00B24FC4 /* GRBatchRequestAgent.m in Sources */,
+				A530E49F239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m in Sources */,
 				A557503323828DBD00B24FC4 /* ZHLZHomeBuildProjectVC.m in Sources */,
 				A557503A23828DBD00B24FC4 /* ZHLZLoginModel.m in Sources */,
 				A557500B23828DBD00B24FC4 /* ZHLZHomeTimeModel.m in Sources */,
@@ -2468,7 +2556,6 @@
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,
 				A538B51E23869913002E30CC /* ZHLZBrigadeModel.m in Sources */,
-				18BBFC39239E1C2800B9C27D /* ZHLZHomeCarVideoVC.m in Sources */,
 				A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */,
 				A557506E23828DBD00B24FC4 /* ZHLZNavigationController.m in Sources */,
 				187662F2238D1E96000809AD /* ZHLZSupervisorSubmitModel.m in Sources */,
@@ -2492,6 +2579,7 @@
 				A557502B23828DBD00B24FC4 /* ZHLZHomeRoadConstructionCVC.m in Sources */,
 				A557505323828DBD00B24FC4 /* ZHLZRoadWorkVC.m in Sources */,
 				A557503923828DBD00B24FC4 /* ZHLZLoginVM.m in Sources */,
+				A530E4B3239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m in Sources */,
 				187662FB238D2F2C000809AD /* ZHLZHomeSafeSearchVC.m in Sources */,
 				A557503C23828DBD00B24FC4 /* ZHLZLoginVC.m in Sources */,
 				A557501C23828DBD00B24FC4 /* ZHLZHomeBusinessDocumentVC.m in Sources */,
@@ -2678,6 +2766,10 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPartyLib/CarVideo",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2690,6 +2782,7 @@
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = iOS_Development_UAT;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/ZHLZ/Basis/ThirdPartyLib/CarVideo/TTXSDK.framework/Headers";
 			};
 			name = Debug;
 		};
@@ -2702,6 +2795,10 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8QMBLPMEGV;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPartyLib/CarVideo",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2714,6 +2811,7 @@
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = iOS_Development_UAT;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/ZHLZ/Basis/ThirdPartyLib/CarVideo/TTXSDK.framework/Headers";
 			};
 			name = Release;
 		};

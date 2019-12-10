@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSError *error;
 
+@property (nonatomic, assign) NSInteger resultStatus;
+@property (nonatomic, strong) id result;
+
 @end
 
 NS_ASSUME_NONNULL_END

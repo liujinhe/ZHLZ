@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * const BaseAPIURLConst;
 
+// 车载视频 IP
+extern NSString * const BaseAPICarVideoIPConst;
+// 车载视频 Port
+extern int const BaseAPICarVideoPortConst;
+
 #pragma mark - API URL for Other
 
 // 登录

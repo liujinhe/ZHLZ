@@ -133,7 +133,7 @@ NSString * const GRRequestValidationErrorDomain = @"com.zhlz.request.validation"
 }
 
 - (NSTimeInterval)requestTimeoutInterval {
-    return 60;
+    return 30;
 }
 
 - (id)requestArgument {
