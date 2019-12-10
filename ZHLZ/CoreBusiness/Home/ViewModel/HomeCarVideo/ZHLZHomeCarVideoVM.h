@@ -32,10 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionTask *)getVehicleInfoWithSession:(NSString *)session withBlock:(void (^)(NSArray<ZHLZVehicleInfoModel *> *array))block;
 
 /// 获取设备在线状态
+/// @param session session description 
 /// @param deviceId 设备 ID（多个以逗号分割）
 /// @param plateNo 车牌号（多个以逗号分割）
 /// @param block 回调（设备在线状态：1-在线 其他-不在线）
-- (NSURLSessionTask *)getDeviceStatusWithDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block;
+- (NSURLSessionTask *)getDeviceStatusWithSession:(NSString *)session withDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block;
 
 @end
 

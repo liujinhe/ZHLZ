@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHLZDeviceStatusModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeCarVideoTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) ZHLZDeviceStatusModel *deviceStatusModel;
 
 @end
 

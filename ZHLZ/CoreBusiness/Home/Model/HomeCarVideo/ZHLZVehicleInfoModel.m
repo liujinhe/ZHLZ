@@ -14,4 +14,8 @@
 
 @implementation ZHLZVehicleInfoModel
 
+- (void)setDl:(NSArray<ZHLZVehicleInfoDeviceModel *> *)dl {
+    _dl = [NSArray modelArrayWithClass:[ZHLZVehicleInfoDeviceModel class] json:dl];
+}
+
 @end

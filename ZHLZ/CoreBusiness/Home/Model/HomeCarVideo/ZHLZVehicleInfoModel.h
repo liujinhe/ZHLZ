@@ -14,17 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 设备 ID
 // 设备所属公司
-@property (nonatomic, assign) NSInteger pid;
+@property (nonatomic, assign) int pid;
 // IO数目
-@property (nonatomic, assign) NSInteger ic;
+@property (nonatomic, assign) int ic;
 // IO名称（以','分隔）
 @property (nonatomic, copy) NSString *io;
 // 通道数目
-@property (nonatomic, assign) NSInteger cc;
+@property (nonatomic, assign) int cc;
 // 通道名称（以','分隔）
 @property (nonatomic, copy) NSString *cn;
 // 温度传感器数目
-@property (nonatomic, assign) NSInteger tc;
+@property (nonatomic, assign) int tc;
 // 温度传感器名称（以','分隔）
 @property (nonatomic, copy) NSString *tn;
 // 外设参数（按位表示，每位表示一种外设）
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 第八位为油量传感器
 // 第九位为支持对讲
 // 第十位为 ODB 外设
-@property (nonatomic, assign) NSInteger md;
+@property (nonatomic, assign) int md;
 // SIM卡号
 @property (nonatomic, copy) NSString *sim;
 
@@ -50,9 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 车牌号
 @property (nonatomic, copy) NSString *nm;
 // 车辆图标
-@property (nonatomic, assign) NSInteger ic;
+@property (nonatomic, assign) int ic;
 // 所属公司或者车队
-@property (nonatomic, assign) NSInteger pid;
+@property (nonatomic, assign) int pid;
 // 设备列表
 @property (nonatomic, strong) NSArray<ZHLZVehicleInfoDeviceModel *> *dl;
 

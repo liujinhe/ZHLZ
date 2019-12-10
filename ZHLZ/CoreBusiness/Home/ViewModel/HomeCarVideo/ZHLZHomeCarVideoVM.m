@@ -69,9 +69,10 @@
     }];
 }
 
-- (NSURLSessionTask *)getDeviceStatusWithDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block {
+- (NSURLSessionTask *)getDeviceStatusWithSession:(NSString *)session withDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block {
     NSString *requestUrl = [kBaseUrl stringByAppendingString:@"/StandardApiAction_getDeviceOlStatus.action"];
-    id requestArgument = @{@"devIdno":deviceId,
+    id requestArgument = @{@"jsession":session,
+                           @"devIdno":deviceId,
                            @"vehiIdno":plateNo?:@""};
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestUrl
                                             withRequestArgument:requestArgument];
