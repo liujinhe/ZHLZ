@@ -80,32 +80,41 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
     _showLatestMessageType = 0;
     
     self.moduleTitleArray = @[@"地图展示",
+                              @"扫码用车",
+                              @"人员签到",
+                              
                               @"在建项目",
-                              @"安全(三防)台账",
                               @"占道问题",
                               @"市政问题",
-                              @"安全(三防)问题",
+                              
                               @"路巡小结",
-                              @"人员签到",
                               @"路巡统计",
+                              @"统计信息",
+                              
+                              @"安全(三防)台账",
+                              @"安全(三防)问题",
                               @"业务文件",
-                              @"扫码用车",
-                              @"信息统计",
+                              
                               @"车载视频"];
     
     self.moduleImageArray = @[@"icon_home_map",
+                              @"icon_home_scan_code_use_car",
+                              @"icon_home_check_in",
+                              
+                              
                               @"icon_home_build_project",
-                              @"icon_home_safe",
                               @"icon_home_occupy_problem",
                               @"icon_home_municipal_problem",
-                              @"icon_home_safe_problem",
+                              
                               @"icon_home_road_patrol",
-                              @"icon_home_check_in",
                               @"icon_home_road_patrol_statistics",
-                              @"icon_home_business_document",
-                              @"icon_home_scan_code_use_car",
                               @"icon_home_info_statistics",
-                              @"icon_home_info_statistics"];
+                              
+                              @"icon_home_safe",
+                              @"icon_home_safe_problem",
+                              @"icon_home_business_document",
+                              
+                              @"icon_home_car_video"];
     
     self.homeBannerArray = @[];
     self.homeBulletinArray = @[];
