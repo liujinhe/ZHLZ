@@ -71,6 +71,7 @@ static NSString * const Pwd = @"admin";
 
 - (void)initUI {
     self.maskView = [UIView new];
+    self.maskView.backgroundColor = kHexRGBAlpha(0x000000, 0.5);
     self.maskView.hidden = YES;
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoAction)]];
     [self.view addSubview:self.maskView];
@@ -80,7 +81,7 @@ static NSString * const Pwd = @"admin";
     
     [[TTXSDKPrepare prepare] initializationSDK];
     [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
-    
+
     self.realVideoView = [[TTXRealVideoView alloc] init];
     self.realVideoView.hidden = YES;
     [self.realVideoView setLanInfo:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
@@ -113,6 +114,9 @@ static NSString * const Pwd = @"admin";
         @strongify(self);
         self->_session = session;
         
+        [[TTXSDKPrepare prepare] setJsession:self->_session];
+        [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
+        
         [self getCarInfoAction];
     }];
 }
@@ -140,7 +144,7 @@ static NSString * const Pwd = @"admin";
                 if ([model.did isEqualToString:vehicleInfoDeviceModel.objectID]) {
                     model.brigade = vehicleInfoModel.nm;
                     model.channel = vehicleInfoDeviceModel.cc;
-                    model.codeStream = vehicleInfoDeviceModel.ic;
+                    model.codeStream = vehicleInfoDeviceModel.md;
                     model.deviceName = vehicleInfoModel.nm;
                     model.channelName = vehicleInfoDeviceModel.cn;
                     break;
@@ -218,6 +222,12 @@ static NSString * const Pwd = @"admin";
         [self.realVideoView StartAV];
     }
     
+    if (self.realVideoView.isSounding) {
+        [self.realVideoView stopSound];
+    } else {
+        [self.realVideoView playSound];
+    }
+    
     if (self.talkback.isTalkback) {
         [self.talkback stopTalkback];
     } else {
@@ -263,6 +273,9 @@ static NSString * const Pwd = @"admin";
                                    mode:model.codeStream];
         [self.realVideoView setTitleInfo:model.deviceName
                                   chName:model.channelName];
+        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
+                                  port:BaseAPICarVideoLivePortConst];
+        
         [self showVideoAction];
     }
 }

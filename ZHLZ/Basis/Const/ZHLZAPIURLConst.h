@@ -20,6 +20,8 @@ extern NSString * const BaseAPIURLConst;
 extern NSString * const BaseAPICarVideoIPConst;
 // 车载视频 Port
 extern int const BaseAPICarVideoPortConst;
+extern int const BaseAPICarVideoLoginAfterPortConst;
+extern int const BaseAPICarVideoLivePortConst;
 
 #pragma mark - API URL for Other
 
