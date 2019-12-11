@@ -194,7 +194,7 @@
 {
     //判断是否有闪光灯
     if (![_device hasTorch]) {
-        [self showAlertWithTitle:@"当前设备没有闪光灯，无法开启照明功能" message:nil sureHandler:nil cancelHandler:nil];
+        [self showAlertWithTitle:@"当前设备没有闪光灯，无法开启照明功能" message:nil];
         return;
     }
     
@@ -219,7 +219,7 @@
         
         [self presentViewController:controller animated:YES completion:nil];
     }else {
-        [self showAlertWithTitle:@"当前设备不支持访问相册" message:nil sureHandler:nil cancelHandler:nil];
+        [self showAlertWithTitle:@"当前设备不支持访问相册" message:nil];
     }
 }
 
@@ -296,20 +296,19 @@
 
         //识别结果
         if (features.count > 0) {
-            [self showAlertWithTitle:@"扫描结果" message:[[features firstObject] messageString] sureHandler:nil cancelHandler:nil];
+            [self showAlertWithTitle:@"扫描结果" message:[[features firstObject] messageString]];
             
         }else{
-            [self showAlertWithTitle:@"没有识别到二维码或条形码" message:nil sureHandler:nil cancelHandler:nil];
+            [self showAlertWithTitle:@"没有识别到二维码或条形码" message:nil];
         }
     }];
 }
 
 //提示弹窗
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message sureHandler:(void (^)())sureHandler cancelHandler:(void (^)())cancelHandler
-{
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:sureHandler];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancelHandler];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:sureAction];
     [alertController addAction:cancelAction];
     
