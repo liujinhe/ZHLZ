@@ -8,8 +8,6 @@
 
 #import "ZHLZHomeCarVideoVM.h"
 
-#define kBaseUrl (BaseAPICarVideoPortConst > 0 ? [BaseAPICarVideoIPConst stringByAppendingString:[NSString stringWithFormat:@":%d", BaseAPICarVideoPortConst]] : BaseAPICarVideoIPConst)
-
 @implementation ZHLZHomeCarVideoVM
 
 + (instancetype)sharedInstance {
@@ -22,7 +20,10 @@
 }
 
 - (NSURLSessionTask *)sessionLoginWithAccount:(NSString *)account withPwd:(NSString *)pwd withBlock:(void (^)(NSString *session))block {
-    NSString *requestUrl = [kBaseUrl stringByAppendingString:@"/StandardApiAction_login.action"];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
+                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoPortConst,
+                            @"/StandardApiAction_login.action"];
     id requestArgument = @{@"account":account,
                            @"password":pwd};
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestUrl
@@ -40,7 +41,10 @@
 }
 
 - (NSURLSessionTask *)sessionLogoutWithSession:(NSString *)session {
-    NSString *requestUrl = [kBaseUrl stringByAppendingString:@"/StandardApiAction_logout.action"];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
+                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoPortConst,
+                            @"/StandardApiAction_logout.action"];
     id requestArgument = @{@"jsession":session};
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestUrl
                                             withRequestArgument:requestArgument];
@@ -53,7 +57,10 @@
 }
 
 - (NSURLSessionTask *)getVehicleInfoWithSession:(NSString *)session withBlock:(void (^)(NSArray<ZHLZVehicleInfoModel *> *array))block {
-    NSString *requestUrl = [kBaseUrl stringByAppendingString:@"/StandardApiAction_queryUserVehicle.action"];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
+                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoPortConst,
+                            @"/StandardApiAction_queryUserVehicle.action"];
     id requestArgument = @{@"jsession":session};
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestUrl
                                             withRequestArgument:requestArgument];
@@ -70,7 +77,10 @@
 }
 
 - (NSURLSessionTask *)getDeviceStatusWithSession:(NSString *)session withDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block {
-    NSString *requestUrl = [kBaseUrl stringByAppendingString:@"/StandardApiAction_getDeviceOlStatus.action"];
+    NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
+                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoPortConst,
+                            @"/StandardApiAction_getDeviceOlStatus.action"];
     id requestArgument = @{@"jsession":session,
                            @"devIdno":deviceId,
                            @"vehiIdno":plateNo?:@""};
