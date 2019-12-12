@@ -479,7 +479,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
             self.delegateDataBlock(imgURL);
         }
     } else {
-        NSInteger index = sender.tag - (_hasExistPhotosCount - 1);
+        NSInteger index = ((sender.tag + 1) - _hasExistPhotosCount) - 1;
         
         if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _maxPhotosCount) {
             [_selectedPhotos removeObjectAtIndex:index];
