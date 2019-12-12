@@ -14,7 +14,7 @@
 
 #define ZHLZHomeBuildProjectReuseIdentifier NSStringFromClass([ZHLZHomeBuildProjectCell class])
 
-@interface ZHLZHomeBuildProjectVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeBuildProjectVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *hmeBuildProjectTableView;
@@ -109,6 +109,8 @@
     
     self.hmeBuildProjectTableView.dataSource = self;
     self.hmeBuildProjectTableView.delegate = self;
+    self.hmeBuildProjectTableView.emptyDataSetSource = self;
+    self.hmeBuildProjectTableView.emptyDataSetDelegate = self;
     
     [self.hmeBuildProjectTableView registerNib:[UINib nibWithNibName:ZHLZHomeBuildProjectReuseIdentifier bundle:nil]
                         forCellReuseIdentifier:ZHLZHomeBuildProjectReuseIdentifier];
@@ -147,5 +149,21 @@
     homeBuildProjectDetailVC.detailId = [NSString stringWithFormat:@"%@",homeBuildProjectModel.objectID];
     [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadHomeProjectBuildData];
+}
+
 
 @end

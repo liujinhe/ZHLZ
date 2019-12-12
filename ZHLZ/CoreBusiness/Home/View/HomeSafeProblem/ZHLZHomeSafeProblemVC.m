@@ -14,7 +14,7 @@
 
 #define ZHLZHomeSafeProblemReuseIdentifier NSStringFromClass([ZHLZHomeSafeProblemCell class])
 
-@interface ZHLZHomeSafeProblemVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeSafeProblemVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *homeSafeProblemTableView;
@@ -104,6 +104,8 @@
     
     self.homeSafeProblemTableView.dataSource = self;
     self.homeSafeProblemTableView.delegate = self;
+    self.homeSafeProblemTableView.emptyDataSetSource = self;
+    self.homeSafeProblemTableView.emptyDataSetDelegate = self;
     
     [self.homeSafeProblemTableView registerNib:[UINib nibWithNibName:ZHLZHomeSafeProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeSafeProblemReuseIdentifier];
     
@@ -176,5 +178,21 @@
     homeSafeProblemDetailVC.detailId = [NSString stringWithFormat:@"%@", safeProblemModel.objectID];
     [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadHomeSafeProblemData];
+}
+
 
 @end

@@ -13,7 +13,7 @@
 
 #define ZHLZHomeRoadPatrolReuseIdentifier NSStringFromClass([ZHLZHomeRoadPatrolTableViewCell class])
 
-@interface ZHLZHomeRoadPatrolVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeRoadPatrolVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 {
     NSString *_startDate;
     NSString *_endDate;
@@ -53,6 +53,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeRoadPatrolReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeRoadPatrolReuseIdentifier];
     
@@ -129,5 +131,21 @@
         [self.navigationController pushViewController:webViewVC animated:YES];
     }
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadData];
+}
+
 
 @end

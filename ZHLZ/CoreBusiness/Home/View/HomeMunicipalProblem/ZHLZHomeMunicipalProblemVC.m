@@ -14,7 +14,7 @@
 
 #define ZHLZHomeMunicipalProblemReuseIdentifier NSStringFromClass([ZHLZHomeMunicipalProblemTableViewCell class])
 
-@interface ZHLZHomeMunicipalProblemVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeMunicipalProblemVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -78,6 +78,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeMunicipalProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeMunicipalProblemReuseIdentifier];
     
@@ -205,5 +207,21 @@
         [self.navigationController pushViewController:homeMunicipalProblemDetailVC animated:YES];
     }
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadData];
+}
+
 
 @end

@@ -13,7 +13,7 @@
 
 static NSString * const cellID = @"ZHLZBusinessDocumentCell";
 
-@interface ZHLZHomeBusinessDocumentVC () <UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate>
+@interface ZHLZHomeBusinessDocumentVC () <UITableViewDataSource, UITableViewDelegate, UIDocumentInteractionControllerDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *businessDocumentTableView;
 
@@ -50,6 +50,8 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
     
     self.businessDocumentTableView.dataSource = self;
     self.businessDocumentTableView.delegate = self;
+    self.businessDocumentTableView.emptyDataSetSource = self;
+    self.businessDocumentTableView.emptyDataSetDelegate = self;
     
     [self.businessDocumentTableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     
@@ -182,5 +184,22 @@ static NSString * const cellID = @"ZHLZBusinessDocumentCell";
 - (CGRect)documentInteractionControllerRectForPreview:(UIDocumentInteractionController*)controller {
     return CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height);
 }
+
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self homeBusinessDocumentData];
+}
+
 
 @end

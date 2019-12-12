@@ -14,7 +14,7 @@
 
 #define ZHLZHomeOccupyProblemReuseIdentifier NSStringFromClass([ZHLZHomeOccupyProblemTableViewCell class])
 
-@interface ZHLZHomeOccupyProblemVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeOccupyProblemVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -80,6 +80,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeOccupyProblemReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeOccupyProblemReuseIdentifier];
     
@@ -207,6 +209,21 @@
         homeOccupyProblemDetailVC.type = 2;
         [self.navigationController pushViewController:homeOccupyProblemDetailVC animated:YES];
     }
+}
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadData];
 }
 
 @end

@@ -14,7 +14,7 @@
 
 #define ZHLZHomeSafeReuseIdentifier NSStringFromClass([ZHLZHomeSafeCell class])
 
-@interface ZHLZHomeSafeVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeSafeVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet ZHLZSearchView *searchView;
 @property (weak, nonatomic) IBOutlet UITableView *homeSafeTableView;
@@ -105,6 +105,8 @@
     
     self.homeSafeTableView.dataSource = self;
     self.homeSafeTableView.delegate = self;
+    self.homeSafeTableView.emptyDataSetSource = self;
+    self.homeSafeTableView.emptyDataSetDelegate = self;
     
     [self.homeSafeTableView registerNib:[UINib nibWithNibName:ZHLZHomeSafeReuseIdentifier bundle:nil] forCellReuseIdentifier:ZHLZHomeSafeReuseIdentifier];
     
@@ -140,5 +142,22 @@
     homeSafeDetailVC.detailId = [NSString stringWithFormat:@"%@", safeModel.objectID];
     [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
 }
+
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadHomeSafeList];
+}
+
 
 @end
