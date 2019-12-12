@@ -36,7 +36,7 @@
 }
 
 - (AFConstructingBlock)constructingBodyBlock {
-    if (self->_image) {
+    if (_image) {
         return ^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:UIImageJPEGRepresentation(self->_image, 0.9)
                                         name:@"file"

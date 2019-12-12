@@ -193,16 +193,16 @@
 }
 
 - (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
-    @weakify(self);
+//    @weakify(self);
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
                                                                             withImgURL:imgURL];
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
-    uploadPhotoView.delegateDataBlock = ^(NSString * _Nonnull imgURL) {
-        @strongify(self);
-    };
+//    uploadPhotoView.delegateDataBlock = ^(NSString * _Nonnull imgURL) {
+//        @strongify(self);
+//    };
     [self.uploadPicView addSubview:uploadPhotoView];
 
     NSArray *array = [imgURL componentsSeparatedByString:@","];

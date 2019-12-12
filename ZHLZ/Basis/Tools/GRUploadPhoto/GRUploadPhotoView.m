@@ -10,6 +10,7 @@
 #import "GRUploadPhotoCell.h"
 #import "GRUploadPhotoGridViewFlowLayout.h"
 #import <TZImagePickerController/TZImagePickerController.h>
+#import "ZHLZUploadVM.h"
 
 // 图片宽度(px)
 static CGFloat const ImageWidth = 800.f;
@@ -458,26 +459,41 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (void)deleteBtnClik:(UIButton *)sender {
     if (sender.tag < _hasExistPhotosCount) {
-        [_hasExistPhotos removeObjectAtIndex:sender.tag];
-        [_photoURLArray removeObjectAtIndex:sender.tag];
-        
-        _hasExistPhotosCount--;
-        _selectPhotosCount = _maxPhotosCount - _hasExistPhotosCount;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self changeViewHeight];
-            [self->_collectionView reloadData];
-        });
+        @weakify(self);
+        NSString *imageURL = _photoURLArray[sender.tag];
+        if (![imageURL isNotBlank]) {
+            return;
+        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否要删除当前图片？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAlertAction = [UIAlertAction actionWithTitle:@"确认删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[ZHLZUploadVM sharedInstance] deleteImageWithImageUrl:imageURL withBlock:^{
+                @strongify(self);
+                [self->_hasExistPhotos removeObjectAtIndex:sender.tag];
+                [self->_photoURLArray removeObjectAtIndex:sender.tag];
+                
+                self->_hasExistPhotosCount--;
+                self->_selectPhotosCount = self->_maxPhotosCount - self->_hasExistPhotosCount;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self changeViewHeight];
+                    [self->_collectionView reloadData];
+                });
+            }];
+        }];
+        [alertController addAction:okAlertAction];
+        UIAlertAction *cancelAlertAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAlertAction];
+        [_vc presentViewController:alertController animated:NO completion:nil];
         
         // 删除已有图片回调
-        if (self.delegateDataBlock) {
-            NSString *imgURL = @"";
-            for (NSString *url in _photoURLArray) {
-                imgURL = [imgURL stringByAppendingString:[NSString stringWithFormat:@"%@,", url]];
-            }
-            imgURL = [imgURL substringToIndex:(imgURL.length - 1)];
-            self.delegateDataBlock(imgURL);
-        }
+//        if (self.delegateDataBlock) {
+//            NSString *imgURL = @"";
+//            for (NSString *url in _photoURLArray) {
+//                imgURL = [imgURL stringByAppendingString:[NSString stringWithFormat:@"%@,", url]];
+//            }
+//            imgURL = [imgURL substringToIndex:(imgURL.length - 1)];
+//            self.delegateDataBlock(imgURL);
+//        }
     } else {
         NSInteger index = ((sender.tag + 1) - _hasExistPhotosCount) - 1;
         
