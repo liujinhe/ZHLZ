@@ -21,7 +21,7 @@
 
 - (NSURLSessionTask *)sessionLoginWithAccount:(NSString *)account withPwd:(NSString *)pwd withBlock:(void (^)(NSString *session))block {
     NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
-                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoURLConst,
                             BaseAPICarVideoPortConst,
                             @"/StandardApiAction_login.action"];
     id requestArgument = @{@"account":account,
@@ -42,7 +42,7 @@
 
 - (NSURLSessionTask *)sessionLogoutWithSession:(NSString *)session {
     NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
-                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoURLConst,
                             BaseAPICarVideoPortConst,
                             @"/StandardApiAction_logout.action"];
     id requestArgument = @{@"jsession":session};
@@ -58,7 +58,7 @@
 
 - (NSURLSessionTask *)getVehicleInfoWithSession:(NSString *)session withBlock:(void (^)(NSArray<ZHLZVehicleInfoModel *> *array))block {
     NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
-                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoURLConst,
                             BaseAPICarVideoPortConst,
                             @"/StandardApiAction_queryUserVehicle.action"];
     id requestArgument = @{@"jsession":session};
@@ -78,7 +78,7 @@
 
 - (NSURLSessionTask *)getDeviceStatusWithSession:(NSString *)session withDeviceId:(NSString *)deviceId withPlateNo:(nullable NSString *)plateNo withBlock:(void (^)(NSArray<ZHLZDeviceStatusModel *> *array))block {
     NSString *requestUrl = [NSString stringWithFormat:@"%@:%d%@",
-                            BaseAPICarVideoIPConst,
+                            BaseAPICarVideoURLConst,
                             BaseAPICarVideoPortConst,
                             @"/StandardApiAction_getDeviceOlStatus.action"];
     id requestArgument = @{@"jsession":session,

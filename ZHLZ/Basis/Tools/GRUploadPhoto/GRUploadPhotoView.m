@@ -122,16 +122,18 @@ static NSString * const Cell = @"GRUploadPhotoCell";
                 id value = [dic.allValues firstObject];
                 if ([value isKindOfClass:[UIImage class]]) {
                     [_hasExistPhotos addObject:(UIImage *)value];
-                    
-                    [self changeViewHeight];
-                    [_collectionView reloadData];
-                    
-                    [self->_photosArray removeAllObjects];
                 }
                 break;
             }
         }
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self changeViewHeight];
+        [self->_collectionView reloadData];
+    });
+    
+    [self->_photosArray removeAllObjects];
 }
 
 #pragma mark - init
@@ -152,6 +154,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
     _collectionView.bounces = NO;
+    _collectionView.scrollEnabled = NO;
     _collectionView.backgroundColor = UIColor.clearColor;
     _collectionView.contentInset = UIEdgeInsetsZero;
     _collectionView.dataSource = self;
@@ -299,9 +302,10 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [self.delegate selectedWithPhotoArray:_selectedPhotos withImgExtArray:imgExtArray withParentView:self];
     }
     
-    [self changeViewHeight];
-    
-    [_collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self changeViewHeight];
+        [self->_collectionView reloadData];
+    });
 }
 
 - (void)unableAccessAlbum {
@@ -454,28 +458,26 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (void)deleteBtnClik:(UIButton *)sender {
     if (sender.tag < _hasExistPhotosCount) {
-        [self->_hasExistPhotos removeObjectAtIndex:sender.tag];
-        [self->_photoURLArray removeObjectAtIndex:sender.tag];
+        [_hasExistPhotos removeObjectAtIndex:sender.tag];
+        [_photoURLArray removeObjectAtIndex:sender.tag];
         
-        [_collectionView performBatchUpdates:^{
-            [self->_collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:sender.tag inSection:0]]];
-        } completion:^(BOOL finished) {
-            self->_hasExistPhotosCount--;
-            self->_selectPhotosCount = self->_maxPhotosCount - self->_hasExistPhotosCount;
-            
-            // 删除已有图片回调
-            if (self.delegateDataBlock) {
-                NSString *imgURL = @"";
-                for (NSString *url in self->_photoURLArray) {
-                    imgURL = [NSString stringWithFormat:@"%@,", url];
-                }
-                imgURL = [imgURL substringToIndex:(imgURL.length - 1)];
-                self.delegateDataBlock(imgURL);
-            }
-
+        _hasExistPhotosCount--;
+        _selectPhotosCount = _maxPhotosCount - _hasExistPhotosCount;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self changeViewHeight];
             [self->_collectionView reloadData];
-        }];
+        });
+        
+        // 删除已有图片回调
+        if (self.delegateDataBlock) {
+            NSString *imgURL = @"";
+            for (NSString *url in _photoURLArray) {
+                imgURL = [imgURL stringByAppendingString:[NSString stringWithFormat:@"%@,", url]];
+            }
+            imgURL = [imgURL substringToIndex:(imgURL.length - 1)];
+            self.delegateDataBlock(imgURL);
+        }
     } else {
         NSInteger index = sender.tag - (_hasExistPhotosCount - 1);
         
@@ -490,11 +492,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [_selectedPhotos removeObjectAtIndex:index];
         [_selectedAssets removeObjectAtIndex:index];
         
-        [_collectionView performBatchUpdates:^{
-            [self->_collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
-        } completion:^(BOOL finished) {
-            [self showImage];
-        }];
+        [self showImage];
     }
 }
 

@@ -14,8 +14,9 @@
 
 NSString * const BaseAPIURLConst = @"http://www.yusuisoft.com:8080";
 
-NSString * const BaseAPICarVideoIPConst = @"http://183.6.134.126";
+NSString * const BaseAPICarVideoURLConst = @"http://183.6.134.126";
 
+NSString * const BaseAPICarVideoIPConst = @"183.6.134.126";
 int const BaseAPICarVideoPortConst = 88;
 int const BaseAPICarVideoLoginAfterPortConst = 6605;
 int const BaseAPICarVideoLivePortConst = 6688;
