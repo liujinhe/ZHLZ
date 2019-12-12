@@ -169,6 +169,9 @@ extern NSString * const BrigadeAPIURLConst;
 // 公共字典下拉列表
 extern NSString * const CodeValuesAPIURLConst;
 
+//删除图片
+extern NSString * const DeleteByUploadid;
+
 @end
 
 NS_ASSUME_NONNULL_END

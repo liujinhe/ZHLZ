@@ -234,12 +234,14 @@
         if (self.type == 1) {
             uploadId = [uploadVM random:16];
         } else {
-            uploadId = self.safeSubmitModel.uploadId;
+            if ([self.safeSubmitModel.uploadId isNotBlank]) {
+                 uploadId = self.safeSubmitModel.uploadId;
+            } else {
+                uploadId = [uploadVM random:16];
+            }
         }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            if (self.type == 1) {
-                self.safeSubmitModel.uploadId = uploadId;
-            }
+            self.safeSubmitModel.uploadId = uploadId;
             @strongify(self)
             [self submitAction];
         }];

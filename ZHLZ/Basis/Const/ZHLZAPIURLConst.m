@@ -159,4 +159,7 @@ NSString * const BrigadeAPIURLConst = @"/organize/select";
 
 NSString * const CodeValuesAPIURLConst = @"/getData/getCodeValues";
 
+NSString * const DeleteByUploadid = @"/app/file/deleteByUploadid";
+
+
 @end

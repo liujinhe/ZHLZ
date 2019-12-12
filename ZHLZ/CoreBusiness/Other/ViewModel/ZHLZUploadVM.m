@@ -37,6 +37,14 @@
     }
 }
 
+- (NSURLSessionTask *)deleteImageWithImageUrl:(NSString *)imageUrl withBlock:(dispatch_block_t)block{
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:DeleteByUploadid withRequestArgument:imageUrl];
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        block();
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
 - (NSString *)random:(int)len {
     char ch[len];
     for (int index = 0; index < len; index++) {

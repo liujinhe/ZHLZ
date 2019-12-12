@@ -526,12 +526,14 @@
         if (self.type == 1) {
             uploadId = [uploadVM random:16];
         } else {
-            uploadId = self.municipalProblemSubmitModel.uploadid;
+            if ([self.municipalProblemSubmitModel.uploadid isNotBlank]) {
+                uploadId = self.municipalProblemSubmitModel.uploadid;
+            } else {
+                uploadId = [uploadVM random:16];
+            }
         }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            if (self.type == 1) {
-                self.municipalProblemSubmitModel.uploadid = uploadId;
-            }
+            self.municipalProblemSubmitModel.uploadid = uploadId;
             @strongify(self)
             [self submitAction];
         }];

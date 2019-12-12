@@ -21,7 +21,7 @@ static NSString * const Account = @"admin";
 // 密码
 static NSString * const Pwd = @"admin";
 
-@interface ZHLZHomeCarVideoVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeCarVideoVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 {
     NSString *_session;         // 会话号
     NSString *_deviceId;        // 设备 ID
@@ -80,11 +80,11 @@ static NSString * const Pwd = @"admin";
     }];
     
     [[TTXSDKPrepare prepare] initializationSDK];
-    [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
+//    [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
 
     self.realVideoView = [[TTXRealVideoView alloc] init];
     self.realVideoView.hidden = YES;
-    [self.realVideoView setLanInfo:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
+//    [self.realVideoView setLanInfo:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
     [self.view addSubview:self.realVideoView];
     [self.realVideoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10);
@@ -101,6 +101,8 @@ static NSString * const Pwd = @"admin";
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:CellReuseIdentifier bundle:nil] forCellReuseIdentifier:CellReuseIdentifier];
     
     [self sessionLoginAction];
@@ -115,7 +117,7 @@ static NSString * const Pwd = @"admin";
         self->_session = session;
         
         [[TTXSDKPrepare prepare] setJsession:self->_session];
-        [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
+        [[TTXSDKPrepare prepare] setServer:@"183.6.134.126" lanIP:@"183.6.134.126" port:BaseAPICarVideoLoginAfterPortConst];
         
         [self getCarInfoAction];
     }];
@@ -273,11 +275,26 @@ static NSString * const Pwd = @"admin";
                                    mode:model.codeStream];
         [self.realVideoView setTitleInfo:model.deviceName
                                   chName:model.channelName];
-        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
+        [self.realVideoView setLanInfo:@"183.6.134.126"
                                   port:BaseAPICarVideoLivePortConst];
         
         [self showVideoAction];
     }
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    [self getDeviceStatus];
+}
+
 
 @end
