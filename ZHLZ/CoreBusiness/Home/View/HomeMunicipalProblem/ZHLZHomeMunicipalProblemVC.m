@@ -48,6 +48,9 @@
     self.searchView.onOrOffBlock = ^(BOOL isOn) {
         @strongify(self);
         if (isOn) {
+            if (![self.homeMunicipalProblemSearchModel.rangeleg isNotBlank]) {
+                self.homeMunicipalProblemSearchModel.rangeleg = @"500";
+            }
             self.homeMunicipalProblemSearchModel.isrange = @"1";
             
             NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
@@ -56,6 +59,7 @@
                 self.homeMunicipalProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
             }
         } else {
+            self.homeMunicipalProblemSearchModel.rangeleg = nil;
             self.homeMunicipalProblemSearchModel.isrange = nil;
             self.homeMunicipalProblemSearchModel.lng = nil;
             self.homeMunicipalProblemSearchModel.lat = nil;

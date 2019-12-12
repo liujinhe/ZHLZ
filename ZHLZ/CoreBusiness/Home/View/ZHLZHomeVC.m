@@ -327,12 +327,10 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 homeScanCodeUseCarVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeScanCodeUseCarVC
                                                      animated:YES];
-                
             }
                 break;
             case 2:
             {
-                
                 ZHLZHomeCheckInVC *homeCheckInVC = [ZHLZHomeCheckInVC new];
                 homeCheckInVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeCheckInVC
@@ -345,8 +343,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 homeBuildProjectVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeBuildProjectVC
                                                      animated:YES];
-                
-                
             }
                 break;
             case 4:
@@ -355,7 +351,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 homeOccupyProblemVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeOccupyProblemVC
                                                      animated:YES];
-                
             }
                 break;
             case 5:
@@ -364,7 +359,6 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 homeMunicipalProblemVC.navTitle = navTitle;
                 [self.navigationController pushViewController:homeMunicipalProblemVC
                                                      animated:YES];
-                
             }
                 break;
             case 6:

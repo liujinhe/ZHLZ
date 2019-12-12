@@ -55,7 +55,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     if (self) {
         _vc = vc;
         
-        _maxImagesCount = maxImagesCount;
+        _maxImagesCount = maxImagesCount - photoURLArray.count;
         
         _photoURLArray = photoURLArray;
         _photosArray = @[].mutableCopy;
@@ -106,24 +106,15 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)allDownloaderCompleted {
-//    @weakify(self);
     for (NSString *url in self->_photoURLArray) {
         for (NSDictionary *dic in self->_photosArray) {
             if ([[BaseAPIURLConst stringByAppendingString:url] isEqualToString:[dic.allKeys firstObject]]) {
                 id value = [dic.allValues firstObject];
                 if ([value isKindOfClass:[UIImage class]]) {
                     [_selectedPhotos addObject:(UIImage *)value];
+                    [_selectedAssets addObject:[PHAsset new]];
                     
                     [self showImage];
-//                    [[TZImageManager manager] savePhotoWithImage:(UIImage *)value meta:nil location:self.location completion:^(PHAsset *asset, NSError *error) {
-//                        @strongify(self);
-//                        if (error) {
-//                            NSLog(@"图片保存失败 %@", error);
-//                        } else {
-//                            TZAssetModel *assetModel = [[TZImageManager manager] createModelWithAsset:asset];
-//                            [self refreshCollectionViewWithAddedAsset:assetModel.asset image:(UIImage *)value];
-//                        }
-//                    }];
                 }
                 break;
             }
@@ -375,9 +366,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     GRUploadPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Cell forIndexPath:indexPath];
     if (self.optionType == 2) {
         cell.imageView.image = _selectedPhotos[indexPath.item];
-        if (_selectedAssets && _selectedAssets.count > 0) {
-            cell.asset = _selectedAssets[indexPath.item];
-        }
+        cell.asset = _selectedAssets[indexPath.item];
         cell.deleteBtn.hidden = YES;
         [cell changeBorder];
     } else if (indexPath.item == _selectedPhotos.count) {
@@ -386,9 +375,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         [cell changeBorder];
     } else {
         cell.imageView.image = _selectedPhotos[indexPath.item];
-        if (_selectedAssets && _selectedAssets.count > 0) {
-            cell.asset = _selectedAssets[indexPath.item];
-        }
+        cell.asset = _selectedAssets[indexPath.item];
         cell.deleteBtn.hidden = NO;
         [cell changeBorder];
     }
@@ -417,29 +404,29 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     [self showImage];
 }
 
-#pragma mark - GRUploadPhotoGridViewDataSource
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.item < _selectedPhotos.count;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath canMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-    return (sourceIndexPath.item < _selectedPhotos.count && destinationIndexPath.item < _selectedPhotos.count);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath didMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-    UIImage *image = _selectedPhotos[sourceIndexPath.item];
-    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
-    [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
-    
-    if (_selectedAssets && _selectedAssets.count > 0) {
-        id asset = _selectedAssets[sourceIndexPath.item];
-        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
-        [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
-    }
-    
-    [self showImage];
-}
+//#pragma mark - GRUploadPhotoGridViewDataSource
+//
+//- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+//    return indexPath.item < _selectedPhotos.count;
+//}
+//
+//- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath canMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
+//    return (sourceIndexPath.item < _selectedPhotos.count && destinationIndexPath.item < _selectedPhotos.count);
+//}
+//
+//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath didMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
+//    UIImage *image = _selectedPhotos[sourceIndexPath.item];
+//    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+//    [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
+//
+//    if (_selectedAssets && _selectedAssets.count > 0) {
+//        id asset = _selectedAssets[sourceIndexPath.item];
+//        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+//        [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
+//    }
+//
+//    [self showImage];
+//}
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -474,17 +461,14 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 - (void)deleteBtnClik:(UIButton *)sender {
     if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
         [_selectedPhotos removeObjectAtIndex:sender.tag];
-        if (_selectedAssets && _selectedAssets.count > 0) {
-            [_selectedAssets removeObjectAtIndex:sender.tag];
-        }
+        [_selectedAssets removeObjectAtIndex:sender.tag];
+
         [self showImage];
         return;
     }
     
     [_selectedPhotos removeObjectAtIndex:sender.tag];
-    if (_selectedAssets && _selectedAssets.count > 0) {
-        [_selectedAssets removeObjectAtIndex:sender.tag];
-    }
+    [_selectedAssets removeObjectAtIndex:sender.tag];
     
     [_collectionView performBatchUpdates:^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];

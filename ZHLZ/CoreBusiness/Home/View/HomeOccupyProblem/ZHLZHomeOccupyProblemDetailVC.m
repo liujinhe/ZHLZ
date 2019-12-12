@@ -189,7 +189,7 @@
         }
         
         NSArray *array = [occupyProblemDetailModel.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:self.type == 2 ? array : nil];
+        [self addUploadPicActionWithPhotoURLArray:self.type != 1 ? array : nil];
     }];
 }
 
@@ -202,7 +202,7 @@
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
     
-    if (self.type == 2 && photoURLArray.count == 0) {
+    if (self.type == 2 && photoURLArray && photoURLArray.count == 0) {
         self.uploadPicViewHeight.constant = kAutoFitReal(0);
     } else {
         self.uploadPicViewHeight.constant = kAutoFitReal(105);

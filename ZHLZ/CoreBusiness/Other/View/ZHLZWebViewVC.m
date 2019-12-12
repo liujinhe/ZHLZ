@@ -183,7 +183,10 @@ static NSString * const EstimatedProgress = @"estimatedProgress";
         _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:configuration];
         _webView.backgroundColor = kBgColor;
         _webView.navigationDelegate = self;
+        _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         _webView.opaque = NO;
+        _webView.userInteractionEnabled = NO;
+        _webView.scrollView.scrollEnabled = NO;
         [_webView addObserver:self forKeyPath:EstimatedProgress options:NSKeyValueObservingOptionNew context:nil];
     }
     
