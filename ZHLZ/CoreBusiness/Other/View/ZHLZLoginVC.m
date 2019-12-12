@@ -40,7 +40,7 @@
     } else {
         self.userNameTextField.text = @"";
         self.pwdTextField.text = @"";
-        self.rememberPwdButton.selected = NO;
+        self.rememberPwdButton.selected = YES;
     }
 }
 

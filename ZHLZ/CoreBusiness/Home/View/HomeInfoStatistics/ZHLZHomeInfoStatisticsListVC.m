@@ -12,7 +12,7 @@
 
 #define ZHLZHomeInfoStatisticsReuseIdentifier NSStringFromClass([ZHLZHomeInfoStatisticsTableViewCell class])
 
-@interface ZHLZHomeInfoStatisticsListVC () <UITableViewDataSource, UITableViewDelegate>
+@interface ZHLZHomeInfoStatisticsListVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -27,6 +27,8 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:ZHLZHomeInfoStatisticsReuseIdentifier bundle:nil]
          forCellReuseIdentifier:ZHLZHomeInfoStatisticsReuseIdentifier];
@@ -77,5 +79,21 @@
 - (UIView *)listView {
     return self.view;
 }
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadData];
+}
+
 
 @end
