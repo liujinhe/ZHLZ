@@ -143,12 +143,12 @@
     self.problemDescTextView.placeholder = @"请输入问题描述";
     self.locationTextView.placeholder = @"请输入地点描述";
     self.markTextView.placeholder = @"请输入备注";
-
+    
     if (self.type == 1) {
         self.navTitle = @"新增市政设施";
         [self.submitButton setTitle:@"确认新增" forState:UIControlStateNormal];
         
-        [self addUploadPicActionWithPhotoURLArray:nil];
+        [self addUploadPicActionWithImgURL:nil];
     }
     
     else if (self.type == 2) {
@@ -225,7 +225,7 @@
         [self.superiorButton setTitle:municipalProblemModel.islyricalname forState:UIControlStateNormal];
         
         ///问题标签
-//        self.problemTagTextFile.text = municipalProblemModel.problemDet
+        //        self.problemTagTextFile.text = municipalProblemModel.problemDet
         
         ///问题描述
         self.problemDescTextView.text = municipalProblemModel.problemDet;
@@ -253,22 +253,23 @@
             self.municipalProblemSubmitModel.uploadid = municipalProblemModel.uploadId;
         }
         
-        NSArray *array = [municipalProblemModel.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:self.type != 1 ? array : nil];
+        [self addUploadPicActionWithImgURL:municipalProblemModel.imgurl];
     }];
 }
 
-- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+- (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
-                                                                     withPhotoURLArray:photoURLArray];
+                                                                            withImgURL:imgURL];
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
-    
-    if (self.type == 2 && photoURLArray && photoURLArray.count == 0) {
-        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+
+    NSArray *array = [imgURL componentsSeparatedByString:@","];
+    if (array && array.count > 0) {
+        CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
+        self.uploadPicViewHeight.constant = height;
     } else {
         self.uploadPicViewHeight.constant = kAutoFitReal(105);
     }
@@ -318,16 +319,16 @@
 ///责任区县
 - (IBAction)dutyAreaAction:(UIButton *)sender {
     ZHLZListPickerViewVC *projectTypePickerViewVC = [ZHLZListPickerViewVC new];
-        projectTypePickerViewVC.type = 5;
-        @weakify(self)
-        projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-            @strongify(self);
-            
-            self.municipalProblemSubmitModel.belong = code;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
-            });
-        };
+    projectTypePickerViewVC.type = 5;
+    @weakify(self)
+    projectTypePickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        @strongify(self);
+        
+        self.municipalProblemSubmitModel.belong = code;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dutyAreaButton setTitle:name forState:UIControlStateNormal];
+        });
+    };
     [self presentViewController:projectTypePickerViewVC animated:NO completion:nil];
 }
 
@@ -339,7 +340,7 @@
     problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
         self.municipalProblemSubmitModel.problemType = code;
-
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.problemTypeButton setTitle:name forState:UIControlStateNormal];
         });
@@ -376,7 +377,7 @@
             }
             self.problemDescTextView.text = problemDescString;
             
-        
+            
             [self municipalProblemCreateSupervisorViewWithType:2];
         };
         [self presentViewController:roadMaintenancePickerViewVC animated:NO completion:nil];
@@ -423,8 +424,8 @@
     @weakify(self)
     problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
-            self.municipalProblemSubmitModel.islyrical = code;
-
+        self.municipalProblemSubmitModel.islyrical = code;
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.superiorButton setTitle:name forState:UIControlStateNormal];
         });

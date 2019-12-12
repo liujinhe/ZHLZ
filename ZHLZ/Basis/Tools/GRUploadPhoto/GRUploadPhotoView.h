@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// 每个 Item 内间距
+static CGFloat const ItemMargin = 20.f;
+
 @protocol GRUploadPhotoViewDelegate <NSObject>
 
 @optional
@@ -22,14 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger optionType; // 操作类型（1-新增 2-查看 3-编辑）
 
-@property (nonatomic, copy) dispatch_block_t endEditingBlock;
+@property (nonatomic, copy) void (^delegateDataBlock)(NSString *imgURL);
 
 @property (nonatomic, weak, nullable) id<GRUploadPhotoViewDelegate> delegate;
 
 - (instancetype)initWithParentView:(UIView *)parentView
                 withViewController:(UIViewController *)vc
                 withMaxImagesCount:(NSInteger)maxImagesCount
-                 withPhotoURLArray:(nonnull NSArray *)photoURLArray;
+                        withImgURL:(nonnull NSString *)imgURL;
 
 @end
 

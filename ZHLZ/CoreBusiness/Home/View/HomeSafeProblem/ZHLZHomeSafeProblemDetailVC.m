@@ -150,22 +150,23 @@
             
         }
         
-        NSArray *array = [homeSafeProblem.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:self.type != 1 ? array : nil];
+        [self addUploadPicActionWithImgURL:homeSafeProblem.imgurl];
     }];
 }
 
-- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+- (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
-                                                                     withPhotoURLArray:photoURLArray];
+                                                                            withImgURL:imgURL];
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
-    
-    if (self.type == 2 && photoURLArray && photoURLArray.count == 0) {
-        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+
+    NSArray *array = [imgURL componentsSeparatedByString:@","];
+    if (array && array.count > 0) {
+        CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
+        self.uploadPicViewHeight.constant = height;
     } else {
         self.uploadPicViewHeight.constant = kAutoFitReal(105);
     }
@@ -181,7 +182,7 @@
         self.title = @"新增安全(三防)问题";
         [self.problemSubmitButton setTitle:@"确定添加" forState:UIControlStateNormal];
         
-        [self addUploadPicActionWithPhotoURLArray:nil];
+        [self addUploadPicActionWithImgURL:nil];
     } else if (self.type == 2) {
         self.title = @"查看安全(三防)问题";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];

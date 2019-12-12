@@ -106,7 +106,7 @@
         self.navTitle = @"新增占道施工";
         [self.submitButton setTitle:@"确认保存" forState:UIControlStateNormal];
         
-        [self addUploadPicActionWithPhotoURLArray:nil];
+        [self addUploadPicActionWithImgURL:nil];
     }
     
     else if (self.type == 2) {
@@ -188,22 +188,23 @@
             self.homeOccupyProblemSubmitModel.responsibleUnit = occupyProblemDetailModel.responsibleUnit;
         }
         
-        NSArray *array = [occupyProblemDetailModel.imgurl componentsSeparatedByString:@","];
-        [self addUploadPicActionWithPhotoURLArray:self.type != 1 ? array : nil];
+        [self addUploadPicActionWithImgURL:occupyProblemDetailModel.imgurl];
     }];
 }
 
-- (void)addUploadPicActionWithPhotoURLArray:(nullable NSArray *)photoURLArray {
+- (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
-                                                                     withPhotoURLArray:photoURLArray];
+                                                                            withImgURL:imgURL];
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
     [self.uploadPicView addSubview:uploadPhotoView];
-    
-    if (self.type == 2 && photoURLArray && photoURLArray.count == 0) {
-        self.uploadPicViewHeight.constant = kAutoFitReal(0);
+
+    NSArray *array = [imgURL componentsSeparatedByString:@","];
+    if (array && array.count > 0) {
+        CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
+        self.uploadPicViewHeight.constant = height;
     } else {
         self.uploadPicViewHeight.constant = kAutoFitReal(105);
     }

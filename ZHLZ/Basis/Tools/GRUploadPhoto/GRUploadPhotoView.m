@@ -14,8 +14,6 @@
 // 图片宽度(px)
 static CGFloat const ImageWidth = 800.f;
 
-// 每个 Item 内间距
-static CGFloat const ItemMargin = 20.f;
 // 列个数
 static NSInteger const ColumnCount = 3;
 
@@ -24,11 +22,15 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 @interface GRUploadPhotoView () <TZImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     UIViewController *_vc;
-    NSArray *_photoURLArray;
     NSMutableArray<NSDictionary *> *_photosArray;
+    NSMutableArray *_photoURLArray;
+    
+    NSMutableArray<UIImage *> *_hasExistPhotos;
     NSMutableArray<UIImage *> *_selectedPhotos;
     NSMutableArray *_selectedAssets;
-    NSInteger _maxImagesCount;
+    NSInteger _maxPhotosCount;
+    NSInteger _hasExistPhotosCount;
+    NSInteger _selectPhotosCount;
     
     CGFloat _width;
     CGFloat _height;
@@ -50,23 +52,31 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 #pragma mark - lifecycle
 
-- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount withPhotoURLArray:(nonnull NSArray *)photoURLArray {
+- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount withImgURL:(nonnull NSString *)imgURL {
     self = [super init];
     if (self) {
         _vc = vc;
         
-        _maxImagesCount = maxImagesCount - photoURLArray.count;
+        if ([imgURL isNotBlank]) {
+            _photoURLArray = [imgURL componentsSeparatedByString:@","].mutableCopy;
+            _photosArray = @[].mutableCopy;
+        }
         
-        _photoURLArray = photoURLArray;
-        _photosArray = @[].mutableCopy;
+        _maxPhotosCount = maxImagesCount;
+        // 已存在的图片张数
+        _hasExistPhotosCount = _photoURLArray.count;
+        // 可选择的图片张数
+        _selectPhotosCount = _maxPhotosCount - _hasExistPhotosCount;
         
+        // 已存在的图片
+        _hasExistPhotos = @[].mutableCopy;
+        // 可选择的图片
         _selectedPhotos = @[].mutableCopy;
+        
         _selectedAssets = @[].mutableCopy;
         
-        if (_photoURLArray && _photoURLArray.count > 0) {
-            for (NSString *photoURL in _photoURLArray) {
-                [self downloadAction:photoURL];
-            }
+        for (NSString *photoURL in _photoURLArray) {
+            [self downloadAction:photoURL];
         }
         
         _width = kScreenWidth - CGRectGetMinX(parentView.frame) * 2;
@@ -95,11 +105,11 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
         @strongify(self);
         if (error) {
-            [self->_photosArray addObject:@{url: error}];
+            [self->_photosArray addObject:@{url: [UIImage imageNamed:@"icon_empty"]}];
         } else {
             [self->_photosArray addObject:@{url: image}];
         }
-        if (self->_photosArray.count == self->_photoURLArray.count) {
+        if (self->_photosArray.count == self->_hasExistPhotosCount) {
             [self allDownloaderCompleted];
         }
     }];
@@ -111,10 +121,12 @@ static NSString * const Cell = @"GRUploadPhotoCell";
             if ([[BaseAPIURLConst stringByAppendingString:url] isEqualToString:[dic.allKeys firstObject]]) {
                 id value = [dic.allValues firstObject];
                 if ([value isKindOfClass:[UIImage class]]) {
-                    [_selectedPhotos addObject:(UIImage *)value];
-                    [_selectedAssets addObject:[PHAsset new]];
+                    [_hasExistPhotos addObject:(UIImage *)value];
                     
-                    [self showImage];
+                    [self changeViewHeight];
+                    [_collectionView reloadData];
+                    
+                    [self->_photosArray removeAllObjects];
                 }
                 break;
             }
@@ -125,7 +137,8 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 #pragma mark - init
 
 - (void)changeViewHeight {
-    NSInteger count = _selectedPhotos.count == _maxImagesCount ? (_selectedPhotos.count / ColumnCount) : (_selectedPhotos.count / ColumnCount + 1);
+    NSInteger photosCount = (_hasExistPhotosCount + _selectedPhotos.count);
+    NSInteger count = photosCount == _maxPhotosCount ? (photosCount / ColumnCount) : (photosCount / ColumnCount + 1);
     _height = _itemWH * count + ItemMargin * (count - 1);
     self.frame = CGRectMake(0, 0, _width, _height);
     self.collectionView.frame = CGRectMake(0, 0, _width, _height);
@@ -143,7 +156,6 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     _collectionView.contentInset = UIEdgeInsetsZero;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [_collectionView registerClass:[GRUploadPhotoCell class] forCellWithReuseIdentifier:Cell];
     [self addSubview:_collectionView];
 }
@@ -215,7 +227,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
             [self imagePickerAction];
         }];
     } else {
-        TZImagePickerController *imagePickerController = [[TZImagePickerController alloc] initWithMaxImagesCount:_maxImagesCount delegate:self];
+        TZImagePickerController *imagePickerController = [[TZImagePickerController alloc] initWithMaxImagesCount:_selectPhotosCount delegate:self];
         imagePickerController.photoWidth = ImageWidth;
         imagePickerController.photoPreviewMaxWidth = ImageWidth;
         imagePickerController.allowPickingVideo = NO;
@@ -223,7 +235,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         imagePickerController.allowTakePicture = NO;
         imagePickerController.allowCameraLocation = NO;
         
-        if (_maxImagesCount > 1) {
+        if (_selectPhotosCount > 1) {
             imagePickerController.selectedAssets = _selectedAssets;
             
             imagePickerController.iconThemeColor = kHexRGB(0x0558FF);
@@ -243,7 +255,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         imagePickerController.statusBarStyle = UIStatusBarStyleLightContent;
         
         // 设置是否显示图片序号
-        imagePickerController.showSelectedIndex = _maxImagesCount > 1;
+        imagePickerController.showSelectedIndex = _selectPhotosCount > 1;
         
         [imagePickerController setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
             if (photos && photos.count > 0) {
@@ -321,7 +333,16 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 #pragma mark - preview photo
 
 - (void)previewPhotoAction:(NSInteger)row {
-    _fullScreenPreviewImageView.image = _selectedPhotos[row];
+    if (_hasExistPhotosCount > row) {
+        if (_hasExistPhotos.count > row) {
+            _fullScreenPreviewImageView.image = _hasExistPhotos[row];
+        } else {
+            [GRToast makeText:@"当前图片正在加载中..."];
+            return;
+        }
+    } else {
+        _fullScreenPreviewImageView.image = _selectedPhotos[row - _hasExistPhotosCount];
+    }
     [[UIApplication sharedApplication].keyWindow addSubview:_fullScreenPreviewImageView];
     [self fullScreenPreview:_fullScreenPreviewImageView];
 }
@@ -355,42 +376,39 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (self.optionType == 2) {
-        return _selectedPhotos.count;
-    } else if (_selectedPhotos.count >= _maxImagesCount) {
-        return _selectedPhotos.count;
+        return _hasExistPhotosCount;
     }
-    return _selectedPhotos.count + 1;
+    if (_hasExistPhotosCount + _selectedPhotos.count >= _maxPhotosCount) {
+        return _maxPhotosCount;
+    }
+    return _hasExistPhotosCount + _selectedPhotos.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GRUploadPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Cell forIndexPath:indexPath];
-    if (self.optionType == 2) {
-        cell.imageView.image = _selectedPhotos[indexPath.item];
-        cell.asset = _selectedAssets[indexPath.item];
-        cell.deleteBtn.hidden = YES;
-        [cell changeBorder];
-    } else if (indexPath.item == _selectedPhotos.count) {
+    
+    cell.deleteBtn.hidden = YES;
+    if (indexPath.item == _hasExistPhotosCount + _selectedPhotos.count) {
         cell.imageView.image = [UIImage imageNamed:@"icon_upload_pics"];
-        cell.deleteBtn.hidden = YES;
-        [cell changeBorder];
+    } else if (indexPath.item < _hasExistPhotosCount) {
+        if (indexPath.item < _hasExistPhotos.count) {
+            cell.imageView.image = _hasExistPhotos[indexPath.item];
+            cell.deleteBtn.hidden = self.optionType == 2;
+        }
     } else {
-        cell.imageView.image = _selectedPhotos[indexPath.item];
-        cell.asset = _selectedAssets[indexPath.item];
+        NSInteger index = indexPath.item - _hasExistPhotosCount;
+        cell.imageView.image = _selectedPhotos[index];
+        cell.asset = _selectedAssets[index];
         cell.deleteBtn.hidden = NO;
-        [cell changeBorder];
     }
+    [cell changeBorder];
     cell.deleteBtn.tag = indexPath.item;
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.endEditingBlock) {
-        self.endEditingBlock();
-    }
-    if (self.optionType == 2) {
-        [self previewPhotoAction:indexPath.item];
-    } else if (indexPath.item == _selectedPhotos.count) {
+    if (indexPath.item == _hasExistPhotosCount + _selectedPhotos.count && self.optionType != 2) {
         [self uploadPhotoAction];
     } else {
         [self previewPhotoAction:indexPath.item];
@@ -398,35 +416,11 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)refreshCollectionViewWithAddedAsset:(PHAsset *)asset image:(UIImage *)image {
-    [_selectedAssets addObject:asset];
     [_selectedPhotos addObject:image];
+    [_selectedAssets addObject:asset];
     
     [self showImage];
 }
-
-//#pragma mark - GRUploadPhotoGridViewDataSource
-//
-//- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-//    return indexPath.item < _selectedPhotos.count;
-//}
-//
-//- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath canMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-//    return (sourceIndexPath.item < _selectedPhotos.count && destinationIndexPath.item < _selectedPhotos.count);
-//}
-//
-//- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)sourceIndexPath didMoveToIndexPath:(NSIndexPath *)destinationIndexPath {
-//    UIImage *image = _selectedPhotos[sourceIndexPath.item];
-//    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
-//    [_selectedPhotos insertObject:image atIndex:destinationIndexPath.item];
-//
-//    if (_selectedAssets && _selectedAssets.count > 0) {
-//        id asset = _selectedAssets[sourceIndexPath.item];
-//        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
-//        [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
-//    }
-//
-//    [self showImage];
-//}
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -459,23 +453,49 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 #pragma mark - click event
 
 - (void)deleteBtnClik:(UIButton *)sender {
-    if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
-        [_selectedPhotos removeObjectAtIndex:sender.tag];
-        [_selectedAssets removeObjectAtIndex:sender.tag];
+    if (sender.tag < _hasExistPhotosCount) {
+        [self->_hasExistPhotos removeObjectAtIndex:sender.tag];
+        [self->_photoURLArray removeObjectAtIndex:sender.tag];
+        
+        [_collectionView performBatchUpdates:^{
+            [self->_collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:sender.tag inSection:0]]];
+        } completion:^(BOOL finished) {
+            self->_hasExistPhotosCount--;
+            self->_selectPhotosCount = self->_maxPhotosCount - self->_hasExistPhotosCount;
+            
+            // 删除已有图片回调
+            if (self.delegateDataBlock) {
+                NSString *imgURL = @"";
+                for (NSString *url in self->_photoURLArray) {
+                    imgURL = [NSString stringWithFormat:@"%@,", url];
+                }
+                imgURL = [imgURL substringToIndex:(imgURL.length - 1)];
+                self.delegateDataBlock(imgURL);
+            }
 
-        [self showImage];
-        return;
+            [self changeViewHeight];
+            [self->_collectionView reloadData];
+        }];
+    } else {
+        NSInteger index = sender.tag - (_hasExistPhotosCount - 1);
+        
+        if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _maxPhotosCount) {
+            [_selectedPhotos removeObjectAtIndex:index];
+            [_selectedAssets removeObjectAtIndex:index];
+            
+            [self showImage];
+            return;
+        }
+        
+        [_selectedPhotos removeObjectAtIndex:index];
+        [_selectedAssets removeObjectAtIndex:index];
+        
+        [_collectionView performBatchUpdates:^{
+            [self->_collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:index inSection:0]]];
+        } completion:^(BOOL finished) {
+            [self showImage];
+        }];
     }
-    
-    [_selectedPhotos removeObjectAtIndex:sender.tag];
-    [_selectedAssets removeObjectAtIndex:sender.tag];
-    
-    [_collectionView performBatchUpdates:^{
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
-        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
-    } completion:^(BOOL finished) {
-        [self showImage];
-    }];
 }
 
 @end
