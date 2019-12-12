@@ -31,7 +31,7 @@
 #import "ZHLZMonadVC.h"//责任单位
 
 
-@interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate>
+@interface ZHLZBookListVC ()<UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *bookListTableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextFile;
@@ -65,7 +65,7 @@
 
 
 - (IBAction)searchAction:(UIButton *)sender {
-
+    [self.searchTextFile resignFirstResponder];
     self.pageNum = 1;
     [self loadAddressListData];
     
@@ -228,6 +228,9 @@
     
     self.bookListTableView.dataSource = self;
     self.bookListTableView.delegate = self;
+    self.bookListTableView.emptyDataSetSource = self;
+    self.bookListTableView.emptyDataSetDelegate = self;
+    
     self.bookListTableView.backgroundColor = kHexRGB(0xf7f7f7);
     
     self.bookListTableView.showsVerticalScrollIndicator = NO;
@@ -434,6 +437,21 @@
         [GRToast makeText:@"暂无联系方式"];
     }
     
+}
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNum = 1;
+    [self loadAddressListData];
 }
 
 

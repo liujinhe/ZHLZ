@@ -50,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param action 触发事件
 - (void)addRightBarButtonItemWithImageName:(NSString *)imageName action:(nullable SEL)action;
 
+/// 空页面i提示语
+- (NSMutableAttributedString *)emptyDataTip:(NSString *)tip;
+
 @end
 
 NS_ASSUME_NONNULL_END

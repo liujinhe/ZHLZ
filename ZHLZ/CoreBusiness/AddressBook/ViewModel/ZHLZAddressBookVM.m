@@ -59,7 +59,7 @@
     [parms setValue:@"desc" forKey:@"order"];
     [parms setValue:@"" forKey:@"sidx"];
     if ([searchString isNotBlank]) {
-        [parms setValue:searchString forKey:@"name"];
+        [parms setValue:searchString forKey:@"nameVague"];
     }
 
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:parms];

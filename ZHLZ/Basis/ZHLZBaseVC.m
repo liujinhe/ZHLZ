@@ -80,6 +80,14 @@
                                                                              action:action];
 }
 
+- (NSMutableAttributedString *)emptyDataTip:(NSString *)tip {
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tip];
+    [attributedString setAttribute:NSFontAttributeName value:kFont(14) range:NSMakeRange(0, attributedString.length)];
+    [attributedString setAttribute:NSForegroundColorAttributeName value:kHexRGB(0xBFC6D3) range:NSMakeRange(0, attributedString.length)];
+    return attributedString;
+}
+
 #pragma mark - Getter and Setter
 
 - (void)setTask:(__kindof NSURLSessionTask *)task {

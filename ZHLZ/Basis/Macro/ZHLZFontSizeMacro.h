@@ -17,4 +17,8 @@
 #define kFont12 [UIFont systemFontOfSize:(12)]
 #define kFont10 [UIFont systemFontOfSize:(10)]
 
+
+
+#define kEmptyDataNoReservationLook [UIImage imageNamed:@"icon-default-nocontent"]
+
 #endif /* ZHLZFontSizeMacro_h */
