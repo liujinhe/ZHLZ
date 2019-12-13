@@ -83,7 +83,14 @@
 
 - (void)loadHomeSafeFloodPreventionProblemGetMeasures {
     self.task = [[ZHLZHomeSafeProblemVM sharedInstance] loadHomeSafeFloodPreventionProblemGetMeasuresWithId:self.detailId withType:3 Block:^(NSArray<ZHLZSupervisorSubmitModel *> * _Nonnull supervisorSubmitModelArray) {
-        [self.supervisorSubmitModelArray addObjectsFromArray:supervisorSubmitModelArray];
+        [self.supervisorSubmitModelArray removeAllObjects];
+        NSMutableDictionary *dic = @{}.mutableCopy;
+        for (ZHLZSupervisorSubmitModel *model in supervisorSubmitModelArray) {
+            if (![dic objectForKey:model.uuid]) {
+                [dic setValue:model.uuid forKey:model.uuid];
+                [self.supervisorSubmitModelArray addObject:model];
+            }
+        }
         
         [self safeProbleCreateSupervisorView];
     }];
