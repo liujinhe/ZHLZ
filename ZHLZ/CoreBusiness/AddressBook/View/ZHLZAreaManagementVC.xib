@@ -62,18 +62,18 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOP-P2-DFP">
-                    <rect key="frame" x="0.0" y="184" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="184" width="414" height="37"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入负责人联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-TT-mN5" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="10" width="374" height="30"/>
+                            <rect key="frame" x="20" y="10" width="374" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXl-X5-MTY">
-                            <rect key="frame" x="344" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="359" y="6" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="LSp-WT-5Na"/>
-                                <constraint firstAttribute="width" constant="50" id="Pir-01-iX9"/>
+                                <constraint firstAttribute="width" constant="25" id="DcO-6t-CwF"/>
+                                <constraint firstAttribute="height" constant="25" id="KCd-Oq-m2w"/>
                             </constraints>
                             <state key="normal" image="icon_call"/>
                             <connections>
@@ -83,18 +83,17 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="UXl-X5-MTY" secondAttribute="trailing" constant="20" id="4LZ-OW-LWi"/>
+                        <constraint firstAttribute="trailing" secondItem="UXl-X5-MTY" secondAttribute="trailing" constant="30" id="4LZ-OW-LWi"/>
+                        <constraint firstItem="UXl-X5-MTY" firstAttribute="centerY" secondItem="LOP-P2-DFP" secondAttribute="centerY" id="AlF-rh-WGM"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="leading" secondItem="LOP-P2-DFP" secondAttribute="leading" constant="20" id="BFr-Jm-ZL8"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="top" secondItem="LOP-P2-DFP" secondAttribute="top" constant="10" id="CiW-mi-HHC"/>
-                        <constraint firstAttribute="bottom" secondItem="UXl-X5-MTY" secondAttribute="bottom" id="cEm-jk-VW5"/>
                         <constraint firstAttribute="bottom" secondItem="8ed-TT-mN5" secondAttribute="bottom" constant="10" id="jjF-0Z-uod"/>
-                        <constraint firstItem="UXl-X5-MTY" firstAttribute="top" secondItem="LOP-P2-DFP" secondAttribute="top" id="oQ0-L5-Mu2"/>
                         <constraint firstAttribute="trailing" secondItem="8ed-TT-mN5" secondAttribute="trailing" constant="20" id="qNj-yB-GYv"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="centerY" secondItem="LOP-P2-DFP" secondAttribute="centerY" id="tJq-W8-Dza"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAd-Qf-Fti" customClass="ZHLZButton">
-                    <rect key="frame" x="20" y="274" width="374" height="50"/>
+                    <rect key="frame" x="20" y="261" width="374" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="HKR-MM-EBR"/>

@@ -14,6 +14,7 @@
 
 #import "GRUploadPhotoView.h"
 #import "ZHLZUploadVM.h"
+#import "ZHLZMonadVC.h"
 
 @interface ZHLZHomeSafeDetailVC () <GRUploadPhotoViewDelegate>
 {
@@ -37,6 +38,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *uploadPicViewHeight;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *dutyContentButton;
+
 
 @property (nonatomic , strong) ZHLZHomeSafeModel *safeDetailModel;
 
@@ -73,16 +77,14 @@
         self.photoNumTextFile.text = self.safeDetailModel.photoNumber;
         
         ///回选值
-        if (self.type == 3) {
-            self.safeSubmitModel.unitId = self.safeDetailModel.unitId;
-            self.safeSubmitModel.currentPlace = self.safeDetailModel.currentPlace;
-            self.safeSubmitModel.prodescription = self.safeDetailModel.prodescription;
-            self.safeSubmitModel.workRecord = self.safeDetailModel.workRecord;
-            self.safeSubmitModel.photoNumber = self.safeDetailModel.photoNumber;
-            self.safeSubmitModel.workMeasures = self.safeDetailModel.workMeasures;
-            self.safeSubmitModel.id = self.safeDetailModel.objectID;
-            self.safeSubmitModel.uploadId = self.safeDetailModel.uploadId;
-        }
+        self.safeSubmitModel.unitId = self.safeDetailModel.unitId;
+        self.safeSubmitModel.currentPlace = self.safeDetailModel.currentPlace;
+        self.safeSubmitModel.prodescription = self.safeDetailModel.prodescription;
+        self.safeSubmitModel.workRecord = self.safeDetailModel.workRecord;
+        self.safeSubmitModel.photoNumber = self.safeDetailModel.photoNumber;
+        self.safeSubmitModel.workMeasures = self.safeDetailModel.workMeasures;
+        self.safeSubmitModel.id = self.safeDetailModel.objectID;
+        self.safeSubmitModel.uploadId = self.safeDetailModel.uploadId;
         
         [self addUploadPicActionWithImgURL:self.safeDetailModel.imgurl];
     }];
@@ -125,7 +127,9 @@
 - (void)initHomeSafeDetailView {
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
-        
+    
+    self.dutyContentButton.hidden = YES;
+    
     if (self.type == 1) {
         self.title = @"新增安全(三防)台账";
         [self.submitButton setTitle:@"确认添加" forState:UIControlStateNormal];
@@ -168,9 +172,13 @@
 
 - (void)isLookControl{
     
+    self.dutyContentButton.hidden = NO;
+    self.dutyUnitButton.backgroundColor = [UIColor whiteColor];
+    
+    
     self.locationTextFile.userInteractionEnabled = NO;
     
-    self.dutyUnitButton.userInteractionEnabled = NO;
+//    self.dutyUnitButton.userInteractionEnabled = NO;
     
     [self.problemTextView setEditable:NO];
     [self.lookHistoryTextView setEditable:NO];
@@ -186,19 +194,28 @@
 }
 
 - (IBAction)dutyUnitAction:(UIButton *)sender {
-    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 6;
-    @weakify(self)
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        @strongify(self)
+    
+    if (self.type == 2) {
+        ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
+        monadVC.setType = 2;
+        monadVC.detailId = self.safeSubmitModel.unitId;
+        [self.navigationController pushViewController:monadVC animated:YES];
         
-        self.safeSubmitModel.unitId = code;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
-        });
-    };
-    [self.navigationController pushViewController:chooseListVC animated:YES];
+    } else {
+        ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+        chooseListVC.selectIndex = 6;
+        @weakify(self)
+        chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            @strongify(self)
+            
+            self.safeSubmitModel.unitId = code;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
+            });
+        };
+        [self.navigationController pushViewController:chooseListVC animated:YES];
+    }
 }
 
 - (IBAction)SubmitAction:(UIButton *)sender {

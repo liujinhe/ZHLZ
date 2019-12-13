@@ -71,9 +71,10 @@
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4Q-Nm-TeZ">
-                            <rect key="frame" x="344" y="0.0" width="50" height="60"/>
+                            <rect key="frame" x="359" y="17.5" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="a5d-e1-FyY"/>
+                                <constraint firstAttribute="width" constant="25" id="jDp-xL-EV2"/>
+                                <constraint firstAttribute="height" constant="25" id="zhx-KR-EBS"/>
                             </constraints>
                             <state key="normal" image="icon_call"/>
                             <connections>
@@ -83,11 +84,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="h4Q-Nm-TeZ" secondAttribute="bottom" id="EO4-6h-kJ2"/>
                         <constraint firstAttribute="trailing" secondItem="i7q-Cc-whZ" secondAttribute="trailing" constant="20" id="J7L-hp-vWM"/>
-                        <constraint firstAttribute="trailing" secondItem="h4Q-Nm-TeZ" secondAttribute="trailing" constant="20" id="Kde-Ax-UC0"/>
+                        <constraint firstAttribute="trailing" secondItem="h4Q-Nm-TeZ" secondAttribute="trailing" constant="30" id="Kde-Ax-UC0"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="leading" secondItem="DO9-Tx-hew" secondAttribute="leading" constant="20" id="MjV-th-HSD"/>
-                        <constraint firstItem="h4Q-Nm-TeZ" firstAttribute="top" secondItem="DO9-Tx-hew" secondAttribute="top" id="VOy-2U-2oO"/>
+                        <constraint firstItem="h4Q-Nm-TeZ" firstAttribute="centerY" secondItem="DO9-Tx-hew" secondAttribute="centerY" id="NJk-Sn-1KR"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="top" secondItem="DO9-Tx-hew" secondAttribute="top" constant="10" id="Xti-HU-gvl"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="centerY" secondItem="DO9-Tx-hew" secondAttribute="centerY" id="YEU-gO-r43"/>
                         <constraint firstAttribute="height" constant="60" id="oJz-c2-xDq"/>

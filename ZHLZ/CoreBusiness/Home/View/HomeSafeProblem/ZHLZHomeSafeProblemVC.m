@@ -44,6 +44,9 @@
 - (void)addAction {
     ZHLZHomeSafeProblemDetailVC *homeSafeProblemDetailVC = [ZHLZHomeSafeProblemDetailVC new];
     homeSafeProblemDetailVC.type = 1;
+    homeSafeProblemDetailVC.reloadDataBlock = ^{
+        [self.homeSafeProblemTableView.mj_header beginRefreshing];
+    };
     [self.navigationController pushViewController:homeSafeProblemDetailVC animated:YES];
 }
 

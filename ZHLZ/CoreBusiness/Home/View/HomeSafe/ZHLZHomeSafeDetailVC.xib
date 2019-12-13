@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZHomeSafeDetailVC">
             <connections>
                 <outlet property="bigGrouponButton" destination="4FC-34-hNY" id="taf-pP-vfr"/>
+                <outlet property="dutyContentButton" destination="wor-Zf-N42" id="nrp-Ts-Jse"/>
                 <outlet property="dutyUnitButton" destination="x4q-sV-iDZ" id="EVq-Lg-H95"/>
                 <outlet property="locationTextFile" destination="OAd-Zh-KCs" id="HOO-ez-o94"/>
                 <outlet property="lookHistoryTextView" destination="M60-a7-dSQ" id="Y08-fM-2r1"/>
@@ -150,6 +151,14 @@
                                     <color key="textColor" red="0.97149235010000001" green="0.1699665189" blue="0.216694206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wor-Zf-N42">
+                                    <rect key="frame" x="374" y="15" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="8J1-iz-vj3"/>
+                                        <constraint firstAttribute="width" constant="20" id="wRt-EP-jL7"/>
+                                    </constraints>
+                                    <state key="normal" image="contnet"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -162,6 +171,8 @@
                                 <constraint firstItem="fUQ-wP-Ya3" firstAttribute="leading" secondItem="elH-Ys-ylV" secondAttribute="trailing" id="Z4W-dW-QW3"/>
                                 <constraint firstAttribute="bottom" secondItem="x4q-sV-iDZ" secondAttribute="bottom" id="aB0-kP-4DS"/>
                                 <constraint firstItem="dg3-gi-OOx" firstAttribute="centerY" secondItem="6UL-ui-bTu" secondAttribute="centerY" id="cJn-5s-T9c"/>
+                                <constraint firstItem="wor-Zf-N42" firstAttribute="centerY" secondItem="6UL-ui-bTu" secondAttribute="centerY" id="ckB-3l-eEq"/>
+                                <constraint firstAttribute="trailing" secondItem="wor-Zf-N42" secondAttribute="trailing" id="dTA-jU-7uv"/>
                                 <constraint firstAttribute="trailing" secondItem="x4q-sV-iDZ" secondAttribute="trailing" constant="10" id="ps1-X1-EVx"/>
                             </constraints>
                         </view>
@@ -415,5 +426,6 @@
     </objects>
     <resources>
         <image name="arrow_right" width="16" height="16"/>
+        <image name="contnet" width="100" height="100"/>
     </resources>
 </document>

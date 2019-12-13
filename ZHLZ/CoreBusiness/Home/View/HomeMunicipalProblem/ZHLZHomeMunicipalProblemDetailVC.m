@@ -17,6 +17,7 @@
 #import "ZHLZDatePickerVC.h"
 #import "ZHLZChooseListVC.h"
 #import "ZHLZRoadMaintenancePickerViewVC.h"
+#import "ZHLZMonadVC.h"
 
 #import "GRUploadPhotoView.h"
 #import "ZHLZUploadVM.h"
@@ -68,6 +69,9 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *dutyContentButton;
+
+
 ///描述分类
 @property (nonatomic , strong) NSMutableArray  *problemClassifyArray;
 
@@ -103,13 +107,16 @@
 
 - (void)municipalProblemLook {
     
+    self.dutyContentButton.hidden = NO;
+    self.dutyUnitButton.backgroundColor = [UIColor whiteColor];
+    
     self.orgButton.userInteractionEnabled = NO;
     self.areaButton.userInteractionEnabled = NO;
     self.dutyAreaButton.userInteractionEnabled = NO;
     self.problemTypeButton.userInteractionEnabled = NO;
     self.problemClassifyButton.userInteractionEnabled = NO;
     self.problemTimeButton.userInteractionEnabled = NO;
-    self.dutyUnitButton.userInteractionEnabled = NO;
+//    self.dutyUnitButton.userInteractionEnabled = NO;
     self.workPeopleButton.userInteractionEnabled = NO;
     self.conentPhoneTextFile.userInteractionEnabled = NO;
     self.superiorButton.userInteractionEnabled = NO;
@@ -143,6 +150,8 @@
     self.problemDescTextView.placeholder = @"请输入问题描述";
     self.locationTextView.placeholder = @"请输入地点描述";
     self.markTextView.placeholder = @"请输入备注";
+    
+    self.dutyContentButton.hidden = YES;
     
     if (self.type == 1) {
         self.navTitle = @"新增市政设施";
@@ -239,19 +248,16 @@
         self.markTextView.text = municipalProblemModel.contentDet;
         
         
-        ///初始值赋值
-        if (self.type == 3) {
-            self.municipalProblemSubmitModel.areaid = municipalProblemModel.areaid;
-            self.municipalProblemSubmitModel.belong = municipalProblemModel.belong;
-            self.municipalProblemSubmitModel.problemType = municipalProblemModel.problemType;
-            
-            self.municipalProblemSubmitModel.finddate = municipalProblemModel.finddate;
-            self.municipalProblemSubmitModel.responsibleUnit = municipalProblemModel.responsibleUnit;
-            self.municipalProblemSubmitModel.islyrical = municipalProblemModel.islyrical;
-            self.municipalProblemSubmitModel.id = municipalProblemModel.objectID;
-            self.municipalProblemSubmitModel.ddssjtms = municipalProblemModel.ddssjtms;
-            self.municipalProblemSubmitModel.uploadid = municipalProblemModel.uploadId;
-        }
+        self.municipalProblemSubmitModel.areaid = municipalProblemModel.areaid;
+        self.municipalProblemSubmitModel.belong = municipalProblemModel.belong;
+        self.municipalProblemSubmitModel.problemType = municipalProblemModel.problemType;
+        
+        self.municipalProblemSubmitModel.finddate = municipalProblemModel.finddate;
+        self.municipalProblemSubmitModel.responsibleUnit = municipalProblemModel.responsibleUnit;
+        self.municipalProblemSubmitModel.islyrical = municipalProblemModel.islyrical;
+        self.municipalProblemSubmitModel.id = municipalProblemModel.objectID;
+        self.municipalProblemSubmitModel.ddssjtms = municipalProblemModel.ddssjtms;
+        self.municipalProblemSubmitModel.uploadid = municipalProblemModel.uploadId;
         
         [self addUploadPicActionWithImgURL:municipalProblemModel.imgurl];
     }];
@@ -416,19 +422,29 @@
 
 ///责任单位
 - (IBAction)dutyUnitAction:(UIButton *)sender {
-    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 6;
-    @weakify(self)
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        @strongify(self)
+    
+    if (self.type == 2) {
+        ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
+        monadVC.setType = 2;
+        monadVC.detailId = self.municipalProblemSubmitModel.responsibleUnit;
+        [self.navigationController pushViewController:monadVC animated:YES];
         
-        self.municipalProblemSubmitModel.responsibleUnit = code;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
-        });
-    };
-    [self.navigationController pushViewController:chooseListVC animated:YES];
+    } else {
+        ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+        chooseListVC.selectIndex = 6;
+        @weakify(self)
+        chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            @strongify(self)
+            
+            self.municipalProblemSubmitModel.responsibleUnit = code;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.dutyUnitButton setTitle:name forState:UIControlStateNormal];
+            });
+        };
+        [self.navigationController pushViewController:chooseListVC animated:YES];
+    }
+    
 }
 
 ///上级交办

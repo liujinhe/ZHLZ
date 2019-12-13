@@ -220,6 +220,8 @@
     self.supervisorView.backgroundColor = [UIColor clearColor];
     self.supervisorViewHeightConstraint.constant = 0;
     
+    self.uploadPicViewHeight.constant = kAutoFitReal(105);
+    
     self.supervisorSubmitModelArray = [NSMutableArray <ZHLZSupervisorSubmitModel *> new];
     
     self.homeSafeProblemSUbmitModel = [ZHLZHomeSafeProblemSUbmitModel new];

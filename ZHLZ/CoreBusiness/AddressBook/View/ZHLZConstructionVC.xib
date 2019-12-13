@@ -70,9 +70,10 @@
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwz-6R-DcE">
-                            <rect key="frame" x="344" y="0.0" width="50" height="60"/>
+                            <rect key="frame" x="359" y="17.5" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="JrQ-wR-Q8F"/>
+                                <constraint firstAttribute="width" constant="25" id="0bZ-sp-Uuo"/>
+                                <constraint firstAttribute="height" constant="25" id="ahk-Rt-fhg"/>
                             </constraints>
                             <state key="normal" image="icon_call"/>
                             <connections>
@@ -83,14 +84,13 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="centerY" secondItem="S0w-bE-D51" secondAttribute="centerY" id="BeP-Si-27M"/>
-                        <constraint firstItem="lwz-6R-DcE" firstAttribute="top" secondItem="S0w-bE-D51" secondAttribute="top" id="LLh-ie-1bF"/>
-                        <constraint firstAttribute="trailing" secondItem="lwz-6R-DcE" secondAttribute="trailing" constant="20" id="N3p-aW-wpf"/>
+                        <constraint firstAttribute="trailing" secondItem="lwz-6R-DcE" secondAttribute="trailing" constant="30" id="N3p-aW-wpf"/>
                         <constraint firstAttribute="bottom" secondItem="WcB-SX-qcZ" secondAttribute="bottom" constant="10" id="Pk5-J1-LMd"/>
                         <constraint firstAttribute="trailing" secondItem="WcB-SX-qcZ" secondAttribute="trailing" constant="20" id="Tfg-bC-C4N"/>
-                        <constraint firstAttribute="bottom" secondItem="lwz-6R-DcE" secondAttribute="bottom" id="Xf2-A2-gQz"/>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="leading" secondItem="S0w-bE-D51" secondAttribute="leading" constant="20" id="bnH-u3-ezO"/>
                         <constraint firstAttribute="height" constant="60" id="sPw-Et-rA9"/>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="top" secondItem="S0w-bE-D51" secondAttribute="top" constant="10" id="tbx-FC-yaN"/>
+                        <constraint firstItem="lwz-6R-DcE" firstAttribute="centerY" secondItem="S0w-bE-D51" secondAttribute="centerY" id="vXN-br-vfR"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thn-RE-p9l" customClass="ZHLZButton">
