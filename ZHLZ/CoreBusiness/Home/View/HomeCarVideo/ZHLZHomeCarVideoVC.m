@@ -32,7 +32,7 @@ static NSString * const Pwd = @"admin";
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) TTXRealVideoView *realVideoView;
-@property (nonatomic, strong) TTXTalkback *talkback;
+//@property (nonatomic, strong) TTXTalkback *talkback;
 
 @property (nonatomic, strong) NSMutableArray<ZHLZVehicleInfoModel *> *vehicleInfoArray;
 @property (nonatomic, strong) NSMutableArray<ZHLZDeviceStatusModel *> *deviceStatusArray;
@@ -62,11 +62,14 @@ static NSString * const Pwd = @"admin";
 
 - (void)dealloc {
     if (self.realVideoView) {
+        [self.realVideoView StopAV];
+        [self.realVideoView stopSound];
         self.realVideoView = nil;
     }
-    if (self.talkback) {
-        self.talkback = nil;
-    }
+//    if (self.talkback) {
+//        [self.talkback stopTalkback];
+//        self.talkback = nil;
+//    }
 }
 
 - (void)initUI {
@@ -80,11 +83,10 @@ static NSString * const Pwd = @"admin";
     }];
     
     [[TTXSDKPrepare prepare] initializationSDK];
-//    [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
+    [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
 
     self.realVideoView = [[TTXRealVideoView alloc] init];
     self.realVideoView.hidden = YES;
-//    [self.realVideoView setLanInfo:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
     [self.view addSubview:self.realVideoView];
     [self.realVideoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10);
@@ -93,7 +95,7 @@ static NSString * const Pwd = @"admin";
         make.centerY.equalTo(self.view);
     }];
     
-    self.talkback = [[TTXTalkback alloc] init];
+//    self.talkback = [[TTXTalkback alloc] init];
     
     self.vehicleInfoArray = @[].mutableCopy;
     self.deviceStatusArray = @[].mutableCopy;
@@ -117,7 +119,7 @@ static NSString * const Pwd = @"admin";
         self->_session = session;
         
         [[TTXSDKPrepare prepare] setJsession:self->_session];
-        [[TTXSDKPrepare prepare] setServer:@"183.6.134.126" lanIP:@"183.6.134.126" port:BaseAPICarVideoLoginAfterPortConst];
+        [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
         
         [self getCarInfoAction];
     }];
@@ -230,11 +232,11 @@ static NSString * const Pwd = @"admin";
         [self.realVideoView playSound];
     }
     
-    if (self.talkback.isTalkback) {
-        [self.talkback stopTalkback];
-    } else {
-        [self.talkback startTalkback:_deviceId];
-    }
+//    if (self.talkback.isTalkback) {
+//        [self.talkback stopTalkback];
+//    } else {
+//        [self.talkback startTalkback:_deviceId];
+//    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -275,7 +277,7 @@ static NSString * const Pwd = @"admin";
                                    mode:model.codeStream];
         [self.realVideoView setTitleInfo:model.deviceName
                                   chName:model.channelName];
-        [self.realVideoView setLanInfo:@"183.6.134.126"
+        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
                                   port:BaseAPICarVideoLivePortConst];
         
         [self showVideoAction];
