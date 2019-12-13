@@ -180,20 +180,29 @@ static CGFloat const CalloutViewMargin = -10;
                     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
                     pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapProblemModel.lonY, homeMapProblemModel.latX);
                     [self.annotationArray addObject:pointAnnotation];
-                    // 问题状态（1-正在处理 2-已解决 3-处理跟踪情况）
-                    NSString *imgName;
-                    if ([homeMapProblemModel.problemStatus isEqualToString:@"2"]) {
-                        imgName = @"marker_green.png";
-                    } else {
-                        imgName = @"marker_red.png";
-                    }
-                    [self.imgArray addObject:[UIImage imageNamed:imgName]];
+                    [self.imgArray addObject:[UIImage imageNamed:@"marker_red.png"]];
                     [self.homeMapProblemArray addObject:homeMapProblemModel];
                 }
             }
         } else {
             for (ZHLZHomeMapModel *homeMapModel in homeMapArray) {
                 if (homeMapModel.coordinatesX > 0 && homeMapModel.coordinatesY > 0) {
+                    NSInteger currentColor = 0;
+                    if (homeMapModel.pronum == 0) { // 绿色
+                        currentColor = 3;
+                    } else { // 红色
+                        currentColor = 1;
+                    }
+                    NSDate *date = [NSDate dateWithTimeIntervalSince1970:homeMapModel.finishdate.time];
+                    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:date];
+                    int day = ((int)time) / (3600 * 24);
+                    if (day < 15 && day >= 0) { // 黄色
+                        currentColor = 2;
+                    }
+                    if (currentColor != self->_colorIndex && self->_colorIndex > 0) {
+                        continue;
+                    }
+                    
                     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
                     pointAnnotation.coordinate = CLLocationCoordinate2DMake(homeMapModel.coordinatesY, homeMapModel.coordinatesX);
                     [self.annotationArray addObject:pointAnnotation];

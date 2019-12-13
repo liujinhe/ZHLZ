@@ -54,9 +54,9 @@
     self.filterView.hidden = YES;
     self.filterBottomView.hidden = YES;
     
-    self.colorView.hidden = YES;
-    self.colorTopLayoutConstraint.constant = 0;
-    self.colorHeightLayoutConstraint.constant = 0;
+    self.colorView.hidden = NO;
+    self.colorTopLayoutConstraint.constant = 10;
+    self.colorHeightLayoutConstraint.constant = 50;
     
     if ([[ZHLZUserManager sharedInstance] isSuperAdmin]) {
         self.bigTeamButton.userInteractionEnabled = YES;
@@ -90,13 +90,13 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self->_picLayerIndex == 1) {
-                self.colorView.hidden = NO;
-                self.colorTopLayoutConstraint.constant = 10;
-                self.colorHeightLayoutConstraint.constant = 50;
-            } else {
                 self.colorView.hidden = YES;
                 self.colorTopLayoutConstraint.constant = 0;
                 self.colorHeightLayoutConstraint.constant = 0;
+            } else {
+                self.colorView.hidden = NO;
+                self.colorTopLayoutConstraint.constant = 10;
+                self.colorHeightLayoutConstraint.constant = 50;
             }
             [self.picLayerButton setTitle:name forState:UIControlStateNormal];
         });
@@ -104,7 +104,7 @@
     [self.picLayerButton setTitle:[self.picLayerPickerViewVC.titleArray firstObject] forState:UIControlStateNormal];
     
     self.colorPickerViewVC = [ZHLZPickerViewVC new];
-    self.colorPickerViewVC.titleArray = @[@"红色", @"绿色"];
+    self.colorPickerViewVC.titleArray = @[@"红色", @"黄色", @"绿色"];
     self.colorPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         @strongify(self);
         
@@ -168,7 +168,7 @@
 }
 
 - (IBAction)determineAction {
-    if (_picLayerIndex != 1) {
+    if (_picLayerIndex == 1) {
         _colorIndex = 0;
     }
     if (self.selectSearchBlock) {

@@ -371,18 +371,18 @@ static NSString * const ZHLZHomeMunicipalFacilityCVCReuseIdentifier = @"ZHLZHome
                 break;
             case 7:
             {
-                ZHLZHomeInfoStatisticsVC *homeInfoStatisticsVC = [ZHLZHomeInfoStatisticsVC new];
-                homeInfoStatisticsVC.navTitle = navTitle;
-                [self.navigationController pushViewController:homeInfoStatisticsVC
+                ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
+                webViewVC.headTitle = navTitle;
+                webViewVC.url = [BaseAPIURLConst stringByAppendingString:RoadPatrolSummaryStatisticsAPIURLConst];
+                [self.navigationController pushViewController:webViewVC
                                                      animated:YES];
             }
                 break;
             case 8:
             {
-                ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
-                webViewVC.navTitle = navTitle;
-                webViewVC.url = [BaseAPIURLConst stringByAppendingString:RoadPatrolSummaryStatisticsAPIURLConst];
-                [self.navigationController pushViewController:webViewVC
+                ZHLZHomeInfoStatisticsVC *homeInfoStatisticsVC = [ZHLZHomeInfoStatisticsVC new];
+                homeInfoStatisticsVC.navTitle = navTitle;
+                [self.navigationController pushViewController:homeInfoStatisticsVC
                                                      animated:YES];
             }
                 break;
