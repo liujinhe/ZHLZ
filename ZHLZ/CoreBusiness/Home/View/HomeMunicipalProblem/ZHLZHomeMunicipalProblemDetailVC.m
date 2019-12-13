@@ -482,9 +482,9 @@
         self.municipalProblemSubmitModel.lonY = @"";
     }
     
-    self.municipalProblemSubmitModel.uploadid = @"";
     if (self.type == 1) {
         self.municipalProblemSubmitModel.id = @"";
+        self.municipalProblemSubmitModel.uploadid = @"";
         self.municipalProblemSubmitModel.ddssjtms = [self setddssjtms];
     }
     

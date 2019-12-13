@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)uploadImageArray:(NSArray<UIImage *> *)uploadImageArray withUploadId:(NSString *)uploadId withBlock:(dispatch_block_t)block;
 
-- (NSURLSessionTask *)deleteImageWithImageUrl:(NSString *)imageUrl withBlock:(dispatch_block_t)block;
+- (void)deleteImageWithImageUrl:(NSString *)imageUrl withBlock:(dispatch_block_t)block;
 
 
 - (NSString *)random:(int)len;

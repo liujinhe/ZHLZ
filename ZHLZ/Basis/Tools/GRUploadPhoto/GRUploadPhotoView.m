@@ -129,9 +129,9 @@ static NSString * const Cell = @"GRUploadPhotoCell";
             }
         }
     }
-    
+
+    [self changeViewHeight];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self changeViewHeight];
         [self->_collectionView reloadData];
     });
     
@@ -289,6 +289,12 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)showImage {
+    [self changeViewHeight];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->_collectionView reloadData];
+    });
+    
     NSMutableArray<NSString *> *imgExtArray = @[].mutableCopy;
     if (_selectedPhotos && _selectedPhotos.count > 0) {
         if ([self.delegate respondsToSelector:@selector(selectedWithPhotoArray:withImgExtArray:withParentView:)]) {
@@ -303,11 +309,6 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     } else {
         [self.delegate selectedWithPhotoArray:_selectedPhotos withImgExtArray:imgExtArray withParentView:self];
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self changeViewHeight];
-        [self->_collectionView reloadData];
-    });
 }
 
 - (void)unableAccessAlbum {
@@ -467,6 +468,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         }
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否要删除当前图片？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAlertAction = [UIAlertAction actionWithTitle:@"确认删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
             [[ZHLZUploadVM sharedInstance] deleteImageWithImageUrl:imageURL withBlock:^{
                 @strongify(self);
                 [self->_hasExistPhotos removeObjectAtIndex:sender.tag];
@@ -474,11 +476,8 @@ static NSString * const Cell = @"GRUploadPhotoCell";
                 
                 self->_hasExistPhotosCount--;
                 self->_selectPhotosCount = self->_maxPhotosCount - self->_hasExistPhotosCount;
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self changeViewHeight];
-                    [self->_collectionView reloadData];
-                });
+
+                [self showImage];
             }];
         }];
         [alertController addAction:okAlertAction];

@@ -329,11 +329,12 @@
     
     self.homeSafeProblemSUbmitModel.prodescription = self.problemDetailTextView.text;
     self.homeSafeProblemSUbmitModel.remark = self.problemMarkTextView.text;
-    self.homeSafeProblemSUbmitModel.uploadid = @"";
+    
     ///默认值回选
     if (self.type == 1) {
         self.homeSafeProblemSUbmitModel.ddssjtms = [self setddssjtms];
         self.homeSafeProblemSUbmitModel.id = @"";
+        self.homeSafeProblemSUbmitModel.uploadid = @"";
     }
     
     if (![self.homeSafeProblemSUbmitModel.risksid isNotBlank]) {

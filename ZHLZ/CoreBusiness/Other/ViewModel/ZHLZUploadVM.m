@@ -37,10 +37,10 @@
     }
 }
 
-- (NSURLSessionTask *)deleteImageWithImageUrl:(NSString *)imageUrl withBlock:(dispatch_block_t)block{
+- (void)deleteImageWithImageUrl:(NSString *)imageUrl withBlock:(dispatch_block_t)block{
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:DeleteByUploadid withRequestArgument:@{@"imgURL":imageUrl}];
     baseVM.isRequestArgument = YES;
-    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+    [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
         if (response && response.status == 0) {
             block();
         }
