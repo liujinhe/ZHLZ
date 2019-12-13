@@ -104,7 +104,7 @@
     [self.picLayerButton setTitle:[self.picLayerPickerViewVC.titleArray firstObject] forState:UIControlStateNormal];
     
     self.colorPickerViewVC = [ZHLZPickerViewVC new];
-    self.colorPickerViewVC.titleArray = @[@"红色", @"绿色", @"蓝色"];
+    self.colorPickerViewVC.titleArray = @[@"红色", @"绿色"];
     self.colorPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         @strongify(self);
         

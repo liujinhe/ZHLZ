@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHLZHomeOccupyProblemSearchModel : ZHLZBaseModel
 
 // 项目 ID
-@property (nonatomic, strong, nullable) NSString *projectid;
+@property (nonatomic, strong, nullable) NSString *proid;
 // 项目名称
 @property (nonatomic, strong, nullable) NSString *projectname;
 // 问题描述

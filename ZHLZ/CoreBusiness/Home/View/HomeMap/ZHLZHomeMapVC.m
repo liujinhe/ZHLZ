@@ -184,8 +184,6 @@ static CGFloat const CalloutViewMargin = -10;
                     NSString *imgName;
                     if ([homeMapProblemModel.problemStatus isEqualToString:@"2"]) {
                         imgName = @"marker_green.png";
-                    } else if ([homeMapProblemModel.problemStatus isEqualToString:@"3"]) {
-                        imgName = @"marker_blue.png";
                     } else {
                         imgName = @"marker_red.png";
                     }

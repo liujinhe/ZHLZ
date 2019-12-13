@@ -45,7 +45,18 @@
         if (self.tableView.mj_header.isRefreshing) {
             [self.tableView.mj_header endRefreshing];
         }
-        self.array = array;
+        ZHLZHomeInfoStatisticsModel *allHomeInfoStatistics = nil;
+        if (array && array.count > 0) {
+            allHomeInfoStatistics = [ZHLZHomeInfoStatisticsModel new];
+            allHomeInfoStatistics.orgname = @"总统计";
+            for (ZHLZHomeInfoStatisticsModel *model in array) {
+                allHomeInfoStatistics.mapMileage += model.mapMileage;
+                allHomeInfoStatistics.foundnum += model.foundnum;
+                allHomeInfoStatistics.findnum += model.findnum;
+                allHomeInfoStatistics.closenum += model.closenum;
+            }
+        }
+        self.array = allHomeInfoStatistics ? [array arrayByAddingObject:allHomeInfoStatistics] : array;
         [self.tableView reloadData];
     }];
 }

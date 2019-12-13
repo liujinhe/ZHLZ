@@ -33,10 +33,10 @@
     _homeInfoStatisticsModel = homeInfoStatisticsModel;
     
     self.brigadeLabel.text = _homeInfoStatisticsModel.orgname?:@"";
-    self.queryKilometersCountLabel.text = _homeInfoStatisticsModel.mapMileage?:@"";
-    self.queryPeopleCountLabel.text = _homeInfoStatisticsModel.foundnum?:@"";
-    self.findProblemCountLabel.text = _homeInfoStatisticsModel.findnum?:@"";
-    self.closedProblemCountLabel.text = _homeInfoStatisticsModel.closenum?:@"";
+    self.queryKilometersCountLabel.text = [NSString stringWithFormat:@"%ld", _homeInfoStatisticsModel.mapMileage];
+    self.queryPeopleCountLabel.text = [NSString stringWithFormat:@"%ld", _homeInfoStatisticsModel.foundnum];
+    self.findProblemCountLabel.text = [NSString stringWithFormat:@"%ld", _homeInfoStatisticsModel.findnum];
+    self.closedProblemCountLabel.text = [NSString stringWithFormat:@"%ld", _homeInfoStatisticsModel.closenum];
 }
 
 @end

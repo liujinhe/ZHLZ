@@ -193,7 +193,7 @@
 
 - (IBAction)determineAction {
     ZHLZHomeOccupyProblemSearchModel *model = [ZHLZHomeOccupyProblemSearchModel new];
-    model.projectid = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
+    model.proid = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
     model.projectname = [self.projectNameTextField.text isNotBlank] ? self.projectNameTextField.text : nil;
     model.prodescription = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
     model.position = [self.locationTextField.text isNotBlank] ? self.locationTextField.text : nil;
