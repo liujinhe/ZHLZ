@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZRoadWorkVC">
             <connections>
+                <outlet property="callButton" destination="DV9-YX-I5p" id="ZDG-wM-gVF"/>
                 <outlet property="principalNameTextFile" destination="uRJ-WQ-1ZI" id="uNL-Kg-vov"/>
                 <outlet property="principalPhonetextFile" destination="6i7-KW-ufp" id="jL7-qS-xW8"/>
                 <outlet property="roadWorkButton" destination="Hct-2N-MGQ" id="Z8N-Hr-BvM"/>
@@ -68,15 +69,28 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DV9-YX-I5p">
+                            <rect key="frame" x="344" y="0.0" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="cbB-W4-kU2"/>
+                            </constraints>
+                            <state key="normal" image="icon_call"/>
+                            <connections>
+                                <action selector="callAction:" destination="-1" eventType="touchUpInside" id="6ve-9d-hvh"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="6i7-KW-ufp" firstAttribute="centerY" secondItem="Xsw-gF-iXi" secondAttribute="centerY" id="0he-7h-lP9"/>
+                        <constraint firstAttribute="trailing" secondItem="DV9-YX-I5p" secondAttribute="trailing" constant="20" id="4iH-qF-bm1"/>
                         <constraint firstAttribute="height" constant="60" id="Ekb-Rl-jc0"/>
+                        <constraint firstAttribute="bottom" secondItem="DV9-YX-I5p" secondAttribute="bottom" id="K5J-Gm-HUY"/>
                         <constraint firstItem="6i7-KW-ufp" firstAttribute="top" secondItem="Xsw-gF-iXi" secondAttribute="top" constant="10" id="Rul-qz-rpm"/>
                         <constraint firstAttribute="trailing" secondItem="6i7-KW-ufp" secondAttribute="trailing" constant="20" id="dXE-Ff-JuQ"/>
                         <constraint firstItem="6i7-KW-ufp" firstAttribute="leading" secondItem="Xsw-gF-iXi" secondAttribute="leading" constant="20" id="h6C-ZY-UMq"/>
                         <constraint firstAttribute="bottom" secondItem="6i7-KW-ufp" secondAttribute="bottom" constant="10" id="oIg-l1-7jw"/>
+                        <constraint firstItem="DV9-YX-I5p" firstAttribute="top" secondItem="Xsw-gF-iXi" secondAttribute="top" id="vWk-wf-LYb"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hct-2N-MGQ" customClass="ZHLZButton">
@@ -111,4 +125,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_call" width="32" height="32"/>
+    </resources>
 </document>

@@ -19,6 +19,7 @@
 
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *roadWorkButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 
 @end
@@ -38,12 +39,12 @@
         
         self.title = @"添加施工单位";
         [self.roadWorkButton setTitle:@"确认添加" forState:UIControlStateNormal];
-        
+        self.callButton.hidden = YES;
     } else {
         
         self.title = @"编辑施工单位";
         [self.roadWorkButton setTitle:@"确认修改" forState:UIControlStateNormal];
-        
+        self.callButton.hidden = NO;
         //[self addNavRightButton];
         
         self.unitNameTextFile.text = self.roadWorkModel.name;
@@ -108,6 +109,24 @@
 }
 
 
+- (IBAction)callAction:(UIButton *)sender {
+    NSString *phoneString = self.principalPhonetextFile.text;
+    if ([phoneString isNotBlank]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneString]];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                } else {
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            });
+        }
+    }
+    else {
+        [GRToast makeText:@"暂无联系方式"];
+    }
+}
 
 
 

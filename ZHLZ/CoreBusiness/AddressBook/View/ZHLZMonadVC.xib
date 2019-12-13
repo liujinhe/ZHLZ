@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZMonadVC">
             <connections>
+                <outlet property="callButton" destination="h4Q-Nm-TeZ" id="4HL-tY-s9t"/>
                 <outlet property="principalNnameTextFile" destination="NSf-c7-y74" id="Z3Y-pO-BXN"/>
                 <outlet property="principalPhoneTextFile" destination="i7q-Cc-whZ" id="Ndh-fA-GL9"/>
                 <outlet property="remarkTextFile" destination="gSm-r6-pPn" id="7PP-Rb-0iG"/>
@@ -69,11 +70,24 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4Q-Nm-TeZ">
+                            <rect key="frame" x="344" y="0.0" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="a5d-e1-FyY"/>
+                            </constraints>
+                            <state key="normal" image="icon_call"/>
+                            <connections>
+                                <action selector="callAction:" destination="-1" eventType="touchUpInside" id="z4B-PJ-Rt6"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="h4Q-Nm-TeZ" secondAttribute="bottom" id="EO4-6h-kJ2"/>
                         <constraint firstAttribute="trailing" secondItem="i7q-Cc-whZ" secondAttribute="trailing" constant="20" id="J7L-hp-vWM"/>
+                        <constraint firstAttribute="trailing" secondItem="h4Q-Nm-TeZ" secondAttribute="trailing" constant="20" id="Kde-Ax-UC0"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="leading" secondItem="DO9-Tx-hew" secondAttribute="leading" constant="20" id="MjV-th-HSD"/>
+                        <constraint firstItem="h4Q-Nm-TeZ" firstAttribute="top" secondItem="DO9-Tx-hew" secondAttribute="top" id="VOy-2U-2oO"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="top" secondItem="DO9-Tx-hew" secondAttribute="top" constant="10" id="Xti-HU-gvl"/>
                         <constraint firstItem="i7q-Cc-whZ" firstAttribute="centerY" secondItem="DO9-Tx-hew" secondAttribute="centerY" id="YEU-gO-r43"/>
                         <constraint firstAttribute="height" constant="60" id="oJz-c2-xDq"/>
@@ -136,4 +150,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_call" width="32" height="32"/>
+    </resources>
 </document>

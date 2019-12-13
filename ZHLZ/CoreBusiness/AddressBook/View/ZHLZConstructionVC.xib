@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZConstructionVC">
             <connections>
+                <outlet property="callButton" destination="lwz-6R-DcE" id="wkZ-TL-18m"/>
                 <outlet property="chargerTextFile" destination="B2V-z5-3ah" id="NY1-v7-hI5"/>
                 <outlet property="constructionButton" destination="Thn-RE-p9l" id="t2O-js-3Lo"/>
                 <outlet property="nameTextFIle" destination="PJ5-hr-LKr" id="HUI-bV-dzW"/>
@@ -68,12 +69,25 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwz-6R-DcE">
+                            <rect key="frame" x="344" y="0.0" width="50" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="JrQ-wR-Q8F"/>
+                            </constraints>
+                            <state key="normal" image="icon_call"/>
+                            <connections>
+                                <action selector="callAction:" destination="-1" eventType="touchUpInside" id="pdI-c8-uKw"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="centerY" secondItem="S0w-bE-D51" secondAttribute="centerY" id="BeP-Si-27M"/>
+                        <constraint firstItem="lwz-6R-DcE" firstAttribute="top" secondItem="S0w-bE-D51" secondAttribute="top" id="LLh-ie-1bF"/>
+                        <constraint firstAttribute="trailing" secondItem="lwz-6R-DcE" secondAttribute="trailing" constant="20" id="N3p-aW-wpf"/>
                         <constraint firstAttribute="bottom" secondItem="WcB-SX-qcZ" secondAttribute="bottom" constant="10" id="Pk5-J1-LMd"/>
                         <constraint firstAttribute="trailing" secondItem="WcB-SX-qcZ" secondAttribute="trailing" constant="20" id="Tfg-bC-C4N"/>
+                        <constraint firstAttribute="bottom" secondItem="lwz-6R-DcE" secondAttribute="bottom" id="Xf2-A2-gQz"/>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="leading" secondItem="S0w-bE-D51" secondAttribute="leading" constant="20" id="bnH-u3-ezO"/>
                         <constraint firstAttribute="height" constant="60" id="sPw-Et-rA9"/>
                         <constraint firstItem="WcB-SX-qcZ" firstAttribute="top" secondItem="S0w-bE-D51" secondAttribute="top" constant="10" id="tbx-FC-yaN"/>
@@ -111,4 +125,7 @@
             <point key="canvasLocation" x="139" y="105"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_call" width="32" height="32"/>
+    </resources>
 </document>

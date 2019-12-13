@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet ZHLZTextField *remarkTextFile;
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *sureButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 @end
 
@@ -35,11 +36,12 @@
     if (self.setType == 1) {
         self.title = @"添加责任单位";
         [self.sureButton setTitle:@"确认添加" forState:UIControlStateNormal];
+        self.callButton.hidden = YES;
         
     } else {
         self.title = @"编辑责任单位";
         [self.sureButton setTitle:@"确认修改" forState:UIControlStateNormal];
-        
+        self.callButton.hidden = NO;
         //[self addNavRightButton];
         
         self.workNnameTextFile.text = self.monadModel.name;
@@ -100,6 +102,24 @@
     }
 }
 
+- (IBAction)callAction:(UIButton *)sender {
+    NSString *phoneString = self.principalPhoneTextFile.text;
+    if ([phoneString isNotBlank]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneString]];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                } else {
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            });
+        }
+    }
+    else {
+        [GRToast makeText:@"暂无联系方式"];
+    }
+}
 
 
 @end

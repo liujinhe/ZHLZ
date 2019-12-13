@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZAreaManagementVC">
             <connections>
                 <outlet property="areaManagementButton" destination="xAd-Qf-Fti" id="IgV-Ix-9Ol"/>
+                <outlet property="callPhoneButton" destination="UXl-X5-MTY" id="XGU-Jl-NaR"/>
                 <outlet property="chargerTextFile" destination="KuI-w8-Efd" id="oFA-ul-h0s"/>
                 <outlet property="nameTextFile" destination="NdE-PI-mH8" id="dT0-Og-dZa"/>
                 <outlet property="phoneTextFile" destination="8ed-TT-mN5" id="bUs-ps-x2U"/>
@@ -61,26 +62,39 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LOP-P2-DFP">
-                    <rect key="frame" x="0.0" y="184" width="414" height="60"/>
+                    <rect key="frame" x="0.0" y="184" width="414" height="50"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入负责人联系电话" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-TT-mN5" customClass="ZHLZTextField">
-                            <rect key="frame" x="20" y="10" width="374" height="40"/>
+                            <rect key="frame" x="20" y="10" width="374" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXl-X5-MTY">
+                            <rect key="frame" x="344" y="0.0" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="LSp-WT-5Na"/>
+                                <constraint firstAttribute="width" constant="50" id="Pir-01-iX9"/>
+                            </constraints>
+                            <state key="normal" image="icon_call"/>
+                            <connections>
+                                <action selector="callAction:" destination="-1" eventType="touchUpInside" id="hAF-6C-NGx"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="UXl-X5-MTY" secondAttribute="trailing" constant="20" id="4LZ-OW-LWi"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="leading" secondItem="LOP-P2-DFP" secondAttribute="leading" constant="20" id="BFr-Jm-ZL8"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="top" secondItem="LOP-P2-DFP" secondAttribute="top" constant="10" id="CiW-mi-HHC"/>
-                        <constraint firstAttribute="height" constant="60" id="b0J-FF-faK"/>
+                        <constraint firstAttribute="bottom" secondItem="UXl-X5-MTY" secondAttribute="bottom" id="cEm-jk-VW5"/>
                         <constraint firstAttribute="bottom" secondItem="8ed-TT-mN5" secondAttribute="bottom" constant="10" id="jjF-0Z-uod"/>
+                        <constraint firstItem="UXl-X5-MTY" firstAttribute="top" secondItem="LOP-P2-DFP" secondAttribute="top" id="oQ0-L5-Mu2"/>
                         <constraint firstAttribute="trailing" secondItem="8ed-TT-mN5" secondAttribute="trailing" constant="20" id="qNj-yB-GYv"/>
                         <constraint firstItem="8ed-TT-mN5" firstAttribute="centerY" secondItem="LOP-P2-DFP" secondAttribute="centerY" id="tJq-W8-Dza"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAd-Qf-Fti" customClass="ZHLZButton">
-                    <rect key="frame" x="20" y="284" width="374" height="50"/>
+                    <rect key="frame" x="20" y="274" width="374" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="HKR-MM-EBR"/>
@@ -111,4 +125,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="107.8125"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_call" width="32" height="32"/>
+    </resources>
 </document>

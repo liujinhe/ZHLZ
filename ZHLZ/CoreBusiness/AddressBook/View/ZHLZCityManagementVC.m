@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet ZHLZTextField *chargerTextFile;
 @property (weak, nonatomic) IBOutlet ZHLZTextField *phoneTextFile;
 @property (weak, nonatomic) IBOutlet ZHLZButton *cityManagementButton;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 @end
 
@@ -33,10 +34,11 @@
     if (self.setType == 1) {
         self.title = @"添加市管管理单位";
         [self.cityManagementButton setTitle:@"确认添加" forState:UIControlStateNormal];
-        
+        self.callButton.hidden = YES;
     } else {
         self.title = @"编辑市管管理单位";
         [self.cityManagementButton setTitle:@"确认修改" forState:UIControlStateNormal];
+        self.callButton.hidden = NO;
         
         self.nameTextFile.text = self.cityManagementModel.name;
         self.chargerTextFile.text = self.cityManagementModel.charger;
@@ -99,5 +101,23 @@
     }
 }
 
+- (IBAction)callAction:(UIButton *)sender {
+    NSString *phoneString = self.phoneTextFile.text;
+    if ([phoneString isNotBlank]) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneString]];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (@available(iOS 10.0, *)) {
+                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                } else {
+                    [[UIApplication sharedApplication] openURL:url];
+                }
+            });
+        }
+    }
+    else {
+        [GRToast makeText:@"暂无联系方式"];
+    }
+}
 
 @end
