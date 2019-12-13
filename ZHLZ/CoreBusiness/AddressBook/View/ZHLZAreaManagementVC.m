@@ -20,7 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *callPhoneButton;
 
-
 @end
 
 @implementation ZHLZAreaManagementVC
@@ -42,10 +41,20 @@
         self.title = @"编辑区管管理单位";
         [self.areaManagementButton setTitle:@"确认修改" forState:UIControlStateNormal];
         self.callPhoneButton.hidden = NO;
+        
+        
+//
+//        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:4 CallBack:^(NSDictionary * _Nonnull parms) {
+//            self.areaManagementModel = [AreaManagementList modelWithJSON:parms];
+//            self.nameTextFile.text = self.areaManagementModel.name;
+//            self.chargerTextFile.text = self.areaManagementModel.charger;
+//            self.phoneTextFile.text = self.areaManagementModel.phone;
+//
+//        }];
+        
         self.nameTextFile.text = self.areaManagementModel.name;
         self.chargerTextFile.text = self.areaManagementModel.charger;
         self.phoneTextFile.text = self.areaManagementModel.phone;
-        
         //[self addNavRightButton];
     }
 }

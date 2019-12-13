@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 
+@property (nonatomic , strong) ConstructionList *constructionModel;//建设单位
+
 @end
 
 @implementation ZHLZConstructionVC
@@ -42,11 +44,12 @@
         [self.constructionButton setTitle:@"确认修改" forState:UIControlStateNormal];
         self.callButton.hidden = NO;
         
-        self.nameTextFIle.text = self.constructionModel.name;
-        self.chargerTextFile.text = self.constructionModel.changer;
-        self.phoneTextFIle.text = self.constructionModel.phone;
-        
-        //[self addNavRightButton];
+        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:2 CallBack:^(NSDictionary * _Nonnull parms) {
+            self.constructionModel = [ConstructionList modelWithJSON:parms];
+            self.nameTextFIle.text = self.constructionModel.name;
+            self.chargerTextFile.text = self.constructionModel.changer;
+            self.phoneTextFIle.text = self.constructionModel.phone;
+        }];
     }
 }
 

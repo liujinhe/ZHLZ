@@ -12,10 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZMonadVC : ZHLZBaseVC
-
+@property (nonatomic , strong) NSString *detailId;//详情id
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
-
-@property (nonatomic , strong) MonadModelList *monadModel;
 
 @property(nonatomic,copy) void (^reloadDataBlock)(void);
 

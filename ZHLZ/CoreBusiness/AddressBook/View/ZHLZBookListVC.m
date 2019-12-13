@@ -249,7 +249,7 @@
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
         roadWorkVC.editType = type;
         if (type == 2) {
-            roadWorkVC.roadWorkModel = list;
+            roadWorkVC.detailId = list.objectID;
         }
         roadWorkVC.reloadDataBlock = ^{
             [self.bookListTableView.mj_header beginRefreshing];
@@ -261,7 +261,7 @@
         ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
         examineVC.setType = type;
         if (type == 2) {
-            examineVC.examineModel = list;
+            examineVC.detailId = list.objectID;
         }
         examineVC.reloadDataBlock = ^{
             [self.bookListTableView.mj_header beginRefreshing];
@@ -273,7 +273,7 @@
         ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
         constructionVC.setType = type;
         if (type == 2) {
-            constructionVC.constructionModel = list;
+            constructionVC.detailId = list.objectID;
         }
         constructionVC.reloadDataBlock = ^{
             [self.bookListTableView.mj_header beginRefreshing];
@@ -321,7 +321,7 @@
         ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
         monadVC.setType = type;
         if (type == 2) {
-            monadVC.monadModel = list;
+            monadVC.detailId = list.objectID;
         }
         monadVC.reloadDataBlock = ^{
             [self.bookListTableView.mj_header beginRefreshing];

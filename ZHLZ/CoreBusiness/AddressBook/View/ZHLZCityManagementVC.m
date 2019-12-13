@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet ZHLZButton *cityManagementButton;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 
+
 @end
 
 @implementation ZHLZCityManagementVC
@@ -40,6 +41,14 @@
         [self.cityManagementButton setTitle:@"确认修改" forState:UIControlStateNormal];
         self.callButton.hidden = NO;
         
+        
+        
+//        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:3 CallBack:^(NSDictionary * _Nonnull parms) {
+//            self.cityManagementModel = [CityManagementList modelWithJSON:parms];
+//            self.nameTextFile.text = self.cityManagementModel.name;
+//            self.chargerTextFile.text = self.cityManagementModel.charger;
+//            self.phoneTextFile.text = self.cityManagementModel.phone;
+//        }];
         self.nameTextFile.text = self.cityManagementModel.name;
         self.chargerTextFile.text = self.cityManagementModel.charger;
         self.phoneTextFile.text = self.cityManagementModel.phone;

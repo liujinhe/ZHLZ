@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZCityManagementVC : ZHLZBaseVC
-
+@property (nonatomic , strong) NSString *detailId;//详情id
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
 @property (nonatomic , strong) CityManagementList *cityManagementModel;//市管单位
 

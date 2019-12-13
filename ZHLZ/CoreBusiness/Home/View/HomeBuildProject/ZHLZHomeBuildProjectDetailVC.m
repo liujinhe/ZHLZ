@@ -17,6 +17,10 @@
 #import "ZHLZChooseListVC.h"
 #import "ZHLZPickerViewVC.h"
 
+#import "ZHLZRoadWorkVC.h"//施工单位
+#import "ZHLZExamineVC.h"//审批部门
+#import "ZHLZConstructionVC.h"//建设单位
+
 @interface ZHLZHomeBuildProjectDetailVC ()
 
 @property (weak, nonatomic) IBOutlet UITextField *projectNameTextFile;
@@ -50,6 +54,11 @@
 
 @property (weak, nonatomic) IBOutlet ZHLZButton *submitButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *buildContentButton;
+@property (weak, nonatomic) IBOutlet UIButton *roadWorkContentButton;
+@property (weak, nonatomic) IBOutlet UIButton *departmentContentButton;
+
+
 @property (nonatomic , strong) ZHLZHomeBuildProjectSubmitModel *projectSubmitModel;
 
 @end
@@ -73,6 +82,10 @@
 }
 
 - (void)buildProjectDetailView{
+    
+    self.buildContentButton.hidden = YES;
+    self.roadWorkContentButton.hidden = YES;
+    self.departmentContentButton.hidden = YES;
     
     if (self.detailType == 1) {
         
@@ -102,6 +115,7 @@
     
     self.brigadeButton.userInteractionEnabled = NO;
     
+    
     if (self.detailType == 1 || self.detailType == 3) {
         [self.brigadeButton setTitle:[ZHLZUserManager sharedInstance].user.orgname forState:UIControlStateNormal];
         self.projectSubmitModel.bid = [ZHLZUserManager sharedInstance].user.orgId;
@@ -117,13 +131,16 @@
 
 - (void)setViewToLookDetail {
     
+    self.buildContentButton.hidden = NO;
+    self.roadWorkContentButton.hidden = NO;
+    self.departmentContentButton.hidden = NO;
     //设置UIButton背景颜色
 //    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
 //    self.projectTypeButton.backgroundColor = [UIColor whiteColor];
-//    self.developmentUnitButton.backgroundColor = [UIColor whiteColor];
-//    self.roadWorkButton.backgroundColor = [UIColor whiteColor];
-//    self.approvalAuthorityButton.backgroundColor = [UIColor whiteColor];
-//    
+    self.developmentUnitButton.backgroundColor = [UIColor whiteColor];
+    self.roadWorkButton.backgroundColor = [UIColor whiteColor];
+    self.approvalAuthorityButton.backgroundColor = [UIColor whiteColor];
+//
 //    self.licenceStartButton.backgroundColor = [UIColor whiteColor];
 //    self.licenceEndButton.backgroundColor = [UIColor whiteColor];
 //    self.demandTimeButton.backgroundColor = [UIColor whiteColor];
@@ -139,10 +156,10 @@
     self.projectNameTextFile.userInteractionEnabled = NO;
     self.projectTypeButton.userInteractionEnabled = NO;
     self.projectLocationTextFile.userInteractionEnabled = NO;
-    self.developmentUnitButton.userInteractionEnabled = NO;
-    self.roadWorkButton.userInteractionEnabled = NO;
+//    self.developmentUnitButton.userInteractionEnabled = NO;
+//    self.roadWorkButton.userInteractionEnabled = NO;
     
-    self.approvalAuthorityButton.userInteractionEnabled = NO;
+//    self.approvalAuthorityButton.userInteractionEnabled = NO;
     self.licenceStartButton.userInteractionEnabled = NO;
     self.licenceEndButton.userInteractionEnabled = NO;
     self.demandTimeButton.userInteractionEnabled = NO;
@@ -251,19 +268,18 @@
         
         
         ///修改初始默认值
-        if (self.detailType == 3) {
-            self.projectSubmitModel.projecttypeId = homeBuildProjectModel.projecttypeId;
-            self.projectSubmitModel.constructorId = homeBuildProjectModel.constructorId;
-            self.projectSubmitModel.builderId = homeBuildProjectModel.builderId;
-            self.projectSubmitModel.createdate = self.licenceStartButton.titleLabel.text;
-            self.projectSubmitModel.finishdate = self.licenceEndButton.titleLabel.text;
-            self.projectSubmitModel.frequency = homeBuildProjectModel.frequency;
-            self.projectSubmitModel.projectstatusId = homeBuildProjectModel.projectstatusId;
-            self.projectSubmitModel.areaid = homeBuildProjectModel.areaid;
-            self.projectSubmitModel.belong = homeBuildProjectModel.belong;
-            self.projectSubmitModel.focuson = homeBuildProjectModel.focuson;
-            self.projectSubmitModel.id = homeBuildProjectModel.objectID;
-        }
+        self.projectSubmitModel.projecttypeId = homeBuildProjectModel.projecttypeId;
+        self.projectSubmitModel.constructorId = homeBuildProjectModel.constructorId;
+        self.projectSubmitModel.builderId = homeBuildProjectModel.builderId;
+        self.projectSubmitModel.approverId = homeBuildProjectModel.approverId;
+        self.projectSubmitModel.createdate = self.licenceStartButton.titleLabel.text;
+        self.projectSubmitModel.finishdate = self.licenceEndButton.titleLabel.text;
+        self.projectSubmitModel.frequency = homeBuildProjectModel.frequency;
+        self.projectSubmitModel.projectstatusId = homeBuildProjectModel.projectstatusId;
+        self.projectSubmitModel.areaid = homeBuildProjectModel.areaid;
+        self.projectSubmitModel.belong = homeBuildProjectModel.belong;
+        self.projectSubmitModel.focuson = homeBuildProjectModel.focuson;
+        self.projectSubmitModel.id = homeBuildProjectModel.objectID;
         
         
     }];
@@ -288,36 +304,61 @@
 
 ///建设单位
 - (IBAction)dutyUnitAction:(UIButton *)sender {
-    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 2;
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        self.projectSubmitModel.constructorId = code;
-        [self.developmentUnitButton setTitle:name forState:UIControlStateNormal];
-    };
-    [self.navigationController pushViewController:chooseListVC animated:YES];
+    if (self.detailType == 2) {
+        ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
+        constructionVC.setType = 2;
+        constructionVC.detailId = self.projectSubmitModel.constructorId;
+        [self.navigationController pushViewController:constructionVC animated:YES];
+        
+    } else {
+        ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+        chooseListVC.selectIndex = 2;
+        chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            self.projectSubmitModel.constructorId = code;
+            [self.developmentUnitButton setTitle:name forState:UIControlStateNormal];
+        };
+        [self.navigationController pushViewController:chooseListVC animated:YES];
+    }
+    
 }
 
 ///施工单位
 - (IBAction)roadWorkAction:(UIButton *)sender {
-    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 0;
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        self.projectSubmitModel.builderId = code;
-        [self.roadWorkButton setTitle:name forState:UIControlStateNormal];
-    };
-    [self.navigationController pushViewController:chooseListVC animated:YES];
+    if (self.detailType == 2) {
+        
+        ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
+        roadWorkVC.editType = 2;
+        roadWorkVC.detailId = self.projectSubmitModel.builderId;
+        [self.navigationController pushViewController:roadWorkVC animated:YES];
+        
+    } else {
+        ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+        chooseListVC.selectIndex = 0;
+        chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            self.projectSubmitModel.builderId = code;
+            [self.roadWorkButton setTitle:name forState:UIControlStateNormal];
+        };
+        [self.navigationController pushViewController:chooseListVC animated:YES];
+    }
 }
 ///审批单位
 - (IBAction)approveUnitAction:(UIButton *)sender {
-    ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
-    chooseListVC.selectIndex = 1;
-    chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
-        self.projectSubmitModel.approverId = code;
-        [self.approvalAuthorityButton setTitle:name forState:UIControlStateNormal];
+    if (self.detailType == 2) {
         
-    };
-    [self.navigationController pushViewController:chooseListVC animated:YES];
-    
+        ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
+        examineVC.setType = 2;
+        examineVC.detailId = self.projectSubmitModel.approverId;
+        [self.navigationController pushViewController:examineVC animated:YES];
+        
+    } else {
+        ZHLZChooseListVC *chooseListVC = [ZHLZChooseListVC new];
+        chooseListVC.selectIndex = 1;
+        chooseListVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+            self.projectSubmitModel.approverId = code;
+            [self.approvalAuthorityButton setTitle:name forState:UIControlStateNormal];
+        };
+        [self.navigationController pushViewController:chooseListVC animated:YES];
+    }
 }
 
 ///许可证开始时间

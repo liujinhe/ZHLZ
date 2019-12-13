@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet ZHLZButton *roadWorkButton;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 
-
+@property (nonatomic , strong) RoadWorkList *roadWorkModel;//施工单位
 @end
 
 @implementation ZHLZRoadWorkVC
@@ -47,9 +47,18 @@
         self.callButton.hidden = NO;
         //[self addNavRightButton];
         
-        self.unitNameTextFile.text = self.roadWorkModel.name;
-        self.principalNameTextFile.text = self.roadWorkModel.charger;
-        self.principalPhonetextFile.text = self.roadWorkModel.phone;
+        
+        
+        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:0 CallBack:^(NSDictionary * _Nonnull parms) {
+            self.roadWorkModel = [RoadWorkList modelWithJSON:parms];
+            
+            self.unitNameTextFile.text = self.roadWorkModel.name;
+            self.principalNameTextFile.text = self.roadWorkModel.charger;
+            self.principalPhonetextFile.text = self.roadWorkModel.phone;
+        }];
+        
+        
+        
     }
 }
 

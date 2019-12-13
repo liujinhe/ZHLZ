@@ -42,7 +42,14 @@
         [self.specialButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
         self.callButton.hidden = NO;
-        //[self addNavRightButton];
+        
+//        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:5 CallBack:^(NSDictionary * _Nonnull parms) {
+//            self.specialModel = [SpecialList modelWithJSON:parms];
+//            self.nameTextFile.text = self.specialModel.name;
+//            self.chargerTextFile.text = self.specialModel.charger;
+//            self.phoneTextFile.text = self.specialModel.phone;
+//        }];
+        
         
         self.nameTextFile.text = self.specialModel.name;
         self.chargerTextFile.text = self.specialModel.charger;

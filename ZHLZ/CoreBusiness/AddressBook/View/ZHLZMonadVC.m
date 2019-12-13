@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet ZHLZButton *sureButton;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 
+
+@property (nonatomic , strong) MonadModelList *monadModel;
+
 @end
 
 @implementation ZHLZMonadVC
@@ -44,13 +47,20 @@
         self.callButton.hidden = NO;
         //[self addNavRightButton];
         
-        self.workNnameTextFile.text = self.monadModel.name;
         
-        self.principalNnameTextFile.text = self.monadModel.charger;
+        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:6 CallBack:^(NSDictionary * _Nonnull parms) {
+            self.monadModel = [MonadModelList modelWithJSON:parms];
+
+            self.workNnameTextFile.text = self.monadModel.name;
+            
+            self.principalNnameTextFile.text = self.monadModel.charger;
+            
+            self.principalPhoneTextFile.text = self.monadModel.phone;
+            
+            self.remarkTextFile.text = self.monadModel.remark;
+        }];
         
-        self.principalPhoneTextFile.text = self.monadModel.phone;
         
-        self.remarkTextFile.text = self.monadModel.remark;
         
     }
 }

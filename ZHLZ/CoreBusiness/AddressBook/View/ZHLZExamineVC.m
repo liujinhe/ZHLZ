@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *examineButton;
 
-
+@property (nonatomic , strong) ExamineList *examineModel;//审批单位
 @end
 
 @implementation ZHLZExamineVC
@@ -37,7 +37,14 @@
         self.title = @"编辑审批单位";
         [self.examineButton setTitle:@"确认修改" forState:UIControlStateNormal];
         
-        self.examineDepartmentTextFile.text = self.examineModel.name;
+        
+        self.task = [[ZHLZAddressBookVM sharedInstance] checkDetailWithId:self.detailId andType:1 CallBack:^(NSDictionary * _Nonnull parms) {
+            self.examineModel = [ExamineList modelWithJSON:parms];
+            
+            self.examineDepartmentTextFile.text = self.examineModel.name;
+        }];
+        
+        
         
         //[self addNavRightButton];
     }

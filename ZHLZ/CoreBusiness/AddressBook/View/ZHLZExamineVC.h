@@ -12,9 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZExamineVC : ZHLZBaseVC
-
+@property (nonatomic , strong) NSString *detailId;//详情id
 @property(nonatomic , assign) NSInteger setType;//1增加 2编辑
-@property (nonatomic , strong) ExamineList *examineModel;//审批单位
+
 
 @property(nonatomic,copy) void (^reloadDataBlock)(void);
 

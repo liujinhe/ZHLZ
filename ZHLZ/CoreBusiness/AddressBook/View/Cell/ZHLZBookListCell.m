@@ -103,6 +103,8 @@
     if ([examineList.creater isNotBlank]) {
         self.contentNameLabel.text = [NSString stringWithFormat:@"创建人  %@",examineList.creater];
     }
+    
+    self.callButton.hidden = YES;
 }
 
 - (void)setRoadWorkList:(RoadWorkList *)roadWorkList{

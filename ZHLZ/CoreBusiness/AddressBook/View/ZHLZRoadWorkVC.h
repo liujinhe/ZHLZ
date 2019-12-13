@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZRoadWorkVC : ZHLZBaseVC
-
+@property (nonatomic , strong) NSString *detailId;//详情id
 @property (nonatomic , assign) NSInteger editType;
-@property (nonatomic , strong) RoadWorkList *roadWorkModel;//施工单位
+
 
 
 @property(nonatomic,copy) void (^reloadDataBlock)(void);

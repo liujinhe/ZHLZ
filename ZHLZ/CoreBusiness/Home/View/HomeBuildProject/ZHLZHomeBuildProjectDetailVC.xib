@@ -13,7 +13,9 @@
                 <outlet property="approvalAuthorityButton" destination="t1l-qF-421" id="a4C-fk-qtI"/>
                 <outlet property="areaButton" destination="9Gr-jA-Y8b" id="4et-qB-f9d"/>
                 <outlet property="brigadeButton" destination="M7b-ui-bPY" id="oh0-J0-bDL"/>
+                <outlet property="buildContentButton" destination="ikm-mJ-QMy" id="hxv-SP-kcL"/>
                 <outlet property="demandTimeButton" destination="8yr-Dm-Dhg" id="7Fi-6V-6Bi"/>
+                <outlet property="departmentContentButton" destination="3W1-Pd-rwJ" id="3io-zq-cxo"/>
                 <outlet property="developmentUnitButton" destination="hvI-4y-tCA" id="n9F-yz-3Rg"/>
                 <outlet property="dutyAreaButton" destination="IN6-um-8Wz" id="3a0-Rq-vTF"/>
                 <outlet property="emphasisProjectButton" destination="uMS-Js-W5b" id="dkp-7Q-41W"/>
@@ -28,6 +30,7 @@
                 <outlet property="projectTypeButton" destination="XTN-mo-FQo" id="Cwq-kp-PYy"/>
                 <outlet property="remarkTextView" destination="4E5-hN-L6t" id="dme-w4-szV"/>
                 <outlet property="roadWorkButton" destination="BSN-9Z-HJ5" id="7Bd-Fb-M4p"/>
+                <outlet property="roadWorkContentButton" destination="cNU-iv-bK2" id="XRw-X3-53C"/>
                 <outlet property="roadWorkTypeButton" destination="FLV-9b-hBu" id="JKx-kT-z8e"/>
                 <outlet property="submitButton" destination="mM6-Bh-llg" id="58R-3v-q4j"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -193,6 +196,14 @@
                                     <color key="textColor" red="0.97149235010000001" green="0.1699665189" blue="0.216694206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikm-mJ-QMy">
+                                    <rect key="frame" x="374" y="15" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="Uc0-QM-Bt7"/>
+                                        <constraint firstAttribute="height" constant="20" id="d2J-KG-rpP"/>
+                                    </constraints>
+                                    <state key="normal" image="contnet"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -203,10 +214,12 @@
                                 <constraint firstItem="ao4-gs-onl" firstAttribute="leading" secondItem="lMs-uX-Bs4" secondAttribute="leading" constant="10" id="JqQ-hy-VUi"/>
                                 <constraint firstItem="ao4-gs-onl" firstAttribute="centerY" secondItem="lMs-uX-Bs4" secondAttribute="centerY" id="L21-R9-nER"/>
                                 <constraint firstAttribute="trailing" secondItem="yRi-CL-FX7" secondAttribute="trailing" constant="10" id="MDN-Ka-Re4"/>
+                                <constraint firstItem="ikm-mJ-QMy" firstAttribute="centerY" secondItem="lMs-uX-Bs4" secondAttribute="centerY" id="PDL-AI-BGQ"/>
                                 <constraint firstItem="ao4-gs-onl" firstAttribute="leading" secondItem="IgM-oL-31P" secondAttribute="trailing" id="RQR-Q5-zrA"/>
                                 <constraint firstItem="hvI-4y-tCA" firstAttribute="top" secondItem="lMs-uX-Bs4" secondAttribute="top" id="aeE-eW-xM4"/>
                                 <constraint firstAttribute="height" constant="50" id="dYF-bb-JJJ"/>
                                 <constraint firstItem="hvI-4y-tCA" firstAttribute="leading" secondItem="ao4-gs-onl" secondAttribute="trailing" constant="10" id="gY3-JR-EcS"/>
+                                <constraint firstAttribute="trailing" secondItem="ikm-mJ-QMy" secondAttribute="trailing" id="nYg-6f-3vN"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzA-Qk-ZbY">
@@ -242,6 +255,14 @@
                                     <color key="textColor" red="0.97149235010000001" green="0.1699665189" blue="0.216694206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNU-iv-bK2">
+                                    <rect key="frame" x="374" y="15" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="ROK-a2-zLq"/>
+                                        <constraint firstAttribute="height" constant="20" id="lbr-88-omP"/>
+                                    </constraints>
+                                    <state key="normal" image="contnet"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -251,6 +272,8 @@
                                 <constraint firstItem="dMx-nk-Vd7" firstAttribute="leading" secondItem="bzA-Qk-ZbY" secondAttribute="leading" constant="10" id="Ca6-UO-xzQ"/>
                                 <constraint firstAttribute="trailing" secondItem="Dyd-YJ-QnW" secondAttribute="trailing" constant="10" id="Cod-Z7-JuC"/>
                                 <constraint firstItem="Dyd-YJ-QnW" firstAttribute="leading" secondItem="BSN-9Z-HJ5" secondAttribute="trailing" constant="-20" id="IN9-Ba-khw"/>
+                                <constraint firstAttribute="trailing" secondItem="cNU-iv-bK2" secondAttribute="trailing" id="hLT-Bg-0cA"/>
+                                <constraint firstItem="cNU-iv-bK2" firstAttribute="centerY" secondItem="bzA-Qk-ZbY" secondAttribute="centerY" id="leu-x6-847"/>
                                 <constraint firstItem="dMx-nk-Vd7" firstAttribute="centerY" secondItem="bzA-Qk-ZbY" secondAttribute="centerY" id="vIm-DF-AFc"/>
                                 <constraint firstItem="uf9-PB-d3W" firstAttribute="centerY" secondItem="bzA-Qk-ZbY" secondAttribute="centerY" id="wrq-jc-30u"/>
                                 <constraint firstItem="Dyd-YJ-QnW" firstAttribute="centerY" secondItem="bzA-Qk-ZbY" secondAttribute="centerY" id="yFu-dH-XCr"/>
@@ -285,17 +308,27 @@
                                         <action selector="approveUnitAction:" destination="-1" eventType="touchUpInside" id="Y9G-Wq-59B"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W1-Pd-rwJ">
+                                    <rect key="frame" x="374" y="15" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Vtv-4e-FL8"/>
+                                        <constraint firstAttribute="width" constant="20" id="h13-dZ-oGM"/>
+                                    </constraints>
+                                    <state key="normal" image="contnet"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="4gL-1b-ac2"/>
                                 <constraint firstItem="t1l-qF-421" firstAttribute="top" secondItem="Qgg-si-n7Z" secondAttribute="top" id="698-E6-gY3"/>
                                 <constraint firstAttribute="trailing" secondItem="wRt-SX-na5" secondAttribute="trailing" constant="10" id="HuU-9M-6ss"/>
+                                <constraint firstAttribute="trailing" secondItem="3W1-Pd-rwJ" secondAttribute="trailing" id="Ic9-cQ-TKZ"/>
                                 <constraint firstItem="Py7-3R-dGn" firstAttribute="centerY" secondItem="Qgg-si-n7Z" secondAttribute="centerY" id="X8h-9p-dgw"/>
                                 <constraint firstItem="Py7-3R-dGn" firstAttribute="leading" secondItem="Qgg-si-n7Z" secondAttribute="leading" constant="10" id="YJN-ig-UP3"/>
                                 <constraint firstItem="wRt-SX-na5" firstAttribute="centerY" secondItem="Qgg-si-n7Z" secondAttribute="centerY" id="lrq-6w-1qX"/>
                                 <constraint firstItem="t1l-qF-421" firstAttribute="leading" secondItem="Py7-3R-dGn" secondAttribute="trailing" constant="10" id="s8N-oR-B8s"/>
                                 <constraint firstItem="wRt-SX-na5" firstAttribute="leading" secondItem="t1l-qF-421" secondAttribute="trailing" constant="-20" id="sdM-Cg-56S"/>
+                                <constraint firstItem="3W1-Pd-rwJ" firstAttribute="centerY" secondItem="Qgg-si-n7Z" secondAttribute="centerY" id="vmh-nQ-MWt"/>
                                 <constraint firstAttribute="bottom" secondItem="t1l-qF-421" secondAttribute="bottom" id="wf6-M4-VQI"/>
                             </constraints>
                         </view>
@@ -909,5 +942,6 @@
     </objects>
     <resources>
         <image name="arrow_right" width="16" height="16"/>
+        <image name="contnet" width="100" height="100"/>
     </resources>
 </document>

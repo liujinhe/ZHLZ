@@ -79,4 +79,48 @@
     }];
 }
 
+
+- (NSURLSessionTask *)checkDetailWithId:(NSString *)detailid andType:(NSInteger)type CallBack:(void (^)(NSDictionary *parms))block{
+    NSString *requestString = @"";
+    switch (type) {
+        case 0:
+            requestString = ConstructionUnitInfoAPIURLConst;
+            break;
+        case 1:
+            requestString = ApprovalDepartmentInfoAPIURLConst;
+        break;
+            
+        case 2:
+            requestString = BuildUnitInfoAPIURLConst;
+        break;
+            
+        case 3:
+            requestString = CityManagementUnitInfoAPIURLConst;
+        break;
+            
+        case 4:
+            requestString = DistrictManagementUnitInfoAPIURLConst;
+        break;
+            
+        case 5:
+            requestString = SpecialOwnerUnitInfoAPIURLConst;
+        break;
+            
+        case 6:
+            requestString = ResponsibleUnitInfoAPIURLConst;
+        break;
+
+        default:
+            break;
+    }
+    ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:requestString withRequestArgument:detailid];
+    baseVM.isRequestArgumentSlash = YES;
+    return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
+        if (response.data) {
+            block(response.data);
+        }
+    } withFailure:^(__kindof GRResponse * _Nonnull response) {
+    }];
+}
+
 @end
