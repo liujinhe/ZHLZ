@@ -57,10 +57,11 @@ static NSString * const Cell = @"GRUploadPhotoCell";
     self = [super init];
     if (self) {
         _vc = vc;
-        
+                    
+        _photosArray = @[].mutableCopy;
+        _photoURLArray = @[].mutableCopy;
         if ([imgURL isNotBlank]) {
             _photoURLArray = [imgURL componentsSeparatedByString:@","].mutableCopy;
-            _photosArray = @[].mutableCopy;
         }
         
         _maxPhotosCount = maxImagesCount;

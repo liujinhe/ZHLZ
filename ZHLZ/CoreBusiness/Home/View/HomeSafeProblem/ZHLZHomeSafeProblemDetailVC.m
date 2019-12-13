@@ -156,6 +156,8 @@
 
 - (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
 //    @weakify(self);
+    [self.uploadPicView removeAllSubviews];
+
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
