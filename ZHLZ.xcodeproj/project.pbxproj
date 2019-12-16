@@ -307,6 +307,7 @@
 		A5B1947D2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B1947B2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib */; };
 		A5B194812385A2BE00FF5080 /* UIViewController+modalPresentationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */; };
 		A5F1C9AE23A7627700885BBE /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1C9AD23A7627700885BBE /* TTXSDK.framework */; };
+		A5F1C9B023A7753900885BBE /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1C9AF23A7753900885BBE /* TTXSDK.framework */; };
 		A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */; };
 		A5F4FB312387B9D600225D45 /* ZHLZDatePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4FB2F2387B9D600225D45 /* ZHLZDatePickerVC.m */; };
 		A5F4FB322387B9D600225D45 /* ZHLZDatePickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F4FB302387B9D600225D45 /* ZHLZDatePickerVC.xib */; };
@@ -837,6 +838,7 @@
 		A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+modalPresentationStyle.m"; sourceTree = "<group>"; };
 		A5B194802385A2BD00FF5080 /* UIViewController+modalPresentationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+modalPresentationStyle.h"; sourceTree = "<group>"; };
 		A5F1C9AD23A7627700885BBE /* TTXSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TTXSDK.framework; sourceTree = "<group>"; };
+		A5F1C9AF23A7753900885BBE /* TTXSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTXSDK.framework; path = ZHLZ/Basis/ThirdPatry/TTXSDK.framework; sourceTree = "<group>"; };
 		A5F4FB2B2387948D00225D45 /* ZHLZLocalConfigConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZLocalConfigConst.h; sourceTree = "<group>"; };
 		A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZLocalConfigConst.m; sourceTree = "<group>"; };
 		A5F4FB2E2387B9D600225D45 /* ZHLZDatePickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZDatePickerVC.h; path = ZHLZ/CoreBusiness/ZHLZDatePickerVC.h; sourceTree = SOURCE_ROOT; };
@@ -854,6 +856,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F1C9B023A7753900885BBE /* TTXSDK.framework in Frameworks */,
 				A530E4A5239F35D2007EEAB6 /* libiconv.tbd in Frameworks */,
 				A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */,
 				A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */,
@@ -2070,6 +2073,7 @@
 		DA8B2E4CA14FEB35477B6916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5F1C9AF23A7753900885BBE /* TTXSDK.framework */,
 				A530E4A2239F35C6007EEAB6 /* libc++.tbd */,
 				A598F07D237A419F00F1B6E9 /* libc++abi.tbd */,
 				A530E4A4239F35D2007EEAB6 /* libiconv.tbd */,
@@ -2784,11 +2788,82 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"DZNEmptyDataSet\"",
+					"-l\"FDFullscreenPopGesture\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"JXCategoryView\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"TZImagePickerController\"",
+					"-l\"YYKit\"",
+					"-l\"ZWPlaceHolder\"",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AMapFoundationKit\"",
+					"-framework",
+					"\"AMapLocationKit\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreServices\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"ExternalAccessory\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MAMapKit\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-framework",
+					"\"TTXSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatryTTXSDK.framework/Headers\"";
 			};
 			name = Debug;
 		};
@@ -2813,11 +2888,81 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"DZNEmptyDataSet\"",
+					"-l\"FDFullscreenPopGesture\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"JXCategoryView\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"TZImagePickerController\"",
+					"-l\"YYKit\"",
+					"-l\"ZWPlaceHolder\"",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AMapFoundationKit\"",
+					"-framework",
+					"\"AMapLocationKit\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreServices\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"ExternalAccessory\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MAMapKit\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"WebP\"",
+					"-framework",
+					"\"TTXSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatryTTXSDK.framework/Headers\"";
 			};
 			name = Release;
 		};
