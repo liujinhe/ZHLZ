@@ -21,7 +21,7 @@ static NSString * const Account = @"admin";
 // 密码
 static NSString * const Pwd = @"admin";
 
-@interface ZHLZHomeCarVideoVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@interface ZHLZHomeCarVideoVC () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
     NSString *_session;         // 会话号
     NSString *_deviceId;        // 设备 ID
@@ -30,9 +30,14 @@ static NSString * const Pwd = @"admin";
 @property (weak, nonatomic) IBOutlet UIButton *onlineButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, strong) TTXRealVideoView *realVideoView;
-//@property (nonatomic, strong) TTXTalkback *talkback;
+@property (weak, nonatomic) IBOutlet UIView *maskView;
+@property (weak, nonatomic) IBOutlet UIView *showView;
+@property (weak, nonatomic) IBOutlet TTXRealVideoView *realVideoView;
+@property (nonatomic, strong) TTXTalkback *talkback;
+
+@property (weak, nonatomic) IBOutlet UIButton *startOrStopRecordButton;
+@property (weak, nonatomic) IBOutlet UIButton *startOrStopSoundButton;
+@property (weak, nonatomic) IBOutlet UIButton *startOrStopTalkbackButton;
 
 @property (nonatomic, strong) NSMutableArray<ZHLZVehicleInfoModel *> *vehicleInfoArray;
 @property (nonatomic, strong) NSMutableArray<ZHLZDeviceStatusModel *> *deviceStatusArray;
@@ -48,14 +53,14 @@ static NSString * const Pwd = @"admin";
     [self initUI];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self sessionLoginAction];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
     [self sessionLogoutAction];
 }
@@ -64,38 +69,24 @@ static NSString * const Pwd = @"admin";
     if (self.realVideoView) {
         [self.realVideoView StopAV];
         [self.realVideoView stopSound];
+        [self.realVideoView stopRecord];
+        
         self.realVideoView = nil;
     }
-//    if (self.talkback) {
-//        [self.talkback stopTalkback];
-//        self.talkback = nil;
-//    }
+    
+    if (self.talkback) {
+        [self.talkback stopTalkback];
+        
+        self.talkback = nil;
+    }
 }
 
 - (void)initUI {
-    self.maskView = [UIView new];
-    self.maskView.backgroundColor = kHexRGBAlpha(0x000000, 0.5);
-    self.maskView.hidden = YES;
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoAction)]];
-    [self.view addSubview:self.maskView];
-    [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
     
     [[TTXSDKPrepare prepare] initializationSDK];
-    [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoPortConst];
-
-    self.realVideoView = [[TTXRealVideoView alloc] init];
-    self.realVideoView.hidden = YES;
-    [self.view addSubview:self.realVideoView];
-    [self.realVideoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
-        make.height.equalTo(self.realVideoView.mas_width);
-        make.centerY.equalTo(self.view);
-    }];
     
-//    self.talkback = [[TTXTalkback alloc] init];
+    self.talkback = [[TTXTalkback alloc] init];
     
     self.vehicleInfoArray = @[].mutableCopy;
     self.deviceStatusArray = @[].mutableCopy;
@@ -112,22 +103,45 @@ static NSString * const Pwd = @"admin";
 
 #pragma mark - Load Data
 
+- (void)sessionLogoutAction {
+    if ([_session isNotBlank]) {
+        self.task = [[ZHLZHomeCarVideoVM sharedInstance] sessionLogoutWithSession:_session];
+    }
+}
+
 - (void)sessionLoginAction {
     @weakify(self);
+    [self sessionLogoutAction];
+    
     self.task = [[ZHLZHomeCarVideoVM sharedInstance] sessionLoginWithAccount:Account withPwd:Pwd withBlock:^(NSString * _Nonnull session) {
         @strongify(self);
         self->_session = session;
         
         [[TTXSDKPrepare prepare] setJsession:self->_session];
-        [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
         
         [self getCarInfoAction];
     }];
 }
 
-- (void)sessionLogoutAction {
+- (void)getCarInfoAction {
     if ([_session isNotBlank]) {
-        self.task = [[ZHLZHomeCarVideoVM sharedInstance] sessionLogoutWithSession:_session];
+        @weakify(self);
+        self.task = [[ZHLZHomeCarVideoVM sharedInstance] getVehicleInfoWithSession:_session withBlock:^(NSArray<ZHLZVehicleInfoModel *> * _Nonnull array) {
+            @strongify(self);
+            [self.vehicleInfoArray removeAllObjects];
+            for (ZHLZVehicleInfoModel *model in array) {
+                if (model && model.pid == 2) {
+                    [self.vehicleInfoArray addObject:model];
+                }
+            }
+            if (self.vehicleInfoArray && self.vehicleInfoArray.count > 0) {
+                [self getDeviceStatus];
+            }
+            
+            [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
+        }];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
@@ -147,10 +161,7 @@ static NSString * const Pwd = @"admin";
                 ZHLZVehicleInfoDeviceModel *vehicleInfoDeviceModel = vehicleInfoModel.dl.firstObject;
                 if ([model.did isEqualToString:vehicleInfoDeviceModel.objectID]) {
                     model.brigade = vehicleInfoModel.nm;
-                    model.channel = vehicleInfoDeviceModel.cc;
-                    model.codeStream = vehicleInfoDeviceModel.md;
                     model.deviceName = vehicleInfoModel.nm;
-                    model.channelName = vehicleInfoDeviceModel.cn;
                     break;
                 }
             }
@@ -163,26 +174,6 @@ static NSString * const Pwd = @"admin";
         
         [self.tableView reloadData];
     }];
-}
-
-- (void)getCarInfoAction {
-    if ([_session isNotBlank]) {
-        @weakify(self);
-        self.task = [[ZHLZHomeCarVideoVM sharedInstance] getVehicleInfoWithSession:_session withBlock:^(NSArray<ZHLZVehicleInfoModel *> * _Nonnull array) {
-            @strongify(self);
-            [self.vehicleInfoArray removeAllObjects];
-            for (ZHLZVehicleInfoModel *model in array) {
-                if (model && model.pid == 2) {
-                    [self.vehicleInfoArray addObject:model];
-                }
-            }
-            if (self.vehicleInfoArray && self.vehicleInfoArray.count > 0) {
-                [self getDeviceStatus];
-            }
-        }];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
 }
 
 #pragma mark - Action
@@ -215,28 +206,65 @@ static NSString * const Pwd = @"admin";
     [self.tableView reloadData];
 }
 
+/// 开启或关闭录像
+/// @param sender sender description
+- (IBAction)startOrStopRecordAction:(UIButton *)sender {
+    if (self.realVideoView.isRecording) {
+        [self.realVideoView stopRecord];
+        sender.selected = NO;
+    } else {
+        [self.realVideoView startRecord];
+        sender.selected = YES;
+    }
+}
+
+/// 开启或关闭声音
+/// @param sender sender description
+- (IBAction)startOrStopSoundAction:(UIButton *)sender {
+    if (self.realVideoView.isSounding) {
+        [self.realVideoView stopSound];
+        sender.selected = NO;
+    } else {
+        [self.realVideoView playSound];
+        sender.selected = YES;
+    }
+}
+
+/// 开启或关闭对讲
+/// @param sender sender description
+- (IBAction)startOrStopTalkbackAction:(UIButton *)sender {
+    if (self.talkback.isTalkback) {
+        [self.talkback stopTalkback];
+    } else {
+        [self.talkback startTalkback:_deviceId];
+    }
+}
+
 - (void)showVideoAction {
     if (self.realVideoView.isViewing) {
         self.maskView.hidden = YES;
         self.realVideoView.hidden = YES;
         [self.realVideoView StopAV];
+        
+        self.startOrStopRecordButton.selected = NO;
+        if (self.realVideoView.isRecording) {
+            [self.realVideoView stopRecord];
+        }
+        
+        self.startOrStopSoundButton.selected = NO;
+        if (self.realVideoView.isSounding) {
+            [self.realVideoView stopSound];
+        }
+        
+        self.startOrStopTalkbackButton.selected = NO;
+        if (self.talkback.isTalkback) {
+            [self.talkback stopTalkback];
+        }
     } else {
         self.maskView.hidden = NO;
         self.realVideoView.hidden = NO;
         [self.realVideoView StartAV];
     }
-    
-    if (self.realVideoView.isSounding) {
-        [self.realVideoView stopSound];
-    } else {
-        [self.realVideoView playSound];
-    }
-    
-//    if (self.talkback.isTalkback) {
-//        [self.talkback stopTalkback];
-//    } else {
-//        [self.talkback startTalkback:_deviceId];
-//    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -272,13 +300,11 @@ static NSString * const Pwd = @"admin";
     if (model) {
         _deviceId = model.did;
         
-        [self.realVideoView setViewInfo:_deviceId
+        [self.realVideoView setViewInfo:model.did
                                     chn:model.channel
                                    mode:model.codeStream];
         [self.realVideoView setTitleInfo:model.deviceName
                                   chName:model.channelName];
-        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
-                                  port:BaseAPICarVideoLivePortConst];
         
         [self showVideoAction];
     }
@@ -295,8 +321,7 @@ static NSString * const Pwd = @"admin";
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
-    [self getDeviceStatus];
+    [self sessionLoginAction];
 }
-
 
 @end

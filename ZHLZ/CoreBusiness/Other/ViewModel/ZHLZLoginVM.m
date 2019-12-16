@@ -28,10 +28,10 @@
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:LoginAPIURLConst
                                             withRequestArgument:[model modelToJSONObject]];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        if (response && response.data) {
+        if (response && response.status == 0 && response.data) {
             [[ZHLZUserManager sharedInstance] saveUserWithJson:response.data];
+            block();
         }
-        block();
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
         
     }];
