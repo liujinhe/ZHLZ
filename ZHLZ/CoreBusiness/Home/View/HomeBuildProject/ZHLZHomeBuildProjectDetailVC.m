@@ -308,6 +308,9 @@
         ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
         constructionVC.setType = 2;
         constructionVC.detailId = self.projectSubmitModel.constructorId;
+        constructionVC.reloadDataBlock = ^{
+            
+        };
         [self.navigationController pushViewController:constructionVC animated:YES];
         
     } else {
@@ -329,6 +332,9 @@
         ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
         roadWorkVC.editType = 2;
         roadWorkVC.detailId = self.projectSubmitModel.builderId;
+        roadWorkVC.reloadDataBlock = ^{
+            
+        };
         [self.navigationController pushViewController:roadWorkVC animated:YES];
         
     } else {
@@ -348,6 +354,9 @@
         ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
         examineVC.setType = 2;
         examineVC.detailId = self.projectSubmitModel.approverId;
+        examineVC.reloadDataBlock = ^{
+            
+        };
         [self.navigationController pushViewController:examineVC animated:YES];
         
     } else {

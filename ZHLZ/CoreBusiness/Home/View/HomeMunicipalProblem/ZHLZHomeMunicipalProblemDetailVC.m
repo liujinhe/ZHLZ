@@ -427,6 +427,9 @@
         ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
         monadVC.setType = 2;
         monadVC.detailId = self.municipalProblemSubmitModel.responsibleUnit;
+        monadVC.reloadDataBlock = ^{
+            
+        };
         [self.navigationController pushViewController:monadVC animated:YES];
         
     } else {
