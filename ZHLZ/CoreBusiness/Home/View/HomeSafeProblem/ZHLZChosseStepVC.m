@@ -70,7 +70,7 @@
         ZHLZChosseChildrenModel *childrenModel = step1.children[i];
         if (childrenModel.isSelect) {
             [allString appendFormat:@"%@，",childrenModel.name];
-            [allCode appendFormat:@"%ldn",childrenModel.value];
+            [allCode appendFormat:@"%ldn",(long)childrenModel.value];
         }
     }
     
@@ -78,7 +78,7 @@
         ZHLZChosseStepModel *stepModel = self.stepModelArray[i];
         if (stepModel.isSelect) {
             [allString appendFormat:@"%@，",stepModel.name];
-            [allCode appendFormat:@"%ldn",stepModel.value];
+            [allCode appendFormat:@"%ldn",(long)stepModel.value];
         }
     }
     

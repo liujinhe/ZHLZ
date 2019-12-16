@@ -49,7 +49,6 @@
 		A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A0239F35B1007EEAB6 /* libz.tbd */; };
 		A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A2239F35C6007EEAB6 /* libc++.tbd */; };
 		A530E4A5239F35D2007EEAB6 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A4239F35D2007EEAB6 /* libiconv.tbd */; };
-		A530E4A9239F3669007EEAB6 /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A8239F3669007EEAB6 /* TTXSDK.framework */; };
 		A530E4AD239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4AC239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m */; };
 		A530E4B2239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A530E4AF239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib */; };
 		A530E4B3239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E4B0239F6815007EEAB6 /* ZHLZHomeCarVideoVC.m */; };
@@ -307,6 +306,7 @@
 		A5B1947C2385919D00FF5080 /* ZHLZHomeMapSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1947A2385919D00FF5080 /* ZHLZHomeMapSearchVC.m */; };
 		A5B1947D2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B1947B2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib */; };
 		A5B194812385A2BE00FF5080 /* UIViewController+modalPresentationStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */; };
+		A5F1C9AE23A7627700885BBE /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1C9AD23A7627700885BBE /* TTXSDK.framework */; };
 		A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */; };
 		A5F4FB312387B9D600225D45 /* ZHLZDatePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4FB2F2387B9D600225D45 /* ZHLZDatePickerVC.m */; };
 		A5F4FB322387B9D600225D45 /* ZHLZDatePickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F4FB302387B9D600225D45 /* ZHLZDatePickerVC.xib */; };
@@ -329,6 +329,19 @@
 			remoteInfo = ZHLZ;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5F1C9AB23A7613600885BBE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1811C7C223865E1700CEBDB1 /* ZHLZTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZTextView.h; sourceTree = "<group>"; };
@@ -400,7 +413,6 @@
 		A530E4A0239F35B1007EEAB6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A530E4A2239F35C6007EEAB6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A530E4A4239F35D2007EEAB6 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		A530E4A8239F3669007EEAB6 /* TTXSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TTXSDK.framework; sourceTree = "<group>"; };
 		A530E4AB239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZVehicleInfoModel.h; sourceTree = "<group>"; };
 		A530E4AC239F3FD6007EEAB6 /* ZHLZVehicleInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZVehicleInfoModel.m; sourceTree = "<group>"; };
 		A530E4AF239F6815007EEAB6 /* ZHLZHomeCarVideoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeCarVideoVC.xib; sourceTree = "<group>"; };
@@ -824,6 +836,7 @@
 		A5B1947B2385919D00FF5080 /* ZHLZHomeMapSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeMapSearchVC.xib; sourceTree = "<group>"; };
 		A5B1947F2385A2BD00FF5080 /* UIViewController+modalPresentationStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+modalPresentationStyle.m"; sourceTree = "<group>"; };
 		A5B194802385A2BD00FF5080 /* UIViewController+modalPresentationStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+modalPresentationStyle.h"; sourceTree = "<group>"; };
+		A5F1C9AD23A7627700885BBE /* TTXSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TTXSDK.framework; sourceTree = "<group>"; };
 		A5F4FB2B2387948D00225D45 /* ZHLZLocalConfigConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZLocalConfigConst.h; sourceTree = "<group>"; };
 		A5F4FB2C2387948D00225D45 /* ZHLZLocalConfigConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZLocalConfigConst.m; sourceTree = "<group>"; };
 		A5F4FB2E2387B9D600225D45 /* ZHLZDatePickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZHLZDatePickerVC.h; path = ZHLZ/CoreBusiness/ZHLZDatePickerVC.h; sourceTree = SOURCE_ROOT; };
@@ -845,7 +858,7 @@
 				A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */,
 				A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */,
 				1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */,
-				A530E4A9239F3669007EEAB6 /* TTXSDK.framework in Frameworks */,
+				A5F1C9AE23A7627700885BBE /* TTXSDK.framework in Frameworks */,
 				A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -909,22 +922,6 @@
 				A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */,
 			);
 			path = HomeCarVideo;
-			sourceTree = "<group>";
-		};
-		A530E4A6239F3669007EEAB6 /* ThirdPartyLib */ = {
-			isa = PBXGroup;
-			children = (
-				A530E4A7239F3669007EEAB6 /* CarVideo */,
-			);
-			path = ThirdPartyLib;
-			sourceTree = "<group>";
-		};
-		A530E4A7239F3669007EEAB6 /* CarVideo */ = {
-			isa = PBXGroup;
-			children = (
-				A530E4A8239F3669007EEAB6 /* TTXSDK.framework */,
-			);
-			path = CarVideo;
 			sourceTree = "<group>";
 		};
 		A530E4AA239F3FBC007EEAB6 /* HomeCarVideo */ = {
@@ -1823,7 +1820,7 @@
 		A5574FC423828DBD00B24FC4 /* Basis */ = {
 			isa = PBXGroup;
 			children = (
-				A530E4A6239F3669007EEAB6 /* ThirdPartyLib */,
+				A5F1C9AC23A7624A00885BBE /* ThirdPatry */,
 				A5B1947E2385A29200FF5080 /* Category */,
 				A5574FD423828DBD00B24FC4 /* Common */,
 				A5574FCF23828DBD00B24FC4 /* Const */,
@@ -2062,17 +2059,25 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		A5F1C9AC23A7624A00885BBE /* ThirdPatry */ = {
+			isa = PBXGroup;
+			children = (
+				A5F1C9AD23A7627700885BBE /* TTXSDK.framework */,
+			);
+			path = ThirdPatry;
+			sourceTree = "<group>";
+		};
 		DA8B2E4CA14FEB35477B6916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A530E4A4239F35D2007EEAB6 /* libiconv.tbd */,
 				A530E4A2239F35C6007EEAB6 /* libc++.tbd */,
-				A530E4A0239F35B1007EEAB6 /* libz.tbd */,
-				A530E49A239F2967007EEAB6 /* VideoToolbox.framework */,
 				A598F07D237A419F00F1B6E9 /* libc++abi.tbd */,
+				A530E4A4239F35D2007EEAB6 /* libiconv.tbd */,
 				42EF3B7F20CAEC6EABECBA3A /* libPods-ZHLZ.a */,
 				8E961F7DECCD4C3200E2603A /* libPods-ZHLZTests.a */,
 				539B2ED9FFFAEBB2DB48686E /* libPods-ZHLZUITests.a */,
+				A530E4A0239F35B1007EEAB6 /* libz.tbd */,
+				A530E49A239F2967007EEAB6 /* VideoToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2102,6 +2107,7 @@
 				A5940FFA237905CF00D7A1D4 /* Frameworks */,
 				A5940FFB237905CF00D7A1D4 /* Resources */,
 				292AF32CD00CACA91C088931 /* [CP] Copy Pods Resources */,
+				A5F1C9AB23A7613600885BBE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2768,7 +2774,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPartyLib/CarVideo",
+					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPatry",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2782,7 +2788,7 @@
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPartyLib/CarVideo/TTXSDK.framework/Headers\"";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -2797,7 +2803,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPartyLib/CarVideo",
+					"$(PROJECT_DIR)/ZHLZ/Basis/ThirdPatry",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZHLZ/Resource/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/ZHLZ/Resource/Info.plist";
@@ -2811,7 +2817,7 @@
 				PRODUCT_NAME = "智慧路政";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPartyLib/CarVideo/TTXSDK.framework/Headers\"";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

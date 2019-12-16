@@ -24,7 +24,7 @@ static NSString * const Pwd = @"admin";
 @interface ZHLZHomeCarVideoVC () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
     NSString *_session;         // 会话号
-    NSString *_deviceId;        // 设备 ID
+    ZHLZDeviceStatusModel *_deviceStatusModel;
 }
 @property (weak, nonatomic) IBOutlet UIButton *allButton;
 @property (weak, nonatomic) IBOutlet UIButton *onlineButton;
@@ -33,8 +33,10 @@ static NSString * const Pwd = @"admin";
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIView *showView;
 @property (weak, nonatomic) IBOutlet TTXRealVideoView *realVideoView;
-@property (nonatomic, strong) TTXTalkback *talkback;
 
+@property (strong, nonatomic) TTXTalkback *talkback;
+
+@property (weak, nonatomic) IBOutlet UIButton *startOrStopVidioButton;
 @property (weak, nonatomic) IBOutlet UIButton *startOrStopRecordButton;
 @property (weak, nonatomic) IBOutlet UIButton *startOrStopSoundButton;
 @property (weak, nonatomic) IBOutlet UIButton *startOrStopTalkbackButton;
@@ -82,7 +84,9 @@ static NSString * const Pwd = @"admin";
 }
 
 - (void)initUI {
-    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showVideoAction)]];
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                         initWithTarget:self
+                                         action:@selector(showVidioView)]];
     
     [[TTXSDKPrepare prepare] initializationSDK];
     
@@ -96,9 +100,8 @@ static NSString * const Pwd = @"admin";
     self.tableView.delegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:CellReuseIdentifier bundle:nil] forCellReuseIdentifier:CellReuseIdentifier];
-    
-    [self sessionLoginAction];
+    [self.tableView registerNib:[UINib nibWithNibName:CellReuseIdentifier bundle:nil]
+         forCellReuseIdentifier:CellReuseIdentifier];
 }
 
 #pragma mark - Load Data
@@ -118,6 +121,7 @@ static NSString * const Pwd = @"admin";
         self->_session = session;
         
         [[TTXSDKPrepare prepare] setJsession:self->_session];
+        [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
         
         [self getCarInfoAction];
     }];
@@ -137,8 +141,6 @@ static NSString * const Pwd = @"admin";
             if (self.vehicleInfoArray && self.vehicleInfoArray.count > 0) {
                 [self getDeviceStatus];
             }
-            
-            [[TTXSDKPrepare prepare] setServer:BaseAPICarVideoIPConst lanIP:BaseAPICarVideoIPConst port:BaseAPICarVideoLoginAfterPortConst];
         }];
     } else {
         [self.navigationController popViewControllerAnimated:YES];
@@ -206,15 +208,36 @@ static NSString * const Pwd = @"admin";
     [self.tableView reloadData];
 }
 
+/// 开启或关闭视频
+/// @param sender sender description
+- (IBAction)startOrStopVidioAction:(UIButton *)sender {
+    if (self.realVideoView.isViewing || !_deviceStatusModel) {
+        sender.selected = NO;
+        [self.realVideoView StopAV];
+    } else {
+        sender.selected = YES;
+        
+        [self.realVideoView setViewInfo:_deviceStatusModel.did
+                                    chn:_deviceStatusModel.channel
+                                   mode:_deviceStatusModel.codeStream];
+        [self.realVideoView setTitleInfo:_deviceStatusModel.deviceName
+                                  chName:_deviceStatusModel.channelName];
+        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
+                                  port:BaseAPICarVideoLoginAfterPortConst];
+        
+        [self.realVideoView StartAV];
+    }
+}
+
 /// 开启或关闭录像
 /// @param sender sender description
 - (IBAction)startOrStopRecordAction:(UIButton *)sender {
     if (self.realVideoView.isRecording) {
-        [self.realVideoView stopRecord];
         sender.selected = NO;
+        [self.realVideoView stopRecord];
     } else {
-        [self.realVideoView startRecord];
         sender.selected = YES;
+        [self.realVideoView startRecord];
     }
 }
 
@@ -222,29 +245,35 @@ static NSString * const Pwd = @"admin";
 /// @param sender sender description
 - (IBAction)startOrStopSoundAction:(UIButton *)sender {
     if (self.realVideoView.isSounding) {
-        [self.realVideoView stopSound];
         sender.selected = NO;
+        [self.realVideoView stopSound];
     } else {
-        [self.realVideoView playSound];
         sender.selected = YES;
+        [self.realVideoView playSound];
     }
 }
 
 /// 开启或关闭对讲
 /// @param sender sender description
 - (IBAction)startOrStopTalkbackAction:(UIButton *)sender {
-    if (self.talkback.isTalkback) {
+    if (self.talkback.isTalkback || !_deviceStatusModel) {
+        sender.selected = NO;
         [self.talkback stopTalkback];
     } else {
-        [self.talkback startTalkback:_deviceId];
+        sender.selected = YES;
+        [self.talkback startTalkback:_deviceStatusModel.did];
     }
 }
 
-- (void)showVideoAction {
-    if (self.realVideoView.isViewing) {
-        self.maskView.hidden = YES;
-        self.realVideoView.hidden = YES;
-        [self.realVideoView StopAV];
+- (void)showVidioView {
+    self.maskView.hidden = !self.maskView.isHidden;
+    self.showView.hidden = !self.showView.isHidden;
+    
+    if (self.showView.isHidden) {
+        self.startOrStopVidioButton.selected = NO;
+        if (self.realVideoView.isViewing) {
+            [self.realVideoView StopAV];
+        }
         
         self.startOrStopRecordButton.selected = NO;
         if (self.realVideoView.isRecording) {
@@ -260,10 +289,6 @@ static NSString * const Pwd = @"admin";
         if (self.talkback.isTalkback) {
             [self.talkback stopTalkback];
         }
-    } else {
-        self.maskView.hidden = NO;
-        self.realVideoView.hidden = NO;
-        [self.realVideoView StartAV];
     }
 }
 
@@ -296,17 +321,9 @@ static NSString * const Pwd = @"admin";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZHLZDeviceStatusModel *model = self.onlineButton.isSelected ? self.onlineDeviceStatusArray[indexPath.row] : self.deviceStatusArray[indexPath.row];
-    if (model) {
-        _deviceId = model.did;
-        
-        [self.realVideoView setViewInfo:model.did
-                                    chn:model.channel
-                                   mode:model.codeStream];
-        [self.realVideoView setTitleInfo:model.deviceName
-                                  chName:model.channelName];
-        
-        [self showVideoAction];
+    _deviceStatusModel = self.onlineButton.isSelected ? self.onlineDeviceStatusArray[indexPath.row] : self.deviceStatusArray[indexPath.row];
+    if (_deviceStatusModel) {
+        [self showVidioView];
     }
 }
 
