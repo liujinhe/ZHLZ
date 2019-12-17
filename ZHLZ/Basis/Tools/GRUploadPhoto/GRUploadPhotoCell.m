@@ -16,10 +16,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = UIColor.clearColor;
         
         _imageView = [[UIImageView alloc] init];
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_imageView];
         
         self.clipsToBounds = YES;
@@ -50,18 +49,20 @@
 - (void)changeBorder {
     if (_deleteBtn.hidden) {
         self.layer.borderColor = UIColor.clearColor.CGColor;
-        self.layer.borderWidth = 0;
-        self.layer.cornerRadius = 0;
-        self.layer.masksToBounds = 0;
+        self.layer.borderWidth = 0.5;
+        self.layer.cornerRadius = 2.5;
+        self.layer.masksToBounds = YES;
         
-        _imageView.frame = self.bounds;
+        _imageView.frame = CGRectMake(0, 0, self.tz_width, self.tz_height);
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
     } else {
         self.layer.borderColor = kHexRGB(0xE4E8F0).CGColor;
         self.layer.borderWidth = 0.5;
         self.layer.cornerRadius = 2.5;
         self.layer.masksToBounds = YES;
         
-        _imageView.frame = CGRectMake(5, 5, self.tz_width - 10, self.tz_height - 10);
+        _imageView.frame = CGRectMake(0, 0, self.tz_width, self.tz_height);
+        _imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
 }
 

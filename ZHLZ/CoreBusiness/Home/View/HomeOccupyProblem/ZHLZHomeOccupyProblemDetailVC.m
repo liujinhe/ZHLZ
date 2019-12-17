@@ -170,37 +170,35 @@
         self.markTextView.text = occupyProblemDetailModel.responsibleUnit;
         
         //设置默认选中值
-        if (self.type == 3) {
-            self.homeOccupyProblemSubmitModel.projectid = occupyProblemDetailModel.projectid;
-            self.homeOccupyProblemSubmitModel.projectname = occupyProblemDetailModel.protypename;
-            
-            self.homeOccupyProblemSubmitModel.protype = occupyProblemDetailModel.protype;
-            self.homeOccupyProblemSubmitModel.proid = occupyProblemDetailModel.proid;
-            
-            self.homeOccupyProblemSubmitModel.belong = occupyProblemDetailModel.belong;
-            
-            self.homeOccupyProblemSubmitModel.areaid = occupyProblemDetailModel.areaid;
-            
-            self.homeOccupyProblemSubmitModel.prodate = occupyProblemDetailModel.prodate;
-            
-            self.homeOccupyProblemSubmitModel.promanager = [ZHLZUserManager sharedInstance].user.userId;
-            
-            self.homeOccupyProblemSubmitModel.ddssjtms = occupyProblemDetailModel.ddssjtms;
-            
-            self.homeOccupyProblemSubmitModel.label = occupyProblemDetailModel.label;
-            
-            self.homeOccupyProblemSubmitModel.uploadid = occupyProblemDetailModel.uploadId;
-            
-            self.homeOccupyProblemSubmitModel.prodescription = occupyProblemDetailModel.prodescription;
-            self.homeOccupyProblemSubmitModel.responsibleUnit = occupyProblemDetailModel.responsibleUnit;
-        }
+        self.homeOccupyProblemSubmitModel.projectid = occupyProblemDetailModel.projectid;
+        self.homeOccupyProblemSubmitModel.projectname = occupyProblemDetailModel.protypename;
+        
+        self.homeOccupyProblemSubmitModel.protype = occupyProblemDetailModel.protype;
+        self.homeOccupyProblemSubmitModel.proid = occupyProblemDetailModel.proid;
+        
+        self.homeOccupyProblemSubmitModel.belong = occupyProblemDetailModel.belong;
+        
+        self.homeOccupyProblemSubmitModel.areaid = occupyProblemDetailModel.areaid;
+        
+        self.homeOccupyProblemSubmitModel.prodate = occupyProblemDetailModel.prodate;
+        
+        self.homeOccupyProblemSubmitModel.promanager = [ZHLZUserManager sharedInstance].user.userId;
+        
+        self.homeOccupyProblemSubmitModel.ddssjtms = occupyProblemDetailModel.ddssjtms;
+        
+        self.homeOccupyProblemSubmitModel.label = occupyProblemDetailModel.label;
+        
+        self.homeOccupyProblemSubmitModel.uploadid = occupyProblemDetailModel.uploadId;
+        
+        self.homeOccupyProblemSubmitModel.prodescription = occupyProblemDetailModel.prodescription;
+        self.homeOccupyProblemSubmitModel.responsibleUnit = occupyProblemDetailModel.responsibleUnit;
         
         [self addUploadPicActionWithImgURL:occupyProblemDetailModel.imgurl];
     }];
 }
 
 - (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
-//    @weakify(self);
+
     [self.uploadPicView removeAllSubviews];
     
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
@@ -209,9 +207,7 @@
                                                                             withImgURL:imgURL];
     uploadPhotoView.optionType = self.type;
     uploadPhotoView.delegate = self;
-//    uploadPhotoView.delegateDataBlock = ^(NSString * _Nonnull imgURL) {
-//        @strongify(self);
-//    };
+
     [self.uploadPicView addSubview:uploadPhotoView];
 
     NSArray *array = [imgURL componentsSeparatedByString:@","];

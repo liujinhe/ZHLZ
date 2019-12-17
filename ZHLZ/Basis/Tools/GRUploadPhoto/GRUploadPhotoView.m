@@ -85,11 +85,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         
         _itemWH = (_width - (ColumnCount - 1) * ItemMargin) / ColumnCount;
         
-        _height = _itemWH;
-        
         [self initCollectionView];
-        
-        [self changeViewHeight];
         
         _fullScreenPreviewImageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _fullScreenPreviewImageView.backgroundColor = kHexRGBAlpha(0x000000, 0.75);
@@ -97,6 +93,10 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         _fullScreenPreviewImageView.autoresizesSubviews = YES;
         _fullScreenPreviewImageView.userInteractionEnabled = YES;
         [_fullScreenPreviewImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAction:)]];
+        
+        if (_hasExistPhotosCount == 0) {
+            [self showImage];
+        }
     }
     return self;
 }
@@ -130,10 +130,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         }
     }
 
-    [self changeViewHeight];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->_collectionView reloadData];
-    });
+    [self showImage];
     
     [self->_photosArray removeAllObjects];
 }
@@ -142,10 +139,14 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (void)changeViewHeight {
     NSInteger photosCount = (_hasExistPhotosCount + _selectedPhotos.count);
-    NSInteger count = photosCount == _maxPhotosCount ? (photosCount / ColumnCount) : (photosCount / ColumnCount + 1);
-    _height = _itemWH * count + ItemMargin * (count - 1);
+    NSInteger row = photosCount == _maxPhotosCount ? (photosCount / ColumnCount) : (photosCount / ColumnCount + 1);
+    _height = _itemWH * row + ItemMargin * (row - 1);
     self.frame = CGRectMake(0, 0, _width, _height);
-    self.collectionView.frame = CGRectMake(0, 0, _width, _height);
+    _collectionView.frame = CGRectMake(0, 0, _width, _height);
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->_collectionView reloadData];
+    });
 }
 
 - (void)initCollectionView {
@@ -291,10 +292,6 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 - (void)showImage {
     [self changeViewHeight];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->_collectionView reloadData];
-    });
-    
     NSMutableArray<NSString *> *imgExtArray = @[].mutableCopy;
     if (_selectedPhotos && _selectedPhotos.count > 0) {
         if ([self.delegate respondsToSelector:@selector(selectedWithPhotoArray:withImgExtArray:withParentView:)]) {
@@ -415,7 +412,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == _hasExistPhotosCount + _selectedPhotos.count && self.optionType != 2) {
+    if (indexPath.item == _hasExistPhotosCount + _selectedPhotos.count) {
         [self uploadPhotoAction];
     } else {
         [self previewPhotoAction:indexPath.item];

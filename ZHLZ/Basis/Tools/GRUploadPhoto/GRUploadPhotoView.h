@@ -17,7 +17,7 @@ static CGFloat const ItemMargin = 20.f;
 
 @optional
 
-- (void)selectedWithPhotoArray:(NSArray<UIImage *> *)photoArray withImgExtArray:(NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView;
+- (void)selectedWithPhotoArray:(nullable NSArray<UIImage *> *)photoArray withImgExtArray:(nullable NSArray<NSString *> *)imgExtArray withParentView:(UIView *)parentView;
 
 @end
 
