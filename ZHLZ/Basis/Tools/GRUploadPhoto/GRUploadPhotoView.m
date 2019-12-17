@@ -139,7 +139,13 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 - (void)changeViewHeight {
     NSInteger photosCount = (_hasExistPhotosCount + _selectedPhotos.count);
-    NSInteger row = photosCount == _maxPhotosCount ? (photosCount / ColumnCount) : (photosCount / ColumnCount + 1);
+    NSInteger row = 0;
+    if (self.optionType == 2) {
+        row = photosCount / ColumnCount + (photosCount % ColumnCount > 0 ? 1 : 0);
+    } else {
+        row = photosCount == _maxPhotosCount ? (photosCount / ColumnCount) : (photosCount / ColumnCount + 1);
+    }
+    
     _height = _itemWH * row + ItemMargin * (row - 1);
     self.frame = CGRectMake(0, 0, _width, _height);
     _collectionView.frame = CGRectMake(0, 0, _width, _height);
