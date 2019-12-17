@@ -22,6 +22,8 @@
 #import <YYKit/YYCGUtilities.h>
 #import <YYKit/NSData+YYAdd.h>
 #import <YYKit/NSAttributedString+YYText.h>
+#import <YYKit/NSObject+YYModel.h>
+#import <YYKit/YYClassInfo.h>
 
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>

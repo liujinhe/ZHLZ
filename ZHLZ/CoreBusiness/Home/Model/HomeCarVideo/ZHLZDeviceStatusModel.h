@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZHLZDeviceStatusModel : ZHLZBaseModel
 
 // 设备号
-@property (nonatomic, copy) NSString *did;
+@property (nonatomic, strong) NSString *did;
 // 车牌号
-@property (nonatomic, copy) NSString *vid;
+@property (nonatomic, strong) NSString *vid;
 // 在线状态（1-在线 其他-不在线）
 @property (nonatomic, assign) NSInteger online;
 // 所属大队

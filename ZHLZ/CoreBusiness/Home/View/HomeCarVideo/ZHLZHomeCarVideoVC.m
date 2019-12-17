@@ -25,6 +25,8 @@ static NSString * const Pwd = @"admin";
 {
     NSString *_session;         // 会话号
     ZHLZDeviceStatusModel *_deviceStatusModel;
+    TTXRealVideoView *_realVideoView;
+    TTXTalkback *_talkback;
 }
 @property (weak, nonatomic) IBOutlet UIButton *allButton;
 @property (weak, nonatomic) IBOutlet UIButton *onlineButton;
@@ -32,9 +34,7 @@ static NSString * const Pwd = @"admin";
 
 @property (weak, nonatomic) IBOutlet UIView *maskView;
 @property (weak, nonatomic) IBOutlet UIView *showView;
-@property (weak, nonatomic) IBOutlet TTXRealVideoView *realVideoView;
-
-@property (strong, nonatomic) TTXTalkback *talkback;
+@property (weak, nonatomic) IBOutlet UIView *videoView;
 
 @property (weak, nonatomic) IBOutlet UIButton *startOrStopVidioButton;
 @property (weak, nonatomic) IBOutlet UIButton *startOrStopRecordButton;
@@ -68,18 +68,28 @@ static NSString * const Pwd = @"admin";
 }
 
 - (void)dealloc {
-    if (self.realVideoView) {
-        [self.realVideoView StopAV];
-        [self.realVideoView stopSound];
-        [self.realVideoView stopRecord];
+    if (_realVideoView) {
+        if (_realVideoView.isViewing) {
+            [_realVideoView StopAV];
+        }
         
-        self.realVideoView = nil;
+        if (_realVideoView.isRecording) {
+            [_realVideoView stopRecord];
+        }
+        
+        if (_realVideoView.isSounding) {
+            [_realVideoView stopSound];
+        }
+        
+        _realVideoView = nil;
     }
     
-    if (self.talkback) {
-        [self.talkback stopTalkback];
+    if (_talkback) {
+        if (_talkback.isTalkback) {
+            [_talkback stopTalkback];
+        }
         
-        self.talkback = nil;
+        _talkback = nil;
     }
 }
 
@@ -90,7 +100,12 @@ static NSString * const Pwd = @"admin";
     
     [[TTXSDKPrepare prepare] initializationSDK];
     
-    self.talkback = [[TTXTalkback alloc] init];
+    CGFloat realVideoViewWH = kScreenWidth - 15.f * 2;
+    _realVideoView = [[TTXRealVideoView alloc] init];
+    _realVideoView.frame = CGRectMake(0, 0, realVideoViewWH, realVideoViewWH);
+    [self.videoView addSubview:_realVideoView];
+    
+    _talkback = [[TTXTalkback alloc] init];
     
     self.vehicleInfoArray = @[].mutableCopy;
     self.deviceStatusArray = @[].mutableCopy;
@@ -211,57 +226,55 @@ static NSString * const Pwd = @"admin";
 /// 开启或关闭视频
 /// @param sender sender description
 - (IBAction)startOrStopVidioAction:(UIButton *)sender {
-    if (self.realVideoView.isViewing || !_deviceStatusModel) {
+    if (_realVideoView.isViewing || !_deviceStatusModel) {
         sender.selected = NO;
-        [self.realVideoView StopAV];
+        [_realVideoView StopAV];
     } else {
         sender.selected = YES;
         
-        [self.realVideoView setViewInfo:_deviceStatusModel.did
-                                    chn:_deviceStatusModel.channel
-                                   mode:_deviceStatusModel.codeStream];
-        [self.realVideoView setTitleInfo:_deviceStatusModel.deviceName
-                                  chName:_deviceStatusModel.channelName];
-        [self.realVideoView setLanInfo:BaseAPICarVideoIPConst
-                                  port:BaseAPICarVideoLoginAfterPortConst];
+        [_realVideoView setViewInfo:_deviceStatusModel.did
+                                chn:_deviceStatusModel.channel
+                               mode:_deviceStatusModel.codeStream];
+        [_realVideoView setTitleInfo:_deviceStatusModel.deviceName
+                              chName:_deviceStatusModel.channelName];
         
-        [self.realVideoView StartAV];
+        [_realVideoView StartAV];
     }
 }
 
 /// 开启或关闭录像
 /// @param sender sender description
 - (IBAction)startOrStopRecordAction:(UIButton *)sender {
-    if (self.realVideoView.isRecording) {
+    if (_realVideoView.isRecording) {
         sender.selected = NO;
-        [self.realVideoView stopRecord];
+        [_realVideoView stopRecord];
     } else {
         sender.selected = YES;
-        [self.realVideoView startRecord];
+        [_realVideoView startRecord];
     }
 }
 
 /// 开启或关闭声音
 /// @param sender sender description
 - (IBAction)startOrStopSoundAction:(UIButton *)sender {
-    if (self.realVideoView.isSounding) {
+    if (_realVideoView.isSounding) {
         sender.selected = NO;
-        [self.realVideoView stopSound];
+        [_realVideoView stopSound];
     } else {
         sender.selected = YES;
-        [self.realVideoView playSound];
+        [_realVideoView playSound];
     }
 }
 
 /// 开启或关闭对讲
 /// @param sender sender description
 - (IBAction)startOrStopTalkbackAction:(UIButton *)sender {
-    if (self.talkback.isTalkback || !_deviceStatusModel) {
+    if (_talkback.isTalkback || !_deviceStatusModel) {
         sender.selected = NO;
-        [self.talkback stopTalkback];
+        [_talkback stopTalkback];
     } else {
         sender.selected = YES;
-        [self.talkback startTalkback:_deviceStatusModel.did];
+        [_talkback startTalkback:_deviceStatusModel.did];
     }
 }
 
@@ -271,23 +284,23 @@ static NSString * const Pwd = @"admin";
     
     if (self.showView.isHidden) {
         self.startOrStopVidioButton.selected = NO;
-        if (self.realVideoView.isViewing) {
-            [self.realVideoView StopAV];
+        if (_realVideoView.isViewing) {
+            [_realVideoView StopAV];
         }
         
         self.startOrStopRecordButton.selected = NO;
-        if (self.realVideoView.isRecording) {
-            [self.realVideoView stopRecord];
+        if (_realVideoView.isRecording) {
+            [_realVideoView stopRecord];
         }
         
         self.startOrStopSoundButton.selected = NO;
-        if (self.realVideoView.isSounding) {
-            [self.realVideoView stopSound];
+        if (_realVideoView.isSounding) {
+            [_realVideoView stopSound];
         }
         
         self.startOrStopTalkbackButton.selected = NO;
-        if (self.talkback.isTalkback) {
-            [self.talkback stopTalkback];
+        if (_talkback.isTalkback) {
+            [_talkback stopTalkback];
         }
     }
 }

@@ -13,13 +13,13 @@
                 <outlet property="allButton" destination="DyL-5v-rk9" id="xSN-Or-hyT"/>
                 <outlet property="maskView" destination="Smh-8f-z19" id="2TQ-V0-dSi"/>
                 <outlet property="onlineButton" destination="0LE-1O-h4L" id="tqT-wL-hKi"/>
-                <outlet property="realVideoView" destination="nHC-pI-qmF" id="oPu-7K-xyW"/>
                 <outlet property="showView" destination="q27-mQ-crC" id="agM-1O-WwS"/>
                 <outlet property="startOrStopRecordButton" destination="1Yg-n5-bUI" id="Nl1-a7-Zia"/>
                 <outlet property="startOrStopSoundButton" destination="x9w-Zw-YYR" id="Z7Q-Dl-65s"/>
                 <outlet property="startOrStopTalkbackButton" destination="nfZ-SK-iI3" id="EKK-WO-kHM"/>
                 <outlet property="startOrStopVidioButton" destination="g4h-kT-TnK" id="qYg-NK-Ab6"/>
                 <outlet property="tableView" destination="tBj-TN-qLQ" id="uS3-V4-wbH"/>
+                <outlet property="videoView" destination="nHC-pI-qmF" id="t8L-W2-BX4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -68,7 +68,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHC-pI-qmF" customClass="TTXRealVideoView">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="384"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="nHC-pI-qmF" secondAttribute="height" multiplier="1:1" id="Jx4-Ec-Pla"/>
                             </constraints>
