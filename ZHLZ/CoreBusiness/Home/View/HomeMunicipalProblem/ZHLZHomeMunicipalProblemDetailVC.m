@@ -21,11 +21,13 @@
 
 #import "GRUploadPhotoView.h"
 #import "ZHLZUploadVM.h"
+#import <UShareUI/UShareUI.h>
 
 @interface ZHLZHomeMunicipalProblemDetailVC () <GRUploadPhotoViewDelegate>
 {
     NSArray<UIImage *> *_photoArray;
     NSArray<NSString *> *_imgExtArray;
+    ZHLZHomeMunicipalProblemModel *_municipalProblemModel;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *orgButton;
@@ -116,7 +118,7 @@
     self.problemTypeButton.userInteractionEnabled = NO;
     self.problemClassifyButton.userInteractionEnabled = NO;
     self.problemTimeButton.userInteractionEnabled = NO;
-//    self.dutyUnitButton.userInteractionEnabled = NO;
+    //    self.dutyUnitButton.userInteractionEnabled = NO;
     self.workPeopleButton.userInteractionEnabled = NO;
     self.conentPhoneTextFile.userInteractionEnabled = NO;
     self.superiorButton.userInteractionEnabled = NO;
@@ -163,7 +165,7 @@
     else if (self.type == 2) {
         self.navTitle = @"市政设施详情";
         [self addRightBarButtonItemWithTitle:@"编辑" action:@selector(editAction)];
-        self.submitButton.hidden = YES;
+        [self.submitButton setTitle:@"分享" forState:UIControlStateNormal];
         
         [self municipalProblemLook];
         
@@ -204,6 +206,8 @@
     self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] loadHomeMunicipalProblemDetailWithId:self.detailId WithBlock:^(ZHLZHomeMunicipalProblemModel * _Nonnull municipalProblemModel) {
         
         @strongify(self)
+        self->_municipalProblemModel = municipalProblemModel;
+        
         ///赋值
         [self.orgButton setTitle:municipalProblemModel.orgname forState:UIControlStateNormal];
         
@@ -264,7 +268,7 @@
 }
 
 - (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
-
+    
     [self.uploadPicView removeAllSubviews];
     
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
@@ -272,9 +276,9 @@
                                                                     withMaxImagesCount:9
                                                                             withImgURL:imgURL withImgType:self.type];
     uploadPhotoView.delegate = self;
-
+    
     [self.uploadPicView addSubview:uploadPhotoView];
-
+    
     NSArray *array = [imgURL componentsSeparatedByString:@","];
     if (array && array.count > 0) {
         CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
@@ -486,6 +490,25 @@
 
 ///提交
 - (IBAction)submitAction:(ZHLZButton *)sender {
+    @weakify(self);
+    // 分享
+    if (self.type == 2) {
+        [UMSocialUIManager removeAllCustomPlatformWithoutFilted];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatSession
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend"]
+                                         withPlatformName:@"微信好友"];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatTimeLine
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend_circle"]
+                                         withPlatformName:@"微信朋友圈"];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatFavorite
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_collection"]
+                                         withPlatformName:@"微信收藏"];
+        [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+            @strongify(self)
+            [self shareWebPageToPlatformType:platformType];
+        }];
+        return;
+    }
     
     self.municipalProblemSubmitModel.problemDet = self.problemDescTextView.text;
     self.municipalProblemSubmitModel.siteDet = self.locationTextView.text;
@@ -547,10 +570,7 @@
         return;
     }
     
-    
-    
     if (_photoArray.count > 0) {
-        @weakify(self);
         ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
         NSString *uploadId = @"";
         if (self.type == 1) {
@@ -775,6 +795,42 @@
         self.uploadPicViewHeight.constant = CGRectGetHeight(parentView.frame);
         [self updateViewConstraints];
     });
+}
+
+#pragma mark - Share
+
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType {
+    if (!_municipalProblemModel) {
+        return;
+    }
+    
+    ZHLZUserModel *userModel = [ZHLZUserManager sharedInstance].user;
+    if (!userModel) {
+        return;
+    }
+    
+    NSString *title = _municipalProblemModel.problemType;
+    NSString *descr = [NSString stringWithFormat:@"%@在%@发现%@，请%@跟进处理。",
+                       _municipalProblemModel.finddate,
+                       _municipalProblemModel.siteDet,
+                       _municipalProblemModel.problemDet,
+                       _municipalProblemModel.responsibleUnitName];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:title descr:descr thumImage:[UIImage imageNamed:@"logo"]];
+    shareObject.webpageUrl = kShareURL(BaseAPIURLConst, _municipalProblemModel.objectID, [NSString formatterWithDate:[NSDate date]], userModel.fullname);
+    
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    messageObject.title = title;
+    messageObject.text = descr;
+    messageObject.shareObject = shareObject;
+    
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            [GRToast makeText:@"分享失败"];
+            return;
+        }
+
+        [GRToast makeText:@"分享成功"];
+    }];
 }
 
 @end

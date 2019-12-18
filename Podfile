@@ -25,6 +25,11 @@ target 'ZHLZ' do
   
   pod 'AMap3DMap'
   pod 'AMapLocation'
+  
+  pod 'UMCCommon'
+  pod 'UMCSecurityPlugins'
+  pod 'UMCShare/UI'
+  pod 'UMCShare/Social/ReducedWeChat'
 
   target 'ZHLZTests' do
     inherit! :search_paths

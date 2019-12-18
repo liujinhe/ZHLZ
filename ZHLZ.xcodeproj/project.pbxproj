@@ -47,6 +47,11 @@
 		A525957D23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A525957C23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m */; };
 		A525958123A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A525957F23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m */; };
 		A525958223A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A525958023A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib */; };
+		A525958423A9FEA200E3ABFF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A525958323A9FEA200E3ABFF /* libsqlite3.tbd */; };
+		A525958623A9FEB200E3ABFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A525958523A9FEB200E3ABFF /* CoreGraphics.framework */; };
+		A525958923AA136400E3ABFF /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A525958823AA136400E3ABFF /* logo.png */; };
+		A525958B23AA145400E3ABFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A525958A23AA145400E3ABFF /* SystemConfiguration.framework */; };
+		A525958D23AA145E00E3ABFF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A525958C23AA145E00E3ABFF /* CoreTelephony.framework */; };
 		A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E49A239F2967007EEAB6 /* VideoToolbox.framework */; };
 		A530E49F239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */; };
 		A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A0239F35B1007EEAB6 /* libz.tbd */; };
@@ -207,7 +212,6 @@
 		A55D26ED23876A3700E2BA81 /* ZHLZCodeValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EC23876A3700E2BA81 /* ZHLZCodeValuesModel.m */; };
 		A55D26F1238781E100E2BA81 /* ZHLZPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */; };
 		A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */; };
-		A5636C9023A864F0005997E2 /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5636C8E23A864C9005997E2 /* TTXSDK.framework */; };
 		A5636C9423A86506005997E2 /* TTXSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5636C9323A86506005997E2 /* TTXSDK.framework */; };
 		A57391D7239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = A57391D5239A999600521750 /* ZHLZHomeMapCustomAnnotationView.m */; };
 		A57391DA239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = A57391D9239DC92C00521750 /* ZHLZHomeMapCustomCalloutView.m */; };
@@ -403,6 +407,12 @@
 		A525957E23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZTransactedPersonPickerViewVC.h; sourceTree = "<group>"; };
 		A525957F23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZTransactedPersonPickerViewVC.m; sourceTree = "<group>"; };
 		A525958023A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZTransactedPersonPickerViewVC.xib; sourceTree = "<group>"; };
+		A525958323A9FEA200E3ABFF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A525958523A9FEB200E3ABFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A525958723AA05C400E3ABFF /* ZHLZWebURLMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZWebURLMacro.h; sourceTree = "<group>"; };
+		A525958823AA136400E3ABFF /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A525958A23AA145400E3ABFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A525958C23AA145E00E3ABFF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A530E49A239F2967007EEAB6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A530E49D239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVM.h; sourceTree = "<group>"; };
 		A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVM.m; sourceTree = "<group>"; };
@@ -851,12 +861,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A525958D23AA145E00E3ABFF /* CoreTelephony.framework in Frameworks */,
+				A525958B23AA145400E3ABFF /* SystemConfiguration.framework in Frameworks */,
+				A525958623A9FEB200E3ABFF /* CoreGraphics.framework in Frameworks */,
+				A525958423A9FEA200E3ABFF /* libsqlite3.tbd in Frameworks */,
 				A5636C9423A86506005997E2 /* TTXSDK.framework in Frameworks */,
 				A530E4A5239F35D2007EEAB6 /* libiconv.tbd in Frameworks */,
 				A530E4A3239F35C6007EEAB6 /* libc++.tbd in Frameworks */,
 				A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */,
 				1B69C5E304A71026128357B2 /* libPods-ZHLZ.a in Frameworks */,
-				A5636C9023A864F0005997E2 /* TTXSDK.framework in Frameworks */,
 				A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1814,6 +1827,7 @@
 				A5574FC123828DBD00B24FC4 /* main.m */,
 				A5AD7045238D85EB0053B9B9 /* MapProblem */,
 				A5B19424238574D200FF5080 /* MapProjectType */,
+				A525958823AA136400E3ABFF /* logo.png */,
 				A5574FC223828DBD00B24FC4 /* PrefixHeader.pch */,
 				A57F5C672390AFF100695A63 /* problem_type_content.json */,
 			);
@@ -1905,6 +1919,7 @@
 				A5574FE123828DBD00B24FC4 /* ZHLZColorMacro.h */,
 				A5574FE323828DBD00B24FC4 /* ZHLZDeviceMacro.h */,
 				A5574FE223828DBD00B24FC4 /* ZHLZFontSizeMacro.h */,
+				A525958723AA05C400E3ABFF /* ZHLZWebURLMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -2073,6 +2088,10 @@
 		DA8B2E4CA14FEB35477B6916 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A525958C23AA145E00E3ABFF /* CoreTelephony.framework */,
+				A525958A23AA145400E3ABFF /* SystemConfiguration.framework */,
+				A525958523A9FEB200E3ABFF /* CoreGraphics.framework */,
+				A525958323A9FEA200E3ABFF /* libsqlite3.tbd */,
 				A530E4A2239F35C6007EEAB6 /* libc++.tbd */,
 				A598F07D237A419F00F1B6E9 /* libc++abi.tbd */,
 				A530E4A4239F35D2007EEAB6 /* libiconv.tbd */,
@@ -2165,7 +2184,7 @@
 		A5940FF5237905CF00D7A1D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = liujinhe;
 				TargetAttributes = {
 					A5940FFC237905CF00D7A1D4 = {
@@ -2207,6 +2226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B1945C238574FF00FF5080 /* yanghu_green_2.png in Resources */,
+				A525958923AA136400E3ABFF /* logo.png in Resources */,
 				A557506023828DBD00B24FC4 /* ZHLZAddressBookCell.xib in Resources */,
 				A557505623828DBD00B24FC4 /* ZHLZBookListVC.xib in Resources */,
 				A5AD7037238D19430053B9B9 /* ZHLZHomeOccupyProblemTableViewCell.xib in Resources */,
@@ -2774,9 +2794,9 @@
 			baseConfigurationReference = AF90FDB87C4CF5A05C925C79 /* Pods-ZHLZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QXPZS5U4VK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2861,9 +2881,9 @@
 					"-framework",
 					"\"TTXSDK\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ZHLZ_Development;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};
@@ -2874,9 +2894,9 @@
 			baseConfigurationReference = D94327F5AE7200F239881115 /* Pods-ZHLZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D32EHFNJUV;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QXPZS5U4VK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2960,9 +2980,9 @@
 					"-framework",
 					"\"TTXSDK\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gr.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ZHLZ_Development;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};

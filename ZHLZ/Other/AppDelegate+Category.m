@@ -16,6 +16,9 @@
 
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
+#import <UMShare/UMShare.h>
+#import <UMCommon/UMConfigure.h>
+
 @implementation AppDelegate (Category)
 
 - (void)initAppLaunch {
@@ -44,6 +47,9 @@
     
     [FPSDisplay sharedInstance];
 #endif
+    
+    // U-Share 平台设置
+    [self configUSharePlatforms];
 }
 
 /// 初始化遮罩层（毛玻璃效果）
@@ -57,6 +63,15 @@
     UIVisualEffectView *visualView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
     visualView.frame = self.frostedGlassMaskView.frame;
     [self.frostedGlassMaskView addSubview:visualView];
+}
+
+- (void)configUSharePlatforms {
+    [UMConfigure initWithAppkey:@"5df9cb0e4ca357b2970009ba" channel:@"App Store"];
+    // 设置微信appKey、appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession
+                                          appKey:@"wxe8c6029ab941ba87"
+                                       appSecret:@"f813db2e72fe026a513a48c3924a62e9"
+                                     redirectURL:@""];
 }
 
 @end

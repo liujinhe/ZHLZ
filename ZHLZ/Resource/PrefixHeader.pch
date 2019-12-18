@@ -35,6 +35,7 @@
 #import "ZHLZColorMacro.h"
 #import "ZHLZFontSizeMacro.h"
 #import "ZHLZDeviceMacro.h"
+#import "ZHLZWebURLMacro.h"
 
 #import "ZHLZNotificationConst.h"
 #import "ZHLZThirdPatryConfigConst.h"
@@ -56,5 +57,7 @@
 #import "NSDate+StringFormatter.h"
 
 #import "UITextView+ZWPlaceHolder.h"
+
+#import "ZHLZWebURLMacro.h"
 
 #endif /* PrefixHeader_pch */
