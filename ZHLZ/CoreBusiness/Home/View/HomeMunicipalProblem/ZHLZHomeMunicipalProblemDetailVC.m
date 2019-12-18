@@ -133,6 +133,21 @@
 }
 
 - (void)initMunicipalProblemDetailView {
+    if (self.type == 2) {
+        [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
+                                                   @(UMSocialPlatformType_WechatTimeLine),
+                                                   @(UMSocialPlatformType_WechatFavorite)]];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatSession
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend"]
+                                         withPlatformName:@"微信好友"];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatTimeLine
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend_circle"]
+                                         withPlatformName:@"微信朋友圈"];
+        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatFavorite
+                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_collection"]
+                                         withPlatformName:@"微信收藏"];
+    }
+    
     _photoArray = @[].mutableCopy;
     _imgExtArray = @[].mutableCopy;
     
@@ -493,16 +508,6 @@
     @weakify(self);
     // 分享
     if (self.type == 2) {
-        [UMSocialUIManager removeAllCustomPlatformWithoutFilted];
-        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatSession
-                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend"]
-                                         withPlatformName:@"微信好友"];
-        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatTimeLine
-                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_friend_circle"]
-                                         withPlatformName:@"微信朋友圈"];
-        [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_WechatFavorite
-                                         withPlatformIcon:[UIImage imageNamed:@"icon_wechat_collection"]
-                                         withPlatformName:@"微信收藏"];
         [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
             @strongify(self)
             [self shareWebPageToPlatformType:platformType];
