@@ -32,7 +32,8 @@ static CGFloat const ItemMargin = 20.f;
 - (instancetype)initWithParentView:(UIView *)parentView
                 withViewController:(UIViewController *)vc
                 withMaxImagesCount:(NSInteger)maxImagesCount
-                        withImgURL:(nonnull NSString *)imgURL;
+                        withImgURL:(nonnull NSString *)imgURL
+                        withImgType:(NSInteger)optionType;
 
 @end
 

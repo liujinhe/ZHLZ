@@ -97,8 +97,8 @@
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
-                                                                            withImgURL:imgURL];
-    uploadPhotoView.optionType = self.type;
+                                                                            withImgURL:imgURL withImgType:self.type];
+
     uploadPhotoView.delegate = self;
 //    uploadPhotoView.delegateDataBlock = ^(NSString * _Nonnull imgURL) {
 //        @strongify(self);
@@ -110,7 +110,11 @@
         CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
         self.uploadPicViewHeight.constant = height;
     } else {
-        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+        if (self.type == 2) {
+            self.uploadPicViewHeight.constant = kAutoFitReal(0);
+        } else {
+            self.uploadPicViewHeight.constant = kAutoFitReal(105);
+        }
     }
 }
 
@@ -154,8 +158,6 @@
     self.problemTextView.placeholder = @"请输入问题描述";
     self.lookHistoryTextView.placeholder = @"请输入责任单位采取的工作措施";
     self.workTypeTextView.placeholder = @"请输入巡查监管工作记录";
-    
-    self.uploadPicViewHeight.constant = kAutoFitReal(105);
     
     self.safeSubmitModel = [ZHLZSafeSubmitModel new];
     

@@ -46,8 +46,9 @@
     [self.supervisorTimeButton setTitle:dateString forState:UIControlStateNormal];
     self.stepTimeString = dateString;
     
-    [self.isPutOutButton setTitle:@"是" forState:UIControlStateNormal];
-    self.isPutOutString = @"1";
+    [self.isPutOutButton setTitle:@"否" forState:UIControlStateNormal];
+    self.isPutOutString = @"0";
+    self.supervisorDetailTextView.text = @"正常";
 }
 
 - (IBAction)supervisorTimeAction:(UIButton *)sender {
@@ -75,6 +76,10 @@
         self.supervisorDetailTextView.text = [NSString stringWithFormat:@"%@对该问题进行“%@”的措施;",dateString,name];
         [self.supervisorTypeButton setTitle:self.supervisorDetailTextView.text forState:UIControlStateNormal];
         self.stepCodeString = code;
+        
+        [self.isPutOutButton setTitle:@"是" forState:UIControlStateNormal];
+        self.isPutOutString = @"1";
+        
     };
     [self.navigationController pushViewController:chosseStepVC animated:YES];
 }
@@ -98,22 +103,9 @@
 
 - (IBAction)addSupervisorAction:(UIButton *)sender {
     
-    if (![self.stepTimeString isNotBlank]) {
-        [GRToast makeText:@"请选择督导时间"];
-        return;
-    }
-    if (![self.stepCodeString isNotBlank]) {
-        [GRToast makeText:@"请选择督导措施"];
-        return;
-    }
-    if (![self.isPutOutString isNotBlank]) {
-        [GRToast makeText:@"请选择是否导出"];
-        return;
-    }
-    
     self.supervisorSubmitModel.meadate = self.stepTimeString;
     self.supervisorSubmitModel.isexport = self.isPutOutString;
-    self.supervisorSubmitModel.book = self.stepCodeString;
+    self.supervisorSubmitModel.book = self.stepCodeString?:@"";
     self.supervisorSubmitModel.meCustomize = self.supervisorDetailTextView.text;
     self.supervisorSubmitModel.uuid = [self random:8];
     

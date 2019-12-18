@@ -204,8 +204,7 @@
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
-                                                                            withImgURL:imgURL];
-    uploadPhotoView.optionType = self.type;
+                                                                            withImgURL:imgURL withImgType:self.type];
     uploadPhotoView.delegate = self;
 
     [self.uploadPicView addSubview:uploadPhotoView];
@@ -215,7 +214,11 @@
         CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
         self.uploadPicViewHeight.constant = height;
     } else {
-        self.uploadPicViewHeight.constant = kAutoFitReal(105);
+        if (self.type == 2) {
+            self.uploadPicViewHeight.constant = kAutoFitReal(0);
+        } else {
+            self.uploadPicViewHeight.constant = kAutoFitReal(105);
+        }
     }
 }
 

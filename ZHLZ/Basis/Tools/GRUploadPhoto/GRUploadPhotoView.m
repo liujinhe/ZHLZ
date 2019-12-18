@@ -53,7 +53,7 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 
 #pragma mark - lifecycle
 
-- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount withImgURL:(nonnull NSString *)imgURL {
+- (instancetype)initWithParentView:(UIView *)parentView withViewController:(UIViewController *)vc withMaxImagesCount:(NSInteger)maxImagesCount withImgURL:(nonnull NSString *)imgURL withImgType:(NSInteger)optionType {
     self = [super init];
     if (self) {
         _vc = vc;
@@ -63,6 +63,8 @@ static NSString * const Cell = @"GRUploadPhotoCell";
         if ([imgURL isNotBlank]) {
             _photoURLArray = [imgURL componentsSeparatedByString:@","].mutableCopy;
         }
+        
+        self.optionType = optionType;
         
         _maxPhotosCount = maxImagesCount;
         // 已存在的图片张数
