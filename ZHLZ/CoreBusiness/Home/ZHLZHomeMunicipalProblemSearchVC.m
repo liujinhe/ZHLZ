@@ -169,7 +169,7 @@
     };
     
     self.problemTypeListPickerViewVC = [ZHLZListPickerViewVC new];
-    self.problemTypeListPickerViewVC.type = 7;
+    self.problemTypeListPickerViewVC.type = 8;
     self.problemTypeListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
         @strongify(self);
         self->_problemType = code;
