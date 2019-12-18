@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 当前问题ID
 // 问题描述
 @property (nonatomic, strong, nullable) NSString *problemDet;
-// 路段
+// 路段（地点描述）
 @property (nonatomic, strong, nullable) NSString *siteDet;
 // 发现时间-开始
 @property (nonatomic, strong, nullable) NSString *startDate;
@@ -37,6 +37,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) NSString *lat;
 // 是否开启范围扫描（1-开启 其他-关闭）
 @property (nonatomic, assign, nullable) NSString *isrange;
+
+// 责任区县
+@property (nonatomic, assign, nullable) NSString *belong;
+// 责任单位
+@property (nonatomic, assign, nullable) NSString *responsibleUnitName;
+// 督导措施
+@property (nonatomic, assign, nullable) NSString *ddssjtms;
+// 问题状态
+@property (nonatomic, assign, nullable) NSString *problemStatus;
+// 备注
+@property (nonatomic, strong, nullable) NSString *contentDet;
+// 经办人
+@property (nonatomic, strong, nullable) NSString *createuser;
+// 舆情
+@property (nonatomic, assign, nullable) NSString *islyrical;
 
 @end
 

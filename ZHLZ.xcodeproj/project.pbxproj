@@ -44,6 +44,9 @@
 		A508043223940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */; };
 		A508043323940AA800CBEC83 /* GRUploadPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043023940AA800CBEC83 /* GRUploadPhotoView.m */; };
 		A508043423940AA800CBEC83 /* GRUploadPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */; };
+		A525957D23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A525957C23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m */; };
+		A525958123A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A525957F23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m */; };
+		A525958223A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A525958023A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib */; };
 		A530E49B239F2967007EEAB6 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E49A239F2967007EEAB6 /* VideoToolbox.framework */; };
 		A530E49F239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m in Sources */ = {isa = PBXBuildFile; fileRef = A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */; };
 		A530E4A1239F35BF007EEAB6 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A530E4A0239F35B1007EEAB6 /* libz.tbd */; };
@@ -395,6 +398,11 @@
 		A508042F23940AA800CBEC83 /* GRUploadPhotoGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoGridViewFlowLayout.m; sourceTree = "<group>"; };
 		A508043023940AA800CBEC83 /* GRUploadPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoView.m; sourceTree = "<group>"; };
 		A508043123940AA800CBEC83 /* GRUploadPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRUploadPhotoCell.m; sourceTree = "<group>"; };
+		A525957B23A9F65800E3ABFF /* ZHLZTransactedPersonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZTransactedPersonModel.h; sourceTree = "<group>"; };
+		A525957C23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZTransactedPersonModel.m; sourceTree = "<group>"; };
+		A525957E23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZTransactedPersonPickerViewVC.h; sourceTree = "<group>"; };
+		A525957F23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZTransactedPersonPickerViewVC.m; sourceTree = "<group>"; };
+		A525958023A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZTransactedPersonPickerViewVC.xib; sourceTree = "<group>"; };
 		A530E49A239F2967007EEAB6 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A530E49D239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeCarVideoVM.h; sourceTree = "<group>"; };
 		A530E49E239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeCarVideoVM.m; sourceTree = "<group>"; };
@@ -1611,6 +1619,8 @@
 				A5574F6C23828DBD00B24FC4 /* ZHLZLoginModel.m */,
 				A57F5C6E2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.h */,
 				A57F5C6F2390B6A200695A63 /* ZHLZRoadMaintenancePickerViewModel.m */,
+				A525957B23A9F65800E3ABFF /* ZHLZTransactedPersonModel.h */,
+				A525957C23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1642,13 +1652,16 @@
 				A55D26EE238781E100E2BA81 /* ZHLZPickerViewVC.h */,
 				A55D26EF238781E100E2BA81 /* ZHLZPickerViewVC.m */,
 				A55D26F0238781E100E2BA81 /* ZHLZPickerViewVC.xib */,
-				A5AD706F238E46210053B9B9 /* ZHLZSearchView.h */,
-				A5AD7070238E46210053B9B9 /* ZHLZSearchView.m */,
-				A5AD707B238F9BCA0053B9B9 /* ZHLZWebViewVC.h */,
-				A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */,
 				A57F5C692390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.h */,
 				A57F5C6A2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.m */,
 				A57F5C6B2390B15500695A63 /* ZHLZRoadMaintenancePickerViewVC.xib */,
+				A5AD706F238E46210053B9B9 /* ZHLZSearchView.h */,
+				A5AD7070238E46210053B9B9 /* ZHLZSearchView.m */,
+				A525957E23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.h */,
+				A525957F23A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m */,
+				A525958023A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib */,
+				A5AD707B238F9BCA0053B9B9 /* ZHLZWebViewVC.h */,
+				A5AD707C238F9BCA0053B9B9 /* ZHLZWebViewVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2248,6 +2261,7 @@
 				A557505423828DBD00B24FC4 /* ZHLZAddressBookVC.xib in Resources */,
 				189DAA4A238635410049B5FF /* ZHLZHomeSafeDetailVC.xib in Resources */,
 				A5B1946F238574FF00FF5080 /* dianli_yellow_2.png in Resources */,
+				A525958223A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.xib in Resources */,
 				A5B19454238574FF00FF5080 /* guidaojiaotong_green_2.png in Resources */,
 				A5F4FB322387B9D600225D45 /* ZHLZDatePickerVC.xib in Resources */,
 				A5B19464238574FF00FF5080 /* dianli_red_1.png in Resources */,
@@ -2436,6 +2450,7 @@
 				A5825464238FD74100B5F3E3 /* ZHLZHomeSafeProblemSearchModel.m in Sources */,
 				A557506C23828DBD00B24FC4 /* ZHLZBaseVC.m in Sources */,
 				A557502823828DBD00B24FC4 /* ZHLZHomeCRV.m in Sources */,
+				A525958123A9F84700E3ABFF /* ZHLZTransactedPersonPickerViewVC.m in Sources */,
 				A557507523828DBD00B24FC4 /* ZHLZButton.m in Sources */,
 				1811C7CD238696D800CEBDB1 /* ZHLZChosseStepVC.m in Sources */,
 				A530E4BB239F7E44007EEAB6 /* ZHLZHomeCarVideoTableViewCell.m in Sources */,
@@ -2544,6 +2559,7 @@
 				18657BE6238E6C2200EBFDF0 /* ZHLZHomeOccupyProblemSubmitModel.m in Sources */,
 				A557505E23828DBD00B24FC4 /* ZHLZBookListCell.m in Sources */,
 				A5AD701D238C43690053B9B9 /* ZHLZHomeDownloadBusinessDocumentVC.m in Sources */,
+				A525957D23A9F65800E3ABFF /* ZHLZTransactedPersonModel.m in Sources */,
 				A5574FF423828DBD00B24FC4 /* GRChainRequest.m in Sources */,
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
 				A5825472238FDB7E00B5F3E3 /* ZHLZHomeInfoStatisticsVC.m in Sources */,

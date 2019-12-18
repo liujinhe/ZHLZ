@@ -10,6 +10,7 @@
 #import "ZHLZBrigadeModel.h"
 #import "ZHLZAreaModel.h"
 #import "ZHLZCodeValuesModel.h"
+#import "ZHLZTransactedPersonModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param block 回调
 - (NSURLSessionTask *)getListWithType:(NSInteger)type
                             withBlock:(void(^)(NSArray<ZHLZCodeValuesModel *> *array))block;
+
+/// 获取经办人
+/// @param block 回调
+- (NSURLSessionTask *)getTransactedPersonWithBlock:(void(^)(NSArray<ZHLZTransactedPersonModel *> *array))block;
 
 @end
 

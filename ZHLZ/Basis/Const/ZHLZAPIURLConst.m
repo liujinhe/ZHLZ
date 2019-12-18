@@ -93,6 +93,7 @@ NSString * const CheckInPunchAPIURLConst = @"/app/mappunch/save";
 
 NSString * const RoadPatrolSummaryAPIURLConst = @"/app/mapprtrolentry/list";
 
+NSString * const RoadPatrolSummaryStatisticsAddAPIURLConst = @"summary.html?type=1";
 NSString * const RoadPatrolSummaryStatisticsAPIURLConst = @"/summary.html?type=2";
 
 NSString * const ScanCodeUseCarAPIURLConst = @"/app/wxcar/wx";
@@ -161,5 +162,6 @@ NSString * const CodeValuesAPIURLConst = @"/getData/getCodeValues";
 
 NSString * const DeleteByUploadid = @"/app/file/deleteByUploadid";
 
+NSString * const TransactedPersonAPIURLConst = @"/app/user/queryByOrgid";
 
 @end

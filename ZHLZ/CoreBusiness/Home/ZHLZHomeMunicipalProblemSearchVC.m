@@ -12,6 +12,9 @@
 #import "ZHLZListPickerViewVC.h"
 #import "ZHLZPickerViewVC.h"
 #import "ZHLZBrigadePickerViewVC.h"
+#import "ZHLZChooseListVC.h"
+#import "ZHLZChosseStepVC.h"
+#import "ZHLZTransactedPersonPickerViewVC.h"
 
 @interface ZHLZHomeMunicipalProblemSearchVC ()
 {
@@ -22,6 +25,13 @@
     NSString *_brigadeType;     // 大队
     NSString *_problemType;     // 问题类型
     NSString *_searchRange;     // 搜索范围
+    
+    NSString *_responsibleDistrict;     // 责任区县
+    NSString *_responsibleUnit;         // 责任单位
+    NSString *_supervisoryMeasures;     // 督导措施
+    NSString *_problemStatus;           // 问题状态
+    NSString *_publicOpinion;           // 舆情
+    NSString *_transactedPerson;        // 经办人
 }
 
 @property (weak, nonatomic) IBOutlet UIView *maskView;
@@ -40,6 +50,16 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *brigadeTypeButton;
 @property (weak, nonatomic) IBOutlet UIButton *problemTypeButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *responsibleDistrictButton;
+@property (weak, nonatomic) IBOutlet UIButton *responsibleUnitButton;
+@property (weak, nonatomic) IBOutlet UIButton *supervisoryMeasuresButton;
+@property (weak, nonatomic) IBOutlet UIButton *problemStatusButton;
+@property (weak, nonatomic) IBOutlet UIButton *publicOpinionButton;
+@property (weak, nonatomic) IBOutlet UIButton *transactedPersonButton;
+
+@property (weak, nonatomic) IBOutlet UITextField *remarkTextField;
+
 @property (weak, nonatomic) IBOutlet UIButton *searchRangeButton;
 
 @property (nonatomic, strong) ZHLZDatePickerVC *startDateFindDatePickerVC;
@@ -50,6 +70,13 @@
 @property (nonatomic, strong) ZHLZBrigadePickerViewVC *brigadePickerViewVC;
 @property (nonatomic, strong) ZHLZListPickerViewVC *problemTypeListPickerViewVC;
 @property (nonatomic, strong) ZHLZPickerViewVC *searchRangePickerViewVC;
+
+@property (nonatomic, strong) ZHLZListPickerViewVC *responsibleDistrictListPickerViewVC;
+@property (nonatomic, strong) ZHLZChooseListVC *responsibleUnitVC;
+@property (nonatomic, strong) ZHLZChosseStepVC *supervisoryMeasuresVC;
+@property (nonatomic, strong) ZHLZPickerViewVC *problemStatusPickerViewVC;
+@property (nonatomic, strong) ZHLZPickerViewVC *publicOpinionPickerViewVC;
+@property (nonatomic, strong) ZHLZTransactedPersonPickerViewVC *transactedPersonPickerViewVC;
 
 @end
 
@@ -165,6 +192,90 @@
             [self.searchRangeButton setTitle:name forState:UIControlStateSelected];
         });
     };
+    
+    self.responsibleDistrictListPickerViewVC = [ZHLZListPickerViewVC new];
+    self.responsibleDistrictListPickerViewVC.type = 5;
+    self.responsibleDistrictListPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull areaType, NSString * _Nonnull areaName) {
+        @strongify(self);
+        self->_responsibleDistrict = areaType;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.responsibleDistrictButton.selected = YES;
+            [self.responsibleDistrictButton setTitle:areaName forState:UIControlStateSelected];
+        });
+    };
+    
+    self.responsibleUnitVC = [ZHLZChooseListVC new];
+    self.responsibleUnitVC.selectIndex = 6;
+    self.responsibleUnitVC.selectListBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        @strongify(self);
+        self->_responsibleUnit = code;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.responsibleUnitButton.selected = YES;
+            [self.responsibleUnitButton setTitle:name forState:UIControlStateSelected];
+        });
+    };
+    
+    self.supervisoryMeasuresVC = [ZHLZChosseStepVC new];
+    self.supervisoryMeasuresVC.chooseStepBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        @strongify(self);
+        self->_supervisoryMeasures = code;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.supervisoryMeasuresButton.selected = YES;
+            [self.supervisoryMeasuresButton setTitle:name forState:UIControlStateSelected];
+        });
+    };
+    
+    self.problemStatusPickerViewVC = [ZHLZPickerViewVC new];
+    NSArray *problemStatusArray = @[@"1", @"0"];
+    self.problemStatusPickerViewVC.titleArray = @[@"已解决", @"未解决"];
+    self.problemStatusPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
+        @strongify(self);
+        self->_problemStatus = problemStatusArray[index];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.problemStatusButton.selected = YES;
+            [self.problemStatusButton setTitle:name forState:UIControlStateSelected];
+        });
+    };
+    
+    self.publicOpinionPickerViewVC = [ZHLZPickerViewVC new];
+    NSArray *publicOpinionArray = @[@"1", @"0"];
+    self.publicOpinionPickerViewVC.titleArray = @[@"是", @"否"];
+    self.publicOpinionPickerViewVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
+        @strongify(self);
+        self->_publicOpinion = publicOpinionArray[index];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.publicOpinionButton.selected = YES;
+            [self.publicOpinionButton setTitle:name forState:UIControlStateSelected];
+        });
+    };
+    
+    self.transactedPersonPickerViewVC = [ZHLZTransactedPersonPickerViewVC new];
+    self.transactedPersonPickerViewVC.selectPickerBlock = ^(NSString * _Nonnull code, NSString * _Nonnull name) {
+        @strongify(self);
+        self->_transactedPerson = code;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.transactedPersonButton.selected = YES;
+            [self.transactedPersonButton setTitle:name forState:UIControlStateSelected];
+        });
+    };
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - Action
@@ -205,10 +316,36 @@
     [self presentViewController:self.searchRangePickerViewVC animated:NO completion:nil];
 }
 
+- (IBAction)responsibleDistrictAction {
+    [self presentViewController:self.responsibleDistrictListPickerViewVC animated:NO completion:nil];
+}
+
+- (IBAction)responsibleUnitAction {
+    [self.navigationController pushViewController:self.responsibleUnitVC animated:YES];
+}
+
+- (IBAction)supervisoryMeasuresAction {
+    [self.navigationController pushViewController:self.supervisoryMeasuresVC animated:YES];
+}
+
+- (IBAction)problemStatusAction {
+    [self presentViewController:self.problemStatusPickerViewVC animated:NO completion:nil];
+}
+
+- (IBAction)publicOpinionAction {
+    [self presentViewController:self.publicOpinionPickerViewVC animated:NO completion:nil];
+}
+
+- (IBAction)transactedPersonAction {
+    [self presentViewController:self.transactedPersonPickerViewVC animated:NO completion:nil];
+}
+
 - (IBAction)resetAction {
     self.projectIdTextField.text = @"";
     self.projectDescTextField.text = @"";
     self.roadSectionTextField.text = @"";
+    
+    self.remarkTextField.text = @"";
     
     _startDateFind = nil;
     self.startDateFindButton.selected = NO;
@@ -224,6 +361,19 @@
     self.problemTypeButton.selected = NO;
     _searchRange = nil;
     self.searchRangeButton.selected = NO;
+    
+    _responsibleDistrict = nil;
+    self.responsibleDistrictButton.selected = NO;
+    _responsibleUnit = nil;
+    self.responsibleUnitButton.selected = NO;
+    _supervisoryMeasures = nil;
+    self.supervisoryMeasuresButton.selected = NO;
+    _problemStatus = nil;
+    self.problemStatusButton.selected = NO;
+    _publicOpinion = nil;
+    self.publicOpinionButton.selected = NO;
+    _transactedPerson = nil;
+    self.transactedPersonButton.selected = NO;
 }
 
 - (IBAction)determineAction {
@@ -238,6 +388,15 @@
     model.endDate = _endDateFind;
     model.cstartdate = _startDateClosed;
     model.cenddate = _endDateClosed;
+    
+    model.contentDet = [self.remarkTextField.text isNotBlank] ? self.remarkTextField.text : nil;
+    
+    model.belong = _responsibleDistrict;
+    model.responsibleUnitName = _responsibleUnit;
+    model.ddssjtms = _supervisoryMeasures;
+    model.problemStatus = _problemStatus;
+    model.islyrical = _publicOpinion;
+    model.createuser = _transactedPerson;
 
     if (self.selectSearchBlock) {
         self.selectSearchBlock(model);

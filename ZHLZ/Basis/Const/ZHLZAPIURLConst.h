@@ -100,6 +100,7 @@ extern NSString * const CheckInPunchAPIURLConst;
 // 路巡小结
 extern NSString * const RoadPatrolSummaryAPIURLConst;
 // 路巡统计
+extern NSString * const RoadPatrolSummaryStatisticsAddAPIURLConst;
 extern NSString * const RoadPatrolSummaryStatisticsAPIURLConst;
 // 扫码用车
 extern NSString * const ScanCodeUseCarAPIURLConst;
@@ -169,8 +170,11 @@ extern NSString * const BrigadeAPIURLConst;
 // 公共字典下拉列表
 extern NSString * const CodeValuesAPIURLConst;
 
-//删除图片
+// 删除图片
 extern NSString * const DeleteByUploadid;
+
+// 经办人
+extern NSString * const TransactedPersonAPIURLConst;
 
 @end
 

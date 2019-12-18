@@ -11,6 +11,7 @@
 #import "ZHLZHomeMunicipalProblemSearchVC.h"
 #import "ZHLZHomeMunicipalProblemTableViewCell.h"
 #import "ZHLZHomeMunicipalProblemDetailVC.h"
+#import "ZHLZNavigationController.h"
 
 #define ZHLZHomeMunicipalProblemReuseIdentifier NSStringFromClass([ZHLZHomeMunicipalProblemTableViewCell class])
 
@@ -137,7 +138,9 @@
 }
 
 - (void)searchAction {
-    [self presentViewController:self.homeMunicipalProblemSearchVC animated:NO completion:^{
+    ZHLZNavigationController *nav = [[ZHLZNavigationController alloc] initWithRootViewController:self.homeMunicipalProblemSearchVC];
+    nav.view.backgroundColor = UIColor.clearColor;
+    [self presentViewController:nav animated:NO completion:^{
         [self.homeMunicipalProblemSearchVC showFilterView];
     }];
 }
