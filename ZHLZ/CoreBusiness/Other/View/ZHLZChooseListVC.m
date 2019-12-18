@@ -28,8 +28,16 @@
 #import "ZHLZAreaManagementVC.h"//区管管理单位
 #import "ZHLZCityManagementVC.h"//市管管理单位
 #import "ZHLZSpecialVC.h"//特殊业主单位
+#import "ZHLZMonadVC.h"
+
+#import "ZHLZHomeSafeDetailVC.h"//台账
+#import "ZHLZHomeBuildProjectDetailVC.h"//项目
 
 @interface ZHLZChooseListVC ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextFile;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchViewHeightConstraint;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *chooseListTableview;
@@ -59,9 +67,97 @@
     [self loadAddressListData];
 }
 
+- (void)addAction {
+    if (self.selectIndex == 0) {
+        ZHLZRoadWorkVC *roadWorkVC = [ZHLZRoadWorkVC new];
+        roadWorkVC.editType = 1;
+        roadWorkVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:roadWorkVC animated:YES];
+        
+    } else if(self.selectIndex == 1){
+        ZHLZExamineVC *examineVC = [ZHLZExamineVC new];
+        examineVC.setType = 1;
+        examineVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:examineVC animated:YES];
+        
+    } else if(self.selectIndex == 2){
+        ZHLZConstructionVC *constructionVC = [ZHLZConstructionVC new];
+        constructionVC.setType = 1;
+        constructionVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:constructionVC animated:YES];
+        
+    } else if(self.selectIndex == 3){
+        ZHLZCityManagementVC *areaManagementVC = [ZHLZCityManagementVC new];
+        areaManagementVC.setType = 1;
+        areaManagementVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:areaManagementVC animated:YES];
+        
+    } else if(self.selectIndex == 4){
+        ZHLZAreaManagementVC *areaManagementVC = [ZHLZAreaManagementVC new];
+        areaManagementVC.setType = 1;
+        areaManagementVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:areaManagementVC animated:YES];
+        
+    } else if(self.selectIndex == 5){
+        ZHLZSpecialVC *specialVC = [ZHLZSpecialVC new];
+        specialVC.setType = 1;
+        specialVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:specialVC animated:YES];
+        
+    } else if(self.selectIndex == 6){
+        ZHLZMonadVC *monadVC = [ZHLZMonadVC new];
+        monadVC.setType = 1;
+        monadVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:monadVC animated:YES];
+        
+    } else if(self.selectIndex == 7){
+        
+        ZHLZHomeSafeDetailVC *homeSafeDetailVC = [ZHLZHomeSafeDetailVC new];
+        homeSafeDetailVC.type = 1;
+        homeSafeDetailVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:homeSafeDetailVC animated:YES];
+        
+    } else if(self.selectIndex == 8){
+        
+        ZHLZHomeBuildProjectDetailVC *homeBuildProjectDetailVC = [ZHLZHomeBuildProjectDetailVC new];
+        homeBuildProjectDetailVC.detailType = 1;
+        homeBuildProjectDetailVC.reloadDataBlock = ^{
+            [self.chooseListTableview.mj_header beginRefreshing];
+        };
+        [self.navigationController pushViewController:homeBuildProjectDetailVC animated:YES];
+    }
+}
+
 #pragma mark --初始化视图
 
 - (void)initChooseListView{
+    
+
+    if (self.selectIndex == 7 || self.selectIndex == 8) {
+        self.searchView.hidden = YES;
+        self.searchViewHeightConstraint.constant = 0;
+        
+    }
+    
+    if (![ZHLZUserManager sharedInstance].isSuperAdmin) {
+        [self addRightBarButtonItemWithTitle:@"新增" action:@selector(addAction)];
+    }
     
     self.pageNum = 1;
     
@@ -120,6 +216,7 @@
     
     self.chooseListTableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListHeader)];
     self.chooseListTableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadAddressListFooter)];
+    
     
 }
 
@@ -186,7 +283,7 @@
     
     else {
     
-        self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex withPageNum:self.pageNum andSearchKeyString:@"" CallBack:^(NSDictionary * _Nonnull parms) {
+        self.task = [[ZHLZAddressBookVM sharedInstance] loadListWithType:self.selectIndex withPageNum:self.pageNum andSearchKeyString:self.searchTextFile.text CallBack:^(NSDictionary * _Nonnull parms) {
             
             if (self.chooseListTableview.mj_header.isRefreshing) {
                 [self.chooseListTableview.mj_header endRefreshing];
@@ -313,6 +410,10 @@
 }
 
 
+- (IBAction)searchAction:(UIButton *)sender {
+    [self.searchTextFile resignFirstResponder];
+    [self loadAddressListHeader];
+}
 
 #pragma mark --UITableView 代理
 

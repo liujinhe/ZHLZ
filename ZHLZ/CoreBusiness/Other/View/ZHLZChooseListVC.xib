@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHLZChooseListVC">
             <connections>
                 <outlet property="chooseListTableview" destination="rch-E2-a2G" id="3Gd-qt-8Sq"/>
+                <outlet property="searchTextFile" destination="axP-mY-tZp" id="P1R-DO-Dse"/>
+                <outlet property="searchView" destination="d19-4m-6Fd" id="j3z-nG-Suy"/>
+                <outlet property="searchViewHeightConstraint" destination="hBQ-MI-kem" id="RVv-hb-Ovz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,19 +23,56 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rch-E2-a2G">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d19-4m-6Fd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入搜索内容" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="axP-mY-tZp">
+                            <rect key="frame" x="20" y="10" width="331" height="40"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pN-Vf-gQT">
+                            <rect key="frame" x="361" y="13.5" width="33" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="sCl-Q0-4uL"/>
+                                <constraint firstAttribute="width" constant="33" id="w7J-Qi-Jp9"/>
+                            </constraints>
+                            <state key="normal" image="icon_search"/>
+                            <connections>
+                                <action selector="searchAction:" destination="-1" eventType="touchUpInside" id="baL-Md-Yga"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="axP-mY-tZp" firstAttribute="top" secondItem="d19-4m-6Fd" secondAttribute="top" constant="10" id="1Li-tE-edO"/>
+                        <constraint firstItem="1pN-Vf-gQT" firstAttribute="centerY" secondItem="d19-4m-6Fd" secondAttribute="centerY" id="Mev-if-kzd"/>
+                        <constraint firstItem="axP-mY-tZp" firstAttribute="leading" secondItem="d19-4m-6Fd" secondAttribute="leading" constant="20" id="MqC-Br-TPu"/>
+                        <constraint firstItem="1pN-Vf-gQT" firstAttribute="leading" secondItem="axP-mY-tZp" secondAttribute="trailing" constant="10" id="SNi-kk-Rne"/>
+                        <constraint firstAttribute="height" constant="60" id="hBQ-MI-kem"/>
+                        <constraint firstAttribute="bottom" secondItem="axP-mY-tZp" secondAttribute="bottom" constant="10" id="q2F-5G-oG0"/>
+                        <constraint firstAttribute="trailing" secondItem="1pN-Vf-gQT" secondAttribute="trailing" constant="20" id="qaG-X8-lbm"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="d19-4m-6Fd" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="3kC-9i-bu2"/>
+                <constraint firstItem="d19-4m-6Fd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="PJI-fd-xkN"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="d19-4m-6Fd" secondAttribute="trailing" id="RbZ-Y1-aOi"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="rch-E2-a2G" secondAttribute="bottom" id="aOW-3C-aas"/>
-                <constraint firstItem="rch-E2-a2G" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="rGN-Bb-4cF"/>
+                <constraint firstItem="rch-E2-a2G" firstAttribute="top" secondItem="d19-4m-6Fd" secondAttribute="bottom" id="cec-wb-zAh"/>
                 <constraint firstItem="rch-E2-a2G" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="vzI-S4-ZDc"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="rch-E2-a2G" secondAttribute="trailing" id="z8u-nV-Gcr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="132" y="109"/>
+            <point key="canvasLocation" x="131.8840579710145" y="108.48214285714285"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_search" width="16" height="16"/>
+    </resources>
 </document>
