@@ -69,22 +69,22 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
 - (void)addGestureRecognizers {
     self.collectionView.userInteractionEnabled = YES;
     
-    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGestureRecognizerTriggerd:)];
-    _longPressGestureRecognizer.cancelsTouchesInView = NO;
-    _longPressGestureRecognizer.minimumPressDuration = PRESS_TO_MOVE_MIN_DURATION;
-    _longPressGestureRecognizer.delegate = self;
-    
-    for (UIGestureRecognizer * gestureRecognizer in self.collectionView.gestureRecognizers) {
-        if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
-            [gestureRecognizer requireGestureRecognizerToFail:_longPressGestureRecognizer];
-        }
-    }
-    
-    [self.collectionView addGestureRecognizer:_longPressGestureRecognizer];
-    
-    _panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognizerTriggerd:)];
-    _panGestureRecognizer.delegate = self;
-    [self.collectionView addGestureRecognizer:_panGestureRecognizer];
+//    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressGestureRecognizerTriggerd:)];
+//    _longPressGestureRecognizer.cancelsTouchesInView = NO;
+//    _longPressGestureRecognizer.minimumPressDuration = PRESS_TO_MOVE_MIN_DURATION;
+//    _longPressGestureRecognizer.delegate = self;
+//    
+//    for (UIGestureRecognizer * gestureRecognizer in self.collectionView.gestureRecognizers) {
+//        if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+//            [gestureRecognizer requireGestureRecognizerToFail:_longPressGestureRecognizer];
+//        }
+//    }
+//    
+//    [self.collectionView addGestureRecognizer:_longPressGestureRecognizer];
+//    
+//    _panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognizerTriggerd:)];
+//    _panGestureRecognizer.delegate = self;
+//    [self.collectionView addGestureRecognizer:_panGestureRecognizer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
 }

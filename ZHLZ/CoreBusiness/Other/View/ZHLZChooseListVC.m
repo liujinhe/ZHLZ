@@ -33,7 +33,7 @@
 #import "ZHLZHomeSafeDetailVC.h"//台账
 #import "ZHLZHomeBuildProjectDetailVC.h"//项目
 
-@interface ZHLZChooseListVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZHLZChooseListVC ()<UITableViewDelegate, UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTextFile;
@@ -208,6 +208,9 @@
     
     self.chooseListTableview.dataSource = self;
     self.chooseListTableview.delegate = self;
+    self.chooseListTableview.emptyDataSetSource = self;
+    self.chooseListTableview.emptyDataSetDelegate = self;
+    
     self.chooseListTableview.backgroundColor = kHexRGB(0xf7f7f7);
     
     self.chooseListTableview.showsVerticalScrollIndicator = NO;
@@ -544,6 +547,20 @@
     
 }
 
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return kEmptyDataNoReservationLook;
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    return [self emptyDataTip:@"~暂无数据哟~"];
+}
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
+    self.pageNo = 1;
+    [self loadAddressListData];
+}
 
 
 @end
