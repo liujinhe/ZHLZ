@@ -161,23 +161,37 @@
 
 
 - (void)setlimitWithSpeed:(int)speed{
-    if (speed <= 20) {
-        self.value1Label.text = @"20";
-        
-    } else if (speed > 20 && speed <= 50){
-        self.value1Label.text = @"30";
-        
-    } else if (speed > 50 && speed <= 60){
-        self.value1Label.text = @"40";
-        
-    } else if (speed > 60 && speed < 80){
-        self.value1Label.text = @"60";
-        
-    } else if (speed >= 80 && speed < 100){
-        self.value1Label.text = @"70";
-        
-    } else if (speed >= 100){
+//    if (speed <= 20) {
+//        self.value1Label.text = @"20";
+//    } else if (speed > 20 && speed <= 50){
+//        self.value1Label.text = @"30";
+//
+//    } else if (speed > 50 && speed <= 60){
+//        self.value1Label.text = @"40";
+//
+//    } else if (speed > 60 && speed < 80){
+//        self.value1Label.text = @"60";
+//
+//    } else if (speed >= 80 && speed < 100){
+//        self.value1Label.text = @"70";
+//
+//    } else if (speed >= 100){
+//        self.value1Label.text = @"80";
+//    }
+    if (speed >= 120) {
         self.value1Label.text = @"80";
+    } else if (speed >= 100 && speed < 120) {
+        self.value1Label.text = @"70";
+    } else if (speed >= 80 && speed < 100) {
+        self.value1Label.text = @"60";
+    } else if (speed >= 60 && speed < 80) {
+        self.value1Label.text = @"40";
+    } else if (speed >= 50 && speed < 60) {
+        self.value1Label.text = @"30";
+//    } else if (speed >= 20 && speed < 30) {
+//        self.value1Label.text = @"20";
+    } else {
+        self.value1Label.text = @"20";
     }
 }
 
