@@ -93,7 +93,7 @@ NSString * const CheckInPunchAPIURLConst = @"/app/mappunch/save";
 
 NSString * const RoadPatrolSummaryAPIURLConst = @"/app/mapprtrolentry/list";
 
-NSString * const RoadPatrolSummaryStatisticsAddAPIURLConst = @"summary.html?type=1";
+NSString * const RoadPatrolSummaryStatisticsAddAPIURLConst = @"/summary.html?type=1";
 NSString * const RoadPatrolSummaryStatisticsAPIURLConst = @"/summary.html?type=2";
 
 NSString * const ScanCodeUseCarAPIURLConst = @"/app/wxcar/wx";

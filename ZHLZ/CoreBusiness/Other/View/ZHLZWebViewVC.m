@@ -55,13 +55,6 @@ static NSString * const EstimatedProgress = @"estimatedProgress";
 
 - (void)loadData {
     if ([self.url isNotBlank]) {
-        // 路巡小结-新增
-        if ([self.url isEqualToString:RoadPatrolSummaryStatisticsAddAPIURLConst]) {
-            [self addRightBarButtonItemWithTitle:@"新增" action:@selector(roadPatrolSummaryStatisticsAddAction)];
-        } else {
-            self.navigationItem.rightBarButtonItem = nil;
-        }
-        
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self getRequestURL]
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:30.0];
@@ -196,15 +189,6 @@ static NSString * const EstimatedProgress = @"estimatedProgress";
     }
     
     return _webView;
-}
-
-#pragma mark - Action
-
-- (void)roadPatrolSummaryStatisticsAddAction {
-    ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
-    webViewVC.headTitle = @"新增";
-    webViewVC.url = RoadPatrolSummaryStatisticsAddAPIURLConst;
-    [self.navigationController pushViewController:webViewVC animated:YES];
 }
 
 @end

@@ -13,7 +13,7 @@
 
 #define ZHLZHomeRoadPatrolReuseIdentifier NSStringFromClass([ZHLZHomeRoadPatrolTableViewCell class])
 
-@interface ZHLZHomeRoadPatrolVC () <UITableViewDataSource, UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@interface ZHLZHomeRoadPatrolVC () <UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
     NSString *_startDate;
     NSString *_endDate;
@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     @weakify(self);
     [super viewDidLoad];
+
+    [self addRightBarButtonItemWithTitle:@"新增" action:@selector(roadPatrolSummaryStatisticsAddAction)];
     
     self.array = @[].mutableCopy;
     
@@ -147,5 +149,13 @@
     [self loadData];
 }
 
+#pragma mark - Action
+
+- (void)roadPatrolSummaryStatisticsAddAction {
+    ZHLZWebViewVC *webViewVC = [ZHLZWebViewVC new];
+    webViewVC.headTitle = @"新增";
+    webViewVC.url = RoadPatrolSummaryStatisticsAddAPIURLConst;
+    [self.navigationController pushViewController:webViewVC animated:YES];
+}
 
 @end
