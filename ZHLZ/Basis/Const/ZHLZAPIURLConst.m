@@ -12,7 +12,9 @@
 
 #pragma mark - API Base URL
 
-NSString * const BaseAPIURLConst = @"http://www.yusuisoft.com:8080";
+// 测试环境：http://www.yusuisoft.com:8080
+// 正式环境：http://121.8.227.111:8080
+NSString * const BaseAPIURLConst = @"http://121.8.227.111:8080";
 
 NSString * const BaseAPICarVideoURLConst = @"http://183.6.134.126";
 
