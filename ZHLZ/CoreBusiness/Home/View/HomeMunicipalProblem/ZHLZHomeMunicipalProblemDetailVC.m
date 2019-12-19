@@ -575,20 +575,17 @@
         return;
     }
     
+    ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
+    NSString *uploadId = @"";
+    if ([self.municipalProblemSubmitModel.uploadid isNotBlank]) {
+        uploadId = self.municipalProblemSubmitModel.uploadid;
+    } else {
+        uploadId = [uploadVM random:16];
+    }
+    self.municipalProblemSubmitModel.uploadid = uploadId;
+    
     if (_photoArray.count > 0) {
-        ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = @"";
-        if (self.type == 1) {
-            uploadId = [uploadVM random:16];
-        } else {
-            if ([self.municipalProblemSubmitModel.uploadid isNotBlank]) {
-                uploadId = self.municipalProblemSubmitModel.uploadid;
-            } else {
-                uploadId = [uploadVM random:16];
-            }
-        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.municipalProblemSubmitModel.uploadid = uploadId;
             @strongify(self)
             [self submitAction];
         }];
@@ -833,7 +830,7 @@
             [GRToast makeText:@"分享失败"];
             return;
         }
-
+        
         [GRToast makeText:@"分享成功"];
     }];
 }

@@ -162,18 +162,18 @@
 }
 
 - (void)addUploadPicActionWithImgURL:(NSString *)imgURL {
-
+    
     [self.uploadPicView removeAllSubviews];
-
+    
     GRUploadPhotoView *uploadPhotoView = [[GRUploadPhotoView alloc] initWithParentView:self.uploadPicView
                                                                     withViewController:self
                                                                     withMaxImagesCount:9
                                                                             withImgURL:imgURL withImgType:self.type];
-
+    
     uploadPhotoView.delegate = self;
-
+    
     [self.uploadPicView addSubview:uploadPhotoView];
-
+    
     NSArray *array = [imgURL componentsSeparatedByString:@","];
     if (array && array.count > 0) {
         CGFloat height = kAutoFitReal(105) * (array.count / 3 + (array.count % 3 > 0 ? 1 : 0)) + ItemMargin * array.count / 3;
@@ -363,22 +363,18 @@
         return;
     }
     
+    ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
+    NSString *uploadId = @"";
+    if ([self.homeSafeProblemSUbmitModel.uploadid isNotBlank]) {
+        uploadId = self.homeSafeProblemSUbmitModel.uploadid;
+    } else {
+        uploadId = [uploadVM random:16];
+    }
+    self.homeSafeProblemSUbmitModel.uploadid = uploadId;
     
     if (_photoArray.count > 0) {
         @weakify(self);
-        ZHLZUploadVM *uploadVM = [ZHLZUploadVM sharedInstance];
-        NSString *uploadId = @"";
-        if (self.type == 1) {
-            uploadId = [uploadVM random:16];
-        } else {
-            if ([self.homeSafeProblemSUbmitModel.uploadid isNotBlank]) {
-                uploadId = self.homeSafeProblemSUbmitModel.uploadid;
-            } else {
-                uploadId = [uploadVM random:16];
-            }
-        }
         [uploadVM uploadImageArray:_photoArray withUploadId:uploadId withBlock:^{
-            self.homeSafeProblemSUbmitModel.uploadid = uploadId;
             @strongify(self)
             [self submitAction];
         }];
