@@ -11,10 +11,25 @@
 @implementation NSDate (StringFormatter)
 
 + (NSDate *)formatterDateWithDateString:(NSString *)dateString {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-    return [dateFormatter dateFromString:dateString];
+    if ([dateString isNotBlank]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+        return [dateFormatter dateFromString:dateString];
+    } else {
+        return [NSDate date];
+    }
+}
+
++ (NSDate *)formatterDateWithTimeString:(NSString *)timeString {
+    if ([timeString isNotBlank]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+        return [dateFormatter dateFromString:timeString];
+    } else {
+        return [NSDate date];
+    }
 }
 
 @end

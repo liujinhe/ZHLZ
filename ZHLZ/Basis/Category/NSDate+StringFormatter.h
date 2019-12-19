@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDate *)formatterDateWithDateString:(NSString *)dateString;
 
++ (NSDate *)formatterDateWithTimeString:(NSString *)timeString;
+
 @end
 
 NS_ASSUME_NONNULL_END

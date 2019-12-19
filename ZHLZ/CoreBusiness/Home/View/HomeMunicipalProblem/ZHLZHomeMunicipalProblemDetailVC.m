@@ -816,7 +816,7 @@
     
     NSString *title = _municipalProblemModel.problemType;
     NSString *descr = [NSString stringWithFormat:@"%@在%@发现%@，请%@跟进处理。",
-                       _municipalProblemModel.finddate,
+                       [NSString formatterWithDate:[NSDate formatterDateWithTimeString:_municipalProblemModel.finddate]],
                        _municipalProblemModel.siteDet,
                        _municipalProblemModel.problemDet,
                        _municipalProblemModel.responsibleUnitName];
