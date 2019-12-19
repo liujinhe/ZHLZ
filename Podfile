@@ -21,6 +21,7 @@ target 'ZHLZ' do
   pod 'FDFullscreenPopGesture', '~> 1.1'
   pod 'DZNEmptyDataSet', '~> 1.8.1'
   pod 'ZWPlaceHolder'
+  pod 'YLGIFImage', '~> 0.11'
   pod 'TZImagePickerController'
   
   pod 'AMap3DMap'

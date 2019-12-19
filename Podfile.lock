@@ -42,6 +42,7 @@ PODS:
   - UMCShare/UI (6.9.6):
     - UMCCommon
     - UMCShare/Core
+  - YLGIFImage (0.11)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - UMCSecurityPlugins
   - UMCShare/Social/ReducedWeChat
   - UMCShare/UI
+  - YLGIFImage (~> 0.11)
   - YYKit (~> 1.0.9)
   - ZWPlaceHolder
 
@@ -87,6 +89,7 @@ SPEC REPOS:
     - UMCCommon
     - UMCSecurityPlugins
     - UMCShare
+    - YLGIFImage
     - YYKit
     - ZWPlaceHolder
 
@@ -108,9 +111,10 @@ SPEC CHECKSUMS:
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: 43c2a878ec5c43432ca42988588d57a736124d9e
+PODFILE CHECKSUM: baa60f40b452c57392c8279773d2ad4359110653
 
 COCOAPODS: 1.8.4

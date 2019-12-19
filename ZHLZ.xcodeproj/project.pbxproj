@@ -26,6 +26,13 @@
 		18766305238D2F8B000809AD /* ZHLZHomeBuildProjectDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18766302238D2F8A000809AD /* ZHLZHomeBuildProjectDetailVC.m */; };
 		18766306238D2F8B000809AD /* ZHLZHomeBuildProjectDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18766304238D2F8B000809AD /* ZHLZHomeBuildProjectDetailVC.xib */; };
 		188C7C33238A682800AAC71D /* ZHLZSafeSubmitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 188C7C32238A682800AAC71D /* ZHLZSafeSubmitModel.m */; };
+		1890022F23AB6AB0004B7BC2 /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022223AB6AAF004B7BC2 /* MJPhotoLoadingView.m */; };
+		1890023023AB6AB0004B7BC2 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022423AB6AAF004B7BC2 /* MJPhotoView.m */; };
+		1890023123AB6AB0004B7BC2 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1890022623AB6AAF004B7BC2 /* MJPhotoBrowser.bundle */; };
+		1890023223AB6AB0004B7BC2 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022723AB6AAF004B7BC2 /* MJPhoto.m */; };
+		1890023323AB6AB0004B7BC2 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022B23AB6AAF004B7BC2 /* MJPhotoToolbar.m */; };
+		1890023423AB6AB0004B7BC2 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022D23AB6AAF004B7BC2 /* MJPhotoProgressView.m */; };
+		1890023523AB6AB0004B7BC2 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890022E23AB6AAF004B7BC2 /* MJPhotoBrowser.m */; };
 		189DAA4423862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189DAA4223862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.m */; };
 		189DAA4523862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189DAA4323862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib */; };
 		189DAA49238635410049B5FF /* ZHLZHomeSafeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189DAA47238635410049B5FF /* ZHLZHomeSafeDetailVC.m */; };
@@ -372,6 +379,19 @@
 		18766304238D2F8B000809AD /* ZHLZHomeBuildProjectDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHLZHomeBuildProjectDetailVC.xib; sourceTree = "<group>"; };
 		188C7C31238A682700AAC71D /* ZHLZSafeSubmitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLZSafeSubmitModel.h; sourceTree = "<group>"; };
 		188C7C32238A682800AAC71D /* ZHLZSafeSubmitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLZSafeSubmitModel.m; sourceTree = "<group>"; };
+		1890022223AB6AAF004B7BC2 /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		1890022323AB6AAF004B7BC2 /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		1890022423AB6AAF004B7BC2 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		1890022523AB6AAF004B7BC2 /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		1890022623AB6AAF004B7BC2 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		1890022723AB6AAF004B7BC2 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		1890022823AB6AAF004B7BC2 /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		1890022923AB6AAF004B7BC2 /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		1890022A23AB6AAF004B7BC2 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		1890022B23AB6AAF004B7BC2 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		1890022C23AB6AAF004B7BC2 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		1890022D23AB6AAF004B7BC2 /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		1890022E23AB6AAF004B7BC2 /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
 		189DAA4123862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHLZHomeSafeProblemDetailVC.h; sourceTree = "<group>"; };
 		189DAA4223862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHLZHomeSafeProblemDetailVC.m; sourceTree = "<group>"; };
 		189DAA4323862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZHLZHomeSafeProblemDetailVC.xib; sourceTree = "<group>"; };
@@ -893,6 +913,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1890022123AB6AAF004B7BC2 /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1890022223AB6AAF004B7BC2 /* MJPhotoLoadingView.m */,
+				1890022323AB6AAF004B7BC2 /* MJPhotoToolbar.h */,
+				1890022423AB6AAF004B7BC2 /* MJPhotoView.m */,
+				1890022523AB6AAF004B7BC2 /* MJPhotoProgressView.h */,
+				1890022623AB6AAF004B7BC2 /* MJPhotoBrowser.bundle */,
+				1890022723AB6AAF004B7BC2 /* MJPhoto.m */,
+				1890022823AB6AAF004B7BC2 /* MJPhotoBrowser.h */,
+				1890022923AB6AAF004B7BC2 /* MJPhotoLoadingView.h */,
+				1890022A23AB6AAF004B7BC2 /* MJPhotoView.h */,
+				1890022B23AB6AAF004B7BC2 /* MJPhotoToolbar.m */,
+				1890022C23AB6AAF004B7BC2 /* MJPhoto.h */,
+				1890022D23AB6AAF004B7BC2 /* MJPhotoProgressView.m */,
+				1890022E23AB6AAF004B7BC2 /* MJPhotoBrowser.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		18BBFC2F239E1BDA00B9C27D /* HomeTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1889,6 +1929,7 @@
 		A5574FD423828DBD00B24FC4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1890022123AB6AAF004B7BC2 /* MJPhotoBrowser */,
 				A5574FDC23828DBD00B24FC4 /* ZHLZButton.h */,
 				A5574FDE23828DBD00B24FC4 /* ZHLZButton.m */,
 				A5574FDD23828DBD00B24FC4 /* ZHLZTextField.h */,
@@ -2275,6 +2316,7 @@
 				A5B19459238574FF00FF5080 /* luqiao_green_2.png in Resources */,
 				A557503723828DBD00B24FC4 /* ZHLZHomeMapVC.xib in Resources */,
 				A557505A23828DBD00B24FC4 /* ZHLZExamineVC.xib in Resources */,
+				1890023123AB6AB0004B7BC2 /* MJPhotoBrowser.bundle in Resources */,
 				A57F5C752390EE0300695A63 /* ZHLZHomeInfoStatisticsListVC.xib in Resources */,
 				A57F5C892390F28300695A63 /* ZHLZBusinessDocumentCell.xib in Resources */,
 				A55D26F2238781E100E2BA81 /* ZHLZPickerViewVC.xib in Resources */,
@@ -2491,6 +2533,7 @@
 				18BBFC34239E1C0900B9C27D /* ZHLZHomeToolVC.m in Sources */,
 				A557501823828DBD00B24FC4 /* ZHLZHomeMunicipalProblemModel.m in Sources */,
 				A557503823828DBD00B24FC4 /* ZHLZHomeVC.m in Sources */,
+				1890023423AB6AB0004B7BC2 /* MJPhotoProgressView.m in Sources */,
 				A5AD706B238E1E3D0053B9B9 /* NSString+DateFormatter.m in Sources */,
 				A557501B23828DBD00B24FC4 /* ZHLZHomeOccupyProblemVC.m in Sources */,
 				A557504923828DBD00B24FC4 /* ZHLZAddressBookVM.m in Sources */,
@@ -2499,6 +2542,7 @@
 				A557500823828DBD00B24FC4 /* ZHLZHomeVM.m in Sources */,
 				A557501923828DBD00B24FC4 /* ZHLZHomeMapModel.m in Sources */,
 				A557502423828DBD00B24FC4 /* ZHLZHomeSafeProblemVC.m in Sources */,
+				1890023323AB6AB0004B7BC2 /* MJPhotoToolbar.m in Sources */,
 				A530E4B6239F742A007EEAB6 /* ZHLZDeviceStatusModel.m in Sources */,
 				A557503423828DBD00B24FC4 /* ZHLZHomeMunicipalProblemVC.m in Sources */,
 				A538B5352386991F002E30CC /* ZHLZAreaPickerViewVC.m in Sources */,
@@ -2515,6 +2559,7 @@
 				A530E49F239F30C9007EEAB6 /* ZHLZHomeCarVideoVM.m in Sources */,
 				A557503323828DBD00B24FC4 /* ZHLZHomeBuildProjectVC.m in Sources */,
 				A557503A23828DBD00B24FC4 /* ZHLZLoginModel.m in Sources */,
+				1890022F23AB6AB0004B7BC2 /* MJPhotoLoadingView.m in Sources */,
 				A557500B23828DBD00B24FC4 /* ZHLZHomeTimeModel.m in Sources */,
 				A557505023828DBD00B24FC4 /* ZHLZRoadWorkModel.m in Sources */,
 				A557501523828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarModel.m in Sources */,
@@ -2552,12 +2597,14 @@
 				A557501723828DBD00B24FC4 /* ZHLZHomeBuildProjectModel.m in Sources */,
 				A557502723828DBD00B24FC4 /* ZHLZHomeCheckInVC.m in Sources */,
 				187662F6238D2F03000809AD /* ZHLZHomeSafeProblemSearchVC.m in Sources */,
+				1890023223AB6AB0004B7BC2 /* MJPhoto.m in Sources */,
 				A557500223828DBD00B24FC4 /* ZHLZHomeCheckInVM.m in Sources */,
 				A557505223828DBD00B24FC4 /* ZHLZConstructionVC.m in Sources */,
 				A557501423828DBD00B24FC4 /* ZHLZHomeMunicipalFacilityModel.m in Sources */,
 				A5574FED23828DBD00B24FC4 /* GRBaseRequest+Setter.m in Sources */,
 				A5F4FB312387B9D600225D45 /* ZHLZDatePickerVC.m in Sources */,
 				189DAA4423862EEA0049B5FF /* ZHLZHomeSafeProblemDetailVC.m in Sources */,
+				1890023523AB6AB0004B7BC2 /* MJPhotoBrowser.m in Sources */,
 				A5825467238FD75300B5F3E3 /* ZHLZHomeSafeSearchModel.m in Sources */,
 				A557501123828DBD00B24FC4 /* ZHLZHomeBannerModel.m in Sources */,
 				A5574FF623828DBD00B24FC4 /* GRResponse.m in Sources */,
@@ -2584,6 +2631,7 @@
 				A557503623828DBD00B24FC4 /* ZHLZHomeMapVC.m in Sources */,
 				A5825472238FDB7E00B5F3E3 /* ZHLZHomeInfoStatisticsVC.m in Sources */,
 				A508043323940AA800CBEC83 /* GRUploadPhotoView.m in Sources */,
+				1890023023AB6AB0004B7BC2 /* MJPhotoView.m in Sources */,
 				A5F4FB2D2387948D00225D45 /* ZHLZLocalConfigConst.m in Sources */,
 				A557500323828DBD00B24FC4 /* ZHLZHomeScanCodeUseCarVM.m in Sources */,
 				A557506423828DBD00B24FC4 /* ZHLZAreaManagementVC.m in Sources */,

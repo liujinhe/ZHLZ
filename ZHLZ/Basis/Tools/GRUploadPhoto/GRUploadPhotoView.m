@@ -12,6 +12,10 @@
 #import <TZImagePickerController/TZImagePickerController.h>
 #import "ZHLZUploadVM.h"
 
+
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
+
 // 图片宽度(px)
 static CGFloat const ImageWidth = 800.f;
 
@@ -347,16 +351,32 @@ static NSString * const Cell = @"GRUploadPhotoCell";
 - (void)previewPhotoAction:(NSInteger)row {
     if (_hasExistPhotosCount > row) {
         if (_hasExistPhotos.count > row) {
-            _fullScreenPreviewImageView.image = _hasExistPhotos[row];
+//            _fullScreenPreviewImageView.image = _hasExistPhotos[row];
         } else {
             [GRToast makeText:@"当前图片正在加载中..."];
             return;
         }
     } else {
-        _fullScreenPreviewImageView.image = _selectedPhotos[row - _hasExistPhotosCount];
+//        _fullScreenPreviewImageView.image = _selectedPhotos[row - _hasExistPhotosCount];
     }
-    [[UIApplication sharedApplication].keyWindow addSubview:_fullScreenPreviewImageView];
-    [self fullScreenPreview:_fullScreenPreviewImageView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:_fullScreenPreviewImageView];
+//    [self fullScreenPreview:_fullScreenPreviewImageView];
+    
+    
+    NSArray *iamgeArray = [_hasExistPhotos arrayByAddingObjectsFromArray:_selectedPhotos];
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+    // 弹出相册时显示的第一张图片是点击的图片
+    browser.currentPhotoIndex = row;
+    // 设置所有的图片。photos是一个包含所有图片的数组。
+    NSMutableArray *imgs = [NSMutableArray array];
+    
+    for (int i  = 0; i < iamgeArray.count ; i++) {
+        MJPhoto *photo = [MJPhoto new];
+        photo.image = iamgeArray[i];
+        [imgs addObject:photo];
+    }
+    browser.photos = imgs;
+    [browser show];
 }
 
 - (void)fullScreenPreview:(UIView *)view {
