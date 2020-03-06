@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeMunicipalProblemSearchVC : ZHLZBaseVC
 
+@property (nonatomic, strong) ZHLZHomeMunicipalProblemSearchModel *model;
+
 @property (nonatomic, copy) void (^selectSearchBlock)(ZHLZHomeMunicipalProblemSearchModel *homeMunicipalProblemSearchModel);
 
 - (void)showFilterView;

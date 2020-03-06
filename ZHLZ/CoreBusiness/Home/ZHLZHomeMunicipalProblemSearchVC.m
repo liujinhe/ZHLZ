@@ -377,29 +377,31 @@
 }
 
 - (IBAction)determineAction {
-    ZHLZHomeMunicipalProblemSearchModel *model = [ZHLZHomeMunicipalProblemSearchModel new];
-    model.objectID = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
-    model.problemDet = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
-    model.siteDet = [self.roadSectionTextField.text isNotBlank] ? self.roadSectionTextField.text : nil;
-    model.problemType = _problemType;
-    model.orgid = _brigadeType;
-    model.rangeleg = _searchRange;
-    model.startDate = _startDateFind;
-    model.endDate = _endDateFind;
-    model.cstartdate = _startDateClosed;
-    model.cenddate = _endDateClosed;
+    if (self.model == nil) {
+        self.model = [ZHLZHomeMunicipalProblemSearchModel new];
+    }
+    self.model.objectID = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
+    self.model.problemDet = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
+    self.model.siteDet = [self.roadSectionTextField.text isNotBlank] ? self.roadSectionTextField.text : nil;
+    self.model.problemType = _problemType;
+    self.model.orgid = _brigadeType;
+    self.model.rangeleg = _searchRange;
+    self.model.startDate = _startDateFind;
+    self.model.endDate = _endDateFind;
+    self.model.cstartdate = _startDateClosed;
+    self.model.cenddate = _endDateClosed;
     
-    model.contentDet = [self.remarkTextField.text isNotBlank] ? self.remarkTextField.text : nil;
+    self.model.contentDet = [self.remarkTextField.text isNotBlank] ? self.remarkTextField.text : nil;
     
-    model.belong = _responsibleDistrict;
-    model.responsibleUnitName = _responsibleUnit;
-    model.ddssjtms = _supervisoryMeasures;
-    model.problemStatus = _problemStatus;
-    model.islyrical = _publicOpinion;
-    model.createuser = _transactedPerson;
+    self.model.belong = _responsibleDistrict;
+    self.model.responsibleUnitName = _responsibleUnit;
+    self.model.ddssjtms = _supervisoryMeasures;
+    self.model.problemStatus = _problemStatus;
+    self.model.islyrical = _publicOpinion;
+    self.model.createuser = _transactedPerson;
 
     if (self.selectSearchBlock) {
-        self.selectSearchBlock(model);
+        self.selectSearchBlock(self.model);
     }
     [self hideFilterView];
 }

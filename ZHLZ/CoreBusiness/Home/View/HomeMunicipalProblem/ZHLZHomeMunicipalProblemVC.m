@@ -55,6 +55,9 @@
             self.homeMunicipalProblemSearchModel.isrange = @"1";
             
             NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+#ifdef DEBUG
+            coordinate = @{@"longitude": @"113.27", @"latitude": @"23.13"};
+#endif
             if (coordinate) {
                 self.homeMunicipalProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
                 self.homeMunicipalProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
@@ -138,6 +141,7 @@
 }
 
 - (void)searchAction {
+    self.homeMunicipalProblemSearchVC.model = self.homeMunicipalProblemSearchModel;
     ZHLZNavigationController *nav = [[ZHLZNavigationController alloc] initWithRootViewController:self.homeMunicipalProblemSearchVC];
     nav.view.backgroundColor = UIColor.clearColor;
     [self presentViewController:nav animated:NO completion:^{
@@ -160,36 +164,36 @@
     
     cell.clickButton = ^(NSInteger selectIndex) {
         ZHLZHomeMunicipalProblemModel *municipalProblemModel = self.array[selectIndex];
-                
-                if ([municipalProblemModel.problemStatus integerValue] == 2) {///开启
-                    
-                    @weakify(self);
-                    [self popActionWithTip:@"是否开启问题？" withBlock:^{
-                        @strongify(self);
-                        self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] openMunicipalProblemWithId:municipalProblemModel.objectID withBlock:^{
-                            
-                            municipalProblemModel.problemStatus = @"0";
-                            [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
         
-                            [self.tableView reloadData];
-                            [GRToast makeText:@"开启成功"];
-                        }];
-                    }];
+        if ([municipalProblemModel.problemStatus integerValue] == 2) {///开启
+            
+            @weakify(self);
+            [self popActionWithTip:@"是否开启问题？" withBlock:^{
+                @strongify(self);
+                self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] openMunicipalProblemWithId:municipalProblemModel.objectID withBlock:^{
                     
-                } else {///关闭
+                    municipalProblemModel.problemStatus = @"0";
+                    [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
                     
-                    @weakify(self);
-                    [self popActionWithTip:@"是否关闭问题？" withBlock:^{
-                        @strongify(self);
-                        self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] closeMunicipalProblemWithParms:@{@"id":municipalProblemModel.objectID,@"closeType":@""} withBlock:^{
-                            @strongify(self);
-                            municipalProblemModel.problemStatus = @"2";
-                            [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
-                            [self.tableView reloadData];
-                            [GRToast makeText:@"关闭成功"];
-                        }];
-                    }];
-                }
+                    [self.tableView reloadData];
+                    [GRToast makeText:@"开启成功"];
+                }];
+            }];
+            
+        } else {///关闭
+            
+            @weakify(self);
+            [self popActionWithTip:@"是否关闭问题？" withBlock:^{
+                @strongify(self);
+                self.task = [[ZHLZHomeMunicipalProblemVM sharedInstance] closeMunicipalProblemWithParms:@{@"id":municipalProblemModel.objectID,@"closeType":@""} withBlock:^{
+                    @strongify(self);
+                    municipalProblemModel.problemStatus = @"2";
+                    [self.array replaceObjectAtIndex:selectIndex withObject:municipalProblemModel];
+                    [self.tableView reloadData];
+                    [GRToast makeText:@"关闭成功"];
+                }];
+            }];
+        }
     };
     
     return cell;
@@ -222,9 +226,7 @@
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
-    self.pageNo = 1;
     [self loadData];
 }
-
 
 @end

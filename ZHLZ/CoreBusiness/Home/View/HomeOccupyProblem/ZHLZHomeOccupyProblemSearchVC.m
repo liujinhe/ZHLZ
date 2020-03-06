@@ -192,20 +192,22 @@
 }
 
 - (IBAction)determineAction {
-    ZHLZHomeOccupyProblemSearchModel *model = [ZHLZHomeOccupyProblemSearchModel new];
-    model.proid = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
-    model.projectname = [self.projectNameTextField.text isNotBlank] ? self.projectNameTextField.text : nil;
-    model.prodescription = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
-    model.position = [self.locationTextField.text isNotBlank] ? self.locationTextField.text : nil;
-    model.protype = _problemType;
-    model.rangeleg = _searchRange;
-    model.startDate = _startDateFind;
-    model.endDate = _endDateFind;
-    model.cstartdate = _startDateClosed;
-    model.cenddate = _endDateClosed;
+    if (self.model == nil) {
+        self.model = [ZHLZHomeOccupyProblemSearchModel new];
+    }
+    self.model.proid = [self.projectIdTextField.text isNotBlank] ? self.projectIdTextField.text : nil;
+    self.model.projectname = [self.projectNameTextField.text isNotBlank] ? self.projectNameTextField.text : nil;
+    self.model.prodescription = [self.projectDescTextField.text isNotBlank] ? self.projectDescTextField.text : nil;
+    self.model.position = [self.locationTextField.text isNotBlank] ? self.locationTextField.text : nil;
+    self.model.protype = _problemType;
+    self.model.rangeleg = _searchRange;
+    self.model.startDate = _startDateFind;
+    self.model.endDate = _endDateFind;
+    self.model.cstartdate = _startDateClosed;
+    self.model.cenddate = _endDateClosed;
     
     if (self.selectSearchBlock) {
-        self.selectSearchBlock(model);
+        self.selectSearchBlock(self.model);
     }
     [self hideFilterView];
 }

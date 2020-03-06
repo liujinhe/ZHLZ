@@ -42,33 +42,34 @@
     
     self.searchView.isExistRangeSearchSwitch = YES;
     self.searchView.searchBlock = ^{
-         @strongify(self);
-         [self searchAction];
-     };
+        @strongify(self);
+        [self searchAction];
+    };
     self.searchView.onOrOffBlock = ^(BOOL isOn) {
-         @strongify(self);
-         if (isOn) {
-             if (![self.homeOccupyProblemSearchModel.rangeleg isNotBlank]) {
-                 self.homeOccupyProblemSearchModel.rangeleg = @"500";
-             }
-             self.homeOccupyProblemSearchModel.rangeleg = 
-             
-             self.homeOccupyProblemSearchModel.isrange = @"1";
-             
-             NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
-             if (coordinate) {
-                 self.homeOccupyProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
-                 self.homeOccupyProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
-             }
-         } else {
-             self.homeOccupyProblemSearchModel.rangeleg = nil;
-             self.homeOccupyProblemSearchModel.isrange = nil;
-             self.homeOccupyProblemSearchModel.lng = nil;
-             self.homeOccupyProblemSearchModel.lat = nil;
-         }
-         
-         [self loadData];
-     };
+        @strongify(self);
+        if (isOn) {
+            if (![self.homeOccupyProblemSearchModel.rangeleg isNotBlank]) {
+                self.homeOccupyProblemSearchModel.rangeleg = @"500";
+            }
+            self.homeOccupyProblemSearchModel.isrange = @"1";
+            
+            NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
+#ifdef DEBUG
+            coordinate = @{@"longitude": @"113.27", @"latitude": @"23.13"};
+#endif
+            if (coordinate) {
+                self.homeOccupyProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
+                self.homeOccupyProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];
+            }
+        } else {
+            self.homeOccupyProblemSearchModel.rangeleg = nil;
+            self.homeOccupyProblemSearchModel.isrange = nil;
+            self.homeOccupyProblemSearchModel.lng = nil;
+            self.homeOccupyProblemSearchModel.lat = nil;
+        }
+        
+        [self loadData];
+    };
     
     self.homeOccupyProblemSearchVC = [ZHLZHomeOccupyProblemSearchVC new];
     self.homeOccupyProblemSearchVC.selectSearchBlock = ^(ZHLZHomeOccupyProblemSearchModel * _Nonnull homeOccupyProblemSearchModel) {
@@ -139,6 +140,7 @@
 }
 
 - (void)searchAction {
+    self.homeOccupyProblemSearchVC.model = self.homeOccupyProblemSearchModel;
     [self presentViewController:self.homeOccupyProblemSearchVC animated:NO completion:^{
         [self.homeOccupyProblemSearchVC showFilterView];
     }];
@@ -170,7 +172,7 @@
                     
                     occupyProblemModel.prostatus = @"0";
                     [self.array replaceObjectAtIndex:selectIndex withObject:occupyProblemModel];
-
+                    
                     [self.tableView reloadData];
                     [GRToast makeText:@"开启成功"];
                 }];
@@ -222,7 +224,6 @@
 }
 
 - (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view {
-    self.pageNo = 1;
     [self loadData];
 }
 

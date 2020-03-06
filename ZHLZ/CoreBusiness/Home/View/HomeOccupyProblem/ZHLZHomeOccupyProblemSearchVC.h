@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZHLZHomeOccupyProblemSearchVC : ZHLZBaseVC
 
+@property (nonatomic, strong) ZHLZHomeOccupyProblemSearchModel *model;
+
 @property (nonatomic, copy) void (^selectSearchBlock)(ZHLZHomeOccupyProblemSearchModel *homeOccupyProblemSearchModel);
 
 - (void)showFilterView;
