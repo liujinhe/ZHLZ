@@ -24,7 +24,9 @@
     ZHLZBaseVM *baseVM = [[ZHLZBaseVM alloc] initWithRequestUrl:CheckInPunchAPIURLConst
                                             withRequestArgument:@{@"userid":userId, @"type":@(type), @"address":address}];
     return [baseVM requestCompletionWithSuccess:^(__kindof GRResponse * _Nonnull response) {
-        block();
+        if (response.status == 0) {
+            block();
+        }
     } withFailure:^(__kindof GRResponse * _Nonnull response) {
         
     }];

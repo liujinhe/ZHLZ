@@ -12,7 +12,7 @@
 
 #pragma mark - API Base URL
 
-// 测试环境：http://jfmtbf.natappfree.cc
+// 测试环境：http://5dx72r.natappfree.cc 账号：cslzs 密码：Zhlz@3428
 // 测试环境：http://www.yusuisoft.com:8080
 // 正式环境：http://121.8.227.111:8080
 NSString * const BaseAPIURLConst = @"http://121.8.227.111:8080";
