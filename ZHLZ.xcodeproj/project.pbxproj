@@ -2842,9 +2842,10 @@
 			baseConfigurationReference = AF90FDB87C4CF5A05C925C79 /* Pods-ZHLZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = QXPZS5U4VK;
+				CURRENT_PROJECT_VERSION = 113;
+				DEVELOPMENT_TEAM = F5BT677349;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2857,7 +2858,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2931,7 +2932,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = ZHLZ_Development;
+				PROVISIONING_PROFILE_SPECIFIER = zhlz_AppStore;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};
@@ -2942,9 +2943,10 @@
 			baseConfigurationReference = D94327F5AE7200F239881115 /* Pods-ZHLZ.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = QXPZS5U4VK;
+				CURRENT_PROJECT_VERSION = 113;
+				DEVELOPMENT_TEAM = F5BT677349;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2957,7 +2959,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -3030,7 +3032,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = ZHLZ_Development;
+				PROVISIONING_PROFILE_SPECIFIER = zhlz_AppStore;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};
