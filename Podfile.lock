@@ -1,10 +1,4 @@
 PODS:
-  - AFNetworking (3.2.1):
-    - AFNetworking/NSURLSession (= 3.2.1)
-    - AFNetworking/Reachability (= 3.2.1)
-    - AFNetworking/Security (= 3.2.1)
-    - AFNetworking/Serialization (= 3.2.1)
-    - AFNetworking/UIKit (= 3.2.1)
   - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -12,26 +6,24 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
-  - AFNetworking/UIKit (3.2.1):
-    - AFNetworking/NSURLSession
-  - AMap3DMap (7.1.0):
+  - AMap3DMap (7.2.0):
     - AMapFoundation (~> 1.5)
-  - AMapFoundation (1.6.0)
-  - AMapLocation (2.6.3):
-    - AMapFoundation (~> 1.4)
+  - AMapFoundation (1.6.2)
+  - AMapLocation (2.6.4):
+    - AMapFoundation (~> 1.6.1)
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
-  - IQKeyboardManager (6.5.3)
-  - JXCategoryView (1.5.2)
+  - IQKeyboardManager (6.5.5)
+  - JXCategoryView (1.5.3)
   - Masonry (1.1.0)
-  - MJRefresh (3.2.0)
+  - MJRefresh (3.2.3)
   - SDCycleScrollView (1.80):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.2.5):
     - SDWebImage/Core (= 5.2.5)
   - SDWebImage/Core (5.2.5)
   - SVProgressHUD (2.2.5)
-  - TZImagePickerController (3.2.6)
+  - TZImagePickerController (3.3.1)
   - UMCCommon (2.1.1)
   - UMCSecurityPlugins (1.0.6)
   - UMCShare/Core (6.9.6):
@@ -49,7 +41,10 @@ PODS:
   - ZWPlaceHolder (0.0.2)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.1)
+  - AFNetworking/NSURLSession (~> 3.0)
+  - AFNetworking/Reachability (~> 3.0)
+  - AFNetworking/Security (~> 3.0)
+  - AFNetworking/Serialization (~> 3.0)
   - AMap3DMap
   - AMapLocation
   - DZNEmptyDataSet (~> 1.8.1)
@@ -95,19 +90,19 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AMap3DMap: ef26e2fb120ae9f1635b4b26b28df6d1379a05f0
-  AMapFoundation: bc2f6e077b9279942734ba55f9624222fcf42848
-  AMapLocation: dc2c4fde95d72087d73934338160fadc72104bb7
+  AMap3DMap: be13191194c9aeb29a67d9d3e9a797588fb329aa
+  AMapFoundation: 672dc3a4759cb733f447c1e1b020f7ba2729f4ab
+  AMapLocation: b4162db67f813508a14ee7e05c7ee4073785221d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  IQKeyboardManager: c2f901164d56807a35788483584d09fa69192e8e
-  JXCategoryView: b284d35a7a8772eada05dd78642233e1eb763ea8
+  IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
+  JXCategoryView: 64fbdf3d1bbc8087ebd0443dd3b49855000aca6e
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  MJRefresh: 2b1214a2dc8f4df4c5dcb028ea2ad4e245425fb7
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TZImagePickerController: 3900e8d68428ff3a88817efce82ae9e7d9ffebc9
+  TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
@@ -115,6 +110,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: baa60f40b452c57392c8279773d2ad4359110653
+PODFILE CHECKSUM: 24c699088be498a29872a25a8e350dc966eeeeae
 
 COCOAPODS: 1.8.4

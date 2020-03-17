@@ -9,7 +9,7 @@ target 'ZHLZ' do
   # use_frameworks!
 
   # Pods for ZHLZ
-  pod 'AFNetworking'
+  pod 'AFNetworking', '~> 3.0', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
   pod 'Masonry', '~> 1.1.0'
   pod 'MJRefresh', '~> 3.2.0'
   pod 'YYKit', '~> 1.0.9'
