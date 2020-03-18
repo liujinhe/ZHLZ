@@ -41,22 +41,22 @@ PODS:
   - ZWPlaceHolder (0.0.2)
 
 DEPENDENCIES:
-  - AFNetworking/NSURLSession (~> 3.0)
-  - AFNetworking/Reachability (~> 3.0)
-  - AFNetworking/Security (~> 3.0)
-  - AFNetworking/Serialization (~> 3.0)
-  - AMap3DMap
-  - AMapLocation
+  - AFNetworking/NSURLSession (~> 3.2.1)
+  - AFNetworking/Reachability (~> 3.2.1)
+  - AFNetworking/Security (~> 3.2.1)
+  - AFNetworking/Serialization (~> 3.2.1)
+  - AMap3DMap (~> 7.2.0)
+  - AMapLocation (~> 2.6.4)
   - DZNEmptyDataSet (~> 1.8.1)
   - FDFullscreenPopGesture (~> 1.1)
-  - IQKeyboardManager (~> 6.5.0)
-  - JXCategoryView (~> 1.5.2)
+  - IQKeyboardManager (~> 6.5.5)
+  - JXCategoryView (~> 1.5.3)
   - Masonry (~> 1.1.0)
-  - MJRefresh (~> 3.2.0)
+  - MJRefresh (~> 3.2.3)
   - SDCycleScrollView (~> 1.80)
   - SDWebImage (~> 5.2.3)
   - SVProgressHUD (~> 2.2.5)
-  - TZImagePickerController
+  - TZImagePickerController (~> 3.3.1)
   - UMCCommon
   - UMCSecurityPlugins
   - UMCShare/Social/ReducedWeChat
@@ -110,6 +110,6 @@ SPEC CHECKSUMS:
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
 
-PODFILE CHECKSUM: 24c699088be498a29872a25a8e350dc966eeeeae
+PODFILE CHECKSUM: 066d531bd87834f3aacce182048116737ac6d647
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
