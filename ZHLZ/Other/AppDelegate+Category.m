@@ -42,11 +42,11 @@
     [AMapServices sharedServices].apiKey = AMapKeyConst;
     [AMapServices sharedServices].enableHTTPS = YES;
     
-#ifdef DEBUG
-    [IQKeyboardManager sharedManager].enableDebugging = YES;
-    
-    [FPSDisplay sharedInstance];
-#endif
+//#ifdef DEBUG
+//    [IQKeyboardManager sharedManager].enableDebugging = YES;
+//    
+//    [FPSDisplay sharedInstance];
+//#endif
     
     // U-Share 平台设置
     [self configUSharePlatforms];

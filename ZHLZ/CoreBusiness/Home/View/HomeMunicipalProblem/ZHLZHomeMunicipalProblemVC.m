@@ -55,9 +55,9 @@
             self.homeMunicipalProblemSearchModel.isrange = @"1";
             
             NSDictionary *coordinate = [[NSUserDefaults standardUserDefaults] objectForKey:CurrentLocationCoordinateConst];
-#ifdef DEBUG
-            coordinate = @{@"longitude": @"113.27", @"latitude": @"23.13"};
-#endif
+//#ifdef DEBUG
+//            coordinate = @{@"longitude": @"113.27", @"latitude": @"23.13"};
+//#endif
             if (coordinate) {
                 self.homeMunicipalProblemSearchModel.lng = [coordinate objectForKey:@"longitude"];
                 self.homeMunicipalProblemSearchModel.lat = [coordinate objectForKey:@"latitude"];

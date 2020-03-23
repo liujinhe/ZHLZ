@@ -228,7 +228,7 @@
         
         
         //片区名称
-        [self.areaButton setTitle:municipalProblemModel.areaname forState:UIControlStateNormal];
+//        [self.areaButton setTitle:municipalProblemModel.areaname forState:UIControlStateNormal];
         
         ///责任区县
         [self.dutyAreaButton setTitle:municipalProblemModel.belongname forState:UIControlStateNormal];
@@ -537,19 +537,15 @@
         self.municipalProblemSubmitModel.latX = @"";
         self.municipalProblemSubmitModel.lonY = @"";
     }
-    
     if (self.type == 1) {
         self.municipalProblemSubmitModel.id = @"";
         self.municipalProblemSubmitModel.uploadid = @"";
         self.municipalProblemSubmitModel.ddssjtms = [self setddssjtms];
     }
-    
-    
-    
-    if (![self.municipalProblemSubmitModel.areaid isNotBlank]) {
-        [GRToast makeText:@"请选择片区"];
-        return;
-    }
+//    if (![self.municipalProblemSubmitModel.areaid isNotBlank]) {
+//        [GRToast makeText:@"请选择片区"];
+//        return;
+//    }
     if (![self.municipalProblemSubmitModel.belong isNotBlank]) {
         [GRToast makeText:@"请选择所属区县"];
         return;

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *risksid;///台账ID
 
-@property (nonatomic , copy) NSString *areaid;///片区名称
+//@property (nonatomic , copy) NSString *areaid;///片区名称
 
 @property (nonatomic , copy) NSString *belong;///责任所属区县
 

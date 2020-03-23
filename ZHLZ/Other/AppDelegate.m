@@ -52,9 +52,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation *location = [locations firstObject];
-#ifdef DEBUG
-    location = [[CLLocation alloc] initWithLatitude:23.13 longitude:113.27];
-#endif
+//#ifdef DEBUG
+//    location = [[CLLocation alloc] initWithLatitude:23.13 longitude:113.27];
+//#endif
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {

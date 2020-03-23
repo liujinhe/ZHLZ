@@ -103,38 +103,38 @@
         [self.homeSafeButton setTitle:homeSafeProblem.risksid forState:UIControlStateNormal];
         
         //片区名称
-        NSString *orgnameString = [ZHLZUserManager sharedInstance].user.orgname;
-        NSInteger areaid = [homeSafeProblem.areaid integerValue];
-        
-        NSString *areaString = @"";
-        if ([orgnameString isEqualToString:@"一大队"]) {
-            if (areaid == 1) {
-                areaString = @"北片";
-            } else if (areaid == 2) {
-                areaString = @"南片";
-            }
-        } else if ([orgnameString isEqualToString:@"二大队"]) {
-            if (areaid == 3) {
-                areaString = @"南北片";
-            } else if (areaid == 4) {
-                areaString = @"芳村片";
-            }
-        } else if ([orgnameString isEqualToString:@"三大队"]) {
-            if (areaid == 5) {
-                areaString = @"北片";
-            } else if (areaid == 6) {
-                areaString = @"南片";
-            }
-        } else if ([orgnameString isEqualToString:@"四大队"]) {
-            if (areaid == 7) {
-                areaString = @"北片";
-            } else if (areaid == 8) {
-                areaString = @"西南片";
-            }
-        } else if ([orgnameString isEqualToString:@"五大队"]) {
-            areaString = @"广圆快速路";
-        }
-        [self.areaNameButton setTitle:areaString forState:UIControlStateNormal];
+//        NSString *orgnameString = [ZHLZUserManager sharedInstance].user.orgname;
+//        NSInteger areaid = [homeSafeProblem.areaid integerValue];
+//
+//        NSString *areaString = @"";
+//        if ([orgnameString isEqualToString:@"一大队"]) {
+//            if (areaid == 1) {
+//                areaString = @"北片";
+//            } else if (areaid == 2) {
+//                areaString = @"南片";
+//            }
+//        } else if ([orgnameString isEqualToString:@"二大队"]) {
+//            if (areaid == 3) {
+//                areaString = @"南北片";
+//            } else if (areaid == 4) {
+//                areaString = @"芳村片";
+//            }
+//        } else if ([orgnameString isEqualToString:@"三大队"]) {
+//            if (areaid == 5) {
+//                areaString = @"北片";
+//            } else if (areaid == 6) {
+//                areaString = @"南片";
+//            }
+//        } else if ([orgnameString isEqualToString:@"四大队"]) {
+//            if (areaid == 7) {
+//                areaString = @"北片";
+//            } else if (areaid == 8) {
+//                areaString = @"西南片";
+//            }
+//        } else if ([orgnameString isEqualToString:@"五大队"]) {
+//            areaString = @"广圆快速路";
+//        }
+//        [self.areaNameButton setTitle:areaString forState:UIControlStateNormal];
         
         [self.dutyAreaButton setTitle:homeSafeProblem.belongname forState:UIControlStateNormal];
         
@@ -148,7 +148,7 @@
         ///编辑回选
         if (self.type == 3) {
             self.homeSafeProblemSUbmitModel.risksid = homeSafeProblem.risksid;
-            self.homeSafeProblemSUbmitModel.areaid = homeSafeProblem.areaid;
+//            self.homeSafeProblemSUbmitModel.areaid = homeSafeProblem.areaid;
             self.homeSafeProblemSUbmitModel.belong = homeSafeProblem.belong;
             self.homeSafeProblemSUbmitModel.finddate = homeSafeProblem.finddate;
             self.homeSafeProblemSUbmitModel.ddssjtms = homeSafeProblem.ddssjtms;
@@ -275,17 +275,17 @@
     pickerVC.selectPickerBlock = ^(NSInteger index, NSString * _Nonnull name) {
         [self.areaNameButton setTitle:name forState:UIControlStateNormal];
         
-        if ([orgnameString isEqualToString:@"五大队"]) {
-            if (index == 0) {
-                self.homeSafeProblemSUbmitModel.areaid = @"4";
-            }
-        } else {
-            if (index == 0) {
-                self.homeSafeProblemSUbmitModel.areaid = @"3";
-            } else if (index == 1) {
-                self.homeSafeProblemSUbmitModel.areaid = @"4";
-            }
-        }
+//        if ([orgnameString isEqualToString:@"五大队"]) {
+//            if (index == 0) {
+//                self.homeSafeProblemSUbmitModel.areaid = @"4";
+//            }
+//        } else {
+//            if (index == 0) {
+//                self.homeSafeProblemSUbmitModel.areaid = @"3";
+//            } else if (index == 1) {
+//                self.homeSafeProblemSUbmitModel.areaid = @"4";
+//            }
+//        }
     };
     [self presentViewController:pickerVC animated:NO completion:nil];
 }
@@ -354,10 +354,10 @@
         [GRToast makeText:@"请选择所属区县"];
         return;
     }
-    if (![self.homeSafeProblemSUbmitModel.areaid isNotBlank]) {
-        [GRToast makeText:@"请选择片区"];
-        return;
-    }
+//    if (![self.homeSafeProblemSUbmitModel.areaid isNotBlank]) {
+//        [GRToast makeText:@"请选择片区"];
+//        return;
+//    }
     if (![self.homeSafeProblemSUbmitModel.finddate isNotBlank]) {
         [GRToast makeText:@"问题发现时间"];
         return;

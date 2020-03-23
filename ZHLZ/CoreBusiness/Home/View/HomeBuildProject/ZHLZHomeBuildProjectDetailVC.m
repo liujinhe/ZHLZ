@@ -554,10 +554,10 @@
         [GRToast makeText:@"请选择施工状态"];
         return;
     }
-    if (![self.projectSubmitModel.areaid isNotBlank]) {
-        [GRToast makeText:@"请选择片区"];
-        return;
-    }
+//    if (![self.projectSubmitModel.areaid isNotBlank]) {
+//        [GRToast makeText:@"请选择片区"];
+//        return;
+//    }
     if (![self.projectSubmitModel.belong isNotBlank]) {
         [GRToast makeText:@"请选择责任区县"];
         return;
