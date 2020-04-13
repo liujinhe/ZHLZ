@@ -2842,7 +2842,7 @@
 			baseConfigurationReference = AF90FDB87C4CF5A05C925C79 /* Pods-ZHLZ.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 115;
 				DEVELOPMENT_TEAM = F5BT677349;
@@ -2932,7 +2932,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = zhlz_AppStore;
+				PROVISIONING_PROFILE_SPECIFIER = zhlz_Dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};
@@ -3032,7 +3032,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yusui.zhlz;
 				PRODUCT_NAME = "智慧路政";
-				PROVISIONING_PROFILE_SPECIFIER = zhlz_AppStore;
+				PROVISIONING_PROFILE_SPECIFIER = zhlz_Hoc;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/ZHLZ/Basis/ThirdPatry/TTXSDK.framework/Headers\"";
 			};
