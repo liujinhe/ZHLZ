@@ -15,7 +15,7 @@
 // 测试环境：http://5dx72r.natappfree.cc 账号：cslzs 密码：Zhlz@3428
 // 测试环境：http://www.yusuisoft.com:8080
 // 正式环境：http://183.6.145.109:8080
-NSString * const BaseAPIURLConst = @"183.6.145.109:8080";
+NSString * const BaseAPIURLConst = @"http://183.6.145.109:8080";
 
 NSString * const BaseAPICarVideoURLConst = @"http://183.6.134.126";
 
